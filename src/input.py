@@ -4,9 +4,9 @@ import window
 import globals.all
 import globals.cursor
 import globals.selectedTile
+import globals.screenmode
 import globals.speed
 import globals.zoom
-from globals.all import SCREENMODE_ECONOMY_DEMAND, SCREENMODE_ECONOMY_SUPPLY, SCREENMODE_MAIN, SCREENMODE_TRANSPORT
 from map.map import map_add, map_remove, tile_is_empty
 from map.tile import TILETYPE_TRANSPORT, tile_init
 
@@ -35,13 +35,13 @@ def singleKey(key):
 		case pygame.K_F11:
 			window.toggleFullscreen()
 		case pygame.K_1:
-			globals.all.screen_mode = SCREENMODE_MAIN
+			globals.screenmode.select(globals.screenmode.SCREENMODE_MAIN)
 		case pygame.K_2:
-			globals.all.screen_mode = SCREENMODE_ECONOMY_SUPPLY
+			globals.screenmode.select(globals.screenmode.SCREENMODE_ECONOMY_SUPPLY)
 		case pygame.K_3:
-			globals.all.screen_mode = SCREENMODE_ECONOMY_DEMAND
+			globals.screenmode.select(globals.screenmode.SCREENMODE_ECONOMY_DEMAND)
 		case pygame.K_4:
-			globals.all.screen_mode = SCREENMODE_TRANSPORT
+			globals.screenmode.select(globals.screenmode.SCREENMODE_TRANSPORT)
 		case pygame.K_t:
 			globals.speed.increment()
 		case pygame.K_g:

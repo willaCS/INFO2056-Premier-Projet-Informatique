@@ -4,7 +4,7 @@ import pygame
 import window
 import globals.speed
 import globals.all
-from globals.all import SCREENMODE_ECONOMY_DEMAND, SCREENMODE_ECONOMY_SUPPLY, SCREENMODE_MAIN, SCREENMODE_TRANSPORT
+import globals.screenmode
 
 top_bar_height = 60
 padding_out = 10
@@ -32,10 +32,10 @@ def drawUI():
 	pygame.draw.rect(window.inst, (40, 40, 40), ((0, 0), (window.resolution[0], top_bar_height)))
 	drawCoin((200, 0), 200, (255, 180, 0), 25, 1)
 	drawCoin((410, 0), 200, (0, 200, 200), 11, 3)
-	drawSquare((0, 0), (255, 255, 255) if globals.all.screen_mode == SCREENMODE_MAIN else (80, 80, 80), "A")
-	drawSquare((50, 0), (255, 255, 255) if globals.all.screen_mode == SCREENMODE_ECONOMY_SUPPLY else (80, 80, 80), "B")
-	drawSquare((100, 0), (255, 255, 255) if globals.all.screen_mode == SCREENMODE_ECONOMY_DEMAND else (80, 80, 80), "C")
-	drawSquare((150, 0), (255, 255, 255) if globals.all.screen_mode == SCREENMODE_TRANSPORT else (80, 80, 80), "D")
+	drawSquare((0, 0), (255, 255, 255) if globals.screenmode.val == globals.screenmode.SCREENMODE_MAIN else (80, 80, 80), "A")
+	drawSquare((50, 0), (255, 255, 255) if globals.screenmode.val == globals.screenmode.SCREENMODE_ECONOMY_SUPPLY else (80, 80, 80), "B")
+	drawSquare((100, 0), (255, 255, 255) if globals.screenmode.val == globals.screenmode.SCREENMODE_ECONOMY_DEMAND else (80, 80, 80), "C")
+	drawSquare((150, 0), (255, 255, 255) if globals.screenmode.val == globals.screenmode.SCREENMODE_TRANSPORT else (80, 80, 80), "D")
 
 	drawSquare((window.resolution[0] - 260, 0), (120, 0, 0) if globals.speed.val == 0 else (255, 255, 255) if globals.speed.val >= 1 else (80, 80, 80), "1")
 	drawSquare((window.resolution[0] - 210, 0), (120, 0, 0) if globals.speed.val == 0 else (255, 255, 255) if globals.speed.val >= 2 else (80, 80, 80), "2")

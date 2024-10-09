@@ -1,6 +1,5 @@
 from typing import Tuple
 
-import globals.all
 import globals.cursor
 import globals.zoom
 import window

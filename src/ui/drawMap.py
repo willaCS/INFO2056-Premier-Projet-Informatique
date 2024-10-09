@@ -2,10 +2,10 @@ from typing import Tuple
 import pygame
 
 import window
-import globals.all
 import globals.selectedTile
 import globals.cursor
 import globals.zoom
+import globals.screenmode
 from globals.all import COLOR_WHITE, COLOR_BLACK
 from map.tile import tile_render
 from map.map import map_get
@@ -15,14 +15,14 @@ def getColor(x, y):
 	test_map = map_get((x, y))
 	if test_map != None:
 		return tile_render(test_map)
-	match globals.all.screen_mode:
-		case globals.all.SCREENMODE_MAIN:
+	match globals.screenmode.val:
+		case globals.screenmode.SCREENMODE_MAIN:
 			return (255 - ((x + y) % 32) * 2, 0, 0)
-		case globals.all.SCREENMODE_ECONOMY_DEMAND:
+		case globals.screenmode.SCREENMODE_ECONOMY_DEMAND:
 			return (0, 255 - ((x + y) % 32) * 2, 0)
-		case globals.all.SCREENMODE_ECONOMY_SUPPLY:
+		case globals.screenmode.SCREENMODE_ECONOMY_SUPPLY:
 			return (0, 0, 255 - ((x + y) % 32) * 2)
-		case globals.all.SCREENMODE_TRANSPORT:
+		case globals.screenmode.SCREENMODE_TRANSPORT:
 			return (255 - ((x + y) % 32) * 2, 255 - ((x + y) % 32) * 2, 0)
 		case _:
 			return (0, 0, 0)
