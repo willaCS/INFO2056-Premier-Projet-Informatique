@@ -7,17 +7,17 @@ On peut faire :
 
 from typing import Tuple
 
-from globals import cursor, zoom
-import window
+from globals import Cursor, Zoom
+import Window
 
 def coord_to_px(coord: Tuple[float, float]) -> Tuple[int, int]:
 	return (
-		window.half_resolution[0] + int(cursor.val[0] * zoom.tile_size) + (coord[0]) * zoom.tile_size,
-		window.half_resolution[1] - int(cursor.val[1] * zoom.tile_size) - (coord[1]) * zoom.tile_size,
+		Window.half_resolution[0] + int(Cursor.val[0] * Zoom.tile_size) + (coord[0]) * Zoom.tile_size,
+		Window.half_resolution[1] - int(Cursor.val[1] * Zoom.tile_size) - (coord[1]) * Zoom.tile_size,
 	)
 
 def px_to_coord(coord: Tuple[int, int]) -> Tuple[float, float]:
 	return (
-		(coord[0] - window.half_resolution[0]) / zoom.tile_size - cursor.val[0],
-		-((coord[1] - window.half_resolution[1]) / zoom.tile_size + cursor.val[1]),
+		(coord[0] - Window.half_resolution[0]) / Zoom.tile_size - Cursor.val[0],
+		-((coord[1] - Window.half_resolution[1]) / Zoom.tile_size + Cursor.val[1]),
 	)

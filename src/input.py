@@ -6,65 +6,65 @@ s'execute qu'une seule fois
 
 import pygame
 
-import window
-from globals import cursor, selectedTile, screenmode, speed, zoom
-from map import map, tile
+import Window
+from globals import Cursor, Screenmode, SelectedTile, Speed, Zoom
+from map import Map, Tile
 
 def repeatKey(key):
 	match key:
 		case pygame.K_c:
-			cursor.reset()
+			Cursor.reset()
 		case pygame.K_w:
-			cursor.move_up()
+			Cursor.move_up()
 		case pygame.K_a:
-			cursor.move_left()
+			Cursor.move_left()
 		case pygame.K_s:
-			cursor.move_down()
+			Cursor.move_down()
 		case pygame.K_d:
-			cursor.move_right()
+			Cursor.move_right()
 		case pygame.K_r:
-			zoom.decrement()
+			Zoom.decrement()
 		case pygame.K_f:
-			zoom.increment()
+			Zoom.increment()
 		
 
 def singleKey(key):
 	match key:
 		case pygame.K_ESCAPE:
-			window.stop()
+			Window.stop()
 		case pygame.K_F11:
-			window.toggleFullscreen()
+			Window.toggleFullscreen()
 		case pygame.K_1:
-			screenmode.select(screenmode.SCREENMODE_MAIN)
+			Screenmode.select(Screenmode.SCREENMODE_MAIN)
 		case pygame.K_2:
-			screenmode.select(screenmode.SCREENMODE_ECONOMY_SUPPLY)
+			Screenmode.select(Screenmode.SCREENMODE_ECONOMY_SUPPLY)
 		case pygame.K_3:
-			screenmode.select(screenmode.SCREENMODE_ECONOMY_DEMAND)
+			Screenmode.select(Screenmode.SCREENMODE_ECONOMY_DEMAND)
 		case pygame.K_4:
-			screenmode.select(screenmode.SCREENMODE_TRANSPORT)
+			Screenmode.select(Screenmode.SCREENMODE_TRANSPORT)
 		case pygame.K_t:
-			speed.increment()
+			Speed.increment()
 		case pygame.K_g:
-			speed.decrement()
+			Speed.decrement()
 		case pygame.K_SPACE:
-			speed.pause()
+			Speed.pause()
 		case pygame.K_KP1:
-			speed.set(1)
+			Speed.set(1)
 		case pygame.K_KP2:
-			speed.set(2)
+			Speed.set(2)
 		case pygame.K_KP3:
-			speed.set(3)
+			Speed.set(3)
 		case pygame.K_KP4:
-			speed.set(4)
+			Speed.set(4)
 		case pygame.K_KP5:
-			speed.set(5)
+			Speed.set(5)
 		case pygame.K_BACKSPACE:
-			if selectedTile.val:
-				if not map.tile_is_empty(selectedTile.val):
-					map.remove(selectedTile.val)
-				selectedTile.clear()
+			if SelectedTile.val:
+				if not Map.tile_is_empty(SelectedTile.val):
+					Map.remove(SelectedTile.val)
+				SelectedTile.clear()
 		case pygame.K_z:
-			if selectedTile.val:
-				if map.tile_is_empty(selectedTile.val):
-					map.add(tile.init(tile.TILETYPE_TRANSPORT, selectedTile.val))
-				selectedTile.clear()
+			if SelectedTile.val:
+				if Map.tile_is_empty(SelectedTile.val):
+					Map.add(Tile.init(Tile.TILETYPE_TRANSPORT, SelectedTile.val))
+				SelectedTile.clear()

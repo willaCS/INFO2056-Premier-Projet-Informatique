@@ -10,7 +10,7 @@ Ce fichier permet de faire :
 
 from typing import Dict, Tuple
 
-from map import tile
+from map import Tile
 
 def init() -> Dict[Tuple[int, int], Dict[str, int | Tuple[int, int]]]:
 	return {}
@@ -19,11 +19,11 @@ def get(coord: Tuple[int, int]) -> Dict[str, int | Tuple[int, int]]:
 	global map
 	return map.get(coord)
 
-def add(new_tile: Dict[str, int | Tuple[int, int]]):
+def add(tile: Dict[str, int | Tuple[int, int]]):
 	global map
-	if get(tile.get_position(new_tile)):
+	if get(Tile.get_position(tile)):
 		raise ValueError('Cannot add two tile on the same space')
-	map[tile.get_position(new_tile)] = new_tile
+	map[Tile.get_position(tile)] = tile
 
 def remove(coord: Tuple[int, int]):
 	global map
@@ -38,23 +38,23 @@ def print() -> str:
 	global map
 	res = 'Map :\n'
 	for t in map:
-		res += f'- {str(tile.print(t))}\n'
+		res += f'- {str(Tile.print(t))}\n'
 	return res
 
 def tile_is_empty(coord: Tuple[int, int]):
-	checked_tile = get(coord)
-	if not checked_tile:
+	tile = get(coord)
+	if not tile:
 		return True
-	return tile.get_type(checked_tile) == tile.TILETYPE_EMPTY
+	return Tile.get_type(tile) == Tile.TILETYPE_EMPTY
 
 map = init()
-add(tile.init(tile.TILETYPE_CITY, (2, 3)))
-add(tile.init(tile.TILETYPE_CITY, (3, 2)))
-add(tile.init(tile.TILETYPE_CITY, (2, 2)))
-add(tile.init(tile.TILETYPE_CITYCENTER, (3, 3)))
-add(tile.init(tile.TILETYPE_INDUSTRY, (0, -1)))
-add(tile.init(tile.TILETYPE_TRANSPORTHUB, (0, 0)))
-add(tile.init(tile.TILETYPE_TRANSPORT, (0, 1)))
-add(tile.init(tile.TILETYPE_TRANSPORT, (0, 2)))
-add(tile.init(tile.TILETYPE_TRANSPORT, (1, 2)))
-add(tile.init(tile.TILETYPE_TRANSPORTHUB, (1, 3)))
+add(Tile.init(Tile.TILETYPE_CITY, (2, 3)))
+add(Tile.init(Tile.TILETYPE_CITY, (3, 2)))
+add(Tile.init(Tile.TILETYPE_CITY, (2, 2)))
+add(Tile.init(Tile.TILETYPE_CITYCENTER, (3, 3)))
+add(Tile.init(Tile.TILETYPE_INDUSTRY, (0, -1)))
+add(Tile.init(Tile.TILETYPE_TRANSPORTHUB, (0, 0)))
+add(Tile.init(Tile.TILETYPE_TRANSPORT, (0, 1)))
+add(Tile.init(Tile.TILETYPE_TRANSPORT, (0, 2)))
+add(Tile.init(Tile.TILETYPE_TRANSPORT, (1, 2)))
+add(Tile.init(Tile.TILETYPE_TRANSPORTHUB, (1, 3)))

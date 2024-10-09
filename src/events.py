@@ -4,17 +4,17 @@ Ce fichier gère les events custom pour le jeu
 
 import pygame
 
-from globals import selectedTile, zoom
+from globals import SelectedTile, Zoom
 
 def handleEvents(event):
 	match event.type:
 		case pygame.MOUSEWHEEL:
 			if (event.y >= 0):
-				zoom.decrement()
+				Zoom.decrement()
 			else:
-				zoom.increment()
+				Zoom.increment()
 		case pygame.MOUSEBUTTONUP:
 			if (event.button == 1):
-				selectedTile.select(event.pos)
+				SelectedTile.select(event.pos)
 		case _:
 			pass

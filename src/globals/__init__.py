@@ -1,17 +1,17 @@
 # Define the __all__ variable
 __all__ = [
 	"all",
-	"cursor",
-	"screenmode",
-	"selectedTile",
-	"speed",
-	"zoom",
+	"Cursor",
+	"Screenmode",
+	"SelectedTile",
+	"Speed",
+	"Zoom",
 ]
 
 # Import the submodules
 from . import all
-from . import cursor
-from . import screenmode
-from . import selectedTile
-from . import speed
-from . import zoom
+from . import Cursor
+from . import Screenmode
+from . import SelectedTile
+from . import Speed
+from . import Zoom

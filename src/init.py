@@ -5,7 +5,7 @@ fonction tick executé tout les ticks et la fonction setup executé lorsque
 pygame est prêt.
 """
 
-import window
+import Window
 from globals import all
 from events import handleEvents
 from input import repeatKey, singleKey
@@ -24,8 +24,8 @@ def tick():
 
 
 def	main():
-	window.init(setup, tick, handleEvents, repeatKey, singleKey)
-	window.start()
+	Window.init(setup, tick, handleEvents, repeatKey, singleKey)
+	Window.start()
 
 
 
