@@ -46,9 +46,6 @@ def init(
 		repeatKey	Callable[[str]]		: Donne les touches pressées qui sont repetée
 		singleKey	Callable[[str]]		: Donne les touches pressées qui sont executée une fois
 		tickrate	int					: le nombre de tick par secondes
-
-	Returns:
-		int: The product of a and b.
 	"""
 	
 	global __tickrate, __singleKey, __repeatKey, __handleEvent, __setup, __tick
