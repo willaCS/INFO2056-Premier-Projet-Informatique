@@ -12,9 +12,9 @@ __done = False
 __tickrate = 60
 
 repeatKeyMap = {}
-__singleKey = lambda win, key: None
-__repeatKey = lambda win, key: None
-__handleEvent = lambda win, event: None
+__singleKey = lambda key: None
+__repeatKey = lambda key: None
+__handleEvent = lambda event: None
 
 inst = 0
 __is_fullscreen = False
@@ -28,8 +28,8 @@ __tick = 0
 
 
 def init(
-	setup:			Callable				= lambda: None,
-	tick:			Callable				= lambda: None,
+	setup:			Callable[[], None]		= lambda: None,
+	tick:			Callable[[], None]		= lambda: None,
 	handleEvent:	Callable[[Event], None]	= lambda event: None,
 	repeatKey:		Callable[[str], None]	= lambda key: None,
 	singleKey:		Callable[[str], None]	= lambda key: None,
