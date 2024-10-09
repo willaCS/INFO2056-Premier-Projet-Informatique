@@ -28,13 +28,29 @@ __tick = 0
 
 
 def init(
-	setup: Callable[[], int],
-	tick: Callable[[], int],
-	handleEvent: Callable[[Event], None] = lambda win, event: None,
-	repeatKey: Callable[[str], None] = lambda win, key: None,
-	singleKey: Callable[[str], None] = lambda win, key: None,
+	setup:			Callable				= lambda: None,
+	tick:			Callable				= lambda: None,
+	handleEvent:	Callable[[Event], None]	= lambda event: None,
+	repeatKey:		Callable[[str], None]	= lambda key: None,
+	singleKey:		Callable[[str], None]	= lambda key: None,
 	tickrate = 60,
 ):
+	"""
+	cette fonction initialise l'instance pygame et envoie toutes les lambdas
+	fonctions au bonne endroit pour l'execution après.
+
+	Args:
+		setup		Callable			: Executée après le début de l'instance
+		tick		Callable			: Executée à chaques ticks
+		handleEvent	Callable[[Event]]	: Donne les nouveaux events
+		repeatKey	Callable[[str]]		: Donne les touches pressées qui sont repetée
+		singleKey	Callable[[str]]		: Donne les touches pressées qui sont executée une fois
+		tickrate	int					: le nombre de tick par secondes
+
+	Returns:
+		int: The product of a and b.
+	"""
+	
 	global __tickrate, __singleKey, __repeatKey, __handleEvent, __setup, __tick
 	if (not callable(setup) or not callable(tick)):
 		raise ValueError("setup or tick is not callable")
@@ -53,32 +69,39 @@ def init(
 
 
 
-def __del__():
-	pygame.display.quit()
-	pygame.quit()
-	return
-
-
-
 def start():
+	"""
+	Lance l'instance et possède la boucle principale.
+	"""
 	global time
 	__setup()
 	time = pygame.time.Clock()
 	while not __done:
-		__handle_input()
+		__handle_events()
 		__tick()
 		pygame.display.flip()
 		time.tick(__tickrate)
+	pygame.display.quit()
+	pygame.quit()
 
 
 
 def stop():
+	"""
+	Termine l'instance
+	"""
 	global __done
 	__done = True
 
 
 
-def __handle_input():
+def __handle_events():
+	"""
+	Prend tout les évenements pygame et fait trois choses :
+	- gère et execute la fonction singleKey et repeatKey
+	- gère les mises à jours de taille de l'écran
+	- gère la fermeture de la fenêtre
+	"""
 	global repeatKeyMap
 
 	for event in pygame.event.get():
@@ -109,6 +132,9 @@ def __handle_input():
 
 
 def __update_resolution(coord):
+	"""
+	Set les variables de résolutions après une mise à jour.
+	"""
 	global half_resolution, resolution
 	resolution = coord
 	half_resolution = (
@@ -118,6 +144,10 @@ def __update_resolution(coord):
 
 
 def __update_window():
+	"""
+	Crée l'instance Surface pygame en fonction de si c'est en plein écran ou
+	en fenêtré.
+	"""
 	global inst
 	if (__is_fullscreen):
 		inst = pygame.display.set_mode((0,0), pygame.FULLSCREEN | pygame.NOFRAME)
@@ -127,6 +157,9 @@ def __update_window():
 
 
 def toggleFullscreen():
+	"""
+	active ou désactive le plein écran.
+	"""
 	global __windowed_resolution, resolution, __is_fullscreen
 	if (not __is_fullscreen):
 		__windowed_resolution = resolution
