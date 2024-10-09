@@ -7,31 +7,25 @@ s'execute qu'une seule fois
 import pygame
 
 import window
-import globals.all
-import globals.cursor
-import globals.selectedTile
-import globals.screenmode
-import globals.speed
-import globals.zoom
-from map.map import map_add, map_remove, tile_is_empty
-from map.tile import TILETYPE_TRANSPORT, tile_init
+from globals import cursor, selectedTile, screenmode, speed, zoom
+from map import map, tile
 
 def repeatKey(key):
 	match key:
 		case pygame.K_c:
-			globals.cursor.reset()
+			cursor.reset()
 		case pygame.K_w:
-			globals.cursor.move_up()
+			cursor.move_up()
 		case pygame.K_a:
-			globals.cursor.move_left()
+			cursor.move_left()
 		case pygame.K_s:
-			globals.cursor.move_down()
+			cursor.move_down()
 		case pygame.K_d:
-			globals.cursor.move_right()
+			cursor.move_right()
 		case pygame.K_r:
-			globals.zoom.decrement()
+			zoom.decrement()
 		case pygame.K_f:
-			globals.zoom.increment()
+			zoom.increment()
 		
 
 def singleKey(key):
@@ -41,36 +35,36 @@ def singleKey(key):
 		case pygame.K_F11:
 			window.toggleFullscreen()
 		case pygame.K_1:
-			globals.screenmode.select(globals.screenmode.SCREENMODE_MAIN)
+			screenmode.select(screenmode.SCREENMODE_MAIN)
 		case pygame.K_2:
-			globals.screenmode.select(globals.screenmode.SCREENMODE_ECONOMY_SUPPLY)
+			screenmode.select(screenmode.SCREENMODE_ECONOMY_SUPPLY)
 		case pygame.K_3:
-			globals.screenmode.select(globals.screenmode.SCREENMODE_ECONOMY_DEMAND)
+			screenmode.select(screenmode.SCREENMODE_ECONOMY_DEMAND)
 		case pygame.K_4:
-			globals.screenmode.select(globals.screenmode.SCREENMODE_TRANSPORT)
+			screenmode.select(screenmode.SCREENMODE_TRANSPORT)
 		case pygame.K_t:
-			globals.speed.increment()
+			speed.increment()
 		case pygame.K_g:
-			globals.speed.decrement()
+			speed.decrement()
 		case pygame.K_SPACE:
-			globals.speed.pause()
+			speed.pause()
 		case pygame.K_KP1:
-			globals.speed.set(1)
+			speed.set(1)
 		case pygame.K_KP2:
-			globals.speed.set(2)
+			speed.set(2)
 		case pygame.K_KP3:
-			globals.speed.set(3)
+			speed.set(3)
 		case pygame.K_KP4:
-			globals.speed.set(4)
+			speed.set(4)
 		case pygame.K_KP5:
-			globals.speed.set(5)
+			speed.set(5)
 		case pygame.K_BACKSPACE:
-			if globals.selectedTile.val:
-				if not tile_is_empty(globals.selectedTile.val):
-					map_remove(globals.selectedTile.val)
-				globals.selectedTile.clear()
+			if selectedTile.val:
+				if not map.tile_is_empty(selectedTile.val):
+					map.remove(selectedTile.val)
+				selectedTile.clear()
 		case pygame.K_z:
-			if globals.selectedTile.val:
-				if tile_is_empty(globals.selectedTile.val):
-					map_add(tile_init(TILETYPE_TRANSPORT, globals.selectedTile.val))
-				globals.selectedTile.clear()
+			if selectedTile.val:
+				if map.tile_is_empty(selectedTile.val):
+					map.add(tile.init(tile.TILETYPE_TRANSPORT, selectedTile.val))
+				selectedTile.clear()

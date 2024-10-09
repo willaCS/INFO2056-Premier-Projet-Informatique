@@ -5,15 +5,15 @@ fonction tick executé tout les ticks et la fonction setup executé lorsque
 pygame est prêt.
 """
 
-import globals.all
 import window
+from globals import all
 from events import handleEvents
 from input import repeatKey, singleKey
 from ui.drawFrame import drawFrame
 from ui.drawUI import getFont
 
 def setup():
-	globals.all.font = getFont()
+	all.font = getFont()
 
 
 

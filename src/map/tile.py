@@ -16,7 +16,7 @@ TILETYPE_INDUSTRY		= 3
 TILETYPE_CITY			= 4
 TILETYPE_CITYCENTER		= 5
 
-def tile_type_print(tile_type: int):
+def type_print(tile_type: int):
 	match tile_type:
 		case 0: #TILETYPE_EMPTY
 			return 'Empty'
@@ -31,26 +31,26 @@ def tile_type_print(tile_type: int):
 		case 5: #TILETYPE_CITYCENTER
 			return 'City Center'
 
-def tile_init(type: int, position: Tuple[int, int]):
+def init(type: int, position: Tuple[int, int]):
 	return {
 		"type": type,
 		"position": position,
 	}
 
-def tile_get_type(tile: Dict[str, int | Tuple[int, int]]) -> int:
+def get_type(tile: Dict[str, int | Tuple[int, int]]) -> int:
 	return tile["type"]
 
-def tile_get_position(tile: Dict[str, int | Tuple[int, int]]) -> Tuple[int, int]:
+def get_position(tile: Dict[str, int | Tuple[int, int]]) -> Tuple[int, int]:
 	return tile["position"]
 
-def tile_print(tile: Dict[str, int | Tuple[int, int]]):
-	pos = tile_get_position(tile)
+def print(tile: Dict[str, int | Tuple[int, int]]):
+	pos = get_position(tile)
 	x = str(pos[0]).rjust(4)
 	y = str(pos[1]).rjust(4)
-	return f'( {x}, {y} ) | {tile_type_print(tile_get_type(tile))}'
+	return f'( {x}, {y} ) | {type_print(get_type(tile))}'
 
-def tile_render(tile: Dict[str, int | Tuple[int, int]]):
-	match tile_get_type(tile):
+def render(tile: Dict[str, int | Tuple[int, int]]):
+	match get_type(tile):
 		case 1: #TILETYPE_TRANSPORT
 			return COLOR_PURPLE
 		case 2: #TILETYPE_TRANSPORTHUB
