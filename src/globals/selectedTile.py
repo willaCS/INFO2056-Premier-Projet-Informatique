@@ -1,3 +1,7 @@
+"""
+Ce fichier gère la case selectionnée sur la carte.
+"""
+
 from typing import Tuple
 
 from utils.map import px_to_coord

@@ -1,3 +1,8 @@
+"""
+Ce fichier gère l'instance pygame et gère la resolution et les touches du
+clavier de façon générique.
+"""
+
 import pygame
 from signal import signal, SIGINT
 from typing import Callable

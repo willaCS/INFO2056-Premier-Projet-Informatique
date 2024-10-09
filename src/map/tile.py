@@ -1,3 +1,10 @@
+"""
+Ce fichier gère une structure pour les cases appelées tile.
+Une case est une structure ayant ces variables :
+	type: TILETYPE
+	position: [int, int]
+"""
+
 from typing import Dict, Tuple
 
 from globals.all import COLOR_BLACK, COLOR_GREEN, COLOR_ORANGE, COLOR_PURPLE, COLOR_RED, COLOR_YELLOW

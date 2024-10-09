@@ -1,3 +1,9 @@
+"""
+Ce fichier gère les touches du claviers.
+Il gère séparément les touches qui sont executés chaques tick et celle qui ne
+s'execute qu'une seule fois
+"""
+
 import pygame
 
 import window

@@ -1,3 +1,7 @@
+"""
+Ce fichier gère les events custom pour le jeu
+"""
+
 import pygame
 
 import globals.selectedTile

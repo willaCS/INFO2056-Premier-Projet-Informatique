@@ -1,4 +1,7 @@
-from typing import Tuple
+"""
+Ce fichier permet d'afficher la carte.
+"""
+
 import pygame
 
 import window

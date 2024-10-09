@@ -1,3 +1,7 @@
+"""
+TODO
+"""
+
 science = 0
 money = 10
 

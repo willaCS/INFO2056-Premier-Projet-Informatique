@@ -1,3 +1,7 @@
+"""
+Ce fichier permet d'afficher l'interface utilisateur.
+"""
+
 from typing import Tuple
 import pygame
 

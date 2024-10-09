@@ -1,3 +1,13 @@
+"""
+Ce fichier gère la carte du jeu.
+La carte est faite du dictionaire de coordonnées par la structure case (Tile).
+Ce fichier permet de faire :
+- obtenir un case avec ses coordonnées
+- ajouter une nouvelle case
+- supprimer une case
+- checker si la case est vide
+"""
+
 from typing import Dict, Tuple
 
 from map.tile import TILETYPE_CITY, TILETYPE_CITYCENTER, TILETYPE_EMPTY, TILETYPE_INDUSTRY, TILETYPE_TRANSPORT, TILETYPE_TRANSPORTHUB, tile_get_position, tile_get_type, tile_init, tile_print

@@ -1,3 +1,8 @@
+"""
+Ce fichier gère le mouvement du curseur.
+Le curseur est le centre de l'écran
+"""
+
 import globals.zoom
 
 val = [0, 0]

@@ -1,3 +1,7 @@
+"""
+Ce fichier gère la vitesse de simulation du jeu.
+"""
+
 __prev_val = 3
 val = 3
 

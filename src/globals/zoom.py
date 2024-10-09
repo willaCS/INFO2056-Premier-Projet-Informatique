@@ -1,3 +1,9 @@
+"""
+Ce fichier gère le zoom sur la carte et calcule les valeurs sur la carte
+modifié par le zoom.
+Exemple: le nombre de pixel que fait une case.
+"""
+
 val = 5
 __zoom_speed = 1.1
 __zoom_max = 1

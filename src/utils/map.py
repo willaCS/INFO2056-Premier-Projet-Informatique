@@ -1,3 +1,10 @@
+"""
+Ce fichier permet de transformer les coordonnée d'un repère à un autre.
+On peut faire :
+- repère sur la carte => repère sur l'écran
+- repère sur l'écran => repère sur la carte
+"""
+
 from typing import Tuple
 
 import globals.cursor
