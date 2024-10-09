@@ -11,9 +11,11 @@ from events import handleEvents
 from input import repeatKey, singleKey
 from ui.drawFrame import drawFrame
 from ui.drawUI import getFont
+from utils.map import init_random
 
 def setup():
 	all.font = getFont()
+	init_random()
 
 
 

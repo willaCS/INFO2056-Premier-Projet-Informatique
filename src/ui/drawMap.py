@@ -9,23 +9,28 @@ from globals import Cursor, Screenmode, SelectedTile, Zoom
 from globals.all import COLOR_WHITE, COLOR_BLACK
 from map.Tile import render
 from map.Map import get
-from utils.map import coord_to_px
+from utils.map import coord_to_px, random_test
 
-def getColor(x, y):
-	test_map = get((x, y))
+def getColor(coord):
+	test_map = get(coord)
 	if test_map:
 		return render(test_map)
-	match Screenmode.val:
-		case Screenmode.SCREENMODE_MAIN:
-			return (255 - ((x + y) % 32) * 2, 0, 0)
-		case Screenmode.SCREENMODE_ECONOMY_DEMAND:
-			return (0, 255 - ((x + y) % 32) * 2, 0)
-		case Screenmode.SCREENMODE_ECONOMY_SUPPLY:
-			return (0, 0, 255 - ((x + y) % 32) * 2)
-		case Screenmode.SCREENMODE_TRANSPORT:
-			return (255 - ((x + y) % 32) * 2, 255 - ((x + y) % 32) * 2, 0)
-		case _:
-			return (0, 0, 0)
+	
+	val = random_test(coord)
+	if (not val):
+		return (0, 0, 255 - (val % 64))
+	else:
+		match Screenmode.val:
+			case Screenmode.SCREENMODE_MAIN:
+				return (255 - (val % 64), 0, 0)
+			case Screenmode.SCREENMODE_ECONOMY_DEMAND:
+				return (0, 255 - (val % 64), 0)
+			case Screenmode.SCREENMODE_ECONOMY_SUPPLY:
+				return (0, 0, 255 - (val % 64))
+			case Screenmode.SCREENMODE_TRANSPORT:
+				return (255 - (val % 64), 255 - (val % 64), 0)
+			case _:
+				return (0, 0, 0)
 
 def __drawTile(color, coord):
 	new_coord = coord_to_px(coord)
@@ -45,7 +50,8 @@ def drawMap():
 	y_max = int( Window.half_resolution[1] / Zoom.tile_size - Cursor.val[1] + 2)
 	for i in range(x_min, x_max):
 		for j in range(y_min, y_max):
-			__drawTile(getColor(i, j), (i, j))
+			coord = (i, j)
+			__drawTile(getColor(coord), coord)
 	
 	pygame.draw.line(Window.inst, COLOR_BLACK, coord_to_px((0, -20)), coord_to_px((0, 20)), Zoom.line_width)
 	pygame.draw.line(Window.inst, COLOR_BLACK, coord_to_px((-20, 0)), coord_to_px((20, 0)), Zoom.line_width)
