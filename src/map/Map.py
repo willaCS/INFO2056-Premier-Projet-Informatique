@@ -48,13 +48,3 @@ def tile_is_empty(coord: Tuple[int, int]):
 	return Tile.get_type(tile) == Tile.TILETYPE_EMPTY
 
 map = init()
-add(Tile.init(Tile.TILETYPE_CITY, (2, 3)))
-add(Tile.init(Tile.TILETYPE_CITY, (3, 2)))
-add(Tile.init(Tile.TILETYPE_CITY, (2, 2)))
-add(Tile.init(Tile.TILETYPE_CITYCENTER, (3, 3)))
-add(Tile.init(Tile.TILETYPE_INDUSTRY, (0, -1)))
-add(Tile.init(Tile.TILETYPE_TRANSPORTHUB, (0, 0)))
-add(Tile.init(Tile.TILETYPE_TRANSPORT, (0, 1)))
-add(Tile.init(Tile.TILETYPE_TRANSPORT, (0, 2)))
-add(Tile.init(Tile.TILETYPE_TRANSPORT, (1, 2)))
-add(Tile.init(Tile.TILETYPE_TRANSPORTHUB, (1, 3)))

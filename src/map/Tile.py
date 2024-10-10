@@ -58,9 +58,9 @@ def render(tile: Dict[str, int | Tuple[int, int]]):
 		case 3: #TILETYPE_INDUSTRY
 			return COLOR_ORANGE
 		case 4: #TILETYPE_CITY
-			return COLOR_GREEN
+			return (22, 17, 84)
 		case 5: #TILETYPE_CITYCENTER
-			return COLOR_YELLOW
+			return (163, 28, 53)
 		case _:
 			return COLOR_BLACK
 		
