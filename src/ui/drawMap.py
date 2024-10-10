@@ -7,30 +7,52 @@ import pygame
 import Window
 from globals import Cursor, Screenmode, SelectedTile, Zoom
 from globals.all import COLOR_WHITE, COLOR_BLACK
-from map.Tile import render
+from map import TerrainTile
+from map import Tile
 from map.Map import get
-from utils.map import coord_to_px, random_test
+from utils.map import coord_to_px, random_terrain_ressource, random_terrain_landscape
 
 def getColor(coord):
 	test_map = get(coord)
 	if test_map:
-		return render(test_map)
+		return Tile.render(test_map)
 	
-	val = random_test(coord)
-	if (not val):
-		return (0, 0, 255 - (val % 64))
+	tile = random_terrain_landscape(coord)
+	match Screenmode.val:
+		case Screenmode.SCREENMODE_MAIN:
+			return TerrainTile.render(tile)
+		case Screenmode.SCREENMODE_ECONOMY_DEMAND:
+			return getColorEconomyDemand(tile)
+		case Screenmode.SCREENMODE_ECONOMY_SUPPLY:
+			return getColorEconomySupply(tile)
+		case Screenmode.SCREENMODE_TRANSPORT:
+			return getColorTansport(tile)
+		case _:
+			return (0, 0, 0)
+
+def getColorEconomyDemand(tile):
+	height = TerrainTile.get_height(tile) % 4 * 16
+	test = height % 4 * 16
+	if (height < 0):
+		return (0, 25, 150 - test)
 	else:
-		match Screenmode.val:
-			case Screenmode.SCREENMODE_MAIN:
-				return (255 - (val % 64), 0, 0)
-			case Screenmode.SCREENMODE_ECONOMY_DEMAND:
-				return (0, 255 - (val % 64), 0)
-			case Screenmode.SCREENMODE_ECONOMY_SUPPLY:
-				return (0, 0, 255 - (val % 64))
-			case Screenmode.SCREENMODE_TRANSPORT:
-				return (255 - (val % 64), 255 - (val % 64), 0)
-			case _:
-				return (0, 0, 0)
+		return (0, 255 - test, 0)
+
+def getColorEconomySupply(tile):
+	height = TerrainTile.get_height(tile) % 4 * 16
+	test = height % 4 * 16
+	if (height < 0):
+		return (0, 25, 150 - test)
+	else:
+		return (0, 0, 255 - test)
+
+def getColorTansport(tile):
+	height = TerrainTile.get_height(tile) % 4 * 16
+	test = height % 4 * 16
+	if (height < 0):
+		return (0, 25, 150 - test)
+	else:
+		return (255 - test, 255 - test, 0)
 
 def __drawTile(color, coord):
 	new_coord = coord_to_px(coord)
