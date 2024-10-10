@@ -15,21 +15,21 @@ TERRAINTILETYPE_FOREST			= 5
 TERRAINTILETYPE_MOUNTAIN_SIDE	= 6
 TERRAINTILETYPE_MOUNTAIN_TOP	= 7
 
-def init(type: int, position: Tuple[int, int], height: int) -> Dict[str, int | Tuple[int, int]]:
+def init(type: int, position: Tuple[int, int], height: float) -> Dict[str, int | Tuple[int, int] | float]:
 	return {
 		"type": type,
 		"position": position,
 		"height": height,
 	}
 
-def get_type(tile: Dict[str, int | Tuple[int, int]]) -> int:
+def get_type(tile: Dict[str, int | Tuple[int, int] | float]) -> int:
 	return tile["type"]
 
-def get_position(tile: Dict[str, int | Tuple[int, int]]) -> Tuple[int, int]:
+def get_position(tile: Dict[str, int | Tuple[int, int] | float]) -> Tuple[int, int]:
 	return tile["position"]
 
-def get_height(tile: Dict[str, int | Tuple[int, int]]) -> int:
-	return tile["type"]
+def get_height(tile: Dict[str, int | Tuple[int, int] | float]) -> float:
+	return tile["height"]
 
 def render(tile: Dict[str, int | Tuple[int, int]]):
 	height = get_height(tile) % 4 * 16
