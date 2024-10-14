@@ -35,9 +35,14 @@ def render(tile: Dict[str, int | Tuple[int, int]]):
 	height = get_height(tile) % 4 * 16
 	match get_type(tile):
 		case 1: #TERRAINTILETYPE_DEEPSEA
-			return (0, 0, 255 - height)
+			return (0, 0, 255 + get_height(tile) * 4)
+			# print((0, 0, 255 + get_height(tile) * 2), get_height(tile))
+			# if (get_height(tile) < -16):
+			# elif (get_height(tile) < -24):
+			# 	return (0, 0, 128 - height)
+			# return (0, 0, 255 - height)
 		case 2: #TERRAINTILETYPE_SEA
-			return (0, 0, 255 - height)
+			return (0, 0, 255 + get_height(tile) * 4)
 		case 3: #TERRAINTILETYPE_BEACH
 			return (255 - height, 255 - height, 0)
 		case 4: #TERRAINTILETYPE_PLAIN
