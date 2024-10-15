@@ -6,7 +6,7 @@ pygame est prêt.
 """
 
 import Window
-from globals import all
+from globals import all, Speed
 from events import handleEvents
 from input import repeatKey, singleKey
 from ui.drawFrame import drawFrame
@@ -20,7 +20,8 @@ def setup():
 
 
 def tick():
-	# __calculate()
+	if Speed.can_execute_simulation():
+		print("tick")
 	drawFrame()
 
 
