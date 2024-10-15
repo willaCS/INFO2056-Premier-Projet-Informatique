@@ -31,26 +31,26 @@ def getColor(coord):
 			return (0, 0, 0)
 
 def getColorEconomyDemand(tile):
-	height = TerrainTile.height(tile) % 4 * 16
+	height = TerrainTile.height(tile)
 	test = height % 4 * 16
 	if (height < 0):
-		return (0, 25, 150 - test)
+		return (0, 0, 180 + height * 4)
 	else:
-		return (0, 255 - test, 0)
+		return (80 - test, 80 - test, 80 - test)
 
 def getColorEconomySupply(tile):
-	height = TerrainTile.height(tile) % 4 * 16
+	height = TerrainTile.height(tile)
 	test = height % 4 * 16
 	if (height < 0):
-		return (0, 25, 150 - test)
+		return (0, 0, 180 + height * 4)
 	else:
 		return (0, 0, 255 - test)
 
 def getColorTansport(tile):
-	height = TerrainTile.height(tile) % 4 * 16
+	height = TerrainTile.height(tile)
 	test = height % 4 * 16
 	if (height < 0):
-		return (0, 25, 150 - test)
+		return (0, 0, 180 + height * 4)
 	else:
 		return (255 - test, 255 - test, 0)
 

@@ -27,9 +27,6 @@ def init(type: int, position: coord, height: int) -> type:
 		"ressource": None,
 	}
 
-def init_deepsea(position: coord, height: float):
-	res = init(TERRAINTILETYPE_DEEPSEA, position, height)
-
 def type(tile: type) -> int:
 	return tile["type"]
 
