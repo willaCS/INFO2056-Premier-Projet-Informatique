@@ -56,3 +56,17 @@ def get_height(coord: Tuple[int, int]):
 		res += _gausse2d(ran[3], ran[4], ran[5], ran[6], ran[7], coord)
 	res -= 32
 	return int(res)
+
+def random_cos(coord: Tuple[int, int]):
+	res = 0
+	for elem in random_list:
+		res += math.cos((coord[0] + elem[6]) / elem[4]) \
+			+ math.cos((coord[1] + elem[7]) / elem[5])
+	return int(res * 3) % 100
+
+def random_cos2(coord: Tuple[int, int]):
+	res = 0
+	for elem in random_list:
+		res += math.cos((coord[0] - elem[6]) / elem[1]) \
+			+ math.cos((coord[1] - elem[7]) / elem[2])
+	return int(res * 3) % 100

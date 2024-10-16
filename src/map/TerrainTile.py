@@ -16,7 +16,7 @@ TERRAINTILETYPE_MOUNTAIN_SIDE	= 6
 TERRAINTILETYPE_MOUNTAIN_TOP	= 7
 
 coord = Tuple[int, int]
-type = Dict[str, int | coord]
+typing = Dict[str, int | coord]
 ressource_type = None
 
 def init(type: int, position: coord, height: int) -> type:
@@ -27,19 +27,21 @@ def init(type: int, position: coord, height: int) -> type:
 		"ressource": None,
 	}
 
-def type(tile: type) -> int:
+def type(tile: typing) -> int:
 	return tile["type"]
 
-def position(tile: type) -> coord:
+def position(tile: typing) -> coord:
 	return tile["position"]
 
-def height(tile: type) -> int:
+def height(tile: typing) -> int:
 	return tile["height"]
 
-def ressource(tile: type) -> int:
+def ressource(tile: typing) -> int:
 	return tile["ressource"]
 
-def render(tile: Dict[str, int | coord]):
+def render(tile: typing):
+	if ressource(tile) != None:
+		return (0, 0, 0)
 	h = height(tile) % 4 * 16
 	match type(tile):
 		case 1: #TERRAINTILETYPE_DEEPSEA

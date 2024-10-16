@@ -7,4 +7,4 @@ from ui.drawUI import drawUI
 
 def drawFrame():
 	drawMap()
-	drawUI()
+	# drawUI()

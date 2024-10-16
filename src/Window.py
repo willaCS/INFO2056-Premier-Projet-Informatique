@@ -8,6 +8,8 @@ from signal import signal, SIGINT
 from typing import Callable
 from pygame.event import Event
 
+DEFAULT_RESOLUTION = (300, 300)
+
 __done = False
 __tickrate = 60
 
@@ -18,9 +20,9 @@ __handleEvent = lambda event: None
 
 inst = 0
 __is_fullscreen = False
-resolution = (1200, 800)
-half_resolution = (600, 400)
-__windowed_resolution = (1200, 800)
+resolution = DEFAULT_RESOLUTION
+half_resolution = (DEFAULT_RESOLUTION[0]/2, DEFAULT_RESOLUTION[0]/2)
+__windowed_resolution = DEFAULT_RESOLUTION
 
 __setup = 0
 __tick = 0

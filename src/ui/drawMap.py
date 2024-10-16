@@ -10,7 +10,7 @@ from globals.all import COLOR_WHITE, COLOR_BLACK
 from map import TerrainTile
 from map import Tile
 from map.Map import get
-from utils.map import coord_to_px, random_terrain_ressource, random_terrain_landscape
+from utils.map import coord_to_px, random_terrain_landscape
 
 def getColor(coord):
 	test_map = get(coord)

@@ -20,8 +20,8 @@ def setup():
 
 
 def tick():
-	if Speed.can_execute_simulation():
-		print("tick")
+	# if Speed.can_execute_simulation():
+		# print("tick")
 	drawFrame()
 
 
