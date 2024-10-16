@@ -64,34 +64,57 @@ def random_terrain_landscape(coord: Tuple[int, int]) -> Dict[str, int | Tuple[in
 	else:
 		raise ValueError("Terrain tile has height not possible")
 	
-	generate_ressource(res)
-	return res
+	ressource = random_cos(TerrainTile.position(res))
+	richness = random_cos2(TerrainTile.position(res))
+	res["ressource"] = generate_ressource(res, ressource, richness)
+	return res	
 
-def generate_ressource(tile: TerrainTile.typing):
-	ressource = random_cos(TerrainTile.position(tile))
-	richness = random_cos2(TerrainTile.position(tile))
-	print(ressource, richness, TerrainTile.type(tile))
+def generate_ressource(tile, ressource, richness) -> Ressource.type:
 	match(TerrainTile.type(tile)):
 		case TerrainTile.TERRAINTILETYPE_DEEPSEA:
 			match ressource:
 				case 90 | 91 | 92 | 93 | 94:
-					tile["ressource"] = Ressource.init(Ressource.RESSOURCE_FISH, richness)
+					return Ressource.init(Ressource.RESSOURCE_FISH, richness)
+				case 95 | 96 | 97:
+					return Ressource.init(Ressource.RESSOURCE_FISH, richness)
 		case TerrainTile.TERRAINTILETYPE_SEA:
-			pass
-		case TerrainTile.TERRAINTILETYPE_BEACH:
-			pass
-		case TerrainTile.TERRAINTILETYPE_PLAIN:
-			print('here')
 			match ressource:
 				case 90 | 91 | 92 | 93 | 94:
-					tile["ressource"] = Ressource.init(Ressource.RESSOURCE_HUNTING_GROUNDS, richness)
-					print("xd")
+					return Ressource.init(Ressource.RESSOURCE_FISH, richness)
+		case TerrainTile.TERRAINTILETYPE_BEACH:
+			match ressource:
+				case 1 | 2 | 3 | 4 | 5:
+					return Ressource.init(Ressource.RESSOURCE_SALT, richness)
+				case 0:
+					return Ressource.init(Ressource.RESSOURCE_OIL, richness)
+				case _:
+					return Ressource.init(Ressource.RESSOURCE_SAND, 1)
+		case TerrainTile.TERRAINTILETYPE_PLAIN:
+			match ressource:
+				case 90 | 91 | 92 | 93 | 94:
+					return Ressource.init(Ressource.RESSOURCE_FERTILE_LAND, richness)
 		case TerrainTile.TERRAINTILETYPE_FOREST:
-			pass
+			match ressource:
+				case 0:
+					return Ressource.init(Ressource.RESSOURCE_HUNTING_GROUNDS, richness)
+				case _:
+					return Ressource.init(Ressource.RESSOURCE_WOOD, richness % 5)
 		case TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE:
-			pass
+			match ressource:
+				case 0:
+					return Ressource.init(Ressource.RESSOURCE_COAL, richness)
+				case 1:
+					return Ressource.init(Ressource.RESSOURCE_IRON, richness)
+				case 2:
+					return Ressource.init(Ressource.RESSOURCE_COPPER, richness)
 		case TerrainTile. TERRAINTILETYPE_MOUNTAIN_TOP:
-			pass
+			match ressource:
+				case 0:
+					return Ressource.init(Ressource.RESSOURCE_IRON, richness)
+				case 1:
+					return Ressource.init(Ressource.RESSOURCE_PRECIOUS_METALS, richness)
+				case 2:
+					return Ressource.init(Ressource.RESSOURCE_RARE_METALS, richness)
 		case _:
 			pass
-	return tile
+	return None

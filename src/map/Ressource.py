@@ -11,6 +11,7 @@ RESSOURCE_IRON				= 8
 RESSOURCE_COPPER			= 9
 RESSOURCE_PRECIOUS_METALS	= 10
 RESSOURCE_RARE_METALS		= 11
+RESSOURCE_SAND				= 12
 
 coord = Tuple[int, int]
 type = Dict[str, int | str]

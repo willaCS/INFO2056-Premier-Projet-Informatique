@@ -27,6 +27,8 @@
 |<img src="./docs/image/copper.webp" alt="drawing" style="width:30px"/>     | Copper          | Copper Mine                |
 |<img src="./docs/image/diamond.webp" alt="drawing" style="width:30px"/>    | Precious Metals | Precious Metal Mine        |
 |<img src="./docs/image/emerald.webp" alt="drawing" style="width:30px"/>    | Rare Metals     | Rare Metal Mine            |
+|<img src="./docs/image/emerald.webp" alt="drawing" style="width:30px"/>    | Sand     | Sand Query            |
+
 
 ## Industries
  
