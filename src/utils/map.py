@@ -107,6 +107,8 @@ def generate_ressource(tile, ressource, richness) -> Ressource.type:
 					return Ressource.init(Ressource.RESSOURCE_IRON, richness)
 				case 2:
 					return Ressource.init(Ressource.RESSOURCE_COPPER, richness)
+				case _:
+					return Ressource.init(Ressource.RESSOURCE_STONE, richness % 5) 
 		case TerrainTile. TERRAINTILETYPE_MOUNTAIN_TOP:
 			match ressource:
 				case 0:

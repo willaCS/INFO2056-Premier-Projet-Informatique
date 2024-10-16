@@ -9,7 +9,7 @@
 | Beach             | Sand<br>Oil<br>Salt                     |
 | Plains            | Fertile Land                            |
 | Forest            | Wood<br>Hunting Grouds                  |
-| Hills             | Coal<br>Iron<br>Copper                  |
+| Hills             | Coal<br>Iron<br>Copper<br>Stone         |
 | Mountains         | Iron<br>Precious Metals<br>Rare Metals  |
 
 ## Ressources
@@ -27,7 +27,8 @@
 |<img src="./docs/image/copper.webp" alt="drawing" style="width:30px"/>     | Copper          | Copper Mine                |
 |<img src="./docs/image/diamond.webp" alt="drawing" style="width:30px"/>    | Precious Metals | Precious Metal Mine        |
 |<img src="./docs/image/emerald.webp" alt="drawing" style="width:30px"/>    | Rare Metals     | Rare Metal Mine            |
-|<img src="./docs/image/emerald.webp" alt="drawing" style="width:30px"/>    | Sand     | Sand Query            |
+|<img src="./docs/image/emerald.webp" alt="drawing" style="width:30px"/>    | Sand            | Sand Query                 |
+|<img src="./docs/image/emerald.webp" alt="drawing" style="width:30px"/>    | Stone           | Stone Query                |
 
 
 ## Industries
@@ -56,6 +57,7 @@
 | Furniture Factory                 | Wood<br>Iron                            | Furniture                     |
 | Steel mill                        | Iron<br>Coal                            | Steel                         |
 | Tooling Factory                   | Steel<br>Wood                           | Tools                         |
+| Cement Factory                    | Stone<br>Sand                           | Cement                        |
 | Refinary                          | Oil                                     | Fuel                          |
 | Plastic Factory                   | Fuel                                    | Plastic                       |
 | Glass Factory                     | Sand                                    | Glass                         |
