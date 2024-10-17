@@ -49,9 +49,9 @@
 | Copper Mine                       | -                                       | Copper                        |
 | Precious Metal Mine               | -                                       | Precious Metal                |
 | Rare Metal Mine                   | -                                       | Rare Metal                    |
-| Bread Factory                     | Wheat                                   | Food                          |
-| Alcohol Factory                   | Potato                                  | Food                          |
-| Sushi Factory                     | Rice<br>Salt<br>Fish                    | Food                          |
+| Bread Factory                     | Wheat                                   | Bread                         |
+| Alcohol Factory                   | Potato                                  | Alcohol                       |
+| Sushi Factory                     | Rice<br>Salt<br>Fish                    | Sushi                         |
 | Textile Factory                   | Cotton                                  | Textile                       |
 | Clothes Factory                   | Textile                                 | Clothes                       |
 | Furniture Factory                 | Wood<br>Iron                            | Furniture                     |
@@ -63,10 +63,10 @@
 | Glass Factory                     | Sand                                    | Glass                         |
 | Electronic Components(EC) Factory | Copper<br>Rare Metals                   | Electronics Component         |
 | Radio Factory                     | Copper<br>Steel                         | Radio                         |
-| Computer Factory                  | EC<br>Steel<br>Glass                    | Computer                      |
+| Computer Factory                  | EC<br>Steel                             | Computer                      |
 | Gun Factory                       | Steel                                   | Guns                          |
 | Engine Factory                    | Steel<br>Fuel                           | Engine                        |
 | Car Factory                       | Steel<br>Engine<br>Glass                | Car                           |
 | Planes Factory                    | Radio<br>Steel<br>Glass<br>Engine       | Planes                        |
 | Jewelry Workshop                  | Precious Metals                         | Jewelry                       |
-| Phone Factory                     | EC<br>Plastic<br>Glass                  | Phone                         |
+| Phone Factory                     | Computer<br>Plastic<br>Glass            | Phone                         |

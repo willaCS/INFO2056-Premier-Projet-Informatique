@@ -8,7 +8,7 @@ from signal import signal, SIGINT
 from typing import Callable
 from pygame.event import Event
 
-DEFAULT_RESOLUTION = (300, 300)
+DEFAULT_RESOLUTION = (600, 600)
 
 __done = False
 __tickrate = 60

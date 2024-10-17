@@ -6,7 +6,7 @@ Une case est une structure ayant ces variables :
 """
 
 from typing import Dict, Tuple
-
+from map import Industry
 from globals.all import COLOR_BLACK, COLOR_GREEN, COLOR_ORANGE, COLOR_PURPLE, COLOR_RED, COLOR_YELLOW
 
 coord = Tuple[int, int]
