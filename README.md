@@ -43,6 +43,8 @@
 | Rice                              | -                                       | Rice                          |
 | Fur Hunting Grounds               | -                                       | Fur                           |
 | Lumbermill                        | -                                       | Wood                          |
+| Sand Query                        | -                                       | Sand                          |
+| Stone Query                       | -                                       | Stone                         |
 | Oil Well                          | -                                       | Oil                           |
 | Coal Mine                         | -                                       | Coal                          |
 | Iron Mine                         | -                                       | Iron                          |
