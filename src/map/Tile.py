@@ -9,6 +9,10 @@ from typing import Dict, Tuple
 
 from globals.all import COLOR_BLACK, COLOR_GREEN, COLOR_ORANGE, COLOR_PURPLE, COLOR_RED, COLOR_YELLOW
 
+coord = Tuple[int, int]
+types = Dict[str, int | coord]
+ressource_type = None
+
 TILETYPE_EMPTY			= 0
 TILETYPE_TRANSPORT		= 1
 TILETYPE_TRANSPORTHUB	= 2
@@ -31,36 +35,20 @@ def type_print(tile_type: int):
 		case 5: #TILETYPE_CITYCENTER
 			return 'City Center'
 
-def init(type: int, position: Tuple[int, int]):
+def init(type: int, position: coord) -> types:
 	return {
 		"type": type,
 		"position": position,
 	}
 
-def get_type(tile: Dict[str, int | Tuple[int, int]]) -> int:
+def type(tile: types) -> int:
 	return tile["type"]
 
-def get_position(tile: Dict[str, int | Tuple[int, int]]) -> Tuple[int, int]:
+def position(tile: types) -> coord:
 	return tile["position"]
 
-def print(tile: Dict[str, int | Tuple[int, int]]):
-	pos = get_position(tile)
+def print(tile: types):
+	pos = position(tile)
 	x = str(pos[0]).rjust(4)
 	y = str(pos[1]).rjust(4)
-	return f'( {x}, {y} ) | {type_print(get_type(tile))}'
-
-def render(tile: Dict[str, int | Tuple[int, int]]):
-	match get_type(tile):
-		case 1: #TILETYPE_TRANSPORT
-			return COLOR_PURPLE
-		case 2: #TILETYPE_TRANSPORTHUB
-			return COLOR_RED
-		case 3: #TILETYPE_INDUSTRY
-			return COLOR_ORANGE
-		case 4: #TILETYPE_CITY
-			return (22, 17, 84)
-		case 5: #TILETYPE_CITYCENTER
-			return (163, 28, 53)
-		case _:
-			return COLOR_BLACK
-		
+	return f'( {x}, {y} ) | {type_print(type(tile))}'

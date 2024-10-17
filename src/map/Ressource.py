@@ -15,10 +15,16 @@ RESSOURCE_SAND				= 12
 RESSOURCE_STONE				= 13
 
 coord = Tuple[int, int]
-type = Dict[str, int | str]
+types = Dict[str, int | str]
 
-def init(type: int, richness: int) -> type:
+def init(type: int, richness: int) -> types:
 	return {
 		"type": type,
 		"richness": richness,
 	}
+
+def type(tile: types) -> coord:
+	return tile["type"]
+
+def richness(tile: types) -> int:
+	return tile["richness"]

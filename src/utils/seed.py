@@ -42,6 +42,10 @@ def load_seed(seed: str):
 			1/int(params[5], 16), # width_y_around
 			int(params[6], 16) - 500, # offset_x
 			int(params[7], 16) - 500, # offset_y
+			int(params[1], 16), # Value for cos
+			int(params[2], 16), # Value for cos
+			int(params[4], 16), # Value for cos2
+			int(params[5], 16), # Value for cos2
 		])
 	
 def _gausse2d(height, width_x, width_y, offset_x, offset_y, coordinates):
@@ -60,13 +64,13 @@ def get_height(coord: Tuple[int, int]):
 def random_cos(coord: Tuple[int, int]):
 	res = 0
 	for elem in random_list:
-		res += math.cos((coord[0] + elem[6]) / elem[4]) \
-			+ math.cos((coord[1] + elem[7]) / elem[5])
+		res += math.cos((coord[0] + elem[6]) * elem[10]) \
+			+ math.cos((coord[1] + elem[7]) * elem[11])
 	return int(res * 3) % 100
 
 def random_cos2(coord: Tuple[int, int]):
 	res = 0
 	for elem in random_list:
-		res += math.cos((coord[0] - elem[6]) / elem[1]) \
-			+ math.cos((coord[1] - elem[7]) / elem[2])
+		res += math.cos((coord[0] - elem[6]) * elem[8]) \
+			+ math.cos((coord[1] - elem[7]) * elem[9])
 	return int(res * 3) % 100

@@ -9,24 +9,31 @@ from globals import Cursor, Screenmode, SelectedTile, Zoom
 from globals.all import COLOR_WHITE, COLOR_BLACK
 from map import TerrainTile
 from map import Tile
-from map.Map import get
+from map import Map
+from ui import render
 from utils.map import coord_to_px, random_terrain_landscape
 
 def getColor(coord):
-	test_map = get(coord)
+	test_map = Map.get(coord)
 	if test_map:
-		return Tile.render(test_map)
+		return render.tile(test_map)
 	
 	tile = random_terrain_landscape(coord)
 	match Screenmode.val:
 		case Screenmode.SCREENMODE_MAIN:
-			return TerrainTile.render(tile)
+			if TerrainTile.ressource(tile) != None:
+				return render.ressource(TerrainTile.ressource(tile))
+			return render.terrainTile(tile)
+		
 		case Screenmode.SCREENMODE_ECONOMY_DEMAND:
 			return getColorEconomyDemand(tile)
+		
 		case Screenmode.SCREENMODE_ECONOMY_SUPPLY:
 			return getColorEconomySupply(tile)
+		
 		case Screenmode.SCREENMODE_TRANSPORT:
 			return getColorTansport(tile)
+		
 		case _:
 			return (0, 0, 0)
 

@@ -21,9 +21,9 @@ def get(coord: Tuple[int, int]) -> Dict[str, int | Tuple[int, int]]:
 
 def add(tile: Dict[str, int | Tuple[int, int]]):
 	global map
-	if get(Tile.get_position(tile)):
+	if get(Tile.position(tile)):
 		raise ValueError('Cannot add two tile on the same space')
-	map[Tile.get_position(tile)] = tile
+	map[Tile.position(tile)] = tile
 
 def remove(coord: Tuple[int, int]):
 	global map
@@ -45,6 +45,6 @@ def tile_is_empty(coord: Tuple[int, int]):
 	tile = get(coord)
 	if not tile:
 		return True
-	return Tile.get_type(tile) == Tile.TILETYPE_EMPTY
+	return Tile.type(tile) == Tile.TILETYPE_EMPTY
 
 map = init()
