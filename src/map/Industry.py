@@ -3,10 +3,10 @@ from map import Goods
 
 INDUSTRY_FISHINGBOAT					= 1
 INDUSTRY_SALTEXTRACTION					= 2
-INDUSTRY_WHEAT							= 3
-INDUSTRY_POTATO							= 4
-INDUSTRY_COTTON							= 5
-INDUSTRY_RICE							= 6
+INDUSTRY_WHEAT_FIELDS					= 3
+INDUSTRY_POTATO_FIELDS					= 4
+INDUSTRY_COTTON_FIELDS					= 5
+INDUSTRY_RICE_FIELDS					= 6
 INDUSTRY_FURHUNTINGGROUNDS				= 7
 INDUSTRY_LUMBERMILL						= 8
 INDUSTRY_OILWELL						= 9
@@ -48,19 +48,19 @@ industry = {
 		'input': [],
 		'output': Goods.GOODS_SALT
 	},
-	INDUSTRY_WHEAT: {
+	INDUSTRY_WHEAT_FIELDS: {
 		'input': [],
 		'output': Goods.GOODS_WHEAT
 	},
-	INDUSTRY_POTATO: {
+	INDUSTRY_POTATO_FIELDS: {
 		'input': [],
 		'output': Goods.GOODS_POTATO
 	},
-	INDUSTRY_COTTON: {
+	INDUSTRY_COTTON_FIELDS: {
 		'input': [],
 		'output': Goods.GOODS_COTTON
 	},
-	INDUSTRY_RICE: {
+	INDUSTRY_RICE_FIELDS: {
 		'input': [],
 		'output': Goods.GOODS_RICE
 	},

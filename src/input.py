@@ -7,12 +7,12 @@ s'execute qu'une seule fois
 import pygame
 
 import Window
-from globals import Cursor, Screenmode, SelectedTile, Speed, Zoom
+from globals import Cursor, Screenmode, SelectedTile, Speed, Zoom, testing
 from map import Map, Tile
 
 def repeatKey(key):
 	match key:
-		case pygame.K_c:
+		case pygame.K_v:
 			Cursor.reset()
 		case pygame.K_w:
 			Cursor.move_up()
@@ -66,5 +66,10 @@ def singleKey(key):
 		case pygame.K_z:
 			if SelectedTile.val:
 				if Map.tile_is_empty(SelectedTile.val):
-					Map.add(Tile.init(Tile.TILETYPE_TRANSPORT, SelectedTile.val))
+					building = testing.activeBuilding()
+					Map.add(Tile.init(building['type'], building['id'], SelectedTile.val))
 				SelectedTile.clear()
+		case pygame.K_x:
+			testing.next()
+		case pygame.K_c:
+			testing.prev()

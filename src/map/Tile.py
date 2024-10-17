@@ -35,14 +35,18 @@ def type_print(tile_type: int):
 		case 5: #TILETYPE_CITYCENTER
 			return 'City Center'
 
-def init(type: int, position: coord) -> types:
+def init(type: int, subtype: int, position: coord) -> types:
 	return {
 		"type": type,
+		"subtype": subtype,
 		"position": position,
 	}
 
 def type(tile: types) -> int:
 	return tile["type"]
+
+def subtype(tile: types) -> int:
+	return tile["subtype"]
 
 def position(tile: types) -> coord:
 	return tile["position"]
