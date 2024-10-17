@@ -38,9 +38,10 @@ buildings = [
 	{ 'id': Industry.INDUSTRY_PHONEFACTORY, 				'name': 'PHONEFACTORY',					'type': Tile.TILETYPE_INDUSTRY, },
 	{ 'id': Industry.INDUSTRY_STONEQUERY, 					'name': 'STONEQUERY',					'type': Tile.TILETYPE_INDUSTRY, },
 	{ 'id': Industry.INDUSTRY_SANDQUERY, 					'name': 'SANDQUERY',					'type': Tile.TILETYPE_INDUSTRY, },
-	{ 'id': 1,							 					'name': 'ROAD',							'type': Tile.TILETYPE_TRANSPORT, },
-	{ 'id': 2,							 					'name': 'RAILWAY',						'type': Tile.TILETYPE_TRANSPORT, },
-	{ 'id': 1,							 					'name': 'RAILWAY_STATION',				'type': Tile.TILETYPE_TRANSPORTHUB, },
+	{ 'id': Industry.TRANSPORT_ROAD,	 					'name': 'ROAD',							'type': Tile.TILETYPE_TRANSPORT, },
+	{ 'id': Industry.TRANSPORT_RAILWAY,						'name': 'RAILWAY',						'type': Tile.TILETYPE_TRANSPORT, },
+	{ 'id': Industry.TRANSPORT_HUB_TRUCK,					'name': 'TRANSPORT_HUB_TRUCK',			'type': Tile.TILETYPE_TRANSPORTHUB, },
+	{ 'id': Industry.TRANSPORT_HUB_RAILWAY_STATION,			'name': 'RAILWAY_STATION',				'type': Tile.TILETYPE_TRANSPORTHUB, },
 ]
 
 index = 0

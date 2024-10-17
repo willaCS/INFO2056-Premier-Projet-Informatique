@@ -249,4 +249,10 @@ industry = {
 	},
 }
 
+TRANSPORT_ROAD							= 1
+TRANSPORT_RAILWAY						= 2
+
+TRANSPORT_HUB_TRUCK						= 1
+TRANSPORT_HUB_RAILWAY_STATION			= 2
+
 print(industry)
