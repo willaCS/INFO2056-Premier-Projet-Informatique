@@ -1,5 +1,6 @@
 from globals.all import COLOR_BLACK, COLOR_ORANGE, COLOR_PURPLE, COLOR_RED
 from map import Ressource, TerrainTile, Tile
+from map import Industry
 
 def tile(tile: Tile.types):
 	match Tile.type(tile):
@@ -10,7 +11,81 @@ def tile(tile: Tile.types):
 			return COLOR_RED
 		
 		case Tile.TILETYPE_INDUSTRY:
-			return COLOR_ORANGE
+			match Tile.subtype(tile):
+				case Industry.INDUSTRY_FISHINGBOAT:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_SALTEXTRACTION:
+					return (230, 230, 230)
+				case Industry.INDUSTRY_WHEAT_FIELDS:
+					return (255, 222, 19)
+				case Industry.INDUSTRY_POTATO_FIELDS:
+					return (227, 164, 68)
+				case Industry.INDUSTRY_COTTON_FIELDS:
+					return (149, 255, 140)
+				case Industry.INDUSTRY_RICE_FIELDS:
+					return (144, 228, 245)
+				case Industry.INDUSTRY_FURHUNTINGGROUNDS:
+					return (156, 105, 28)
+				case Industry.INDUSTRY_LUMBERMILL:
+					return (102, 64, 7)
+				case Industry.INDUSTRY_OILWELL:
+					return (80, 80, 80)
+				case Industry.INDUSTRY_COALMINE:
+					return (20, 20, 20)
+				case Industry.INDUSTRY_IRONMINE:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_COPPERMINE:
+					return (255, 89, 0)
+				case Industry.INDUSTRY_PRECIOUSMETALMINE:
+					return (0, 150, 161)
+				case Industry.INDUSTRY_RAREMETALMINE:
+					return (101, 135, 101)
+				case Industry.INDUSTRY_BREADFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_ALCOHOLFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_SUSHIFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_TEXTILEFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_CLOTHESFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_FURNITUREFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_STEELMILL:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_TOOLINGFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_CEMENTFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_REFINARY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_PLASTICFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_GLASSFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_ELECTRONICCOMPONENTSFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_RADIOFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_COMPUTERFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_GUNFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_ENGINEFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_CARFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_PLANESFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_JEWELRYWORKSHOP:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_PHONEFACTORY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_STONEQUERY:
+					return (0, 0, 0)
+				case Industry.INDUSTRY_SANDQUERY:
+					return (0, 0, 0)
 		
 		case Tile.TILETYPE_CITY:
 			return (22, 17, 84)
@@ -55,10 +130,10 @@ def ressource(ressource: Ressource.types):
 			return (0, 0, 230 + (Ressource.height(ressource) * 4))
 			
 		case Ressource.RESSOURCE_SALT:
-			return (230, 230, 230)
+			return (252, 255, 129)
 			
 		case Ressource.RESSOURCE_FERTILE_LAND:
-			return (255 - hhh, 204 - hhh, 0)
+			return (134 - hhh, 255 - hhh, 0)
 			
 		case Ressource.RESSOURCE_HUNTING_GROUNDS:
 			return (0, 82, 0)
@@ -67,7 +142,7 @@ def ressource(ressource: Ressource.types):
 			return (0, 102 + hhh, 0)
 			
 		case Ressource.RESSOURCE_OIL:
-			return (20, 20, 20)
+			return (191, 196, 0)
 			
 		case Ressource.RESSOURCE_COAL:
 			return (70, 70, 70)

@@ -14,13 +14,13 @@ def repeatKey(key):
 	match key:
 		case pygame.K_v:
 			Cursor.reset()
-		case pygame.K_w:
+		case pygame.K_w | pygame.K_UP:
 			Cursor.move_up()
-		case pygame.K_a:
+		case pygame.K_a | pygame.K_LEFT:
 			Cursor.move_left()
-		case pygame.K_s:
+		case pygame.K_s | pygame.K_DOWN:
 			Cursor.move_down()
-		case pygame.K_d:
+		case pygame.K_d | pygame.K_RIGHT:
 			Cursor.move_right()
 		case pygame.K_r:
 			Zoom.decrement()
