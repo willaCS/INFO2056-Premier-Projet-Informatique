@@ -10,7 +10,8 @@ Ce fichier permet de faire :
 
 from typing import Dict, Tuple
 
-from map import Tile
+from map import Industry, Ressource, TerrainTile, Tile
+from map.generation.map import random_terrain_landscape
 
 def init() -> Dict[Tuple[int, int], Dict[str, int | Tuple[int, int]]]:
 	return {}
@@ -34,17 +35,26 @@ def iter():
 	for tile in map.values():
 		yield tile
 
-def print() -> str:
-	global map
-	res = 'Map :\n'
-	for t in map:
-		res += f'- {str(Tile.print(t))}\n'
-	return res
-
 def tile_is_empty(coord: Tuple[int, int]):
 	tile = get(coord)
 	if not tile:
 		return True
 	return Tile.type(tile) == Tile.TILETYPE_EMPTY
+
+def place(tile: Dict[str, int | Tuple[int, int]]):
+	match Tile.type(tile):
+		case Tile.TILETYPE_INDUSTRY:
+			terrain = random_terrain_landscape(Tile.position(tile))
+			tileProtect = Industry.get_data(Tile.subtype(tile))
+			for can_place in tileProtect['place_on']:
+				match can_place['type']:
+					case Industry.PLACE_ON_TERRAIN:
+						if TerrainTile.type(terrain) == can_place['id']:
+							add(tile)
+					case Industry.PLACE_ON_RESSOURCE:
+						if not TerrainTile.ressource(terrain):
+							continue
+						if Ressource.type(TerrainTile.ressource(terrain)) == can_place['id']:
+							add(tile)
 
 map = init()

@@ -22,6 +22,7 @@ def tile(tile: Tile.types):
 			return COLOR_BLACK
 		
 def terrainTile(tile: TerrainTile.types):
+	hhh = TerrainTile.height(tile) % 4 * 16
 	match TerrainTile.type(tile):
 		case TerrainTile.TERRAINTILETYPE_DEEPSEA:
 			return (0, 0, 255 + (TerrainTile.height(tile) * 4))
@@ -30,63 +31,64 @@ def terrainTile(tile: TerrainTile.types):
 			return (0, 0, 255 + (TerrainTile.height(tile) * 4))
 		
 		case TerrainTile.TERRAINTILETYPE_BEACH:
-			return (255 - (TerrainTile.height(tile) % 4 * 16), 255 - (TerrainTile.height(tile) % 4 * 16), 0)
+			return (255 - hhh, 255 - hhh, 0)
 		
 		case TerrainTile.TERRAINTILETYPE_PLAIN:
-			return (0, 255 - (TerrainTile.height(tile) % 4 * 16), 0)
+			return (0, 255 - hhh, 0)
 		
 		case TerrainTile.TERRAINTILETYPE_FOREST:
-			return (64 - (TerrainTile.height(tile) % 4 * 16), 128 - (TerrainTile.height(tile) % 4 * 16), 0)
+			return (64 - hhh, 128 - hhh, 0)
 		
 		case TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE:
-			return (150 - (TerrainTile.height(tile) % 4 * 16), 150 - (TerrainTile.height(tile) % 4 * 16), 150 - (TerrainTile.height(tile) % 4 * 16))
+			return (150 - hhh, 150 - hhh, 150 - hhh)
 		
 		case TerrainTile.TERRAINTILETYPE_MOUNTAIN_TOP:
-			return (255 - (TerrainTile.height(tile) % 4 * 16), 255 - (TerrainTile.height(tile) % 4 * 16), 255 - (TerrainTile.height(tile) % 4 * 16))
+			return (255 - hhh, 255 - hhh, 255 - hhh)
 		
 		case _:
 			return (0, 0, 0)
 
 def ressource(ressource: Ressource.types):
+	hhh = Ressource.height(ressource) % 4 * 16
 	match (Ressource.type(ressource)):
 		case Ressource.RESSOURCE_FISH:
-			return (80, 80, 80)
+			return (0, 0, 230 + (Ressource.height(ressource) * 4))
 			
 		case Ressource.RESSOURCE_SALT:
-			return (80, 80, 80)
+			return (230, 230, 230)
 			
 		case Ressource.RESSOURCE_FERTILE_LAND:
-			return (80, 80, 80)
+			return (255 - hhh, 204 - hhh, 0)
 			
 		case Ressource.RESSOURCE_HUNTING_GROUNDS:
-			return (80, 80, 80)
+			return (0, 82, 0)
 			
 		case Ressource.RESSOURCE_WOOD:
-			return (80, 80, 80)
+			return (0, 102 + hhh, 0)
 			
 		case Ressource.RESSOURCE_OIL:
-			return (80, 80, 80)
+			return (20, 20, 20)
 			
 		case Ressource.RESSOURCE_COAL:
-			return (80, 80, 80)
+			return (70, 70, 70)
 			
 		case Ressource.RESSOURCE_IRON:
-			return (80, 80, 80)
+			return (218, 227, 227)
 			
 		case Ressource.RESSOURCE_COPPER:
-			return (80, 80, 80)
+			return (197, 106, 57)
 			
 		case Ressource.RESSOURCE_PRECIOUS_METALS:
-			return (80, 80, 80)
+			return (78, 226, 236)
 			
 		case Ressource.RESSOURCE_RARE_METALS:
-			return (80, 80, 80)
+			return (88, 156, 88)
 			
 		case Ressource.RESSOURCE_SAND:
-			return (80, 80, 80)
+			return (255 - hhh, 255 - hhh, 0)
 			
 		case Ressource.RESSOURCE_STONE:
-			return (80, 80, 80)
+			return (150 - hhh, 150 - hhh, 150 - hhh)
 			
 		case _:
 			return (0, 0, 0)

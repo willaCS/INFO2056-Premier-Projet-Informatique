@@ -67,7 +67,7 @@ def singleKey(key):
 			if SelectedTile.val:
 				if Map.tile_is_empty(SelectedTile.val):
 					building = testing.activeBuilding()
-					Map.add(Tile.init(building['type'], building['id'], SelectedTile.val))
+					Map.place(Tile.init(building['type'], building['id'], SelectedTile.val))
 				SelectedTile.clear()
 		case pygame.K_x:
 			testing.next()

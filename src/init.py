@@ -9,9 +9,9 @@ import Window
 from globals import all, Speed
 from events import handleEvents
 from input import repeatKey, singleKey
+from map.generation.map import init_random
 from ui.drawFrame import drawFrame
 from ui.drawUI import getFont
-from utils.map import init_random
 
 def setup():
 	all.font = getFont()

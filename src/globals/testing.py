@@ -42,6 +42,7 @@ buildings = [
 	{ 'id': Industry.TRANSPORT_RAILWAY,						'name': 'RAILWAY',						'type': Tile.TILETYPE_TRANSPORT, },
 	{ 'id': Industry.TRANSPORT_HUB_TRUCK,					'name': 'TRANSPORT_HUB_TRUCK',			'type': Tile.TILETYPE_TRANSPORTHUB, },
 	{ 'id': Industry.TRANSPORT_HUB_RAILWAY_STATION,			'name': 'RAILWAY_STATION',				'type': Tile.TILETYPE_TRANSPORTHUB, },
+	{ 'id': Industry.TRANSPORT_HUB_HARBOR,					'name': 'HARBOR',						'type': Tile.TILETYPE_TRANSPORTHUB, },
 ]
 
 index = 0
@@ -49,12 +50,10 @@ index = 0
 def next():
 	global index
 	index = index + 1 if index < len(buildings) - 1 else 0
-	print(index)
 
 def prev():
 	global index
 	index = index - 1 if index > 0 else len(buildings) - 1
-	print(index)
 
 def activeBuilding():
 	return buildings[index]

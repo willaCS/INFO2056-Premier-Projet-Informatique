@@ -11,7 +11,8 @@ from map import TerrainTile
 from map import Tile
 from map import Map
 from ui import render
-from utils.map import coord_to_px, random_terrain_landscape
+from map.generation.map import random_terrain_landscape
+from utils.map import coord_to_px
 
 def getColor(coord):
 	test_map = Map.get(coord)
