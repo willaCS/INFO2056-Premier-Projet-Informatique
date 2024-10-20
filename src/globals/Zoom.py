@@ -6,8 +6,8 @@ Exemple: le nombre de pixel que fait une case.
 
 val = 5
 __zoom_speed = 1.1
-__zoom_max = 1
-__zoom_min = 10
+__zoom_min = 1
+__zoom_max = 1000
 tile_size = 0
 line_width = 0
 outline_width = 0
@@ -20,13 +20,13 @@ def __update():
 
 def increment():
 	global val
-	if val < __zoom_min:
+	if val < __zoom_max:
 		val *= __zoom_speed
 		__update()
 
 def decrement():
 	global val
-	if val > __zoom_max:
+	if val > __zoom_min:
 		val /= __zoom_speed
 		__update()
 

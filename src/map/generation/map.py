@@ -9,13 +9,19 @@ import random
 from typing import Callable, Dict, Tuple
 
 from map import Ressource, TerrainTile
-from .seed import get_height, get_seed, load_seed, random_cos, random_cos2
+from .seed import get_height, get_seed, load_seed, random_lcg_coord
 
 def init_random():
 	random.seed()
 
 	seed = get_seed()
+	print(seed)
 	load_seed(seed)
+
+	# for i in range(-200, 200):
+	# 	for j in range(-200, 200):
+	# 		random_terrain_landscape((i, j))
+	# 	print(i)
 
 def create_caching_function(arg_func: Callable[[Tuple[int, int]], int]) -> Callable[[Tuple[int, int]], int]:
 	cache: Dict[Tuple[int, int], int] = {}
@@ -49,8 +55,8 @@ def random_terrain_landscape(coord: Tuple[int, int]) -> Dict[str, int | Tuple[in
 	else:
 		raise ValueError("Terrain tile has height not possible")
 	
-	ressource = random_cos(TerrainTile.position(res))
-	richness = random_cos2(TerrainTile.position(res))
+	ressource = int(random_lcg_coord(TerrainTile.position(res)) * 100)
+	richness = int(random_lcg_coord(TerrainTile.position(res)) * 100)
 	res["ressource"] = generate_ressource(res, ressource, richness, height)
 	return res	
 
