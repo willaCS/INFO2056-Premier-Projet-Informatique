@@ -2,6 +2,8 @@
 Ce fichier permet d'afficher la carte.
 """
 
+import math
+from typing import List
 import pygame
 
 import Window
@@ -72,6 +74,20 @@ def __drawTileOutline(color, coord):
 	pygame.draw.rect(Window.inst, color,
 		((new_coord[0], new_coord[1] - Zoom.tile_size), (Zoom.tile_size, Zoom.tile_size)),
 		Zoom.outline_width,
+	)
+
+def averageColor(colors: List[int]):
+	red = 0
+	green = 0
+	blue = 0
+	for color in colors:
+		red += color[0] ** 2
+		green += color[1] ** 2
+		blue += color[2] ** 2
+	return (
+		math.sqrt(red) // len(colors),
+		math.sqrt(green) // len(colors),
+		math.sqrt(blue) // len(colors)
 	)
 
 def drawMap():
