@@ -5,7 +5,7 @@ from typing import List, Tuple
 
 ITER = 100
 random_list = []
-prev_val = 0
+prev_random_val = 0
 
 def get_seed():
 	prev_random_val = random.randint(0, 0x7fffffff)
