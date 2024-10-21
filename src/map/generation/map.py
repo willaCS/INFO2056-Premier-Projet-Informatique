@@ -16,7 +16,7 @@ def init_random():
 
 	seed = get_seed()
 	print(seed)
-	load_seed(seed)
+	load_seed()
 
 	# for i in range(-200, 200):
 	# 	for j in range(-200, 200):
