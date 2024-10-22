@@ -5,6 +5,7 @@ Ce fichier gère la fonction drawFrame appelée chaque tick
 import Window
 from ui.drawMap import drawMap
 from globals import all, testing
+from ui.drawUI import drawUI
 
 def drawFrame():
 	drawMap()
