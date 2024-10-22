@@ -16,10 +16,8 @@ from map.generation.map import random_terrain_landscape
 from utils.cache import add_cache
 from utils.map import coord_to_px
 
-# Colors approx : sqrt(sum(color_i^2)/i)
-
 @add_cache
-def getColor(coord):
+def get_color_close(coord):
 	test_map = Map.get(coord)
 	if test_map:
 		return render.tile(test_map)
@@ -29,6 +27,31 @@ def getColor(coord):
 		case Screenmode.SCREENMODE_MAIN:
 			if TerrainTile.ressource(tile) != None:
 				return render.ressource(TerrainTile.ressource(tile))
+			return render.terrainTile(tile)
+		
+		case Screenmode.SCREENMODE_ECONOMY_DEMAND:
+			return getColorEconomyDemand(tile)
+		
+		case Screenmode.SCREENMODE_ECONOMY_SUPPLY:
+			return getColorEconomySupply(tile)
+		
+		case Screenmode.SCREENMODE_TRANSPORT:
+			return getColorTansport(tile)
+		
+		case _:
+			return (0, 0, 0)
+
+@add_cache
+def get_color(coord):
+	test_map = Map.get(coord)
+	if test_map:
+		return render.tile(test_map)
+	
+	tile = random_terrain_landscape(coord)
+	match Screenmode.val:
+		case Screenmode.SCREENMODE_MAIN:
+			# if TerrainTile.ressource(tile) != None:
+			# 	return render.ressource(TerrainTile.ressource(tile))
 			return render.terrainTile(tile)
 		
 		case Screenmode.SCREENMODE_ECONOMY_DEMAND:
@@ -100,7 +123,7 @@ def drawMap():
 	for i in range(x_min, x_max):
 		for j in range(y_min, y_max):
 			coord = (i * Zoom.opti_factor, j * Zoom.opti_factor)
-			__drawTile(getColor(coord), coord)
+			__drawTile(get_color(coord) if Zoom.opti_factor > 1 else get_color_close(coord), coord)
 	
 	pygame.draw.line(Window.inst, COLOR_BLACK, coord_to_px((0, -20)), coord_to_px((0, 20)), Zoom.line_width)
 	pygame.draw.line(Window.inst, COLOR_BLACK, coord_to_px((-20, 0)), coord_to_px((20, 0)), Zoom.line_width)
