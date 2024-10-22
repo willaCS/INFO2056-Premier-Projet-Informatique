@@ -1,13 +1,13 @@
 import math
-import re
 import random
-from typing import List, Tuple
+from typing import Tuple
 
 ITER = 100
 random_list = []
 prev_random_val = 0
 
 def get_seed():
+	global prev_random_val
 	prev_random_val = random.randint(0, 0x7fffffff)
 	return prev_random_val
 
@@ -17,14 +17,14 @@ def load_seed():
 	random_list = []
 	for i in range(0, ITER):
 		random_list.append([
-			int(random_lcg() * 8 + 1), # height
-			1/int(random_lcg() * 2000 + 500), # width_x
-			1/int(random_lcg() * 2000 + 500), # width_y
+			int(random_lcg() * 7 + 1), # height
+			1/int(random_lcg() * 200 + 500), # width_x
+			1/int(random_lcg() * 200 + 500), # width_y
 			int(random_lcg() * 2 + 1), # height_around
-			1/int(random_lcg() * 200000 + 10000), # width_x_around
-			1/int(random_lcg() * 200000 + 10000), # width_y_around
-			int(random_lcg() * 1000 - 500), # offset_x
-			int(random_lcg() * 1000 - 500), # offset_y
+			1/int(random_lcg() * 20000 + 10000), # width_x_around
+			1/int(random_lcg() * 20000 + 10000), # width_y_around
+			int(random_lcg() * 400 - 200), # offset_x
+			int(random_lcg() * 400 - 200), # offset_y
 		])
 
 def _gausse2d(height, width_x, width_y, offset_x, offset_y, coordinates):
@@ -32,6 +32,9 @@ def _gausse2d(height, width_x, width_y, offset_x, offset_y, coordinates):
 
 def get_height(coord: Tuple[int, int]):
 	global random_list
+
+	if coord[0] > 500 or coord[1] > 500 or coord[0] < -500 or coord[1] < -500:
+		return -32
 
 	res = 0
 	for ran in random_list:

@@ -6,9 +6,10 @@ On peut faire :
 """
 
 import random
-from typing import Callable, Dict, Tuple
+from typing import Dict, Tuple
 
 from map import Ressource, TerrainTile
+from utils.cache import add_cache
 from .seed import get_height, get_seed, load_seed, random_lcg_coord
 
 def init_random():
@@ -18,23 +19,8 @@ def init_random():
 	print(seed)
 	load_seed()
 
-	# for i in range(-200, 200):
-	# 	for j in range(-200, 200):
-	# 		random_terrain_landscape((i, j))
-	# 	print(i)
 
-def create_caching_function(arg_func: Callable[[Tuple[int, int]], int]) -> Callable[[Tuple[int, int]], int]:
-	cache: Dict[Tuple[int, int], int] = {}
-	
-	def test(coord: Tuple[int, int]):
-		if cache.get(coord) == None:
-			res = arg_func(coord)
-			cache[coord] = res
-		return cache.get(coord)
-
-	return test
-
-@create_caching_function
+@add_cache
 def random_terrain_landscape(coord: Tuple[int, int]) -> Dict[str, int | Tuple[int, int]]:
 	height = get_height(coord)
 	

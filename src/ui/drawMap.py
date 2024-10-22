@@ -13,10 +13,12 @@ from map import TerrainTile
 from map import Map
 from ui import render
 from map.generation.map import random_terrain_landscape
+from utils.cache import add_cache
 from utils.map import coord_to_px
 
 # Colors approx : sqrt(sum(color_i^2)/i)
 
+@add_cache
 def getColor(coord):
 	test_map = Map.get(coord)
 	if test_map:
@@ -67,7 +69,7 @@ def getColorTansport(tile):
 
 def __drawTile(color, coord):
 	new_coord = coord_to_px(coord)
-	pygame.draw.rect(Window.inst, color, ((new_coord[0], new_coord[1] - Zoom.tile_size), (Zoom.tile_size, Zoom.tile_size)))
+	pygame.draw.rect(Window.inst, color, ((new_coord[0], new_coord[1] - Zoom.tile_size), (Zoom.tile_size * Zoom.opti_factor, Zoom.tile_size * Zoom.opti_factor)))
 
 def __drawTileOutline(color, coord):
 	new_coord = coord_to_px(coord)
@@ -91,13 +93,13 @@ def averageColor(colors: List[int]):
 	)
 
 def drawMap():
-	x_min = int(-Window.half_resolution[0] / Zoom.tile_size - Cursor.val[0] - 2)
-	x_max = int( Window.half_resolution[0] / Zoom.tile_size - Cursor.val[0] + 2)
-	y_min = int(-Window.half_resolution[1] / Zoom.tile_size - Cursor.val[1] - 2)
-	y_max = int( Window.half_resolution[1] / Zoom.tile_size - Cursor.val[1] + 2)
+	x_min = int(-Window.half_resolution[0] / Zoom.tile_size - Cursor.val[0]) // Zoom.opti_factor - 2
+	x_max = int( Window.half_resolution[0] / Zoom.tile_size - Cursor.val[0]) // Zoom.opti_factor + 2
+	y_min = int(-Window.half_resolution[1] / Zoom.tile_size - Cursor.val[1]) // Zoom.opti_factor - 2
+	y_max = int( Window.half_resolution[1] / Zoom.tile_size - Cursor.val[1]) // Zoom.opti_factor + 2
 	for i in range(x_min, x_max):
 		for j in range(y_min, y_max):
-			coord = (i, j)
+			coord = (i * Zoom.opti_factor, j * Zoom.opti_factor)
 			__drawTile(getColor(coord), coord)
 	
 	pygame.draw.line(Window.inst, COLOR_BLACK, coord_to_px((0, -20)), coord_to_px((0, 20)), Zoom.line_width)
