@@ -9,6 +9,7 @@ import pygame
 import Window
 from globals import Cursor, Screenmode, SelectedTile, Speed, Zoom, testing
 from map import Map, Tile
+from ui.get_color import get_color
 
 def repeatKey(key):
 	match key:
@@ -68,6 +69,7 @@ def singleKey(key):
 				if Map.tile_is_empty(SelectedTile.val):
 					building = testing.activeBuilding()
 					Map.place(Tile.init(building['type'], building['id'], SelectedTile.val))
+					get_color(SelectedTile.val, refresh = True)
 				SelectedTile.clear()
 		case pygame.K_x:
 			testing.next()

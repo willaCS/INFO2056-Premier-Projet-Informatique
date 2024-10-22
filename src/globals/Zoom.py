@@ -24,8 +24,10 @@ def __update():
 		opti_factor = 2
 	elif val < 40:
 		opti_factor = 3
-	else:
+	elif val < 50:
 		opti_factor = 4
+	else:
+		opti_factor = 5
 
 def increment():
 	global val
