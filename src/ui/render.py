@@ -1,4 +1,4 @@
-from globals.all import COLOR_BLACK, COLOR_ORANGE, COLOR_PURPLE, COLOR_RED
+from globals.all import COLOR_BLACK, COLOR_PURPLE, COLOR_RED
 from map import Ressource, TerrainTile, Tile
 from map import Industry
 
