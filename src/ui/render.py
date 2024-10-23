@@ -1,12 +1,18 @@
-from globals.all import COLOR_BLACK, COLOR_PURPLE, COLOR_RED
+from globals.all import COLOR_BLACK, COLOR_RED
 from map import Ressource, TerrainTile, Tile
 from map import Industry
 
 def tile(tile: Tile.types):
 	match Tile.type(tile):
 		case Tile.TILETYPE_TRANSPORT:
-			return COLOR_PURPLE
-		
+			match Tile.subtype(tile):
+				case Industry.TRANSPORT_ROAD:
+					return (115, 70, 38)
+				case Industry.TRANSPORT_RAILWAY:
+					return (76, 87, 97)
+				case _:
+					return (0, 0, 0)
+			
 		case Tile.TILETYPE_TRANSPORTHUB:
 			return COLOR_RED
 		
