@@ -28,7 +28,6 @@ def __update():
 		opti_factor = 4
 	else:
 		opti_factor = 5
-	print(val, tile_size)
 
 def increment():
 	global val

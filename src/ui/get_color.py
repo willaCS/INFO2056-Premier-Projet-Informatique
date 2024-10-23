@@ -5,11 +5,11 @@ from ui import render
 from map.generation.map import random_terrain_landscape
 from utils.cache import add_cache
 
-def get_color(coord, refresh = True):
-	colors = get_color_all(coord, refresh)
+def get_color(coord, ignore_opti = False):
+	colors = get_color_all(coord)
 	match Screenmode.val:
 		case Screenmode.SCREENMODE_MAIN:
-			return colors[0 if Zoom.opti_factor == 1 else 1]
+			return colors[0 if Zoom.opti_factor == 1 or ignore_opti else 1]
 		case Screenmode.SCREENMODE_ECONOMY_DEMAND:
 			return colors[2]
 		case Screenmode.SCREENMODE_ECONOMY_SUPPLY:
@@ -18,6 +18,9 @@ def get_color(coord, refresh = True):
 			return colors[4]
 		case _:
 			return (0, 0, 0)
+
+def refresh_color(coord):
+	get_color_all(coord, True)
 
 @add_cache
 def get_color_all(coord):

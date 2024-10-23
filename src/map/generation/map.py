@@ -19,10 +19,10 @@ def init_random():
 	print(seed)
 	load_seed()
 
-	for i in range(-300, 300):
-		for j in range(-300, 300):
-			random_terrain_landscape((i, j))
-		print(i)
+	# for i in range(-300, 300):
+	# 	for j in range(-300, 300):
+	# 		random_terrain_landscape((i, j))
+	# 	print(i)
 
 
 @add_cache
