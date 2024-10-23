@@ -12,12 +12,12 @@ from utils.map import coord_to_px
 
 def __drawTile(color, coord):
 	new_coord = coord_to_px(coord)
-	pygame.draw.rect(Window.inst, color, ((new_coord[0], new_coord[1] - Zoom.tile_size), (Zoom.tile_size * Zoom.opti_factor, Zoom.tile_size * Zoom.opti_factor)))
+	pygame.draw.rect(Window.inst, color, ((new_coord[0], new_coord[1] - Zoom.tile_size), (Zoom.tile_size * Zoom.opti_factor + 1, Zoom.tile_size * Zoom.opti_factor + 1)))
 
 def __drawTileOutline(color, coord):
 	new_coord = coord_to_px(coord)
 	pygame.draw.rect(Window.inst, color,
-		((new_coord[0], new_coord[1] - Zoom.tile_size), (Zoom.tile_size, Zoom.tile_size)),
+		((new_coord[0], int(new_coord[1] - Zoom.tile_size)), (int(Zoom.tile_size), int(Zoom.tile_size))),
 		Zoom.outline_width,
 	)
 
@@ -31,8 +31,8 @@ def drawMap():
 			coord = (i * Zoom.opti_factor, j * Zoom.opti_factor)
 			__drawTile(get_color(coord), coord)
 	
-	pygame.draw.line(Window.inst, COLOR_BLACK, coord_to_px((0, -20)), coord_to_px((0, 20)), Zoom.line_width)
-	pygame.draw.line(Window.inst, COLOR_BLACK, coord_to_px((-20, 0)), coord_to_px((20, 0)), Zoom.line_width)
+	# pygame.draw.line(Window.inst, COLOR_BLACK, coord_to_px((0, -20)), coord_to_px((0, 20)), Zoom.line_width)
+	# pygame.draw.line(Window.inst, COLOR_BLACK, coord_to_px((-20, 0)), coord_to_px((20, 0)), Zoom.line_width)
 
 	if SelectedTile.val:
 		__drawTileOutline(COLOR_WHITE, SelectedTile.val)

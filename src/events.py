@@ -16,5 +16,5 @@ def handleEvents(event):
 		case pygame.MOUSEBUTTONUP:
 			if (event.button == 1):
 				SelectedTile.select(event.pos)
-		case _:
-			pass
+		# case _:
+		# 	print(event)

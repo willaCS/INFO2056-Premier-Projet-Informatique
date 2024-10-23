@@ -19,6 +19,11 @@ def init_random():
 	print(seed)
 	load_seed()
 
+	for i in range(-300, 300):
+		for j in range(-300, 300):
+			random_terrain_landscape((i, j))
+		print(i)
+
 
 @add_cache
 def random_terrain_landscape(coord: Tuple[int, int]) -> Dict[str, int | Tuple[int, int]]:
