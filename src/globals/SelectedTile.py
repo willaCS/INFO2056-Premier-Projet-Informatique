@@ -2,13 +2,12 @@
 Ce fichier gère la case selectionnée sur la carte.
 """
 
-from typing import Tuple
-
 from utils.map import px_to_coord
+from utils.mytyping import coord_i
 
-val = None
+val: coord_i | None = None
 
-def select(screen_coord: Tuple[int, int]):
+def select(screen_coord: coord_i):
 	global val
 
 	coord = px_to_coord(screen_coord)

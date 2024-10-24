@@ -7,7 +7,3 @@ __all__ = [
 # Import the submodules
 from . import Map
 from . import Tile
-from . import TerrainTile
-from . import Industry
-from . import Goods
-from . import Ressource

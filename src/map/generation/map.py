@@ -6,11 +6,11 @@ On peut faire :
 """
 
 import random
-from typing import Dict, Tuple
 
 from map import Ressource, TerrainTile
 from utils.cache import add_cache
 from .seed import get_height, get_seed, load_seed, random_lcg_coord
+from utils.mytyping import coord_i
 
 def init_random():
 	random.seed()
@@ -26,7 +26,7 @@ def init_random():
 
 
 @add_cache
-def random_terrain_landscape(coord: Tuple[int, int]) -> Dict[str, int | Tuple[int, int]]:
+def random_terrain_landscape(coord: coord_i) -> TerrainTile.types:
 	height = get_height(coord)
 	
 	if (height < -5):
@@ -51,7 +51,7 @@ def random_terrain_landscape(coord: Tuple[int, int]) -> Dict[str, int | Tuple[in
 	res["ressource"] = generate_ressource(res, ressource, richness, height)
 	return res	
 
-def generate_ressource(tile, ressource, richness, height) -> Ressource.type:
+def generate_ressource(tile: TerrainTile.types, ressource: int, richness: int, height: int) -> Ressource.types | None:
 	match(TerrainTile.type(tile)):
 		case TerrainTile.TERRAINTILETYPE_DEEPSEA:
 			match ressource:
@@ -59,10 +59,14 @@ def generate_ressource(tile, ressource, richness, height) -> Ressource.type:
 					return Ressource.init(Ressource.RESSOURCE_FISH, richness, height)
 				case 95 | 96 | 97:
 					return Ressource.init(Ressource.RESSOURCE_FISH, richness, height)
+				case _:
+					pass
 		case TerrainTile.TERRAINTILETYPE_SEA:
 			match ressource:
 				case 90 | 91 | 92 | 93 | 94:
 					return Ressource.init(Ressource.RESSOURCE_FISH, richness, height)
+				case _:
+					pass
 		case TerrainTile.TERRAINTILETYPE_BEACH:
 			match ressource:
 				case 1:
@@ -98,6 +102,8 @@ def generate_ressource(tile, ressource, richness, height) -> Ressource.type:
 					return Ressource.init(Ressource.RESSOURCE_PRECIOUS_METALS, richness, height)
 				case 2:
 					return Ressource.init(Ressource.RESSOURCE_RARE_METALS, richness, height)
+				case _:
+					pass
 		case _:
 			pass
 	return None

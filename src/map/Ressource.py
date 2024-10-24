@@ -1,4 +1,4 @@
-from typing import Dict, Tuple
+from typing import Dict
 
 RESSOURCE_FISH				= 1
 RESSOURCE_SALT				= 2
@@ -14,7 +14,6 @@ RESSOURCE_RARE_METALS		= 11
 RESSOURCE_SAND				= 12
 RESSOURCE_STONE				= 13
 
-coord = Tuple[int, int]
 types = Dict[str, int | str]
 
 def init(type: int, richness: int, height: int) -> types:
@@ -24,11 +23,11 @@ def init(type: int, richness: int, height: int) -> types:
 		"height": height,
 	}
 
-def type(tile: types) -> coord:
-	return tile["type"]
+def type(tile: types) -> int:
+	return tile["type"] # type: ignore
 
 def richness(tile: types) -> int:
-	return tile["richness"]
+	return tile["richness"] # type: ignore
 
 def height(tile: types) -> int:
-	return tile["height"]
+	return tile["height"] # type: ignore

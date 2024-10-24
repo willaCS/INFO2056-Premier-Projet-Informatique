@@ -1,7 +1,9 @@
 import time
+from typing import Any, Callable, Dict
 
-testing = {}
-def add_test(funcName, time):
+testing: Dict[str, Dict[str, int | float]] = {}
+
+def add_test(funcName: str, time: float) -> None:
 	global testing
 	if not funcName in testing:
 		testing[funcName] = {
@@ -11,8 +13,8 @@ def add_test(funcName, time):
 	testing[funcName]["time"] += time
 	testing[funcName]["n"] += 1
 
-def time_tester(func):
-	def wrapper(*args):
+def time_tester(func: Callable[[Any], Any]) -> Callable[[Any], Any]:
+	def wrapper(*args: Any):
 		global testing
 		t0 = time.time()
 		result = func(*args)
@@ -20,7 +22,7 @@ def time_tester(func):
 		return result
 	return wrapper
 
-def test_tick():
+def test_tick() -> None:
 	global testing
 	for elem in testing:
 		n = testing[elem]["n"]
@@ -28,4 +30,3 @@ def test_tick():
 		print(f"{elem: <30s}: {n:<10d} {time}")
 		testing[elem]["time"] = 0
 		testing[elem]["n"] = 0
-	return 1

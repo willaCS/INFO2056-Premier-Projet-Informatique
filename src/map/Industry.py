@@ -1,3 +1,4 @@
+from typing import Dict, List
 from map import Goods, Ressource, TerrainTile
 
 INDUSTRY_FISHINGBOAT					= 1
@@ -41,7 +42,9 @@ INDUSTRY_SANDQUERY						= 37
 PLACE_ON_RESSOURCE = 1
 PLACE_ON_TERRAIN = 2
 
-industry = {
+industry_type = Dict[str, List[int] | int | List[Dict[str, int]]]
+
+industry: Dict[int, industry_type] = {
 	INDUSTRY_FISHINGBOAT: {
 		'input': [],
 		'output': Goods.GOODS_FISH,
@@ -425,7 +428,7 @@ industry = {
 	},
 }
 
-def get_data(type: int):
+def get_data(type: int) -> industry_type:
 	return industry[type]
 
 TRANSPORT_ROAD							= 1

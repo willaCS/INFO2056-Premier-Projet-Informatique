@@ -6,13 +6,13 @@ pygame est prêt.
 """
 
 import Window
-from globals import all, Speed
+from globals import all
 from events import handleEvents
 from input import repeatKey, singleKey
 from map.generation.map import init_random
 from ui.drawFrame import drawFrame
 from ui.drawUI import getFont
-from utils.time_tester import test_tick
+# from utils.time_tester import test_tick
 
 def setup():
 	all.font = getFont()

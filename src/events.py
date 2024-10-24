@@ -6,8 +6,8 @@ import pygame
 
 from globals import SelectedTile, Zoom
 
-def handleEvents(event):
-	match event.type:
+def handleEvents(event: pygame.event.Event):
+	match event.type: # type: ignore
 		case pygame.MOUSEWHEEL:
 			if (event.y >= 0):
 				Zoom.decrement()

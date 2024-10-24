@@ -11,7 +11,7 @@ from globals import Cursor, Screenmode, SelectedTile, Speed, Zoom, testing
 from map import Map, Tile
 from ui.get_color import refresh_color
 
-def repeatKey(key):
+def repeatKey(key: int):
 	match key:
 		case pygame.K_v:
 			Cursor.reset()
@@ -27,9 +27,11 @@ def repeatKey(key):
 			Zoom.decrement()
 		case pygame.K_f:
 			Zoom.increment()
+		case _:
+			pass
 		
 
-def singleKey(key):
+def singleKey(key: int):
 	match key:
 		case pygame.K_ESCAPE:
 			Window.stop()
@@ -68,10 +70,12 @@ def singleKey(key):
 			if SelectedTile.val:
 				if Map.tile_is_empty(SelectedTile.val):
 					building = testing.activeBuilding()
-					Map.place(Tile.init(building['type'], building['id'], SelectedTile.val))
+					Map.place(Tile.init(building['type'], building['id'], SelectedTile.val)) # type: ignore
 					refresh_color(SelectedTile.val)
 				SelectedTile.clear()
 		case pygame.K_x:
 			testing.next()
 		case pygame.K_c:
 			testing.prev()
+		case _:
+			pass

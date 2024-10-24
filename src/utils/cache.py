@@ -1,10 +1,11 @@
-from typing import Any, Callable, Dict, Tuple
+from typing import Any, Callable, Dict
+from .mytyping import coord_i
 
 
-def add_cache(arg_func: Callable[[Tuple[int, int]], Any]) -> Callable[[Tuple[int, int]], Any]:
-	cache: Dict[Tuple[int, int], int] = {}
+def add_cache(arg_func: Callable[[coord_i], Any]) -> Callable[[coord_i], Any]:
+	cache: Dict[coord_i, int] = {}
 	
-	def wrapper(coord, refresh = False):
+	def wrapper(coord: coord_i, refresh: bool = False):
 		if refresh or cache.get(coord) == None:
 			cache[coord] = arg_func(coord)
 		return cache.get(coord)

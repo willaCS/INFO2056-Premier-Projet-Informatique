@@ -1,4 +1,6 @@
-font = 0
+from pygame.font import Font
+
+font: Font = None # type: ignore
 
 COLOR_RED		= (255,	0,		0)
 COLOR_LIGHT_RED	= (230,	0,		0)

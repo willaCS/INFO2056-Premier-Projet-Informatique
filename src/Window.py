@@ -5,18 +5,19 @@ clavier de façon générique.
 
 import pygame
 from signal import signal, SIGINT
-from typing import Callable
+from typing import Callable, Dict
 from pygame.event import Event
+from utils.mytyping import coord_i
 
-DEFAULT_RESOLUTION = (1280, 1024)
+DEFAULT_RESOLUTION = (400, 400)
 
 __done = False
 __tickrate = 60
 
-repeatKeyMap = {}
-__singleKey = lambda key: None
-__repeatKey = lambda key: None
-__handleEvent = lambda event: None
+repeatKeyMap: Dict[int, bool] = {}
+__singleKey: Callable[[int], None] = lambda key: None
+__repeatKey: Callable[[int], None] = lambda key: None
+__handleEvent: Callable[[pygame.event.Event], None] = lambda event: None
 
 inst = 0
 __is_fullscreen = False
@@ -24,8 +25,8 @@ resolution = DEFAULT_RESOLUTION
 half_resolution = (DEFAULT_RESOLUTION[0]/2, DEFAULT_RESOLUTION[0]/2)
 __windowed_resolution = DEFAULT_RESOLUTION
 
-__setup = 0
-__tick = 0
+__setup: Callable[[], None] = lambda: None
+__tick: Callable[[], None] = lambda: None
 
 
 
@@ -33,9 +34,9 @@ def init(
 	setup:			Callable[[], None]		= lambda: None,
 	tick:			Callable[[], None]		= lambda: None,
 	handleEvent:	Callable[[Event], None]	= lambda event: None,
-	repeatKey:		Callable[[str], None]	= lambda key: None,
-	singleKey:		Callable[[str], None]	= lambda key: None,
-	tickrate = 60,
+	repeatKey:		Callable[[int], None]	= lambda key: None,
+	singleKey:		Callable[[int], None]	= lambda key: None,
+	tickrate: 		int 					= 60,
 ):
 	"""
 	cette fonction initialise l'instance pygame et envoie toutes les lambdas
@@ -120,6 +121,9 @@ def __handle_events():
 				
 			case pygame.WINDOWSIZECHANGED:
 				__update_resolution((event.x, event.y))
+
+			case _:
+				pass
 						
 		__handleEvent(event)
 
@@ -130,7 +134,7 @@ def __handle_events():
 
 
 
-def __update_resolution(coord):
+def __update_resolution(coord: coord_i):
 	"""
 	Set les variables de résolutions après une mise à jour.
 	"""

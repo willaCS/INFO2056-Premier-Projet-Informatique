@@ -4,8 +4,9 @@ Le curseur est le centre de l'écran
 """
 
 from globals import Zoom
+from utils.mytyping import mut_coord_f
 
-val = [0, 0]
+val: mut_coord_f = [0, 0]
 cursor_speed = 0.1
 
 def reset():

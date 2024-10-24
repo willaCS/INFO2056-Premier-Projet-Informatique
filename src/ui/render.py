@@ -92,6 +92,8 @@ def tile(tile: Tile.types):
 					return (0, 0, 0)
 				case Industry.INDUSTRY_SANDQUERY:
 					return (0, 0, 0)
+				case _:
+					return (0, 0, 0)
 		
 		case Tile.TILETYPE_CITY:
 			return (22, 17, 84)

@@ -1,6 +1,9 @@
+from typing import List, Dict
 from map import Industry, Tile
 
-buildings = [
+type_building = Dict[str, int | str]
+
+buildings: List[type_building] = [
 	{ 'id': Industry.INDUSTRY_FISHINGBOAT, 					'name': 'FISHINGBOAT',					'type': Tile.TILETYPE_INDUSTRY, },
 	{ 'id': Industry.INDUSTRY_SALTEXTRACTION, 				'name': 'SALTEXTRACTION',				'type': Tile.TILETYPE_INDUSTRY, },
 	{ 'id': Industry.INDUSTRY_WHEAT_FIELDS, 				'name': 'WHEAT_FIELDS',					'type': Tile.TILETYPE_INDUSTRY, },

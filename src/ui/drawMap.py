@@ -9,9 +9,10 @@ from globals import Cursor, SelectedTile, Zoom
 from globals.all import COLOR_WHITE
 from .get_color import get_color
 from utils.map import coord_to_px
+from utils.mytyping import Color, coord_i
 from map import Map
 
-def __drawTile(color, coord, ignore_opti = False):
+def __drawTile(color: Color, coord: coord_i, ignore_opti: bool = False):
 	tile_size = Zoom.tile_size * Zoom.opti_factor if not ignore_opti else Zoom.tile_size
 	new_coord = coord_to_px(coord)
 	pygame.draw.rect(Window.inst, color, (
@@ -19,7 +20,7 @@ def __drawTile(color, coord, ignore_opti = False):
    		(int(tile_size) + 1, int(tile_size) + 1)
 	))
 
-def __drawTileOutline(color, coord):
+def __drawTileOutline(color: Color, coord: coord_i):
 	new_coord = coord_to_px(coord)
 	pygame.draw.rect(Window.inst, color,
 		((new_coord[0], int(new_coord[1] - Zoom.tile_size)), (int(Zoom.tile_size), int(Zoom.tile_size))),

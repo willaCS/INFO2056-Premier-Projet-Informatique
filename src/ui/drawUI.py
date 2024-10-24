@@ -3,19 +3,21 @@ Ce fichier permet d'afficher l'interface utilisateur.
 """
 
 from typing import Tuple
+from pygame import font
 import pygame
 
 import Window
 from globals import Screenmode, Speed, all
+from utils.mytyping import Color
 
 top_bar_height = 60
 padding_out = 10
 padding_in = 2
 
-def getFont():
-	return pygame.font.SysFont('monospace', top_bar_height - 2 * padding_out)
+def getFont() -> font.Font:
+	return font.SysFont('monospace', top_bar_height - 2 * padding_out)
 
-def drawCoin(coord: Tuple[int, int], len: int, color, number, incr):
+def drawCoin(coord: Tuple[int, int], len: int, color: Color, number: int, incr: int):
 	pygame.draw.rect(Window.inst, (255, 255, 255), ((coord[0] + padding_out, coord[1] + padding_out), (len, top_bar_height - 2 * padding_out)))
 	pygame.draw.circle(Window.inst, color,
 		(coord[0] + top_bar_height / 2, coord[1] + top_bar_height / 2),
@@ -25,7 +27,7 @@ def drawCoin(coord: Tuple[int, int], len: int, color, number, incr):
 	text_prepared = all.font.render(text, True, (0, 0, 0))
 	Window.inst.blit(text_prepared, (coord[0] + top_bar_height, coord[1] + padding_out - 4))
 
-def drawSquare(coord: Tuple[int, int], color, text):
+def drawSquare(coord: Tuple[int, int], color: Color, text: str):
 	pygame.draw.rect(Window.inst, color, ((coord[0] + padding_out, coord[1] + padding_out), (top_bar_height - 2 * padding_out, top_bar_height - 2 * padding_out)))
 	text_prepared = all.font.render(text, True, (0, 0, 0))
 	Window.inst.blit(text_prepared, (coord[0] + padding_out + 8, coord[1] + padding_out - 4))

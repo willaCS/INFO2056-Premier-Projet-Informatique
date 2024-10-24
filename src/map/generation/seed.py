@@ -1,9 +1,10 @@
 import math
 import random
-from typing import Tuple
+from typing import List
+from utils.mytyping import coord_i
 
 ITER = 100
-random_list = []
+random_list: List[List[int | float]] = []
 prev_random_val = 0
 
 def get_seed():
@@ -15,7 +16,7 @@ def load_seed():
 	global random_list
 
 	random_list = []
-	for i in range(0, ITER):
+	for i in range(0, ITER): # type: ignore
 		random_list.append([
 			int(random_lcg() * 7 + 1), # height
 			1/int(random_lcg() * 200 + 500), # width_x
@@ -27,10 +28,10 @@ def load_seed():
 			int(random_lcg() * 400 - 200), # offset_y
 		])
 
-def _gausse2d(height, width_x, width_y, offset_x, offset_y, coordinates):
+def _gausse2d(height: int, width_x: float, width_y: float, offset_x: int, offset_y: int, coordinates: coord_i):
 	return height * math.pow(2, width_x * -math.pow(coordinates[0] + offset_x, 2) - width_y * math.pow(coordinates[1] + offset_y, 2))
 
-def get_height(coord: Tuple[int, int]):
+def get_height(coord: coord_i):
 	global random_list
 
 	if coord[0] > 500 or coord[1] > 500 or coord[0] < -500 or coord[1] < -500:
@@ -38,8 +39,8 @@ def get_height(coord: Tuple[int, int]):
 
 	res = 0
 	for ran in random_list:
-		res += _gausse2d(ran[0], ran[1], ran[2], ran[6], ran[7], coord)
-		res += _gausse2d(ran[3], ran[4], ran[5], ran[6], ran[7], coord)
+		res += _gausse2d(ran[0], ran[1], ran[2], ran[6], ran[7], coord) # type: ignore
+		res += _gausse2d(ran[3], ran[4], ran[5], ran[6], ran[7], coord) # type: ignore
 	res -= 32
 	return int(res)
 
@@ -71,7 +72,7 @@ def random_lcg():
 # iterations. After that, we use that result in combination with a XOR of it
 # and y to be the seed of our second set of iterations.
 # Thanks to Prof. Boigelot for the suggestion
-def random_lcg_coord(coord: Tuple[int, int]):
+def random_lcg_coord(coord: coord_i):
     # Send all number to the interval ]0, M[
 	x_val = coord[0] % (M - 1) + 1
 	

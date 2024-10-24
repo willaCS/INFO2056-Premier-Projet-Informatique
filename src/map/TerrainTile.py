@@ -18,7 +18,7 @@ TERRAINTILETYPE_MOUNTAIN_SIDE	= 6
 TERRAINTILETYPE_MOUNTAIN_TOP	= 7
 
 coord = Tuple[int, int]
-types = Dict[str, int | coord | Ressource.types]
+types = Dict[str, int | coord | Ressource.types | None]
 
 def init(type: int, position: coord, height: int) -> types:
 	return {
@@ -29,13 +29,13 @@ def init(type: int, position: coord, height: int) -> types:
 	}
 
 def type(tile: types) -> int:
-	return tile["type"]
+	return tile["type"] # type: ignore
 
 def position(tile: types) -> coord:
-	return tile["position"]
+	return tile["position"] # type: ignore
 
 def height(tile: types) -> int:
-	return tile["height"]
+	return tile["height"] # type: ignore
 
-def ressource(tile: types) -> int:
-	return tile["ressource"]
+def ressource(tile: types) -> Ressource.types | None:
+	return tile["ressource"] # type: ignore

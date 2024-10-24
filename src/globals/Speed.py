@@ -22,7 +22,7 @@ def decrement():
 		val -= 1
 		_update_tick_simulation()
 
-def set(new_speed):
+def set(new_speed: int):
 	global val
 	val = new_speed
 	_update_tick_simulation()
@@ -59,3 +59,5 @@ def _update_tick_simulation():
 			_delta_tick_simation = 2
 		case 5:
 			_delta_tick_simation = 1
+		case _:
+			pass
