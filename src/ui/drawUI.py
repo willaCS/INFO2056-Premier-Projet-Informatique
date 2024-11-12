@@ -15,7 +15,11 @@ padding_out = 10
 padding_in = 2
 
 def getFont() -> font.Font:
-	return font.SysFont('monospace', top_bar_height - 2 * padding_out)
+	all.font = font.SysFont('monospace', top_bar_height - 2 * padding_out)
+	all.font2 = font.SysFont('monospace', 24, True)
+
+
+
 
 def drawCoin(coord: Tuple[int, int], len: int, color: Color, number: int, incr: int):
 	pygame.draw.rect(Window.inst, (255, 255, 255), ((coord[0] + padding_out, coord[1] + padding_out), (len, top_bar_height - 2 * padding_out)))
@@ -46,3 +50,6 @@ def drawUI():
 	drawSquare((Window.resolution[0] - 160, 0), (120, 0, 0) if Speed.val == 0 else (255, 255, 255) if Speed.val >= 3 else (80, 80, 80), "3")
 	drawSquare((Window.resolution[0] - 110, 0), (120, 0, 0) if Speed.val == 0 else (255, 255, 255) if Speed.val >= 4 else (80, 80, 80), "4")
 	drawSquare((Window.resolution[0] - 60,  0), (120, 0, 0) if Speed.val == 0 else (255, 255, 255) if Speed.val >= 5 else (80, 80, 80), "5")
+
+
+

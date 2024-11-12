@@ -15,7 +15,7 @@ from ui.drawUI import getFont
 # from utils.time_tester import test_tick
 
 def setup():
-	all.font = getFont()
+	getFont()
 	init_random()
 
 
@@ -36,5 +36,3 @@ def	main():
 
 if __name__ == '__main__':
 	main()
-
-	
