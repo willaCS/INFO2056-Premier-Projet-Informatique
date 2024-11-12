@@ -1,4 +1,5 @@
 from globals import player
+from map.Goods import print_goods
 
 stock = {}
 
@@ -24,9 +25,9 @@ def sell_stock_to_market():
 		stock[s] = 0
 
 def sell_market(ressource_type, amounts):
-	# print('sell ', amounts, 'de', ressource_type)
-	player.money += 1
+	print('sell', amounts, 'de', print_goods(ressource_type))
+	player.money += 1 * amounts
 
 def buy_market(ressource_type, amounts):
-	# print('buy ', amounts, 'de', ressource_type)
-	player.money -= 1
+	print('buy', amounts, 'de', print_goods(ressource_type))
+	player.money -= 1 * amounts

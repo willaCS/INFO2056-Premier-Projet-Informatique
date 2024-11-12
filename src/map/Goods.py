@@ -35,3 +35,81 @@ GOODS_JEWELRY				= 34
 GOODS_PHONE					= 35
 GOODS_STONE					= 36
 GOODS_SAND					= 37
+
+def print_goods(type):
+	if type == GOODS_FISH:
+		return 'fish'
+	elif type == GOODS_SALT:
+		return 'salt'
+	elif type == GOODS_WHEAT:
+		return 'wheat'
+	elif type == GOODS_POTATO:
+		return 'potato'
+	elif type == GOODS_COTTON:
+		return 'cotton'
+	elif type == GOODS_RICE:
+		return 'rice'
+	elif type == GOODS_FUR:
+		return 'fur'
+	elif type == GOODS_WOOD:
+		return 'wood'
+	elif type == GOODS_OIL:
+		return 'oil'
+	elif type == GOODS_COAL:
+		return 'coal'
+	elif type == GOODS_IRON:
+		return 'iron'
+	elif type == GOODS_COPPER:
+		return 'copper'
+	elif type == GOODS_PRECIOUS_METAL:
+		return 'precious metal'
+	elif type == GOODS_RARE_METAL:
+		return 'rare metal'
+	elif type == GOODS_BREAD:
+		return 'bread'
+	elif type == GOODS_ALCOHOL:
+		return 'alcohol'
+	elif type == GOODS_SUSHI:
+		return 'sushi'
+	elif type == GOODS_TEXTILE:
+		return 'textile'
+	elif type == GOODS_CLOTHES:
+		return 'clothes'
+	elif type == GOODS_FURNITURE:
+		return 'furniture'
+	elif type == GOODS_STEEL:
+		return 'steel'
+	elif type == GOODS_TOOLS:
+		return 'tools'
+	elif type == GOODS_CEMENT:
+		return 'cement'
+	elif type == GOODS_FUEL:
+		return 'fuel'
+	elif type == GOODS_PLASTIC:
+		return 'plastic'
+	elif type == GOODS_GLASS:
+		return 'glass'
+	elif type == GOODS_ELECTRONICS_COMPONENT:
+		return 'electronics component'
+	elif type == GOODS_RADIO:
+		return 'radio'
+	elif type == GOODS_COMPUTER:
+		return 'computer'
+	elif type == GOODS_GUNS:
+		return 'guns'
+	elif type == GOODS_ENGINE:
+		return 'engine'
+	elif type == GOODS_CAR:
+		return 'car'
+	elif type == GOODS_PLANES:
+		return 'planes'
+	elif type == GOODS_JEWELRY:
+		return 'jewelry'
+	elif type == GOODS_PHONE:
+		return 'phone'
+	elif type == GOODS_STONE:
+		return 'stone'
+	elif type == GOODS_SAND:
+		return 'sand'
+	else:
+		return 'unknown'

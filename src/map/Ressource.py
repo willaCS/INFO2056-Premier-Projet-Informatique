@@ -31,3 +31,33 @@ def richness(tile: types) -> int:
 
 def height(tile: types) -> int:
 	return tile["height"] # type: ignore
+
+def print_ressource(type):
+	if type == RESSOURCE_FISH:
+		return 'fish'
+	elif type == RESSOURCE_SALT:
+		return 'salt'
+	elif type == RESSOURCE_FERTILE_LAND:
+		return 'fertile land'
+	elif type == RESSOURCE_HUNTING_GROUNDS:
+		return 'fur'
+	elif type == RESSOURCE_WOOD:
+		return 'wood'
+	elif type == RESSOURCE_OIL:
+		return 'oil'
+	elif type == RESSOURCE_COAL:
+		return 'coal'
+	elif type == RESSOURCE_IRON:
+		return 'iron'
+	elif type == RESSOURCE_COPPER:
+		return 'copper'
+	elif type == RESSOURCE_PRECIOUS_METALS:
+		return 'precious metals'
+	elif type == RESSOURCE_RARE_METALS:
+		return 'rare metals'
+	elif type == RESSOURCE_SAND:
+		return 'sand'
+	elif type == RESSOURCE_STONE:
+		return 'stone'
+	else:
+		return 'unknown'

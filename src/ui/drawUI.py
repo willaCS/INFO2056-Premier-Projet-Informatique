@@ -70,5 +70,5 @@ def __drawSideMenu():
 	
 def setup_image():
 	global EXIT_BUTTON
-	EXIT_BUTTON = pygame.image.load('/home/adriencormann/university/INFO2056-Premier-Projet-Informatique/assets/close_button.png').convert_alpha(Window.inst)
+	EXIT_BUTTON = pygame.image.load('./assets/close_button.png').convert_alpha(Window.inst)
 	EXIT_BUTTON = pygame.transform.scale(EXIT_BUTTON, (30, 30))
