@@ -7,7 +7,7 @@ from pygame import font
 import pygame
 
 import Window
-from globals import Screenmode, Speed, all
+from globals import Screenmode, Speed, all, player
 from utils.mytyping import Color
 
 top_bar_height = 60
@@ -34,8 +34,8 @@ def drawSquare(coord: Tuple[int, int], color: Color, text: str):
 
 def drawUI():
 	pygame.draw.rect(Window.inst, (40, 40, 40), ((0, 0), (Window.resolution[0], top_bar_height)))
-	drawCoin((200, 0), 200, (255, 180, 0), 25, 1)
-	drawCoin((410, 0), 200, (0, 200, 200), 11, 3)
+	drawCoin((200, 0), 200, (255, 180, 0), player.money, 1)
+	drawCoin((410, 0), 200, (0, 200, 200), player.science, 3)
 	drawSquare((0, 0), (255, 255, 255) if Screenmode.val == Screenmode.SCREENMODE_MAIN else (80, 80, 80), "A")
 	drawSquare((50, 0), (255, 255, 255) if Screenmode.val == Screenmode.SCREENMODE_ECONOMY_SUPPLY else (80, 80, 80), "B")
 	drawSquare((100, 0), (255, 255, 255) if Screenmode.val == Screenmode.SCREENMODE_ECONOMY_DEMAND else (80, 80, 80), "C")

@@ -6,9 +6,10 @@ pygame est prêt.
 """
 
 import Window
-from globals import all
+from globals import Speed, all
 from events import handleEvents
 from input import repeatKey, singleKey
+from logic.game import game_simulation_tick
 from map.generation.map import init_random
 from ui.drawFrame import drawFrame
 from ui.drawUI import getFont
@@ -21,8 +22,8 @@ def setup():
 
 
 def tick():
-	# if Speed.can_execute_simulation():
-		# print("tick")
+	if Speed.can_execute_simulation():
+		game_simulation_tick()
 	drawFrame()
 	# test_tick()
 

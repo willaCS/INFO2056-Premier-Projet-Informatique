@@ -31,11 +31,6 @@ def remove(coord: coord_i):
 	global map
 	map.pop(coord)
 
-def iter():
-	global map
-	for tile in map.values():
-		yield tile
-
 def tile_is_empty(coord: coord_i):
 	tile = get(coord)
 	if not tile:
