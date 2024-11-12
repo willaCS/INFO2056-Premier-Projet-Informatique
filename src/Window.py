@@ -122,6 +122,9 @@ def __handle_events():
 			case pygame.WINDOWSIZECHANGED:
 				__update_resolution((event.x, event.y))
 
+			case pygame.MOUSEBUTTONDOWN:
+				pass
+
 			case _:
 				pass
 						

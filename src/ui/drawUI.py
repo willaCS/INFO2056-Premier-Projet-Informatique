@@ -9,6 +9,8 @@ import pygame
 import Window
 from globals import Screenmode, Speed, all, SelectedTile, ui_game, player
 from utils.mytyping import Color, coord_i
+from ui import ui_array
+
 
 top_bar_height = 60
 padding_out = 10
@@ -52,12 +54,18 @@ def drawUI():
 	drawSquare((Window.resolution[0] - 60,  0), (120, 0, 0) if Speed.val == 0 else (255, 255, 255) if Speed.val >= 5 else (80, 80, 80), "5")
 	
 	#ad
+
 	if SelectedTile.val:
+		ui_array.sort_array()
+		#print(SelectedTile.val)
 		if not ui_game.side_menu_present:
 			ui_game.side_menu_present = True
 			ui_game.precedent_position = SelectedTile.val
+			ui_game.selected_sideMenu_id = ui_array.append_array(1, (0, top_bar_height), (470, Window.resolution[1] - top_bar_height))
+			ui_game.exit_button_sideMenu_id = ui_array.append_array(2, (425, top_bar_height), (30, 40))
 		elif ui_game.precedent_position != SelectedTile.val:
 			ui_game.side_menu_present = False
+			ui_array.remove_array(ui_array.find(ui_game.selected_sideMenu_id))
 		if ui_game.side_menu_present:
 			__drawSideMenu()
 
@@ -70,5 +78,6 @@ def __drawSideMenu():
 	
 def setup_image():
 	global EXIT_BUTTON
-	EXIT_BUTTON = pygame.image.load('/home/adriencormann/university/INFO2056-Premier-Projet-Informatique/assets/close_button.png').convert_alpha(Window.inst)
+	EXIT_BUTTON = pygame.image.load('./assets/close_button.png').convert_alpha(Window.inst)
 	EXIT_BUTTON = pygame.transform.scale(EXIT_BUTTON, (30, 30))
+
