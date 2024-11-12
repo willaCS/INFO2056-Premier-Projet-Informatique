@@ -12,13 +12,13 @@ from input import repeatKey, singleKey
 from logic.game import game_simulation_tick
 from map.generation.map import init_random
 from ui.drawFrame import drawFrame
-from ui.drawUI import getFont
+from ui.drawUI import getFont, setup_image
 # from utils.time_tester import test_tick
 
 def setup():
 	getFont()
 	init_random()
-
+	setup_image()
 
 
 def tick():
