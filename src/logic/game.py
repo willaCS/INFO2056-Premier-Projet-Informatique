@@ -31,18 +31,25 @@ def simulation_industry(tile, terrainTile):
 			| Industry.INDUSTRY_RAREMETALMINE:
 			generate_goods(tile, Ressource.richness(TerrainTile.ressource(terrainTile)))
 		case _:
-			generate_goods(tile, 1)
+			generate_goods(tile)
 		
-def generate_goods(tile, amount):
+def generate_goods(tile, amount = None):
+
+	if not 'xp' in tile:
+		tile['xp'] = 0
 	if not 'generated' in tile:
 		tile['generated'] = 0
-	tile['generated'] += amount
+
 	industry = Industry.industry[Tile.subtype(tile)]
+
+	if not amount:
+		amount = int(1 + tile['xp'] / 100)
+	print(amount, tile['xp'], tile['generated'])
+	
 	for input in industry['input']:
-		rest = stockpile.buy_stock(input, 5)
-		if rest > 0:
-			stockpile.buy_market(input, rest)
-	stockpile.add_stock(industry['output'], 5)
+		stockpile.buy_stock(input, amount)
+	stockpile.add_stock(industry['output'], amount)
 
+	tile['xp'] += 1
+	tile['generated'] += amount
 
-		

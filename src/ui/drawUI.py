@@ -27,7 +27,7 @@ def drawCoin(coord: Tuple[int, int], len: int, color: Color, number: int, incr: 
 		(coord[0] + top_bar_height / 2, coord[1] + top_bar_height / 2),
 		top_bar_height / 2 - padding_out - padding_in
 	)
-	text = str(number) + "(+" + str(incr) + ")"
+	text = longNumber(number) + "(+" + longNumber(incr) + ")"
 	text_prepared = all.font.render(text, True, (0, 0, 0))
 	Window.inst.blit(text_prepared, (coord[0] + top_bar_height, coord[1] + padding_out - 4))
 
@@ -36,10 +36,22 @@ def drawSquare(coord: Tuple[int, int], color: Color, text: str):
 	text_prepared = all.font.render(text, True, (0, 0, 0))
 	Window.inst.blit(text_prepared, (coord[0] + padding_out + 8, coord[1] + padding_out - 4))
 
+def longNumber(number: int) -> str:
+	if number < 1000:
+		return str(number)
+	elif number < 1000000:
+		return str((number // 10) / 100) + "K"
+	elif number < 1000000000:
+		return str((number // 10000) / 100) + "M"
+	elif number < 1000000000000:
+		return str((number // 10000000) / 100) + "B"
+	else:
+		return str((number // 10000000000) / 100) + "T"
+
 def drawUI():
 	pygame.draw.rect(Window.inst, (40, 40, 40), ((0, 0), (Window.resolution[0], top_bar_height)))
-	drawCoin((200, 0), 200, (255, 180, 0), player.money, 1)
-	drawCoin((410, 0), 200, (0, 200, 200), player.science, 3)
+	drawCoin((200, 0), 400, (255, 180, 0), player.money, player.money_incr)
+	drawCoin((610, 0), 400, (0, 200, 200), player.science, 3)
 	drawSquare((0, 0), (255, 255, 255) if Screenmode.val == Screenmode.SCREENMODE_MAIN else (80, 80, 80), "A")
 	drawSquare((50, 0), (255, 255, 255) if Screenmode.val == Screenmode.SCREENMODE_ECONOMY_SUPPLY else (80, 80, 80), "B")
 	drawSquare((100, 0), (255, 255, 255) if Screenmode.val == Screenmode.SCREENMODE_ECONOMY_DEMAND else (80, 80, 80), "C")
