@@ -1,6 +1,7 @@
 from pygame.font import Font
 
 font: Font = None # type: ignore
+font2: Font = None # type: ignore
 
 COLOR_RED		= (255,	0,		0)
 COLOR_LIGHT_RED	= (230,	0,		0)
@@ -13,3 +14,4 @@ COLOR_CYAN		= (0,	255,	255)
 COLOR_MAGENTA	= (255,	0,		255)
 COLOR_ORANGE	= (255,	165,	0)
 COLOR_PURPLE	= (128,	0,		128)
+COLOR_CORN_FLOWER_BLUE = (100,149,237)
