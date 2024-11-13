@@ -2,6 +2,7 @@ from logic import stockpile
 from map.Map import map
 from map.generation import map as generation
 from map import Industry, Ressource, TerrainTile, Tile
+from globals import player
 
 def game_simulation_tick():
 	for tile in sorted(map.values(), key=lambda item: Tile.subtype(item)):
@@ -11,7 +12,18 @@ def game_simulation_tick():
 			case _:
 				pass
 	stockpile.sell_stock_to_market()
+	game_affichage_refresh()
 
+i = 0
+def game_affichage_refresh():
+	global i
+	
+	if i < 100:
+		i += 1
+		return
+	i = 0
+	player.money_incr = 0
+	player.science_incr = 0
 
 def simulation_industry(tile, terrainTile):	
 	match Tile.subtype(tile):
@@ -53,3 +65,7 @@ def generate_goods(tile, amount = None):
 	tile['xp'] += 1
 	tile['generated'] += amount
 
+	if tile['xp'] % 100 == 0:
+		player.science += 1
+		player.science_incr += 1
+	

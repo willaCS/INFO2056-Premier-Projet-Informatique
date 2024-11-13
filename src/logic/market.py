@@ -9,12 +9,12 @@ PRICE_GOODS_COTTON					= 4
 PRICE_GOODS_RICE					= 2
 PRICE_GOODS_FUR						= 3
 PRICE_GOODS_WOOD					= 1
-PRICE_GOODS_OIL						= 50
+PRICE_GOODS_OIL						= 7
 PRICE_GOODS_COAL					= 5
-PRICE_GOODS_IRON					= 10
-PRICE_GOODS_COPPER					= 8
-PRICE_GOODS_PRECIOUS_METAL			= 100
-PRICE_GOODS_RARE_METAL				= 80
+PRICE_GOODS_IRON					= 6
+PRICE_GOODS_COPPER					= 6
+PRICE_GOODS_PRECIOUS_METAL			= 10
+PRICE_GOODS_RARE_METAL				= 8
 PRICE_GOODS_STONE					= 1
 PRICE_GOODS_SAND					= 1
 PRICE_GOODS_BREAD					= PRICE_GOODS_WHEAT + 2
@@ -83,9 +83,9 @@ market = {
 }
 
 def sell_market(goods_type, amounts):
-	print('sell', amounts, 'de', Goods.print_goods(goods_type))
-	player.money += market[goods_type] * amounts
+	print('sell', amounts, 'de', Goods.print_goods(goods_type), 'au prix de', int(market[goods_type] * 0.9))
+	player.money += int(market[goods_type] * 0.9 * amounts)
 
 def buy_market(goods_type, amounts):
-	print('buy', amounts, 'de', Goods.print_goods(goods_type))
-	player.money -= market[goods_type] * amounts
+	print('buy', amounts, 'de', Goods.print_goods(goods_type), 'au prix de', market[goods_type])
+	player.money -= int(market[goods_type] * amounts)
