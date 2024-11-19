@@ -22,7 +22,7 @@ __handleEvent: Callable[[pygame.event.Event], None] = lambda event: None
 inst = 0
 __is_fullscreen = False
 resolution = DEFAULT_RESOLUTION
-half_resolution = (DEFAULT_RESOLUTION[0]/2, DEFAULT_RESOLUTION[0]/2)
+half_resolution = (DEFAULT_RESOLUTION[0]/2, DEFAULT_RESOLUTION[1]/2)
 __windowed_resolution = DEFAULT_RESOLUTION
 
 __setup: Callable[[], None] = lambda: None

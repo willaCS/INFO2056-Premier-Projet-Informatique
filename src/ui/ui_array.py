@@ -1,3 +1,5 @@
+import pygame
+import Window
 from utils.draw import isInRectangle
 
 def button_new(
@@ -42,11 +44,13 @@ def button_clickOutside(button, pos):
 
 
 def composant_new(z, buttons):
-    return {
+    res = {
         "z": z,
         "buttons": buttons,
         "hidden": True
     }
+    composants.append(res)
+    return res
 
 def composant_hide(button):
     button["hidden"] = True
@@ -92,6 +96,8 @@ def menu_draw():
     for composant in composants:
         if not composant["hidden"]:
             composant_draw(composant)
+    pygame.draw.circle(Window.inst, (0, 0, 0), Window.half_resolution, 5)
+    print(Window.half_resolution, Window.resolution)
 
 def menu_click(pos):
     has_clicked = False

@@ -169,8 +169,6 @@ topBar = ui_array.composant_new(1, [
 ])
 
 ui_array.composant_show(topBar)
-ui_array.composants.append(sideMenu)
-ui_array.composants.append(topBar)
 
 def drawUI():
 	global sideMenu	
