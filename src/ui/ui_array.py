@@ -96,8 +96,6 @@ def menu_draw():
     for composant in composants:
         if not composant["hidden"]:
             composant_draw(composant)
-    pygame.draw.circle(Window.inst, (0, 0, 0), Window.half_resolution, 5)
-    print(Window.half_resolution, Window.resolution)
 
 def menu_click(pos):
     has_clicked = False
