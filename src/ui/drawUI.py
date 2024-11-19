@@ -10,7 +10,6 @@ from globals import Screenmode, Speed, all, SelectedTile, player
 from utils.mytyping import Color, coord_i
 from utils.draw import longNumber
 from ui import ui_array
-from ui.ui_array import Composant, Bouton
 
 TOP_BAR_HEIGHT = 60
 PADDING_OUT = 10
@@ -57,10 +56,10 @@ def drawModeButton(rect, text, color):
 def closeSideMenu():
 	global sideMenu
 	SelectedTile.val = None
-	sideMenu.hide()
+	ui_array.composant_hide(sideMenu)
 
-sideMenu = Composant(2, [
-	Bouton(1,
+sideMenu = ui_array.composant_new(2, [
+	ui_array.button_new(1,
 		lambda: (
 			(0, TOP_BAR_HEIGHT),
 			(470, Window.resolution[1] - TOP_BAR_HEIGHT)
@@ -69,7 +68,7 @@ sideMenu = Composant(2, [
 		lambda: None,
 		closeSideMenu,
 	),
-	Bouton(2,
+	ui_array.button_new(2,
 		(
 			(425, TOP_BAR_HEIGHT),
 			(30, 40)
@@ -79,8 +78,8 @@ sideMenu = Composant(2, [
 	),
 ])
 
-topBar = Composant(1, [
-	Bouton(1,
+topBar = ui_array.composant_new(1, [
+	ui_array.button_new(1,
 		lambda : (
 			(0, 0),
 			(Window.resolution[0], TOP_BAR_HEIGHT)
@@ -90,7 +89,7 @@ topBar = Composant(1, [
 	),
 
 
-	Bouton(2,
+	ui_array.button_new(2,
 		(
 			(0 + PADDING_IN, 0 + PADDING_IN),
 			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
@@ -98,7 +97,7 @@ topBar = Composant(1, [
 		lambda rect: drawModeButton(rect, "A", all.COLOR_WHITE if Screenmode.val == Screenmode.SCREENMODE_MAIN else (80, 80, 80)),
 		lambda: Screenmode.select(Screenmode.SCREENMODE_MAIN)
 	),
-	Bouton(2,
+	ui_array.button_new(2,
 		(
 			(50 + PADDING_IN, 0 + PADDING_IN),
 			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
@@ -106,7 +105,7 @@ topBar = Composant(1, [
 		lambda rect: drawModeButton(rect, "B", all.COLOR_WHITE if Screenmode.val == Screenmode.SCREENMODE_ECONOMY_SUPPLY else (80, 80, 80)),
 		lambda: Screenmode.select(Screenmode.SCREENMODE_ECONOMY_SUPPLY)
 	),
-	Bouton(2,
+	ui_array.button_new(2,
 		(
 			(100 + PADDING_IN, 0 + PADDING_IN),
 			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
@@ -114,7 +113,7 @@ topBar = Composant(1, [
 		lambda rect: drawModeButton(rect, "C", all.COLOR_WHITE if Screenmode.val == Screenmode.SCREENMODE_ECONOMY_DEMAND else (80, 80, 80)),
 		lambda: Screenmode.select(Screenmode.SCREENMODE_ECONOMY_DEMAND)
 	),
-	Bouton(2,
+	ui_array.button_new(2,
 		(
 			(150 + PADDING_IN, 0 + PADDING_IN),
 			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
@@ -124,7 +123,7 @@ topBar = Composant(1, [
 	),
 
 	
-	Bouton(2,
+	ui_array.button_new(2,
 		lambda: (
 			(Window.resolution[0] - 10 - 5 * 50 + PADDING_IN, 0 + PADDING_IN),
 			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
@@ -132,7 +131,7 @@ topBar = Composant(1, [
 		lambda rect: drawModeButton(rect, "1", (120, 0, 0) if Speed.val == 0 else all.COLOR_WHITE if Speed.val >= 1 else (80, 80, 80)),
 		lambda: Speed.set(1),
 	),
-	Bouton(2,
+	ui_array.button_new(2,
 		lambda: (
 			(Window.resolution[0] - 10 - 4 * 50 + PADDING_IN, 0 + PADDING_IN),
 			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
@@ -140,7 +139,7 @@ topBar = Composant(1, [
 		lambda rect: drawModeButton(rect, "2", (120, 0, 0) if Speed.val == 0 else all.COLOR_WHITE if Speed.val >= 2 else (80, 80, 80)),
 		lambda: Speed.set(2),
 	),
-	Bouton(2,
+	ui_array.button_new(2,
 		lambda: (
 			(Window.resolution[0] - 10 - 3 * 50 + PADDING_IN, 0 + PADDING_IN),
 			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
@@ -148,7 +147,7 @@ topBar = Composant(1, [
 		lambda rect: drawModeButton(rect, "3", (120, 0, 0) if Speed.val == 0 else all.COLOR_WHITE if Speed.val >= 3 else (80, 80, 80)),
 		lambda: Speed.set(3),
 	),
-	Bouton(2,
+	ui_array.button_new(2,
 		lambda: (
 			(Window.resolution[0] - 10 - 2 * 50 + PADDING_IN, 0 + PADDING_IN),
 			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
@@ -156,7 +155,7 @@ topBar = Composant(1, [
 		lambda rect: drawModeButton(rect, "4", (120, 0, 0) if Speed.val == 0 else all.COLOR_WHITE if Speed.val >= 4 else (80, 80, 80)),
 		lambda: Speed.set(4),
 	),
-	Bouton(2,
+	ui_array.button_new(2,
 		lambda: (
 			(Window.resolution[0] - 10 - 1 * 50 + PADDING_IN, 0 + PADDING_IN),
 			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
@@ -166,17 +165,16 @@ topBar = Composant(1, [
 	),
 ])
 
-topBar.hidden = False
-
-ui_array.menu.add(sideMenu)
-ui_array.menu.add(topBar)
+ui_array.composant_show(topBar)
+ui_array.composants.append(sideMenu)
+ui_array.composants.append(topBar)
 
 def drawUI():
 	global sideMenu	
 	
 	if SelectedTile.val:
-		sideMenu.hidden = False
-	ui_array.menu.draw()
+		ui_array.composant_show(sideMenu)
+	ui_array.menu_draw()
 	drawCoin((200, 0), 400, (255, 180, 0), player.money, player.money_incr)
 	drawCoin((610, 0), 400, (0, 200, 200), player.science, player.science_incr)
 

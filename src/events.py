@@ -19,7 +19,7 @@ def handleEvents(event: pygame.event.Event):
 				Zoom.increment()
 		case pygame.MOUSEBUTTONUP:
 			if (event.button == 1):
-				if not ui_array.menu.click(event.pos):
+				if not ui_array.menu_click(event.pos):
 					match gestionMenu.menu:
 						case gestionMenu.MENU_INTRO:
 							handleClickEventsMenu(event.pos)
