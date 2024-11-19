@@ -35,9 +35,10 @@ def isInRectangle(pos, rect):
 
 def exec_click(pos):
     reverse_array()
-    print(rectangle_array)
+    # print(rectangle_array)
     for rect in rectangle_array:
         if isInRectangle(pos, rect[2]):
             rect[4]()
-            return
+            return False
+    return True
 

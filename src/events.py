@@ -19,9 +19,9 @@ def handleEvents(event: pygame.event.Event):
 				Zoom.increment()
 		case pygame.MOUSEBUTTONUP:
 			if (event.button == 1):
-				SelectedTile.select(event.pos)
+				if ui_array.exec_click(event.pos):
+					SelectedTile.select(event.pos)
 				handleClickEventsMenu(event.pos)
-				ui_array.exec_click(event.pos)
 		# case _:
 		# 	print(event)
 
