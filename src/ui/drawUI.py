@@ -9,10 +9,15 @@ import pygame
 import Window
 from globals import Screenmode, Speed, all, SelectedTile, ui_game, player
 from utils.mytyping import Color, coord_i
+from ui import ui_array
+
 
 top_bar_height = 60
 padding_out = 10
 padding_in = 2
+
+MENU_BORDER = 5 #en pixels
+EXIT_BUTTON_BORDER = 3 #en pixels
 
 def getFont() -> font.Font:
 	all.font = font.SysFont('monospace', top_bar_height - 2 * padding_out)
@@ -39,6 +44,16 @@ def drawSquare(coord: coord_i, color: Color, text: str):
 	text_prepared = all.font.render(text, True, (0, 0, 0))
 	Window.inst.blit(text_prepared, (coord[0] + padding_out + 8, coord[1] + padding_out - 4))
 
+def __drawSideMenu(rect):
+	pygame.draw.rect(Window.inst, all.COLOR_WHITE, ((rect[0][0] + MENU_BORDER, rect[0][1] + MENU_BORDER), (rect[1][0] - 2 * MENU_BORDER, rect[1][1] - 2 * MENU_BORDER)))
+def __drawExitButon(rect):
+	pygame.draw.rect(Window.inst, all.COLOR_RED, ((rect[0][0] + EXIT_BUTTON_BORDER, rect[0][1] + EXIT_BUTTON_BORDER), (rect[1][0] - 2 * EXIT_BUTTON_BORDER, rect[1][1] - 2 * EXIT_BUTTON_BORDER)))
+	Window.inst.blit(EXIT_BUTTON, rect[0])
+
+def test_exec():
+	print("TEST")
+def test_exec1():
+	print("TEST1")
 def longNumber(number: int) -> str:
 	if number < 1000:
 		return str(number)
@@ -67,23 +82,31 @@ def drawUI():
 	drawSquare((Window.resolution[0] - 60,  0), (120, 0, 0) if Speed.val == 0 else all.COLOR_WHITE if Speed.val >= 5 else (80, 80, 80), "5")
 	
 	#ad
+#                                                                     (niveau,((x, y), (longueur, hauteur))
 	if SelectedTile.val:
+		ui_array.sort_array()
+		#print(SelectedTile.val)
 		if not ui_game.side_menu_present:
 			ui_game.side_menu_present = True
 			ui_game.precedent_position = SelectedTile.val
+			ui_game.selected_sideMenu_id = ui_array.append_array(1, ((0, top_bar_height), (470, Window.resolution[1] - top_bar_height)), __drawSideMenu, test_exec)
+			ui_game.exit_button_sideMenu_id = ui_array.append_array(2, ((425, top_bar_height), (30, 40)), __drawExitButon, test_exec1)
 		elif ui_game.precedent_position != SelectedTile.val:
 			ui_game.side_menu_present = False
+			ui_array.remove_array(ui_array.find(ui_game.selected_sideMenu_id))
+			ui_array.remove_array(ui_array.find(ui_game.exit_button_sideMenu_id))
 		if ui_game.side_menu_present:
-			__drawSideMenu()
+			ui_array.draw_all_rect()
 
 #ad
 
-def __drawSideMenu():
-	pygame.draw.rect(Window.inst, all.COLOR_WHITE, ((10, top_bar_height + Window.resolution[1] / 100), (450, Window.resolution[1] - top_bar_height - 16)))
-	pygame.draw.rect(Window.inst, all.COLOR_BLACK, ((425, top_bar_height + Window.resolution[1] / 100 + 5), (30,30)))
-	Window.inst.blit(EXIT_BUTTON, (425, top_bar_height + Window.resolution[1] / 100 + 5))
+#def __drawSideMenu():
+#	pygame.draw.rect(Window.inst, all.COLOR_WHITE, ((10, top_bar_height + Window.resolution[1] / 100), (450, Window.resolution[1] - top_bar_height - 16)))
+#	pygame.draw.rect(Window.inst, all.COLOR_BLACK, ((425, top_bar_height + Window.resolution[1] / 100 + 5), (30,30)))
+#	Window.inst.blit(EXIT_BUTTON, (425, top_bar_height + Window.resolution[1] / 100 + 5))
 	
 def setup_image():
 	global EXIT_BUTTON
 	EXIT_BUTTON = pygame.image.load('./assets/close_button.png').convert_alpha(Window.inst)
 	EXIT_BUTTON = pygame.transform.scale(EXIT_BUTTON, (30, 30))
+
