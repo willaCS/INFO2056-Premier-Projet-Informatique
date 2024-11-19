@@ -20,7 +20,7 @@ padding_out = 10
 padding_in = 2
 
 MENU_BORDER = 5 #en pixels
-EXIT_BUTTON_BORDER = 3 #en pixels
+EXIT_BUTTON_BORDER = 2 #en pixels
 
 def getFont() -> font.Font:
 	all.font = font.SysFont('monospace', top_bar_height - 2 * padding_out)
@@ -44,9 +44,12 @@ def drawCoin(coord: coord_i, len: int, color: Color, number: int, incr: int):
 def __drawSideMenu(rect):
 	pygame.draw.rect(Window.inst, all.COLOR_WHITE, ((rect[0][0] + MENU_BORDER, rect[0][1] + MENU_BORDER), (rect[1][0] - 2 * MENU_BORDER, rect[1][1] - 2 * MENU_BORDER)))
 
+
 def __drawExitButon(rect):
+	global EXIT_BUTTON
 	pygame.draw.rect(Window.inst, all.COLOR_RED, ((rect[0][0] + EXIT_BUTTON_BORDER, rect[0][1] + EXIT_BUTTON_BORDER), (rect[1][0] - 2 * EXIT_BUTTON_BORDER, rect[1][1] - 2 * EXIT_BUTTON_BORDER)))
-	Window.inst.blit(EXIT_BUTTON, rect[0])
+	EXIT_BUTTON = resize_image(EXIT_BUTTON, (rect[1][0] - 2 * EXIT_BUTTON_BORDER, rect[1][1] - 2 * EXIT_BUTTON_BORDER))
+	Window.inst.blit(EXIT_BUTTON, (rect[0][0] + EXIT_BUTTON_BORDER, rect[0][1] + EXIT_BUTTON_BORDER))
 
 def drawModeButton(rect, text, color):
 	pygame.draw.rect(Window.inst, color, rect)
@@ -189,5 +192,7 @@ def drawUI():
 def setup_image():
 	global EXIT_BUTTON
 	EXIT_BUTTON = pygame.image.load('./assets/close_button.png').convert_alpha(Window.inst)
-	EXIT_BUTTON = pygame.transform.scale(EXIT_BUTTON, (30, 30))
 
+def resize_image(image, size):
+	image = pygame.transform.scale(image, size)
+	return image
