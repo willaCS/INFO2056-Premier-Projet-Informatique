@@ -7,7 +7,7 @@ Exemple: le nombre de pixel que fait une case.
 val = 5
 __zoom_speed = 1.05
 __zoom_min = 1
-__zoom_max = 100
+__zoom_max = 1000
 tile_size = 0
 line_width = 0
 outline_width = 0
@@ -18,16 +18,7 @@ def __update():
 	tile_size = 200 / val
 	line_width = 25 / val
 	outline_width = 15 / val
-	if val < 20:
-		opti_factor = 1
-	elif val < 30:
-		opti_factor = 2
-	elif val < 40:
-		opti_factor = 3
-	elif val < 50:
-		opti_factor = 4
-	else:
-		opti_factor = 5
+	opti_factor = int(val // 20 + 1)
 
 def increment():
 	global val

@@ -1,43 +1,102 @@
-#tableau de tuple a 5 dimentions (niveau,((x, y), (longueur, hauteur))) de taille variable 
-rectangle_array = []
-ids = 0
+from utils.draw import isInRectangle
 
-def append_array(z, rect, draw, exec):
-    global ids
+class Bouton:
+    def __init__(
+            self,
+            z,
+            rect,
+            drawArg,
+            exec = None,
+            execOutside = lambda: None
+        ):
+        self.z = z
+        self.rect = rect
+        self.drawArg = drawArg
+        self.exec = exec
+        self.execOutside = execOutside
+
+    def draw(self):
+        r = self.rect if not callable(self.rect) else self.rect()
+        self.drawArg(r)
     
-    rectangle_array.append((z, ids, rect, draw, exec))
-    ids += 1
-    return ids - 1 
+    def click(self, pos):
+        if self.exec is None:
+            self.execOutside()
+            return False
+        r = self.rect if not callable(self.rect) else self.rect()
+        print(r)
+        if isInRectangle(pos, r):
+            self.exec()
+            return True
+        else:
+            self.execOutside()
+            return False
+    
+    def clickOutside(self, pos):
+        r = self.rect if not callable(self.rect) else self.rect()
+        if not isInRectangle(pos, r):
+            self.execOutside()
 
-def remove_array(elem):
-    rectangle_array.remove(elem)
 
-def sort_array():
-    rectangle_array.sort()
 
-def reverse_array():
-    rectangle_array.sort(reverse=True)
+class Composant:
+    def __init__(self, z, buttons):
+        self.z = z
+        self.buttons = buttons
+        self.hidden = True
+    
+    def hide(self):
+        self.hidden = True
+    
+    def show(self):
+        self.hidden = False
 
-def find(ids):
-    for rect in rectangle_array:
-        if ids == rect[1]:
-            return rect
-    return None
-
-def draw_all_rect():
-    sort_array()
-    for rect in rectangle_array:
-        rect[3](rect[2])
-
-def isInRectangle(pos, rect):
-    return pos[0] < rect[0][0] + rect[1][0] and pos[0] > rect[0][0]\
-        and pos[1] < rect[0][1] + rect[1][1] and pos[0] > rect[0][1]
-
-def exec_click(pos):
-    reverse_array()
-    print(rectangle_array)
-    for rect in rectangle_array:
-        if isInRectangle(pos, rect[2]):
-            rect[4]()
+    def draw(self):
+        if self.hidden:
             return
+        self.buttons.sort(key=lambda b: b.z)
+        for button in self.buttons:
+            button.draw()
+    
+    def click(self, pos):
+        if self.hidden:
+            return False
+        self.buttons.sort(key=lambda c: c.z, reverse=True)
+        for button in self.buttons:
+            if button.click(pos):
+                return True
+        return False
+    
+    def clickOutside(self, pos):
+        if self.hidden:
+            return
+        for button in self.buttons:
+            button.clickOutside(pos)
 
+class Menu:
+    def __init__(self):
+        self.composants = []
+    
+    def add(self, composant):
+        self.composants.append(composant)
+
+    def draw(self):
+        self.composants.sort(key=lambda c: c.z)
+        for composant in self.composants:
+            if not composant.hidden:
+                composant.draw()
+    
+    def click(self, pos):
+        has_clicked = False
+        self.composants.sort(key=lambda c: c.z, reverse=True)
+        for composant in self.composants:
+            if composant.hidden:
+                continue
+            if has_clicked:
+                composant.clickOutside(pos)
+                continue
+            if composant.click(pos):
+                has_clicked = True
+        return has_clicked
+
+menu = Menu()
