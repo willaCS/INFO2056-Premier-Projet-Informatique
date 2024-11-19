@@ -165,12 +165,30 @@ techTree = [
 	},
 ]
 
-def add_tech(techName):
-	for tree in techTree:
-		for tech in tree['techs']:
-			if tech['name'] != techName:
-				continue
-			# TODO add check if player has enough science points
-			tech['unlocked'] = True
-			for unlock in tech['unlocks']:
-				unlocked.append(unlock)
+def add_tech(tech):
+# TODO add check if player has enough science points
+	tech['unlocked'] = True
+	for unlock in tech['unlocks']:
+		unlocked.append(unlock)
+
+def get_unlocked_techs():
+	return [
+		tech
+			for tree in techTree
+			for tech in tree['techs'] if tech['unlocked']
+	]
+
+def get_unlocked_buildings():
+	return [
+		*unlocked,
+		*(unlock
+			for tree in techTree
+			for tech in tree['techs'] if tech['unlocked']
+			for unlock in tech['unlocks']
+		)
+	]
+
+def get_tech_for_draw(i, j):
+	j = j if i < len(techTree) else j + 3
+	i = i if i < len(techTree) else len(techTree) - 1
+	return techTree[i]['techs'][j]

@@ -9,6 +9,7 @@ import pygame
 import Window
 from globals import Cursor, Screenmode, SelectedTile, Speed, Zoom, testing
 from map import Map, Tile
+from ui.components.tech import drawTech
 from ui.get_color import refresh_color
 
 def repeatKey(key: int):
@@ -77,5 +78,7 @@ def singleKey(key: int):
 			testing.next()
 		case pygame.K_c:
 			testing.prev()
+		case pygame.K_p:
+			drawTech()
 		case _:
 			pass

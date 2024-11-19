@@ -437,3 +437,81 @@ TRANSPORT_RAILWAY						= 2
 TRANSPORT_HUB_TRUCK						= 1
 TRANSPORT_HUB_RAILWAY_STATION			= 2
 TRANSPORT_HUB_HARBOR					= 3
+
+def print_industry(industry):
+	if industry == INDUSTRY_FISHINGBOAT:
+		return 'Fishing Boat'
+	elif industry == INDUSTRY_SALTEXTRACTION:
+		return 'Salt Extraction'
+	elif industry == INDUSTRY_WHEAT_FIELDS:
+		return 'Wheat Fields'
+	elif industry == INDUSTRY_POTATO_FIELDS:
+		return 'Potato Fields'
+	elif industry == INDUSTRY_COTTON_FIELDS:
+		return 'Cotton Fields'
+	elif industry == INDUSTRY_RICE_FIELDS:
+		return 'Rice Fields'
+	elif industry == INDUSTRY_FURHUNTINGGROUNDS:
+		return 'Fur Hunting Grounds'
+	elif industry == INDUSTRY_LUMBERMILL:
+		return 'Lumber Mill'
+	elif industry == INDUSTRY_OILWELL:
+		return 'Oil Well'
+	elif industry == INDUSTRY_COALMINE:
+		return 'Coal Mine'
+	elif industry == INDUSTRY_IRONMINE:
+		return 'Iron Mine'
+	elif industry == INDUSTRY_COPPERMINE:
+		return 'Copper Mine'
+	elif industry == INDUSTRY_PRECIOUSMETALMINE:
+		return 'Precious Metal Mine'
+	elif industry == INDUSTRY_RAREMETALMINE:
+		return 'Rare Metal Mine'
+	elif industry == INDUSTRY_BREADFACTORY:
+		return 'Bread Factory'
+	elif industry == INDUSTRY_ALCOHOLFACTORY:
+		return 'Alcohol Factory'
+	elif industry == INDUSTRY_SUSHIFACTORY:
+		return 'Sushi Factory'
+	elif industry == INDUSTRY_TEXTILEFACTORY:
+		return 'Textile Factory'
+	elif industry == INDUSTRY_CLOTHESFACTORY:
+		return 'Clothes Factory'
+	elif industry == INDUSTRY_FURNITUREFACTORY:
+		return 'Furniture Factory'
+	elif industry == INDUSTRY_STEELMILL:
+		return 'Steel Mill'
+	elif industry == INDUSTRY_TOOLINGFACTORY:
+		return 'Tooling Factory'
+	elif industry == INDUSTRY_CEMENTFACTORY:
+		return 'Cement Factory'
+	elif industry == INDUSTRY_REFINARY:
+		return 'Refinary'
+	elif industry == INDUSTRY_PLASTICFACTORY:
+		return 'Plastic Factory'
+	elif industry == INDUSTRY_GLASSFACTORY:
+		return 'Glass Factory'
+	elif industry == INDUSTRY_ELECTRONICCOMPONENTSFACTORY:
+		return 'Electronic Components Factory'
+	elif industry == INDUSTRY_RADIOFACTORY:
+		return 'Radio Factory'
+	elif industry == INDUSTRY_COMPUTERFACTORY:
+		return 'Computer Factory'
+	elif industry == INDUSTRY_GUNFACTORY:
+		return 'Gun Factory'
+	elif industry == INDUSTRY_ENGINEFACTORY:
+		return 'Engine Factory'
+	elif industry == INDUSTRY_CARFACTORY:
+		return 'Car Factory'
+	elif industry == INDUSTRY_PLANESFACTORY:
+		return 'Planes Factory'
+	elif industry == INDUSTRY_JEWELRYWORKSHOP:
+		return 'Jewelry Workshop'
+	elif industry == INDUSTRY_PHONEFACTORY:
+		return 'Phone Factory'
+	elif industry == INDUSTRY_STONEQUERY:
+		return 'Stone Query'
+	elif industry == INDUSTRY_SANDQUERY:
+		return 'Sand Query'
+	else:
+		return 'Unknown Industry'
