@@ -6,7 +6,7 @@ from globals.all import COLOR_WHITE
 from map import Map
 from ui.components.topbar import TOP_BAR_HEIGHT
 from ui.get_color import get_color
-from ui.ui_array import button_new, composant_new, composant_show
+from ui.utils.ui_array import button_new, composant_new, composant_show
 from utils.map import coord_to_px
 from utils.mytyping import Color, coord_i
 

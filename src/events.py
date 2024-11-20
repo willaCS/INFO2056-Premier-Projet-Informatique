@@ -6,7 +6,7 @@ import pygame
 
 from globals import SelectedTile, Zoom, gestionMenu
 from ui import drawMenu
-from ui import ui_array
+from ui.utils import ui_array
 
 from globals import gestionMenu
 

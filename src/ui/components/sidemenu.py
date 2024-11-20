@@ -2,7 +2,7 @@ import pygame
 import Window
 from globals import SelectedTile, all
 from ui.components.topbar import TOP_BAR_HEIGHT
-from ui.ui_array import button_new, composant_hide, composant_new, composant_show
+from ui.utils.ui_array import button_new, composant_hide, composant_new, composant_show
 from ui.utils import image
 
 

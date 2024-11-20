@@ -1,4 +1,4 @@
-from ui.ui_array import menu_hide_all
+from ui.utils.ui_array import menu_hide_all
 
 
 MENU_INTRO = 0

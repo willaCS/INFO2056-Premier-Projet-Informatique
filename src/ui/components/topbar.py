@@ -1,7 +1,7 @@
 import pygame
 import Window
 from globals import Screenmode, Speed, all
-from ui.ui_array import button_new, composant_new, composant_show
+from ui.utils.ui_array import button_new, composant_new, composant_show
 
 
 TOP_BAR_HEIGHT = 60
@@ -50,10 +50,10 @@ topBar = composant_new(1, [
 	# Vitesse de la simulation
 	*(button_new(2,
 		lambda i=i: (
-			(Window.resolution[0] - 10 - i * 50 + PADDING_IN, 0 + PADDING_IN),
+			(Window.resolution[0] - 10 - (6-i) * 50 + PADDING_IN, 0 + PADDING_IN),
 			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
 		),
-		lambda rect, i=i: drawModeButton(rect, f"{6-i}", COLOR_DARK_RED if Speed.val == 0 else all.COLOR_WHITE if Speed.val >= 6-i else COLOR_GRAY),
+		lambda rect, i=i: drawModeButton(rect, f"{i}", COLOR_DARK_RED if Speed.val == 0 else all.COLOR_WHITE if Speed.val >= i else COLOR_GRAY),
 		lambda pos, i=i: Speed.set(i),
 	) for i in range(1, 6)),
 ])

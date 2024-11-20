@@ -12,7 +12,7 @@ import ui.components.topbar
 import ui.components.sidemenu
 import ui.drawMenu
 import ui.drawSettings
-from ui.ui_array import menu_draw
+from ui.utils.ui_array import menu_draw
 
 # menu
 # sidemenu -> info case menu construction
