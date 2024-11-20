@@ -56,7 +56,7 @@ ACCENT = (62, 111, 163)
 
 
 
-def closeTech():
+def closeTech(pos):
 	composant_hide(techMenu)
 
 def _selectTech(i, j):
@@ -123,8 +123,8 @@ techMenu = composant_new(10, [
 			),
 		),
 		_drawBackground,
-		lambda: None,
-		lambda: composant_hide(techMenu)
+		lambda pos: None,
+		lambda pos: composant_hide(techMenu)
 	),
 
 	# Header
@@ -138,7 +138,7 @@ techMenu = composant_new(10, [
 			HEADER_SIZE,
 		),
 		_drawHeader,
-		lambda: None,
+		lambda pos: None,
 	),
 
 	# Close button
@@ -166,7 +166,7 @@ techMenu = composant_new(10, [
 			TECH_SIZE,
 		),
 		lambda rect, i=i, j=j: _drawTech(rect, i, j),
-		lambda i=i, j=j: _selectTech(i, j),
+		lambda pos, i=i, j=j: _selectTech(i, j),
 	)) for i in range(NB_TECH_BRANCH) for j in range(TECH_PER_BRANCH)],
 
 	# Selected Tech Info
@@ -180,7 +180,7 @@ techMenu = composant_new(10, [
 			TECH_INFO_SIZE,
 		),
 		_drawTechInfo,
-		lambda: None,
+		lambda pos: None,
 	),
 
 	# Add Tech Cost
@@ -194,7 +194,7 @@ techMenu = composant_new(10, [
 			ADD_TECH_COST_SIZE,
 		),
 		_drawAddTechCost,
-		lambda: None,
+		lambda pos: None,
 	),
 
 	# Add Tech Button
@@ -208,7 +208,7 @@ techMenu = composant_new(10, [
 			ADD_TECH_SIZE,
 		),
 		_drawAddTechButton,
-		lambda: add_tech(tech_selected[0], tech_selected[1]),
+		lambda pos: add_tech(tech_selected[0], tech_selected[1]),
 	),
 ])
 

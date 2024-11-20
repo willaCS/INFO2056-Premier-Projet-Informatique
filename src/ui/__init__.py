@@ -7,5 +7,4 @@ __all__ = [
 
 # Import the submodules
 from . import drawFrame
-from . import drawMap
 from . import drawUI

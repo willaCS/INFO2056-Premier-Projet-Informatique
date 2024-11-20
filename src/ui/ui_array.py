@@ -1,5 +1,3 @@
-import pygame
-import Window
 from utils.draw import isInRectangle
 
 def button_new(
@@ -7,7 +5,7 @@ def button_new(
         rect,
         drawArg,
         exec = None,
-        execOutside = lambda: None
+        execOutside = lambda pos: None
     ):
     return {
         "z": z,
@@ -23,20 +21,20 @@ def button_draw(button):
 
 def button_click(button, pos):
     if button["exec"] is None:
-        button["execOutside"]()
+        button["execOutside"](pos)
         return False
     r = button["rect"] if not callable(button["rect"]) else button["rect"]()
     if isInRectangle(pos, r):
-        button["exec"]()
+        button["exec"](pos)
         return True
     else:
-        button["execOutside"]()
+        button["execOutside"](pos)
         return False
 
 def button_clickOutside(button, pos):
     r = button["rect"] if not callable(button["rect"]) else button["rect"]()
     if not isInRectangle(pos, r):
-        button["execOutside"]()
+        button["execOutside"](pos)
 
 
 
@@ -89,6 +87,11 @@ composants = []
 def menu_add(composant):
     global composants
     composants.append(composant)
+
+def menu_hide_all():
+    global composants
+    for composant in composants:
+        composant_hide(composant)
 
 def menu_draw():
     global composants

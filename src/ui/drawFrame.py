@@ -4,11 +4,15 @@ Ce fichier gère la fonction drawFrame appelée chaque tick
 
 import Window
 
-from ui.drawMap import drawMap
-from globals import all, testing, gestionMenu
+from globals import all, gestionMenu
 from ui.drawUI import drawUI
+import ui.components.map
+import ui.components.tech
+import ui.components.topbar
+import ui.components.sidemenu
 import ui.drawMenu
 import ui.drawSettings
+from ui.ui_array import menu_draw
 
 # menu
 # sidemenu -> info case menu construction
@@ -26,9 +30,6 @@ def drawFrame():
 			ui.drawMenu.bouton_reglage()
 			ui.drawMenu.bouton_play()
 			
-
-
-			
 		case gestionMenu.MENU_REGLAGE:
 			message = all.font2.render("The Capitalism Island 2", True, all.COLOR_ORANGE)
 			messageLargeur, messageHauteur = all.font2.size("The Capitalism Island 2")
@@ -38,7 +39,9 @@ def drawFrame():
 			ui.drawSettings.gestion_settings()
 			
 		case gestionMenu.MENU_JEU:
-			drawMap()
+			ui.components.map.drawMap()
+			ui.components.topbar.showTopBar()
+			menu_draw()
 			drawUI()
 			# selectedbuilding = all.font.render(testing.activeBuilding()['name'], True, (255, 0, 0)) # type: ignore
 			# Window.inst.blit(selectedbuilding, (Window.resolution[0] // 8, Window.resolution[0] // 10))
