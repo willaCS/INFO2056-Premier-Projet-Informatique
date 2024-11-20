@@ -1,4 +1,5 @@
 from map import Industry
+from globals import player
 
 unlocked = [
 	Industry.INDUSTRY_WHEAT_FIELDS,
@@ -165,8 +166,16 @@ techTree = [
 	},
 ]
 
-def add_tech(tech):
-# TODO add check if player has enough science points
+def add_tech(i, j):
+	# TODO add check if player has enough science points
+	j = j if i < len(techTree) else j + 3
+	i = i if i < len(techTree) else len(techTree) - 1
+	tech = techTree[i]['techs'][j]
+	if player.science < tech['cost']:
+		return
+	if j != 0 and not techTree[i]['techs'][j - 1]['unlocked']:
+		return
+	player.science -= tech['cost']
 	tech['unlocked'] = True
 	for unlock in tech['unlocks']:
 		unlocked.append(unlock)

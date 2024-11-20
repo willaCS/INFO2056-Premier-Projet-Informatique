@@ -13,7 +13,6 @@ def setup():
 
 	font1 = font.SysFont('monospace', 40)
 	font2 = font.SysFont('monospace', 24, True)
-	print("Font loaded", font1, font2)
 
 def drawText(
 	font: font.Font,

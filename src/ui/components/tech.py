@@ -63,11 +63,6 @@ def _selectTech(i, j):
 	global tech_selected
 	tech_selected = (i, j)
 
-def _addTech(i, j):
-	tech = get_tech_for_draw(i, j)
-	add_tech(tech)
-
-
 
 
 
@@ -213,7 +208,7 @@ techMenu = composant_new(10, [
 			ADD_TECH_SIZE,
 		),
 		_drawAddTechButton,
-		lambda: _addTech(tech_selected[0], tech_selected[1]),
+		lambda: add_tech(tech_selected[0], tech_selected[1]),
 	),
 ])
 
