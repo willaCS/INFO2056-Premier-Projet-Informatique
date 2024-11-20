@@ -38,6 +38,7 @@ def __drawExitButon(rect):
 
 
 sideMenu = composant_new(2, [
+	# Background
 	button_new(1,
 		lambda: (
 			(0, TOP_BAR_HEIGHT),
@@ -47,6 +48,8 @@ sideMenu = composant_new(2, [
 		lambda pos: None,
 		closeSideMenu,
 	),
+
+	# Close button
 	button_new(2,
 		(
 			(425, TOP_BAR_HEIGHT),

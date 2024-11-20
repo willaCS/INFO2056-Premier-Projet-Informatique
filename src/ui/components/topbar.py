@@ -8,6 +8,8 @@ TOP_BAR_HEIGHT = 60
 PADDING_OUT = 10
 PADDING_IN = 10
 
+COLOR_DARK_RED = (120, 0, 0)
+COLOR_GRAY = (80, 80, 80)
 
 
 
@@ -20,6 +22,7 @@ def drawModeButton(rect, text, color):
 
 
 topBar = composant_new(1, [
+	# Background
 	button_new(1,
 		lambda : (
 			(0, 0),
@@ -29,81 +32,30 @@ topBar = composant_new(1, [
 		lambda pos: None,
 	),
 
-
-	button_new(2,
+	# Mode de la carte
+	*(button_new(2,
 		(
-			(0 + PADDING_IN, 0 + PADDING_IN),
+			(50 * index + PADDING_IN, 0 + PADDING_IN),
 			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
 		),
-		lambda rect: drawModeButton(rect, "A", all.COLOR_WHITE if Screenmode.val == Screenmode.SCREENMODE_MAIN else (80, 80, 80)),
-		lambda pos: Screenmode.select(Screenmode.SCREENMODE_MAIN)
-	),
-	button_new(2,
-		(
-			(50 + PADDING_IN, 0 + PADDING_IN),
-			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
-		),
-		lambda rect: drawModeButton(rect, "B", all.COLOR_WHITE if Screenmode.val == Screenmode.SCREENMODE_ECONOMY_SUPPLY else (80, 80, 80)),
-		lambda pos: Screenmode.select(Screenmode.SCREENMODE_ECONOMY_SUPPLY)
-	),
-	button_new(2,
-		(
-			(100 + PADDING_IN, 0 + PADDING_IN),
-			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
-		),
-		lambda rect: drawModeButton(rect, "C", all.COLOR_WHITE if Screenmode.val == Screenmode.SCREENMODE_ECONOMY_DEMAND else (80, 80, 80)),
-		lambda pos: Screenmode.select(Screenmode.SCREENMODE_ECONOMY_DEMAND)
-	),
-	button_new(2,
-		(
-			(150 + PADDING_IN, 0 + PADDING_IN),
-			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
-		),
-		lambda rect: drawModeButton(rect, "D", all.COLOR_WHITE if Screenmode.val == Screenmode.SCREENMODE_TRANSPORT else (80, 80, 80)),
-		lambda pos: Screenmode.select(Screenmode.SCREENMODE_TRANSPORT)
-	),
-
+		lambda rect, value=value: drawModeButton(rect, f"{value[0]}", all.COLOR_WHITE if Screenmode.val == value[1] else COLOR_GRAY),
+		lambda pos, value=value: Screenmode.select(value[1])
+	) for index, value in enumerate([
+		("A", Screenmode.SCREENMODE_MAIN),
+		("B", Screenmode.SCREENMODE_ECONOMY_SUPPLY),
+		("C", Screenmode.SCREENMODE_ECONOMY_DEMAND),
+		("D", Screenmode.SCREENMODE_TRANSPORT),
+	])),
 	
-	button_new(2,
-		lambda: (
-			(Window.resolution[0] - 10 - 5 * 50 + PADDING_IN, 0 + PADDING_IN),
+	# Vitesse de la simulation
+	*(button_new(2,
+		lambda i=i: (
+			(Window.resolution[0] - 10 - i * 50 + PADDING_IN, 0 + PADDING_IN),
 			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
 		),
-		lambda rect: drawModeButton(rect, "1", (120, 0, 0) if Speed.val == 0 else all.COLOR_WHITE if Speed.val >= 1 else (80, 80, 80)),
-		lambda pos: Speed.set(1),
-	),
-	button_new(2,
-		lambda: (
-			(Window.resolution[0] - 10 - 4 * 50 + PADDING_IN, 0 + PADDING_IN),
-			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
-		),
-		lambda rect: drawModeButton(rect, "2", (120, 0, 0) if Speed.val == 0 else all.COLOR_WHITE if Speed.val >= 2 else (80, 80, 80)),
-		lambda pos: Speed.set(2),
-	),
-	button_new(2,
-		lambda: (
-			(Window.resolution[0] - 10 - 3 * 50 + PADDING_IN, 0 + PADDING_IN),
-			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
-		),
-		lambda rect: drawModeButton(rect, "3", (120, 0, 0) if Speed.val == 0 else all.COLOR_WHITE if Speed.val >= 3 else (80, 80, 80)),
-		lambda pos: Speed.set(3),
-	),
-	button_new(2,
-		lambda: (
-			(Window.resolution[0] - 10 - 2 * 50 + PADDING_IN, 0 + PADDING_IN),
-			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
-		),
-		lambda rect: drawModeButton(rect, "4", (120, 0, 0) if Speed.val == 0 else all.COLOR_WHITE if Speed.val >= 4 else (80, 80, 80)),
-		lambda pos: Speed.set(4),
-	),
-	button_new(2,
-		lambda: (
-			(Window.resolution[0] - 10 - 1 * 50 + PADDING_IN, 0 + PADDING_IN),
-			(TOP_BAR_HEIGHT - 2 * PADDING_IN, TOP_BAR_HEIGHT - 2 * PADDING_IN)
-		),
-		lambda rect: drawModeButton(rect, "5", (120, 0, 0) if Speed.val == 0 else all.COLOR_WHITE if Speed.val >= 5 else (80, 80, 80)),
-		lambda pos: Speed.set(5),
-	),
+		lambda rect, i=i: drawModeButton(rect, f"{6-i}", COLOR_DARK_RED if Speed.val == 0 else all.COLOR_WHITE if Speed.val >= 6-i else COLOR_GRAY),
+		lambda pos, i=i: Speed.set(i),
+	) for i in range(1, 6)),
 ])
 
 
