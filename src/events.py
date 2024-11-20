@@ -26,7 +26,7 @@ def handleEvents(event: pygame.event.Event):
 						case gestionMenu.MENU_REGLAGE:
 							pass
 						case gestionMenu.MENU_JEU:
-							SelectedTile.select(event.pos)
+							pass
 		# case _:
 		# 	print(event)
 
