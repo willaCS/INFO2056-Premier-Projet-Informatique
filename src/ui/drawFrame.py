@@ -4,7 +4,7 @@ Ce fichier gère la fonction drawFrame appelée chaque tick
 
 import Window
 
-from globals import all, gestionMenu
+from globals import all, gestionMenu, testing
 from ui.drawUI import drawUI
 import ui.components.map
 import ui.components.tech

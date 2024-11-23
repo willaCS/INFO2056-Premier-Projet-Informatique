@@ -9,8 +9,8 @@ import pygame
 import Window
 from globals import Cursor, Screenmode, SelectedTile, Speed, Zoom, testing, player
 from map import Map, Tile
+from ui.components.map import drawTile
 from ui.components.tech import drawTech
-from ui.get_color import refresh_color
 
 def repeatKey(key: int):
 	match key:
@@ -66,13 +66,13 @@ def singleKey(key: int):
 			if SelectedTile.val:
 				if not Map.tile_is_empty(SelectedTile.val):
 					Map.remove(SelectedTile.val)
+					drawTile(SelectedTile.val, True) # Refresh cache for draw
 				SelectedTile.clear()
 		case pygame.K_z:
 			if SelectedTile.val:
 				if Map.tile_is_empty(SelectedTile.val):
 					building = testing.activeBuilding()
 					Map.place(Tile.init(building['type'], building['id'], SelectedTile.val)) # type: ignore
-					refresh_color(SelectedTile.val)
 				SelectedTile.clear()
 		case pygame.K_x:
 			testing.next()

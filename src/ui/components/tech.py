@@ -1,6 +1,6 @@
 import pygame
 import Window
-from logic.techTree import get_tech_for_draw, get_unlocked_techs, add_tech
+from logic.techTree import get_tech_for_draw, add_tech
 from map.Industry import print_industry
 from ui.utils import image, text
 from ui.utils.ui_array import composant_hide, composant_new, button_new, composant_show

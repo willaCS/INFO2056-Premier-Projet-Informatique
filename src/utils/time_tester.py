@@ -30,3 +30,23 @@ def test_tick() -> None:
 		print(f"{elem: <30s}: {n:<10d} {time}")
 		testing[elem]["time"] = 0
 		testing[elem]["n"] = 0
+
+
+def get_lambda_source(lambda_func, position):
+    import inspect
+    import ast
+    import astunparse
+    code_string = inspect.getsource(lambda_func).lstrip()
+    class LambdaGetter(ast.NodeTransformer):
+        def __init__(self):
+            super().__init__()
+            self.lambda_sources = []
+
+        def visit_Lambda(self, node):
+            self.lambda_sources.append(astunparse.unparse(node).strip()[1:-1])
+
+        def get(self, code_string):
+            tree = ast.parse(code_string)
+            self.visit(tree)
+            return self.lambda_sources
+    return LambdaGetter().get(code_string)[position]

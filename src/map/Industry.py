@@ -1,5 +1,7 @@
 from typing import Dict, List
+
 from map import Goods, Ressource, TerrainTile
+from ui.utils.draw import drawRect
 
 INDUSTRY_FISHINGBOAT					= 1
 INDUSTRY_SALTEXTRACTION					= 2
@@ -438,80 +440,52 @@ TRANSPORT_HUB_TRUCK						= 1
 TRANSPORT_HUB_RAILWAY_STATION			= 2
 TRANSPORT_HUB_HARBOR					= 3
 
+industryPrintMap = {
+	INDUSTRY_FISHINGBOAT					: ('Fishing Boat'					, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_SALTEXTRACTION					: ('Salt Extraction'				, lambda rect: drawRect(rect, (230, 230, 230))),
+	INDUSTRY_WHEAT_FIELDS					: ('Wheat Fields'					, lambda rect: drawRect(rect, (255, 222,  19))),
+	INDUSTRY_POTATO_FIELDS					: ('Potato Fields'					, lambda rect: drawRect(rect, (227, 164,  68))),
+	INDUSTRY_COTTON_FIELDS					: ('Cotton Fields'					, lambda rect: drawRect(rect, (149, 255, 140))),
+	INDUSTRY_RICE_FIELDS					: ('Rice Fields'					, lambda rect: drawRect(rect, (144, 228, 245))),
+	INDUSTRY_FURHUNTINGGROUNDS				: ('Fur Hunting Grounds'			, lambda rect: drawRect(rect, (156, 105,  28))),
+	INDUSTRY_LUMBERMILL						: ('Lumber Mill'					, lambda rect: drawRect(rect, (102,  64,   7))),
+	INDUSTRY_OILWELL						: ('Oil Well'						, lambda rect: drawRect(rect, ( 80,  80,  80))),
+	INDUSTRY_COALMINE						: ('Coal Mine'						, lambda rect: drawRect(rect, ( 20,  20,  20))),
+	INDUSTRY_IRONMINE						: ('Iron Mine'						, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_COPPERMINE						: ('Copper Mine'					, lambda rect: drawRect(rect, (255,  89,   0))),
+	INDUSTRY_PRECIOUSMETALMINE				: ('Precious Metal Mine'			, lambda rect: drawRect(rect, (  0, 150, 161))),
+	INDUSTRY_RAREMETALMINE					: ('Rare Metal Mine'				, lambda rect: drawRect(rect, (101, 135, 101))),
+	INDUSTRY_BREADFACTORY					: ('Bread Factory'					, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_ALCOHOLFACTORY					: ('Alcohol Factory'				, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_SUSHIFACTORY					: ('Sushi Factory'					, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_TEXTILEFACTORY					: ('Textile Factory'				, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_CLOTHESFACTORY					: ('Clothes Factory'				, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_FURNITUREFACTORY				: ('Furniture Factory'				, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_STEELMILL						: ('Steel Mill'						, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_TOOLINGFACTORY					: ('Tooling Factory'				, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_CEMENTFACTORY					: ('Cement Factory'					, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_REFINARY						: ('Refinary'						, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_PLASTICFACTORY					: ('Plastic Factory'				, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_GLASSFACTORY					: ('Glass Factory'					, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_ELECTRONICCOMPONENTSFACTORY	: ('Electronic Components Factory'	, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_RADIOFACTORY					: ('Radio Factory'					, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_COMPUTERFACTORY				: ('Computer Factory'				, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_GUNFACTORY						: ('Gun Factory'					, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_ENGINEFACTORY					: ('Engine Factory'					, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_CARFACTORY						: ('Car Factory'					, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_PLANESFACTORY					: ('Planes Factory'					, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_JEWELRYWORKSHOP				: ('Jewelry Workshop'				, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_PHONEFACTORY					: ('Phone Factory'					, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_STONEQUERY						: ('Stone Query'					, lambda rect: drawRect(rect, (  0,   0,   0))),
+	INDUSTRY_SANDQUERY						: ('Sand Query'						, lambda rect: drawRect(rect, (  0,   0,   0))),
+}
+
 def print_industry(industry):
-	if industry == INDUSTRY_FISHINGBOAT:
-		return 'Fishing Boat'
-	elif industry == INDUSTRY_SALTEXTRACTION:
-		return 'Salt Extraction'
-	elif industry == INDUSTRY_WHEAT_FIELDS:
-		return 'Wheat Fields'
-	elif industry == INDUSTRY_POTATO_FIELDS:
-		return 'Potato Fields'
-	elif industry == INDUSTRY_COTTON_FIELDS:
-		return 'Cotton Fields'
-	elif industry == INDUSTRY_RICE_FIELDS:
-		return 'Rice Fields'
-	elif industry == INDUSTRY_FURHUNTINGGROUNDS:
-		return 'Fur Hunting Grounds'
-	elif industry == INDUSTRY_LUMBERMILL:
-		return 'Lumber Mill'
-	elif industry == INDUSTRY_OILWELL:
-		return 'Oil Well'
-	elif industry == INDUSTRY_COALMINE:
-		return 'Coal Mine'
-	elif industry == INDUSTRY_IRONMINE:
-		return 'Iron Mine'
-	elif industry == INDUSTRY_COPPERMINE:
-		return 'Copper Mine'
-	elif industry == INDUSTRY_PRECIOUSMETALMINE:
-		return 'Precious Metal Mine'
-	elif industry == INDUSTRY_RAREMETALMINE:
-		return 'Rare Metal Mine'
-	elif industry == INDUSTRY_BREADFACTORY:
-		return 'Bread Factory'
-	elif industry == INDUSTRY_ALCOHOLFACTORY:
-		return 'Alcohol Factory'
-	elif industry == INDUSTRY_SUSHIFACTORY:
-		return 'Sushi Factory'
-	elif industry == INDUSTRY_TEXTILEFACTORY:
-		return 'Textile Factory'
-	elif industry == INDUSTRY_CLOTHESFACTORY:
-		return 'Clothes Factory'
-	elif industry == INDUSTRY_FURNITUREFACTORY:
-		return 'Furniture Factory'
-	elif industry == INDUSTRY_STEELMILL:
-		return 'Steel Mill'
-	elif industry == INDUSTRY_TOOLINGFACTORY:
-		return 'Tooling Factory'
-	elif industry == INDUSTRY_CEMENTFACTORY:
-		return 'Cement Factory'
-	elif industry == INDUSTRY_REFINARY:
-		return 'Refinary'
-	elif industry == INDUSTRY_PLASTICFACTORY:
-		return 'Plastic Factory'
-	elif industry == INDUSTRY_GLASSFACTORY:
-		return 'Glass Factory'
-	elif industry == INDUSTRY_ELECTRONICCOMPONENTSFACTORY:
-		return 'Electronic Components Factory'
-	elif industry == INDUSTRY_RADIOFACTORY:
-		return 'Radio Factory'
-	elif industry == INDUSTRY_COMPUTERFACTORY:
-		return 'Computer Factory'
-	elif industry == INDUSTRY_GUNFACTORY:
-		return 'Gun Factory'
-	elif industry == INDUSTRY_ENGINEFACTORY:
-		return 'Engine Factory'
-	elif industry == INDUSTRY_CARFACTORY:
-		return 'Car Factory'
-	elif industry == INDUSTRY_PLANESFACTORY:
-		return 'Planes Factory'
-	elif industry == INDUSTRY_JEWELRYWORKSHOP:
-		return 'Jewelry Workshop'
-	elif industry == INDUSTRY_PHONEFACTORY:
-		return 'Phone Factory'
-	elif industry == INDUSTRY_STONEQUERY:
-		return 'Stone Query'
-	elif industry == INDUSTRY_SANDQUERY:
-		return 'Sand Query'
-	else:
-		return 'Unknown Industry'
+	return industryPrintMap[industry][0]
+
+def draw_industry(industry):
+	func = industryPrintMap.get(
+		industry,
+		('', lambda rect: None)
+	)[1]
+	return lambda rect: func(rect)

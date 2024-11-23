@@ -2,7 +2,6 @@
 Ce fichier permet d'afficher l'interface utilisateur.
 """
 
-from pygame import font
 import pygame
 
 import Window
@@ -15,11 +14,11 @@ top_bar_height = 60
 padding_out = 10
 padding_in = 2
 
-def getFont() -> font.Font:
-	all.font = font.SysFont('monospace', top_bar_height - 2 * padding_out)
-	all.font2 = font.SysFont('monospace', 24, True)
+def getFont() -> pygame.font.Font:
+	all.font = pygame.font.SysFont('monospace', top_bar_height - 2 * padding_out)
+	all.font2 = pygame.font.SysFont('monospace', 24, True)
 
-def drawText(font: font.Font, coord: coord_i, text: str, color: Color, anchor: str = "topleft"):
+def drawText(font: pygame.font.Font, coord: coord_i, text: str, color: Color, anchor: str = "topleft"):
 	text_prepared = font.render(text, True, color)
 	rect = text_prepared.get_rect()
 	setattr(rect, anchor, coord)
