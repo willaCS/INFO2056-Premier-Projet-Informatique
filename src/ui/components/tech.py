@@ -73,7 +73,7 @@ def _drawBackground(rect):
 
 def _drawExitButon(rect):
 	pygame.draw.rect(Window.inst, BACKGROUND3, rect, 0, ROUNDING)
-	image.draw(image.img_exit, rect)
+	image.draw('exit', rect)
 
 def _drawHeader(rect):
 	pygame.draw.rect(Window.inst, BACKGROUND3, rect, 0, ROUNDING)

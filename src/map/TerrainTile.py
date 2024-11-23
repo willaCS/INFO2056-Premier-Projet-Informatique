@@ -60,10 +60,13 @@ def draw_terrain(tile: types):
 	h = height(tile)
 	h4 = h % 4 * 16
 	if ressource(tile) != None:
-		return lambda rect, h=h, h4=h4:\
-			func(rect, h, h4)\
-			if Zoom.opti_factor > 1\
-			else Ressource.draw(ressource(tile))(rect)
+		ressource_func = Ressource.draw(ressource(tile))
+
+		def res(rect, h=h, h4=h4):
+			func(rect, h, h4)
+			if Zoom.opti_factor <= 1:
+				ressource_func(rect)
+		return res
 	else:
 		return lambda rect, h=h, h4=h4: func(rect, h, h4)
 
