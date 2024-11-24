@@ -14,6 +14,22 @@ def setup():
 	font1 = font.SysFont('monospace', 40)
 	font2 = font.SysFont('monospace', 24, True)
 
+def longNumber(number: int) -> str:
+	if number < 1000:
+		return str(number)
+	elif number < 1000000:
+		return str((number // 10) / 100) + "K"
+	elif number < 1000000000:
+		return str((number // 10000) / 100) + "M"
+	elif number < 1000000000000:
+		return str((number // 10000000) / 100) + "B"
+	else:
+		return str((number // 10000000000) / 100) + "T"
+
+# anchor can be one of the following:
+# topleft, bottomleft, topright, bottomright
+# midtop, midleft, midbottom, midright
+# center, centerx, centery
 def drawText(
 	font: font.Font,
 	coord,

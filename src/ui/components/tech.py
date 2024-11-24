@@ -2,6 +2,7 @@ import pygame
 import Window
 from logic.techTree import get_tech_for_draw, add_tech
 from map.Industry import print_industry
+from ui import visual_config as vc
 from ui.utils import image, text
 from ui.utils.ui_array import composant_hide, composant_new, button_new, composant_show
 
@@ -11,20 +12,17 @@ NB_TECH_BRANCH = 5
 TECH_PER_BRANCH = 3
 
 TECH_MENU_SIZE = (500, 300)
-PADDING_BOX = 10
-PADDING_IN = 5
-ROUNDING = 10
-ROUNDING_SMOOTH = 5
+BORDER_WIDTH = 5
 
 CLOSE_BUTTON_SIZE = (75, 75)
 
 HEADER_SIZE = (
-	(TECH_MENU_SIZE[0] - PADDING_BOX) * 2 - CLOSE_BUTTON_SIZE[1] - PADDING_IN,
+	(TECH_MENU_SIZE[0] - (vc.PADDING + BORDER_WIDTH)) * 2 - CLOSE_BUTTON_SIZE[1] - vc.PADDING,
 	CLOSE_BUTTON_SIZE[1]
 )
 
 TECH_SIZE = (
-	((TECH_MENU_SIZE[0] - PADDING_BOX) * 2 - (NB_TECH_BRANCH - 1) * PADDING_IN) / NB_TECH_BRANCH,
+	((TECH_MENU_SIZE[0] - (vc.PADDING + BORDER_WIDTH)) * 2 - (NB_TECH_BRANCH - 1) * vc.PADDING) / NB_TECH_BRANCH,
 	75
 )
 
@@ -35,26 +33,13 @@ ADD_TECH_SIZE = (
 
 ADD_TECH_COST_SIZE = (
 	150,
-	(TECH_MENU_SIZE[1] - PADDING_BOX) * 2 - (TECH_SIZE[1] + PADDING_IN) * (TECH_PER_BRANCH + 1) - ADD_TECH_SIZE[1] - PADDING_IN,
+	(TECH_MENU_SIZE[1] - (vc.PADDING + BORDER_WIDTH)) * 2 - (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1) - ADD_TECH_SIZE[1] - vc.PADDING,
 )
 
 TECH_INFO_SIZE = (
-	(TECH_MENU_SIZE[0] - PADDING_BOX) * 2 - (ADD_TECH_SIZE[0] + PADDING_IN),
-	(TECH_MENU_SIZE[1] - PADDING_BOX) * 2 - (TECH_SIZE[1] + PADDING_IN) * (TECH_PER_BRANCH + 1),
+	(TECH_MENU_SIZE[0] - (vc.PADDING + BORDER_WIDTH)) * 2 - (ADD_TECH_SIZE[0] + vc.PADDING),
+	(TECH_MENU_SIZE[1] - (vc.PADDING + BORDER_WIDTH)) * 2 - (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1),
 )
-
-
-TEXT = (14, 17, 22)
-BACKGROUND = (228, 235, 241)
-BACKGROUND2 = (217, 224, 230)
-BACKGROUND3 = (191, 201, 211)
-PRIMARY = (43, 65, 90)
-SECONDARY = (134, 168, 203)
-ACCENT = (62, 111, 163)
-
-
-
-
 
 def closeTech(pos):
 	composant_hide(techMenu)
@@ -68,45 +53,45 @@ def _selectTech(i, j):
 
 
 def _drawBackground(rect):
-	pygame.draw.rect(Window.inst, BACKGROUND2, rect, 0, ROUNDING)
-	pygame.draw.rect(Window.inst, PRIMARY, rect, 5, ROUNDING)
+	pygame.draw.rect(Window.inst, vc.BACKGROUND2, rect, 0, vc.ROUNDING_HARD)
+	pygame.draw.rect(Window.inst, vc.PRIMARY, rect, BORDER_WIDTH, vc.ROUNDING_HARD)
 
 def _drawExitButon(rect):
-	pygame.draw.rect(Window.inst, BACKGROUND3, rect, 0, ROUNDING)
+	pygame.draw.rect(Window.inst, vc.BACKGROUND3, rect, 0, vc.ROUNDING_HARD)
 	image.draw('exit', rect)
 
 def _drawHeader(rect):
-	pygame.draw.rect(Window.inst, BACKGROUND3, rect, 0, ROUNDING)
+	pygame.draw.rect(Window.inst, vc.BACKGROUND3, rect, 0, vc.ROUNDING_HARD)
 	text.drawText(text.font1, (rect[0][0] + 10, rect[0][1] + 15), "Technologies", (0, 0, 0))
 
 def _drawTech(rect, i, j):
 	global tech_selected
 	tech = get_tech_for_draw(i, j)
-	color = PRIMARY if tech_selected == (i, j) else SECONDARY if tech['unlocked'] else BACKGROUND3
-	pygame.draw.rect(Window.inst, color, rect, 0, ROUNDING_SMOOTH)
-	text.drawText(text.font2, (rect[0][0] + 10, rect[0][1] + 22), tech['name'], TEXT)
+	color = vc.PRIMARY if tech_selected == (i, j) else vc.SECONDARY if tech['unlocked'] else vc.BACKGROUND3
+	pygame.draw.rect(Window.inst, color, rect, 0, vc.ROUNDING_SMOOTH)
+	text.drawText(text.font2, (rect[0][0] + 10, rect[0][1] + 22), tech['name'], vc.TEXT)
 
 
 def _drawTechInfo(rect):
-	pygame.draw.rect(Window.inst, BACKGROUND3, rect, 0, ROUNDING)
+	pygame.draw.rect(Window.inst, vc.BACKGROUND3, rect, 0, vc.ROUNDING_HARD)
 	if tech_selected is None:
 		return
 	tech = get_tech_for_draw(tech_selected[0], tech_selected[1])
 	for i in range(len(tech['unlocks'])):
 		message = "Unlocks {}".format(print_industry(tech['unlocks'][i]))
-		text.drawText(text.font2, (rect[0][0] + PADDING_BOX, rect[0][1] + PADDING_BOX + 30 * i), message, TEXT)
+		text.drawText(text.font2, (rect[0][0] + vc.PADDING + BORDER_WIDTH, rect[0][1] + vc.PADDING + BORDER_WIDTH + 30 * i), message, vc.TEXT)
 
 def _drawAddTechCost(rect):
-	pygame.draw.rect(Window.inst, BACKGROUND3, rect, 0, ROUNDING)
+	pygame.draw.rect(Window.inst, vc.BACKGROUND3, rect, 0, vc.ROUNDING_HARD)
 	if tech_selected is None:
 		return
 	tech = get_tech_for_draw(tech_selected[0], tech_selected[1])
 	message = "{}".format(tech['cost'])
-	text.drawText(text.font2, (rect[0][0] + 10, rect[0][1] + 22), message, TEXT)
+	text.drawText(text.font2, (rect[0][0] + 10, rect[0][1] + 22), message, vc.TEXT)
 
 def _drawAddTechButton(rect):
-	pygame.draw.rect(Window.inst, BACKGROUND3, rect, 0, ROUNDING)
-	text.drawText(text.font2, (rect[0][0] + 10, rect[0][1] + 22), "Add", TEXT)
+	pygame.draw.rect(Window.inst, vc.BACKGROUND3, rect, 0, vc.ROUNDING_HARD)
+	text.drawText(text.font2, (rect[0][0] + 10, rect[0][1] + 22), "Add", vc.TEXT)
 
 techMenu = composant_new(10, [
 	# Background
@@ -132,8 +117,8 @@ techMenu = composant_new(10, [
 		2,
 		lambda: (
 			(
-				Window.half_resolution[0] - TECH_MENU_SIZE[0] + PADDING_BOX,
-				Window.half_resolution[1] - TECH_MENU_SIZE[1] + PADDING_BOX,
+				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + BORDER_WIDTH),
+				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + BORDER_WIDTH),
 			),
 			HEADER_SIZE,
 		),
@@ -146,8 +131,8 @@ techMenu = composant_new(10, [
 		2,
 		lambda: (
 			(
-				Window.half_resolution[0] - TECH_MENU_SIZE[0] + PADDING_BOX + HEADER_SIZE[0] + PADDING_IN,
-				Window.half_resolution[1] - TECH_MENU_SIZE[1] + PADDING_BOX,
+				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + BORDER_WIDTH) + HEADER_SIZE[0] + vc.PADDING,
+				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + BORDER_WIDTH),
 			),
 			CLOSE_BUTTON_SIZE,
 		),
@@ -160,8 +145,8 @@ techMenu = composant_new(10, [
 		2,
 		lambda i=i, j=j: (
 			(
-				Window.half_resolution[0] - TECH_MENU_SIZE[0] + PADDING_BOX + (TECH_SIZE[0] + PADDING_IN) * i,
-				Window.half_resolution[1] - TECH_MENU_SIZE[1] + PADDING_BOX + (TECH_SIZE[1] + PADDING_IN) * j + HEADER_SIZE[1] + PADDING_IN,
+				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + BORDER_WIDTH) + (TECH_SIZE[0] + vc.PADDING) * i,
+				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + BORDER_WIDTH) + (TECH_SIZE[1] + vc.PADDING) * j + HEADER_SIZE[1] + vc.PADDING,
 			),
 			TECH_SIZE,
 		),
@@ -174,8 +159,8 @@ techMenu = composant_new(10, [
 		2,
 		lambda: (
 			(
-				Window.half_resolution[0] - TECH_MENU_SIZE[0] + PADDING_BOX,
-				Window.half_resolution[1] - TECH_MENU_SIZE[1] + PADDING_BOX + (TECH_SIZE[1] + PADDING_IN) * (TECH_PER_BRANCH + 1),
+				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + BORDER_WIDTH),
+				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + BORDER_WIDTH) + (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1),
 			),
 			TECH_INFO_SIZE,
 		),
@@ -188,8 +173,8 @@ techMenu = composant_new(10, [
 		2,
 		lambda: (
 			(
-				Window.half_resolution[0] - TECH_MENU_SIZE[0] + PADDING_BOX + TECH_INFO_SIZE[0] + PADDING_IN,
-				Window.half_resolution[1] - TECH_MENU_SIZE[1] + PADDING_BOX + (TECH_SIZE[1] + PADDING_IN) * (TECH_PER_BRANCH + 1),
+				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + BORDER_WIDTH) + TECH_INFO_SIZE[0] + vc.PADDING,
+				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + BORDER_WIDTH) + (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1),
 			),
 			ADD_TECH_COST_SIZE,
 		),
@@ -202,8 +187,8 @@ techMenu = composant_new(10, [
 		2,
 		lambda: (
 			(
-				Window.half_resolution[0] - TECH_MENU_SIZE[0] + PADDING_BOX + TECH_INFO_SIZE[0] + PADDING_IN,
-				Window.half_resolution[1] - TECH_MENU_SIZE[1] + PADDING_BOX + (TECH_SIZE[1] + PADDING_IN) * (TECH_PER_BRANCH + 1) + ADD_TECH_COST_SIZE[1] + PADDING_IN,
+				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + BORDER_WIDTH) + TECH_INFO_SIZE[0] + vc.PADDING,
+				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + BORDER_WIDTH) + (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1) + ADD_TECH_COST_SIZE[1] + vc.PADDING,
 			),
 			ADD_TECH_SIZE,
 		),

@@ -1,35 +1,21 @@
 import pygame
 import Window
-from globals import all, gestionMenu
-from ui.components.tech import ROUNDING
-from ui.utils import image, text
-from ui.utils.ui_array import composant_hide, composant_new, button_new, composant_show
-
-JAUNE = (255,255,0)
-NOIR = (0, 0, 0)
-
-TEXT = (14, 17, 22)
-BACKGROUND = (228, 235, 241)
-BACKGROUND2 = (217, 224, 230)
-BACKGROUND3 = (191, 201, 211)
-PRIMARY = (43, 65, 90)
-SECONDARY = (134, 168, 203)
-ACCENT = (62, 111, 163)
-
+from globals import gestionMenu
+from ui import visual_config as vc
+from ui.utils import text
+from ui.utils.ui_array import composant_new, button_new, composant_show
 
 BOUTON_LARGEUR = 300
 BOUTON_HAUTEUR = 40
 BOUTON_ESPACE = 5
 
-
-
 def _drawBackground(rect):
-	pygame.draw.rect(Window.inst, SECONDARY, rect)
-	text.drawText(text.font2, (rect[1][0] // 2, rect[1][1] // 2), "The Capitalism Island 2", TEXT, "center")
+	pygame.draw.rect(Window.inst, vc.SECONDARY, rect)
+	text.drawText(text.font2, (rect[1][0] // 2, rect[1][1] // 2), "The Capitalism Island 2", vc.TEXT, "center")
 
 def _drawButton(rect, message):
-	pygame.draw.rect(Window.inst, BACKGROUND, rect, 0, ROUNDING)
-	text.drawText(text.font2, (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), message, TEXT, "center")
+	pygame.draw.rect(Window.inst, vc.BACKGROUND, rect, 0, vc.ROUNDING_SMOOTH)
+	text.drawText(text.font2, (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "center")
 
 
 welcomeMenu = composant_new(0, [
@@ -48,7 +34,10 @@ welcomeMenu = composant_new(0, [
 	button_new(
 		1,
 		lambda: (
-			((Window.half_resolution[0] - 150), (Window.half_resolution[1] + (BOUTON_HAUTEUR + BOUTON_ESPACE))),
+			(
+				Window.half_resolution[0] - BOUTON_LARGEUR // 2,
+				Window.half_resolution[1] + (BOUTON_HAUTEUR + BOUTON_ESPACE)
+			),
 			(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 		),
 		lambda rect: _drawButton(rect, "Play"),
@@ -59,7 +48,10 @@ welcomeMenu = composant_new(0, [
 	button_new(
 		1,
 		lambda: (
-			((Window.half_resolution[0] - 150), (Window.half_resolution[1] + (BOUTON_HAUTEUR + BOUTON_ESPACE) * 2)),
+			(
+				Window.half_resolution[0] - BOUTON_LARGEUR // 2,
+				Window.half_resolution[1] + (BOUTON_HAUTEUR + BOUTON_ESPACE) * 2
+			),
 			(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 		),
 		lambda rect: _drawButton(rect, "Settings"),
@@ -74,7 +66,7 @@ welcomeMenu = composant_new(0, [
 			(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 		),
 		lambda rect: _drawButton(rect, "Exit"),
-		lambda pos: gestionMenu.change_menu(gestionMenu.MENU_REGLAGE),
+		lambda pos: Window.stop(),
 	),
 ])
 

@@ -1,4 +1,8 @@
-from utils.draw import isInRectangle
+def isInRectangle(pos, rect):
+    return rect[0][0] <= pos[0] and pos[0] <= rect[0][0] + rect[1][0]\
+        and rect[0][1] <= pos[1] and pos[1] <= rect[0][1] + rect[1][1]
+
+
 
 def button_new(
         z,
