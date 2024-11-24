@@ -9,6 +9,7 @@ from typing import Dict, Tuple
 
 from globals import Screenmode, Zoom
 from map import Ressource
+from ui.utils import image
 from ui.utils.draw import drawRect
 
 TERRAINTILETYPE_DEEPSEA			= 1
@@ -45,11 +46,11 @@ def ressource(tile: types) -> Ressource.types | None:
 drawTerrainTileMap = {
 	TERRAINTILETYPE_DEEPSEA			: lambda rect, h, h4: drawRect(rect, (       0,        0, 255 + h * 4)),
 	TERRAINTILETYPE_SEA				: lambda rect, h, h4: drawRect(rect, (       0,        0, 255 + h * 4)),
-	TERRAINTILETYPE_BEACH			: lambda rect, h, h4: drawRect(rect, (255 - h4, 255 - h4,           0)),
-	TERRAINTILETYPE_PLAIN			: lambda rect, h, h4: drawRect(rect, (       0, 255 - h4,           0)),
-	TERRAINTILETYPE_FOREST			: lambda rect, h, h4: drawRect(rect, ( 64 - h4, 128 - h4,           0)),
-	TERRAINTILETYPE_MOUNTAIN_SIDE	: lambda rect, h, h4: drawRect(rect, (150 - h4, 150 - h4,    150 - h4)),
-	TERRAINTILETYPE_MOUNTAIN_TOP	: lambda rect, h, h4: drawRect(rect, (255 - h4, 255 - h4,    255 - h4)),
+	TERRAINTILETYPE_BEACH			: lambda rect, h, h4: image.draw('sand', rect),
+	TERRAINTILETYPE_PLAIN			: lambda rect, h, h4: image.draw('grass', rect),
+	TERRAINTILETYPE_FOREST			: lambda rect, h, h4: image.draw('wood', rect),
+	TERRAINTILETYPE_MOUNTAIN_SIDE	: lambda rect, h, h4: image.draw('stone', rect),
+	TERRAINTILETYPE_MOUNTAIN_TOP	: lambda rect, h, h4: image.draw('snow', rect),
 }
 
 def draw_terrain(tile: types):
@@ -63,9 +64,11 @@ def draw_terrain(tile: types):
 		ressource_func = Ressource.draw(ressource(tile))
 
 		def res(rect, h=h, h4=h4):
-			func(rect, h, h4)
 			if Zoom.opti_factor <= 1:
 				ressource_func(rect)
+			else:
+				# print(position(tile))
+				func(rect, h, h4)
 		return res
 	else:
 		return lambda rect, h=h, h4=h4: func(rect, h, h4)

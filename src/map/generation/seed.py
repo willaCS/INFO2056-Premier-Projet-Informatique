@@ -35,7 +35,7 @@ def get_height(coord: coord_i):
 	global random_list
 
 	if coord[0] > 500 or coord[1] > 500 or coord[0] < -500 or coord[1] < -500:
-		return -32
+		return -31
 
 	res = 0
 	for ran in random_list:

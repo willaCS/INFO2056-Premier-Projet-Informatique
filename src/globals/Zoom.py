@@ -4,7 +4,10 @@ modifié par le zoom.
 Exemple: le nombre de pixel que fait une case.
 """
 
-val = 5
+import math
+
+
+val = 100
 __zoom_speed = 1.05
 __zoom_min = 1
 __zoom_max = 1000
@@ -18,7 +21,7 @@ def __update():
 	tile_size = 200 / val
 	line_width = 25 / val
 	outline_width = 15 / val
-	opti_factor = int(val // 20 + 1)
+	opti_factor = max(2 ** int(math.log2(val / 10)), 1)
 
 def increment():
 	global val

@@ -19,8 +19,9 @@ def init_random():
 	print(seed)
 	load_seed()
 
-	# for i in range(-300, 300):
-	# 	for j in range(-300, 300):
+	# for i in range(-500 + 0, 500 + 0, 4):
+	# 	for j in range(-500 + 0, 500 + 0, 4):
+	# 		# print(i, j)
 	# 		random_terrain_landscape((i, j))
 	# 	print(i)
 
@@ -55,7 +56,7 @@ def generate_ressource(tile: TerrainTile.types, ressource: int, richness: int, h
 	match(TerrainTile.type(tile)):
 		case TerrainTile.TERRAINTILETYPE_DEEPSEA:
 			match ressource:
-				case 90 | 91 | 92 | 93 | 94:
+				case 90:
 					return Ressource.init(Ressource.RESSOURCE_FISH, richness, height)
 				case 95 | 96 | 97:
 					return Ressource.init(Ressource.RESSOURCE_FISH, richness, height)
