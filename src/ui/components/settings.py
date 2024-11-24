@@ -1,8 +1,7 @@
-import pygame
 import Window
 from globals import gestionMenu
 from ui import visual_config as vc
-from ui.utils import text
+from ui.utils import draw, text
 from ui.utils.ui_array import composant_new, button_new, composant_show
 
 BOUTON_LARGEUR = 400
@@ -13,18 +12,18 @@ OPTION_WIDTH = 120
 
 
 def _drawBackground(rect):
-	pygame.draw.rect(Window.inst, vc.SECONDARY, rect)
+	draw.drawRect(rect, vc.SECONDARY)
 
 def _drawSettingBar(rect, message):
-	pygame.draw.rect(Window.inst, vc.BACKGROUND, rect, 0, vc.ROUNDING_SMOOTH)
+	draw.drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
 	text.drawText(text.font2, (rect[0][0] + vc.PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midleft")
 
 def _drawSettingExit(rect, message):
-	pygame.draw.rect(Window.inst, vc.BACKGROUND, rect, 0, vc.ROUNDING_SMOOTH)
+	draw.drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
 	text.drawText(text.font2, (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "center")
 
 def _drawSettingButton(rect, message):
-	pygame.draw.rect(Window.inst, vc.BACKGROUND3, rect, 0, vc.ROUNDING_SMOOTH)
+	draw.drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_SMOOTH)
 	text.drawText(text.font2, (rect[0][0] + vc.PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midleft")
 
 

@@ -1,9 +1,8 @@
-import pygame
 import Window
 from globals import SelectedTile, all
 from ui.components.topbar import TOP_BAR_HEIGHT
 from ui.utils.ui_array import button_new, composant_hide, composant_new, composant_show
-from ui.utils import image
+from ui.utils import draw, image
 
 
 MENU_BORDER = 5 #en pixels
@@ -23,19 +22,18 @@ def closeSideMenu(pos):
 
 
 def __drawSideMenu(rect):
-	pygame.draw.rect(Window.inst, all.COLOR_WHITE, ((rect[0][0] + MENU_BORDER, rect[0][1] + MENU_BORDER), (rect[1][0] - 2 * MENU_BORDER, rect[1][1] - 2 * MENU_BORDER)))
-
+	draw.drawRect((
+		(rect[0][0] + MENU_BORDER, rect[0][1] + MENU_BORDER),
+		(rect[1][0] - 2 * MENU_BORDER, rect[1][1] - 2 * MENU_BORDER)
+	), all.COLOR_WHITE)
 
 def __drawExitButon(rect):
-	pygame.draw.rect(Window.inst, all.COLOR_RED, (
+	rect = (
 		(rect[0][0] + EXIT_BUTTON_BORDER, rect[0][1] + EXIT_BUTTON_BORDER),
 		(rect[1][0] - 2 * EXIT_BUTTON_BORDER, rect[1][1] - 2 * EXIT_BUTTON_BORDER)
-	))
-	
-	image.draw('exit', (
-		(rect[0][0] + EXIT_BUTTON_BORDER, rect[0][1] + EXIT_BUTTON_BORDER),
-		(rect[1][0] - 2 * EXIT_BUTTON_BORDER, rect[1][1] - 2 * EXIT_BUTTON_BORDER)
-	))
+	)
+	draw.drawRect(rect, all.COLOR_RED)
+	image.draw('exit', rect)
 
 
 

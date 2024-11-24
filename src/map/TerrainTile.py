@@ -10,7 +10,7 @@ from typing import Dict, Tuple
 from globals import Screenmode, Zoom
 from map import Ressource
 from ui.utils import image
-from ui.utils.draw import drawRect
+from ui.utils import draw as d
 
 TERRAINTILETYPE_DEEPSEA			= 1
 TERRAINTILETYPE_SEA				= 2
@@ -44,8 +44,8 @@ def ressource(tile: types) -> Ressource.types | None:
 	return tile["ressource"]
 
 drawTerrainTileMap = {
-	TERRAINTILETYPE_DEEPSEA			: lambda rect, h, h4: drawRect(rect, (       0,        0, 255 + h * 4)),
-	TERRAINTILETYPE_SEA				: lambda rect, h, h4: drawRect(rect, (       0,        0, 255 + h * 4)),
+	TERRAINTILETYPE_DEEPSEA			: lambda rect, h, h4: d.drawRect(rect, (       0,        0, 255 + h * 4)),
+	TERRAINTILETYPE_SEA				: lambda rect, h, h4: d.drawRect(rect, (       0,        0, 255 + h * 4)),
 	TERRAINTILETYPE_BEACH			: lambda rect, h, h4: image.draw('sand', rect),
 	TERRAINTILETYPE_PLAIN			: lambda rect, h, h4: image.draw('grass', rect),
 	TERRAINTILETYPE_FOREST			: lambda rect, h, h4: image.draw('wood', rect),
@@ -56,7 +56,7 @@ drawTerrainTileMap = {
 def draw_terrain(tile: types):
 	func = drawTerrainTileMap.get(
 		type(tile),
-		lambda rect, h, h4: drawRect(rect, (0, 0, 0))
+		lambda rect, h, h4: rect(rect, (0, 0, 0))
 	)
 	h = height(tile)
 	h4 = h % 4 * 16
@@ -77,9 +77,9 @@ def draw_background_stat(tile: types):
 	h = height(tile)
 	h4 = h % 8 * 8
 	if (h < 0):
-		return lambda rect, h=h, h4=h4: drawRect(rect, (0, 0, 180 + h * 4))
+		return lambda rect, h=h, h4=h4: rect(rect, (0, 0, 180 + h * 4))
 	else:
-		return lambda rect, h=h, h4=h4: drawRect(rect, (80 - h4, 80 - h4, 80 - h4))
+		return lambda rect, h=h, h4=h4: rect(rect, (80 - h4, 80 - h4, 80 - h4))
 
 
 def draw_(rect, terrain, color):

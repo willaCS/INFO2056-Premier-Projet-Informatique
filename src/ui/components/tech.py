@@ -1,9 +1,8 @@
-import pygame
 import Window
 from logic.techTree import get_tech_for_draw, add_tech
 from map.Industry import print_industry
 from ui import visual_config as vc
-from ui.utils import image, text
+from ui.utils import draw, image, text
 from ui.utils.ui_array import composant_hide, composant_new, button_new, composant_show
 
 tech_selected = None
@@ -53,27 +52,27 @@ def _selectTech(i, j):
 
 
 def _drawBackground(rect):
-	pygame.draw.rect(Window.inst, vc.BACKGROUND2, rect, 0, vc.ROUNDING_HARD)
-	pygame.draw.rect(Window.inst, vc.PRIMARY, rect, BORDER_WIDTH, vc.ROUNDING_HARD)
+	draw.drawRect(rect, vc.BACKGROUND2, vc.ROUNDING_HARD)
+	draw.drawRect(rect, vc.PRIMARY, vc.ROUNDING_HARD, BORDER_WIDTH)
 
 def _drawExitButon(rect):
-	pygame.draw.rect(Window.inst, vc.BACKGROUND3, rect, 0, vc.ROUNDING_HARD)
+	draw.drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
 	image.draw('exit', rect)
 
 def _drawHeader(rect):
-	pygame.draw.rect(Window.inst, vc.BACKGROUND3, rect, 0, vc.ROUNDING_HARD)
-	text.drawText(text.font1, (rect[0][0] + 10, rect[0][1] + 15), "Technologies", (0, 0, 0))
+	draw.drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
+	text.drawText(text.font1, (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), "Technologies", vc.TEXT, 'center')
 
 def _drawTech(rect, i, j):
 	global tech_selected
 	tech = get_tech_for_draw(i, j)
 	color = vc.PRIMARY if tech_selected == (i, j) else vc.SECONDARY if tech['unlocked'] else vc.BACKGROUND3
-	pygame.draw.rect(Window.inst, color, rect, 0, vc.ROUNDING_SMOOTH)
-	text.drawText(text.font2, (rect[0][0] + 10, rect[0][1] + 22), tech['name'], vc.TEXT)
+	draw.drawRect(rect, color, vc.ROUNDING_SMOOTH)
+	text.drawText(text.font2, (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), tech['name'], vc.TEXT, 'center')
 
 
 def _drawTechInfo(rect):
-	pygame.draw.rect(Window.inst, vc.BACKGROUND3, rect, 0, vc.ROUNDING_HARD)
+	draw.drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
 	if tech_selected is None:
 		return
 	tech = get_tech_for_draw(tech_selected[0], tech_selected[1])
@@ -82,7 +81,7 @@ def _drawTechInfo(rect):
 		text.drawText(text.font2, (rect[0][0] + vc.PADDING + BORDER_WIDTH, rect[0][1] + vc.PADDING + BORDER_WIDTH + 30 * i), message, vc.TEXT)
 
 def _drawAddTechCost(rect):
-	pygame.draw.rect(Window.inst, vc.BACKGROUND3, rect, 0, vc.ROUNDING_HARD)
+	draw.drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
 	if tech_selected is None:
 		return
 	tech = get_tech_for_draw(tech_selected[0], tech_selected[1])
@@ -90,8 +89,8 @@ def _drawAddTechCost(rect):
 	text.drawText(text.font2, (rect[0][0] + 10, rect[0][1] + 22), message, vc.TEXT)
 
 def _drawAddTechButton(rect):
-	pygame.draw.rect(Window.inst, vc.BACKGROUND3, rect, 0, vc.ROUNDING_HARD)
-	text.drawText(text.font2, (rect[0][0] + 10, rect[0][1] + 22), "Add", vc.TEXT)
+	draw.drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
+	text.drawText(text.font2, (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), "Add", vc.TEXT, 'center')
 
 techMenu = composant_new(10, [
 	# Background

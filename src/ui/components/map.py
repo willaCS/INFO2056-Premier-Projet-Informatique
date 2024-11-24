@@ -1,11 +1,10 @@
-import pygame
-
 import Window
 from globals import Cursor, SelectedTile, Zoom
 from globals.all import COLOR_WHITE
 from map import Map, TerrainTile, Tile
 from map.generation.map import random_terrain_landscape
 from ui.components.topbar import TOP_BAR_HEIGHT
+from ui.utils import draw
 from ui.utils.ui_array import button_new, composant_new, composant_show
 from utils.cache import add_cache
 from utils.map import coord_to_px
@@ -13,9 +12,12 @@ from utils.mytyping import Color, coord_i
 
 def _drawTileOutline(color: Color, coord: coord_i):
 	new_coord = coord_to_px(coord)
-	pygame.draw.rect(Window.inst, color,
-		((new_coord[0], int(new_coord[1] - Zoom.tile_size)), (int(Zoom.tile_size), int(Zoom.tile_size))),
-		int(Zoom.outline_width),
+	draw.drawRect((
+			(new_coord[0], int(new_coord[1] - Zoom.tile_size)),
+			(int(Zoom.tile_size), int(Zoom.tile_size))
+		),
+		color,
+		outline=int(Zoom.outline_width),
 	)
 
 @add_cache

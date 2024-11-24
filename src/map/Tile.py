@@ -38,18 +38,18 @@ def position(tile: types) -> coord:
 	return tile["position"]
 
 drawFunc = {
-	TILETYPE_EMPTY			: (False, lambda rect: drawRect(rect, (  0,   0,   0))),
-	TILETYPE_TRANSPORT		: (False, lambda rect: drawRect(rect, ( 76,  87,  97))),
-	TILETYPE_CITY			: (False, lambda rect: drawRect(rect, ( 22,  17,  84))),
-	TILETYPE_CITYCENTER		: (False, lambda rect: drawRect(rect, (163,  28,  53))),
-	TILETYPE_TRANSPORTHUB	: (False, lambda rect: drawRect(rect, all.COLOR_RED)),
+	TILETYPE_EMPTY			: (False, lambda rect: rect(rect, (  0,   0,   0))),
+	TILETYPE_TRANSPORT		: (False, lambda rect: rect(rect, ( 76,  87,  97))),
+	TILETYPE_CITY			: (False, lambda rect: rect(rect, ( 22,  17,  84))),
+	TILETYPE_CITYCENTER		: (False, lambda rect: rect(rect, (163,  28,  53))),
+	TILETYPE_TRANSPORTHUB	: (False, lambda rect: rect(rect, all.COLOR_RED)),
 	TILETYPE_INDUSTRY		: (True,  lambda tile: Industry.draw_industry(subtype(tile))),
 }
 
 def draw(tile: types):
 	func = drawFunc.get(
 		type(tile),
-		lambda rect: drawRect(rect, (0, 0, 0))
+		lambda rect: rect(rect, (0, 0, 0))
 	)
 	func = func[1](tile) if func[0] else func[1]
 	return lambda rect: func(rect)

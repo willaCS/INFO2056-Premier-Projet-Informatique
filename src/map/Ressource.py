@@ -57,6 +57,6 @@ def print_ressource(type):
 def draw(tile):
 	func = ressourceDrawMap.get(
 		type(tile),
-		('', lambda rect, h, h4: drawRect(rect, (0, 0, 0)))
+		('', lambda rect, h, h4: rect(rect, (0, 0, 0)))
 	)[1]
 	return lambda rect, h=height(tile), h4=height(tile) % 4 * 16: func(rect, h, h4)
