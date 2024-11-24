@@ -1,5 +1,5 @@
-from globals import player
-from map import Goods
+from model.market import player_wallet
+from model.market import Goods
 
 PRICE_GOODS_FISH					= 1
 PRICE_GOODS_SALT					= 1
@@ -84,8 +84,8 @@ market = {
 
 def sell_market(goods_type, amounts):
 	print('sell', amounts, 'de', Goods.print_goods(goods_type), 'au prix de', int(market[goods_type] * 0.9))
-	player.money += int(market[goods_type] * 0.9 * amounts)
+	player_wallet.money += int(market[goods_type] * 0.9 * amounts)
 
 def buy_market(goods_type, amounts):
 	print('buy', amounts, 'de', Goods.print_goods(goods_type), 'au prix de', market[goods_type])
-	player.money -= int(market[goods_type] * amounts)
+	player_wallet.money -= int(market[goods_type] * amounts)

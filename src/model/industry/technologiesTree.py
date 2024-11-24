@@ -1,11 +1,11 @@
-from map import Industry
-from globals import player
+from model.industry import technologies
+from model.market import player_wallet
 
 unlocked = [
-	Industry.INDUSTRY_WHEAT_FIELDS,
-	Industry.INDUSTRY_FISHINGBOAT,
-	Industry.INDUSTRY_LUMBERMILL,
-	Industry.INDUSTRY_STONEQUERY,
+	technologies.INDUSTRY_WHEAT_FIELDS,
+	technologies.INDUSTRY_FISHINGBOAT,
+	technologies.INDUSTRY_LUMBERMILL,
+	technologies.INDUSTRY_STONEQUERY,
 ]
 
 techTree = [
@@ -17,8 +17,8 @@ techTree = [
 				"cost": 10,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_POTATO_FIELDS,
-					Industry.INDUSTRY_BREADFACTORY,
+					technologies.INDUSTRY_POTATO_FIELDS,
+					technologies.INDUSTRY_BREADFACTORY,
 				]
 			},
 			{
@@ -26,8 +26,8 @@ techTree = [
 				"cost": 20,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_SALTEXTRACTION,
-					Industry.INDUSTRY_RICE_FIELDS,
+					technologies.INDUSTRY_SALTEXTRACTION,
+					technologies.INDUSTRY_RICE_FIELDS,
 				]
 			},
 			{
@@ -35,8 +35,8 @@ techTree = [
 				"cost": 30,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_SUSHIFACTORY,
-					Industry.INDUSTRY_ALCOHOLFACTORY,
+					technologies.INDUSTRY_SUSHIFACTORY,
+					technologies.INDUSTRY_ALCOHOLFACTORY,
 				]
 			},
 		]
@@ -49,8 +49,8 @@ techTree = [
 				"cost": 10,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_COTTON_FIELDS,
-					Industry.INDUSTRY_SANDQUERY,
+					technologies.INDUSTRY_COTTON_FIELDS,
+					technologies.INDUSTRY_SANDQUERY,
 				]
 			},
 			{
@@ -58,9 +58,9 @@ techTree = [
 				"cost": 20,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_TEXTILEFACTORY,
-					Industry.INDUSTRY_FURNITUREFACTORY,
-					Industry.INDUSTRY_CEMENTFACTORY,
+					technologies.INDUSTRY_TEXTILEFACTORY,
+					technologies.INDUSTRY_FURNITUREFACTORY,
+					technologies.INDUSTRY_CEMENTFACTORY,
 				]
 			},
 			{
@@ -68,8 +68,8 @@ techTree = [
 				"cost": 30,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_CLOTHESFACTORY,
-					Industry.INDUSTRY_GLASSFACTORY,
+					technologies.INDUSTRY_CLOTHESFACTORY,
+					technologies.INDUSTRY_GLASSFACTORY,
 				]
 			},
 		]
@@ -82,7 +82,7 @@ techTree = [
 				"cost": 10,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_COALMINE,
+					technologies.INDUSTRY_COALMINE,
 				]
 			},
 			{
@@ -90,8 +90,8 @@ techTree = [
 				"cost": 20,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_IRONMINE,
-					Industry.INDUSTRY_COPPERMINE,
+					technologies.INDUSTRY_IRONMINE,
+					technologies.INDUSTRY_COPPERMINE,
 				]
 			},
 			{
@@ -99,8 +99,8 @@ techTree = [
 				"cost": 30,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_PRECIOUSMETALMINE,
-					Industry.INDUSTRY_RAREMETALMINE,
+					technologies.INDUSTRY_PRECIOUSMETALMINE,
+					technologies.INDUSTRY_RAREMETALMINE,
 				]
 			},
 		]
@@ -113,7 +113,7 @@ techTree = [
 				"cost": 10,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_STEELMILL,
+					technologies.INDUSTRY_STEELMILL,
 				]
 			},
 			{
@@ -121,7 +121,7 @@ techTree = [
 				"cost": 20,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_OILWELL,
+					technologies.INDUSTRY_OILWELL,
 				]
 			},
 			{
@@ -129,8 +129,8 @@ techTree = [
 				"cost": 30,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_REFINARY,
-					Industry.INDUSTRY_RADIOFACTORY,
+					technologies.INDUSTRY_REFINARY,
+					technologies.INDUSTRY_RADIOFACTORY,
 				]
 			},
 			{
@@ -138,8 +138,8 @@ techTree = [
 				"cost": 40,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_PLASTICFACTORY,
-					Industry.INDUSTRY_GUNFACTORY,
+					technologies.INDUSTRY_PLASTICFACTORY,
+					technologies.INDUSTRY_GUNFACTORY,
 				]
 			},
 			{
@@ -147,9 +147,9 @@ techTree = [
 				"cost": 50,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_ELECTRONICCOMPONENTSFACTORY,
-					Industry.INDUSTRY_ENGINEFACTORY,
-					Industry.INDUSTRY_CARFACTORY,
+					technologies.INDUSTRY_ELECTRONICCOMPONENTSFACTORY,
+					technologies.INDUSTRY_ENGINEFACTORY,
+					technologies.INDUSTRY_CARFACTORY,
 				]
 			},
 			{
@@ -157,25 +157,26 @@ techTree = [
 				"cost": 60,
 				"unlocked": False,
 				"unlocks": [
-					Industry.INDUSTRY_COMPUTERFACTORY,
-					Industry.INDUSTRY_PLANESFACTORY,
-					Industry.INDUSTRY_PHONEFACTORY,
+					technologies.INDUSTRY_COMPUTERFACTORY,
+					technologies.INDUSTRY_PLANESFACTORY,
+					technologies.INDUSTRY_PHONEFACTORY,
 				]
 			},
 		]
 	},
 ]
 
+# action by player to unlock a technology
 def add_tech(i, j):
 	# TODO add check if player has enough science points
 	j = j if i < len(techTree) else j + 3
 	i = i if i < len(techTree) else len(techTree) - 1
 	tech = techTree[i]['techs'][j]
-	if player.science < tech['cost']:
+	if player_wallet.science < tech['cost']:
 		return
 	if j != 0 and not techTree[i]['techs'][j - 1]['unlocked']:
 		return
-	player.science -= tech['cost']
+	player_wallet.science -= tech['cost']
 	tech['unlocked'] = True
 	for unlock in tech['unlocks']:
 		unlocked.append(unlock)

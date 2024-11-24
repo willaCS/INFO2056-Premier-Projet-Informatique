@@ -1,8 +1,9 @@
 from typing import Dict, List
 
-from map import Goods, Ressource, TerrainTile
-from ui.framework import drawRect
+from model.terrain import Ressource, TerrainTile
+from model.market import Goods
 
+INDUSTRY_NONE 							= 0
 INDUSTRY_FISHINGBOAT					= 1
 INDUSTRY_SALTEXTRACTION					= 2
 INDUSTRY_WHEAT_FIELDS					= 3
@@ -433,9 +434,3 @@ industry: Dict[int, industry_type] = {
 def get_data(type: int) -> industry_type:
 	return industry[type]
 
-TRANSPORT_ROAD							= 1
-TRANSPORT_RAILWAY						= 2
-
-TRANSPORT_HUB_TRUCK						= 1
-TRANSPORT_HUB_RAILWAY_STATION			= 2
-TRANSPORT_HUB_HARBOR					= 3

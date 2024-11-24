@@ -7,9 +7,7 @@ Une case est une structure ayant ces variables :
 
 from typing import Dict, Tuple
 
-from globals import Screenmode, Zoom
-from map import Ressource
-from ui.framework import drawRect, drawImage
+from model.terrain import Ressource
 
 TERRAINTILETYPE_DEEPSEA			= 1
 TERRAINTILETYPE_SEA				= 2

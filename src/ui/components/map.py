@@ -1,5 +1,5 @@
 import Window
-from globals import SelectedTile
+from ui import SelectedTile
 from ui.components.topbar import TOP_BAR_HEIGHT
 from ui.framework import button_new, composant_new, composant_show
 from ui.map.map import drawMap

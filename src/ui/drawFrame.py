@@ -2,13 +2,14 @@
 Ce fichier gère la fonction drawFrame appelée chaque tick
 """
 
+from ui import SelectedTile
 import ui.components.settings
 import ui.components.map
 import ui.components.tech
 import ui.components.topbar
 import ui.components.sidemenu
 import ui.components.welcome
-from globals import SelectedTile, gestionMenu
+from ui import gestionMenu
 from ui.framework import menu_draw
 
 # menu

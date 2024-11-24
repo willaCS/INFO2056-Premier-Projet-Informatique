@@ -1,25 +1,28 @@
 import Window
-from globals import Cursor, SelectedTile, Zoom
+from ui import Cursor
 from globals.all import COLOR_WHITE
-from map import Map
-from map.generation.map import random_terrain_landscape
+from model.industry import plants
+from model.terrain.terrain import get_terrain_tile
+from ui import SelectedTile, Zoom
 from ui.framework import drawRect
-from ui.map import draw_tile, draw_terrain_tile
+from ui.map import draw_industry, draw_terrain_tile
 from utils.cache import add_cache
 from ui.map.utils import coord_to_px
 from utils.mytyping import Color, coord_i
 
 @add_cache
 def _drawTerrain(coord: coord_i):
-	terrainTile = random_terrain_landscape(coord)
+	terrainTile = get_terrain_tile(coord)
 	return draw_terrain_tile(terrainTile)
 
 @add_cache
 def drawTile(tile_coord: coord_i):
-	tile = Map.get(tile_coord)
+	tile = plants.get(tile_coord)
 	if not tile: return None
 
-	return draw_tile(tile)
+	print(tile)
+
+	return draw_industry(tile)
 
 def _drawTileOutline(color: Color, coord: coord_i):
 	new_coord = coord_to_px(coord)
@@ -50,7 +53,7 @@ def drawMap(rect):
 			_drawTerrain(coord)(rect)
 	
 	# Draw Buildings
-	for tile_coord in Map.map.keys():
+	for tile_coord in plants.map.keys():
 		if x_min * Zoom.opti_factor > tile_coord[0] or tile_coord[0] > x_max * Zoom.opti_factor\
 			or y_min * Zoom.opti_factor > tile_coord[1] or tile_coord[1] > y_max * Zoom.opti_factor:
 			continue

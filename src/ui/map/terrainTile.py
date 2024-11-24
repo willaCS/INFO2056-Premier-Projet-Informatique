@@ -1,5 +1,6 @@
-from globals import Screenmode, Zoom
-from map import TerrainTile
+from ui import Screenmode
+from model.terrain import TerrainTile
+from ui import Zoom
 from .ressource import draw_ressource
 from ui.framework import drawRect, drawImage
 

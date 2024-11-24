@@ -10,23 +10,27 @@ val = 3
 tick_index = 0
 _delta_tick_simation = 10
 
+# action by the player to increase the speed of the simulation
 def increment():
 	global val
 	if val < 5:
 		val += 1
 		_update_tick_simulation()
 
+# action by the player to decrease the speed of the simulation
 def decrement():
 	global val
 	if val > 1:
 		val -= 1
 		_update_tick_simulation()
 
+# action by the player to set the speed of the simulation
 def set(new_speed: int):
 	global val
 	val = new_speed
 	_update_tick_simulation()
 
+# action by the player to pause the simulation
 def pause():
 	global val, __prev_val
 	if (val != 0):

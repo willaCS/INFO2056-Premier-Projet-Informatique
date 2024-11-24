@@ -3,7 +3,7 @@ Ce fichier gère le mouvement du curseur.
 Le curseur est le centre de l'écran
 """
 
-from globals import Zoom
+from ui import Zoom
 from utils.mytyping import mut_coord_f
 
 val: mut_coord_f = [0, 0]

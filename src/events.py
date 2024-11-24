@@ -4,7 +4,7 @@ Ce fichier gère les events custom pour le jeu
 
 import pygame
 
-from globals import Zoom
+from ui import Zoom
 from ui.framework import menu_click
 
 def handleEvents(event: pygame.event.Event):

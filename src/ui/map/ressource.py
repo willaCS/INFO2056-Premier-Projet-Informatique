@@ -1,4 +1,4 @@
-from map import Ressource
+from model.terrain import Ressource
 from ui.framework import drawRect, drawImage
 
 ressourceDrawMap = {

@@ -7,8 +7,11 @@ s'execute qu'une seule fois
 import pygame
 
 import Window
-from globals import Cursor, Screenmode, SelectedTile, Speed, Zoom, testing, player
-from map import Map, Tile
+from globals import testing
+from model import Speed
+from model.industry import Plant, plants
+from model.market import player_wallet
+from ui import Cursor, Screenmode, SelectedTile, Zoom
 from ui.components.tech import drawTech
 from ui.map.map import drawTile
 
@@ -64,22 +67,22 @@ def singleKey(key: int):
 			Speed.set(5)
 		case pygame.K_BACKSPACE:
 			if SelectedTile.val:
-				if not Map.tile_is_empty(SelectedTile.val):
-					Map.remove(SelectedTile.val)
+				if not plants.tile_is_empty(SelectedTile.val):
+					plants.remove(SelectedTile.val)
 					drawTile(SelectedTile.val, True) # Refresh cache for draw
 				SelectedTile.clear()
 		case pygame.K_z:
 			if SelectedTile.val:
-				if Map.tile_is_empty(SelectedTile.val):
+				if plants.tile_is_empty(SelectedTile.val):
 					building = testing.activeBuilding()
-					Map.place(Tile.init(building['type'], building['id'], SelectedTile.val)) # type: ignore
+					plants.place(Plant.init(building['id'], SelectedTile.val)) # type: ignore
 				SelectedTile.clear()
 		case pygame.K_x:
 			testing.next()
 		case pygame.K_c:
 			testing.prev()
 		case pygame.K_o:
-			player.science += 10
+			player_wallet.science += 10
 		case pygame.K_p:
 			drawTech()
 		case _:

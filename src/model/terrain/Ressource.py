@@ -1,7 +1,5 @@
 from typing import Dict
 
-from ui.framework import drawRect, drawImage
-
 RESSOURCE_FISH				= 1
 RESSOURCE_SALT				= 2
 RESSOURCE_FERTILE_LAND		= 3

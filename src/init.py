@@ -6,14 +6,15 @@ pygame est prêt.
 """
 
 import os
+
+from model.gameTick import game_model_tick
+from model.terrain.terrain import init_random
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
 import Window
-from globals import Speed
+from model import Speed
 from events import handleEvents
 from input import repeatKey, singleKey
-from logic.game import game_simulation_tick
-from map.generation.map import init_random
 from ui.drawFrame import drawFrame
 from ui.framework.image import loadImages
 from ui.framework.text import loadFont
@@ -44,8 +45,7 @@ def setup():
 
 
 def tick():
-	if Speed.can_execute_simulation():
-		game_simulation_tick()
+	game_model_tick()
 	drawFrame()
 	# test_tick()
 

@@ -1,5 +1,5 @@
 import Window
-from logic.techTree import get_tech_for_draw, add_tech
+from model.industry.technologiesTree import get_tech_for_draw, add_tech
 from ui import visual_config as vc
 from ui.framework import composant_hide, composant_new, button_new, composant_show, drawImage, drawRect, drawText
 from ui.map.industry import print_industry

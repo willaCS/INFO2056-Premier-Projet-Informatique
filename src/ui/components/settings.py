@@ -1,5 +1,5 @@
 import Window
-from globals import gestionMenu
+from ui import gestionMenu
 from ui import visual_config as vc
 from ui.framework import composant_new, button_new, composant_show, drawRect, drawText
 

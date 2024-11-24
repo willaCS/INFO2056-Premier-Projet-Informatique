@@ -7,7 +7,7 @@ On peut faire :
 
 import random
 
-from map import Ressource, TerrainTile
+from model.terrain import Ressource, TerrainTile
 from utils.cache import add_cache
 from .seed import get_height, get_seed, load_seed, random_lcg_coord
 from utils.mytyping import coord_i
@@ -19,15 +19,14 @@ def init_random():
 	print(seed)
 	load_seed()
 
-	# for i in range(-500 + 0, 500 + 0, 4):
-	# 	for j in range(-500 + 0, 500 + 0, 4):
+	# for i in range(-500 + 0, 500 + 0, 2):
+	# 	for j in range(-500 + 0, 500 + 0, 2):
 	# 		# print(i, j)
-	# 		random_terrain_landscape((i, j))
+	# 		get_terrain_tile((i, j))
 	# 	print(i)
 
-
 @add_cache
-def random_terrain_landscape(coord: coord_i) -> TerrainTile.types:
+def get_terrain_tile(coord: coord_i) -> TerrainTile.types:
 	height = get_height(coord)
 	
 	if (height < -5):

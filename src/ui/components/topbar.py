@@ -1,6 +1,8 @@
 import Window
-from globals import Screenmode, Speed, all, player
-from ui import visual_config as vc
+from globals import all
+from model import Speed
+from model.market import player_wallet
+from ui import Screenmode, visual_config as vc
 from ui.framework import button_new, composant_new, composant_show, drawRect, drawText, longNumber, drawCircle
 
 
@@ -18,7 +20,7 @@ def drawModeButton(rect, message, color):
 
 def drawStat(rect, num, num_incr, color):
 	longNumber(num)
-	message = f"{longNumber(num)} ({longNumber(num_incr)})"
+	message = f"{longNumber(num)} (+{longNumber(num_incr)})"
 	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
 	drawCircle(
 		(rect[0][0] + rect[1][1] // 2, rect[0][1] + rect[1][1] // 2),
@@ -59,7 +61,7 @@ topBar = composant_new(1, [
 			((TOP_BAR_HEIGHT - PADDING) * 4 + PADDING, PADDING),
 			(STAT_WIDTH, TOP_BAR_HEIGHT - 2 * PADDING)
 		),
-		lambda rect: drawStat(rect, player.money, player.money_incr, (255, 180, 0)),
+		lambda rect: drawStat(rect, player_wallet.money, player_wallet.money_incr, (255, 180, 0)),
 		lambda pos: None,
 	),
 
@@ -69,7 +71,7 @@ topBar = composant_new(1, [
 			((TOP_BAR_HEIGHT - PADDING) * 4 + PADDING * 2 + STAT_WIDTH, PADDING),
 			(STAT_WIDTH, TOP_BAR_HEIGHT - 2 * PADDING)
 		),
-		lambda rect: drawStat(rect, player.science, player.science_incr, (0, 200, 200)),
+		lambda rect: drawStat(rect, player_wallet.science, player_wallet.science_incr, (0, 200, 200)),
 		lambda pos: None,
 	),
 	
