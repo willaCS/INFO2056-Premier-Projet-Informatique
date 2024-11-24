@@ -9,8 +9,8 @@ import pygame
 import Window
 from globals import Cursor, Screenmode, SelectedTile, Speed, Zoom, testing, player
 from map import Map, Tile
-from ui.components.map import drawTile
 from ui.components.tech import drawTech
+from ui.map.map import drawTile
 
 def repeatKey(key: int):
 	match key:

@@ -2,7 +2,7 @@
 Ce fichier gère la case selectionnée sur la carte.
 """
 
-from utils.map import px_to_coord
+from ui.map.utils import px_to_coord
 from utils.mytyping import coord_i
 
 val: coord_i | None = None

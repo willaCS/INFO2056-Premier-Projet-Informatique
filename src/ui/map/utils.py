@@ -6,7 +6,7 @@ On peut faire :
 """
 
 import Window
-from .mytyping import coord_f, coord_i
+from utils.mytyping import coord_f, coord_i
 from globals import Cursor, Zoom
 
 def coord_to_px(coord: coord_f) -> coord_i:

@@ -28,7 +28,7 @@ def drawFrame():
 		case gestionMenu.MENU_JEU:
 			if SelectedTile.val:
 				ui.components.sidemenu.showSideMenu()
-			ui.components.map.drawMap()
+			ui.components.map.drawMapComponent()
 			ui.components.topbar.showTopBar()
 			# selectedbuilding = all.font.render(testing.activeBuilding()['name'], True, (255, 0, 0)) # type: ignore
 			# Window.inst.blit(selectedbuilding, (Window.resolution[0] // 8, Window.resolution[0] // 10))
