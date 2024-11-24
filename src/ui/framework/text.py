@@ -1,18 +1,10 @@
 import pygame
 import Window
-from pygame import font
 
-FONT1_SIZE = 40
-font1: font.Font = None # type: ignore
+fonts = {}
 
-FONT2_SIZE = 24
-font2: font.Font = None # type: ignore
-
-def setup():
-	global font1, font2
-
-	font1 = font.SysFont('monospace', 40)
-	font2 = font.SysFont('monospace', 24, True)
+def loadFont(id: str, name: str, size: int, bold: bool = False):
+	fonts[id] = pygame.font.SysFont(name, size, bold)
 
 def longNumber(number: int) -> str:
 	if number < 1000:
@@ -31,12 +23,15 @@ def longNumber(number: int) -> str:
 # midtop, midleft, midbottom, midright
 # center, centerx, centery
 def drawText(
-	font: font.Font,
+	fontId: str,
 	coord,
 	text: str,
 	color,
 	anchor: str = "topleft"
 ):
+	font = fonts.get(fontId) # type: pygame.font.Font
+	if font is None:
+		raise ValueError(f"Font {fontId} not loaded")
 	text_prepared = font.render(text, True, color)
 	rect = text_prepared.get_rect()
 	setattr(rect, anchor, coord)

@@ -1,18 +1,18 @@
 import Window
 from globals import Cursor, SelectedTile, Zoom
 from globals.all import COLOR_WHITE
-from map import Map, TerrainTile, Tile
+from map import Map
 from map.generation.map import random_terrain_landscape
 from ui.components.topbar import TOP_BAR_HEIGHT
-from ui.utils import draw
-from ui.utils.ui_array import button_new, composant_new, composant_show
+from ui.framework import button_new, composant_new, composant_show, drawRect
+from ui.map import draw_tile, draw_terrain_tile
 from utils.cache import add_cache
 from utils.map import coord_to_px
 from utils.mytyping import Color, coord_i
 
 def _drawTileOutline(color: Color, coord: coord_i):
 	new_coord = coord_to_px(coord)
-	draw.drawRect((
+	drawRect((
 			(new_coord[0], int(new_coord[1] - Zoom.tile_size)),
 			(int(Zoom.tile_size), int(Zoom.tile_size))
 		),
@@ -23,14 +23,14 @@ def _drawTileOutline(color: Color, coord: coord_i):
 @add_cache
 def _drawTerrain(coord: coord_i):
 	terrainTile = random_terrain_landscape(coord)
-	return TerrainTile.draw(terrainTile)
+	return draw_terrain_tile(terrainTile)
 
 @add_cache
 def drawTile(tile_coord: coord_i):
 	tile = Map.get(tile_coord)
 	if not tile: return None
 
-	return Tile.draw(tile)
+	return draw_tile(tile)
 
 def _drawMap(rect):
 	x_min = int(-Window.half_resolution[0] / Zoom.tile_size - Cursor.val[0]) // Zoom.opti_factor - 2

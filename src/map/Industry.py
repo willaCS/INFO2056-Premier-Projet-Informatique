@@ -1,7 +1,7 @@
 from typing import Dict, List
 
 from map import Goods, Ressource, TerrainTile
-from ui.utils.draw import drawRect
+from ui.framework import drawRect
 
 INDUSTRY_FISHINGBOAT					= 1
 INDUSTRY_SALTEXTRACTION					= 2
@@ -439,53 +439,3 @@ TRANSPORT_RAILWAY						= 2
 TRANSPORT_HUB_TRUCK						= 1
 TRANSPORT_HUB_RAILWAY_STATION			= 2
 TRANSPORT_HUB_HARBOR					= 3
-
-industryPrintMap = {
-	INDUSTRY_FISHINGBOAT					: ('Fishing Boat'					, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_SALTEXTRACTION					: ('Salt Extraction'				, lambda rect: rect(rect, (230, 230, 230))),
-	INDUSTRY_WHEAT_FIELDS					: ('Wheat Fields'					, lambda rect: rect(rect, (255, 222,  19))),
-	INDUSTRY_POTATO_FIELDS					: ('Potato Fields'					, lambda rect: rect(rect, (227, 164,  68))),
-	INDUSTRY_COTTON_FIELDS					: ('Cotton Fields'					, lambda rect: rect(rect, (149, 255, 140))),
-	INDUSTRY_RICE_FIELDS					: ('Rice Fields'					, lambda rect: rect(rect, (144, 228, 245))),
-	INDUSTRY_FURHUNTINGGROUNDS				: ('Fur Hunting Grounds'			, lambda rect: rect(rect, (156, 105,  28))),
-	INDUSTRY_LUMBERMILL						: ('Lumber Mill'					, lambda rect: rect(rect, (102,  64,   7))),
-	INDUSTRY_OILWELL						: ('Oil Well'						, lambda rect: rect(rect, ( 80,  80,  80))),
-	INDUSTRY_COALMINE						: ('Coal Mine'						, lambda rect: rect(rect, ( 20,  20,  20))),
-	INDUSTRY_IRONMINE						: ('Iron Mine'						, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_COPPERMINE						: ('Copper Mine'					, lambda rect: rect(rect, (255,  89,   0))),
-	INDUSTRY_PRECIOUSMETALMINE				: ('Precious Metal Mine'			, lambda rect: rect(rect, (  0, 150, 161))),
-	INDUSTRY_RAREMETALMINE					: ('Rare Metal Mine'				, lambda rect: rect(rect, (101, 135, 101))),
-	INDUSTRY_BREADFACTORY					: ('Bread Factory'					, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_ALCOHOLFACTORY					: ('Alcohol Factory'				, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_SUSHIFACTORY					: ('Sushi Factory'					, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_TEXTILEFACTORY					: ('Textile Factory'				, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_CLOTHESFACTORY					: ('Clothes Factory'				, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_FURNITUREFACTORY				: ('Furniture Factory'				, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_STEELMILL						: ('Steel Mill'						, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_TOOLINGFACTORY					: ('Tooling Factory'				, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_CEMENTFACTORY					: ('Cement Factory'					, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_REFINARY						: ('Refinary'						, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_PLASTICFACTORY					: ('Plastic Factory'				, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_GLASSFACTORY					: ('Glass Factory'					, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_ELECTRONICCOMPONENTSFACTORY	: ('Electronic Components Factory'	, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_RADIOFACTORY					: ('Radio Factory'					, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_COMPUTERFACTORY				: ('Computer Factory'				, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_GUNFACTORY						: ('Gun Factory'					, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_ENGINEFACTORY					: ('Engine Factory'					, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_CARFACTORY						: ('Car Factory'					, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_PLANESFACTORY					: ('Planes Factory'					, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_JEWELRYWORKSHOP				: ('Jewelry Workshop'				, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_PHONEFACTORY					: ('Phone Factory'					, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_STONEQUERY						: ('Stone Query'					, lambda rect: rect(rect, (  0,   0,   0))),
-	INDUSTRY_SANDQUERY						: ('Sand Query'						, lambda rect: rect(rect, (  0,   0,   0))),
-}
-
-def print_industry(industry):
-	return industryPrintMap[industry][0]
-
-def draw_industry(industry):
-	func = industryPrintMap.get(
-		industry,
-		('', lambda rect: None)
-	)[1]
-	return lambda rect: func(rect)

@@ -1,9 +1,8 @@
 import Window
 from logic.techTree import get_tech_for_draw, add_tech
-from map.Industry import print_industry
 from ui import visual_config as vc
-from ui.utils import draw, image, text
-from ui.utils.ui_array import composant_hide, composant_new, button_new, composant_show
+from ui.framework import composant_hide, composant_new, button_new, composant_show, drawImage, drawRect, drawText
+from ui.map.industry import print_industry
 
 tech_selected = None
 
@@ -52,45 +51,45 @@ def _selectTech(i, j):
 
 
 def _drawBackground(rect):
-	draw.drawRect(rect, vc.BACKGROUND2, vc.ROUNDING_HARD)
-	draw.drawRect(rect, vc.PRIMARY, vc.ROUNDING_HARD, BORDER_WIDTH)
+	drawRect(rect, vc.BACKGROUND2, vc.ROUNDING_HARD)
+	drawRect(rect, vc.PRIMARY, vc.ROUNDING_HARD, BORDER_WIDTH)
 
 def _drawExitButon(rect):
-	draw.drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
-	image.draw('exit', rect)
+	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
+	drawImage('exit', rect)
 
 def _drawHeader(rect):
-	draw.drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
-	text.drawText(text.font1, (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), "Technologies", vc.TEXT, 'center')
+	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
+	drawText('font1', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), "Technologies", vc.TEXT, 'center')
 
 def _drawTech(rect, i, j):
 	global tech_selected
 	tech = get_tech_for_draw(i, j)
 	color = vc.PRIMARY if tech_selected == (i, j) else vc.SECONDARY if tech['unlocked'] else vc.BACKGROUND3
-	draw.drawRect(rect, color, vc.ROUNDING_SMOOTH)
-	text.drawText(text.font2, (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), tech['name'], vc.TEXT, 'center')
+	drawRect(rect, color, vc.ROUNDING_SMOOTH)
+	drawText('font2', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), tech['name'], vc.TEXT, 'center')
 
 
 def _drawTechInfo(rect):
-	draw.drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
+	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
 	if tech_selected is None:
 		return
 	tech = get_tech_for_draw(tech_selected[0], tech_selected[1])
 	for i in range(len(tech['unlocks'])):
 		message = "Unlocks {}".format(print_industry(tech['unlocks'][i]))
-		text.drawText(text.font2, (rect[0][0] + vc.PADDING + BORDER_WIDTH, rect[0][1] + vc.PADDING + BORDER_WIDTH + 30 * i), message, vc.TEXT)
+		drawText('font2', (rect[0][0] + vc.PADDING + BORDER_WIDTH, rect[0][1] + vc.PADDING + BORDER_WIDTH + 30 * i), message, vc.TEXT)
 
 def _drawAddTechCost(rect):
-	draw.drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
+	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
 	if tech_selected is None:
 		return
 	tech = get_tech_for_draw(tech_selected[0], tech_selected[1])
 	message = "{}".format(tech['cost'])
-	text.drawText(text.font2, (rect[0][0] + 10, rect[0][1] + 22), message, vc.TEXT)
+	drawText('font2', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, 'center')
 
 def _drawAddTechButton(rect):
-	draw.drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
-	text.drawText(text.font2, (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), "Add", vc.TEXT, 'center')
+	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
+	drawText('font2', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), "Add", vc.TEXT, 'center')
 
 techMenu = composant_new(10, [
 	# Background

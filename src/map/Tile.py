@@ -9,7 +9,7 @@ from typing import Dict, Tuple
 
 from globals import all
 from map import Industry
-from ui.utils.draw import drawRect
+from ui.framework import drawRect
 
 coord = Tuple[int, int]
 types = Dict[str, int | coord]
@@ -38,11 +38,11 @@ def position(tile: types) -> coord:
 	return tile["position"]
 
 drawFunc = {
-	TILETYPE_EMPTY			: (False, lambda rect: rect(rect, (  0,   0,   0))),
-	TILETYPE_TRANSPORT		: (False, lambda rect: rect(rect, ( 76,  87,  97))),
-	TILETYPE_CITY			: (False, lambda rect: rect(rect, ( 22,  17,  84))),
-	TILETYPE_CITYCENTER		: (False, lambda rect: rect(rect, (163,  28,  53))),
-	TILETYPE_TRANSPORTHUB	: (False, lambda rect: rect(rect, all.COLOR_RED)),
+	TILETYPE_EMPTY			: (False, lambda rect: drawRect(rect, (  0,   0,   0))),
+	TILETYPE_TRANSPORT		: (False, lambda rect: drawRect(rect, ( 76,  87,  97))),
+	TILETYPE_CITY			: (False, lambda rect: drawRect(rect, ( 22,  17,  84))),
+	TILETYPE_CITYCENTER		: (False, lambda rect: drawRect(rect, (163,  28,  53))),
+	TILETYPE_TRANSPORTHUB	: (False, lambda rect: drawRect(rect, all.COLOR_RED)),
 	TILETYPE_INDUSTRY		: (True,  lambda tile: Industry.draw_industry(subtype(tile))),
 }
 

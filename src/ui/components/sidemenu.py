@@ -1,9 +1,7 @@
 import Window
 from globals import SelectedTile, all
 from ui.components.topbar import TOP_BAR_HEIGHT
-from ui.utils.ui_array import button_new, composant_hide, composant_new, composant_show
-from ui.utils import draw, image
-
+from ui.framework import button_new, composant_hide, composant_new, composant_show, drawRect, drawImage
 
 MENU_BORDER = 5 #en pixels
 EXIT_BUTTON_BORDER = 2 #en pixels
@@ -22,7 +20,7 @@ def closeSideMenu(pos):
 
 
 def __drawSideMenu(rect):
-	draw.drawRect((
+	drawRect((
 		(rect[0][0] + MENU_BORDER, rect[0][1] + MENU_BORDER),
 		(rect[1][0] - 2 * MENU_BORDER, rect[1][1] - 2 * MENU_BORDER)
 	), all.COLOR_WHITE)
@@ -32,8 +30,8 @@ def __drawExitButon(rect):
 		(rect[0][0] + EXIT_BUTTON_BORDER, rect[0][1] + EXIT_BUTTON_BORDER),
 		(rect[1][0] - 2 * EXIT_BUTTON_BORDER, rect[1][1] - 2 * EXIT_BUTTON_BORDER)
 	)
-	draw.drawRect(rect, all.COLOR_RED)
-	image.draw('exit', rect)
+	drawRect(rect, all.COLOR_RED)
+	drawImage('exit', rect)
 
 
 

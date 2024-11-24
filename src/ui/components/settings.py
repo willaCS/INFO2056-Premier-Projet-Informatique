@@ -1,8 +1,7 @@
 import Window
 from globals import gestionMenu
 from ui import visual_config as vc
-from ui.utils import draw, text
-from ui.utils.ui_array import composant_new, button_new, composant_show
+from ui.framework import composant_new, button_new, composant_show, drawRect, drawText
 
 BOUTON_LARGEUR = 400
 BOUTON_HAUTEUR = 50
@@ -12,19 +11,19 @@ OPTION_WIDTH = 120
 
 
 def _drawBackground(rect):
-	draw.drawRect(rect, vc.SECONDARY)
+	drawRect(rect, vc.SECONDARY)
 
 def _drawSettingBar(rect, message):
-	draw.drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
-	text.drawText(text.font2, (rect[0][0] + vc.PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midleft")
+	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
+	drawText('font2', (rect[0][0] + vc.PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midleft")
 
 def _drawSettingExit(rect, message):
-	draw.drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
-	text.drawText(text.font2, (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "center")
+	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
+	drawText('font2', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "center")
 
 def _drawSettingButton(rect, message):
-	draw.drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_SMOOTH)
-	text.drawText(text.font2, (rect[0][0] + vc.PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midleft")
+	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_SMOOTH)
+	drawText('font2', (rect[0][0] + vc.PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midleft")
 
 
 settingsMenu = composant_new(0, [

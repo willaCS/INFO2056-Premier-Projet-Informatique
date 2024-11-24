@@ -1,20 +1,19 @@
 import Window
 from globals import gestionMenu
 from ui import visual_config as vc
-from ui.utils import draw, text
-from ui.utils.ui_array import composant_new, button_new, composant_show
+from ui.framework import composant_new, button_new, composant_show, drawText, drawRect
 
 BOUTON_LARGEUR = 300
 BOUTON_HAUTEUR = 40
 BOUTON_ESPACE = 5
 
 def _drawBackground(rect):
-	draw.drawRect(rect, vc.SECONDARY)
-	text.drawText(text.font2, (rect[1][0] // 2, rect[1][1] // 2), "The Capitalism Island 2", vc.TEXT, "center")
+	drawRect(rect, vc.SECONDARY)
+	drawText('font2', (rect[1][0] // 2, rect[1][1] // 2), "The Capitalism Island 2", vc.TEXT, "center")
 
 def _drawButton(rect, message):
-	draw.drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
-	text.drawText(text.font2, (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "center")
+	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
+	drawText('font2', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "center")
 
 
 welcomeMenu = composant_new(0, [

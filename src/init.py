@@ -15,13 +15,32 @@ from input import repeatKey, singleKey
 from logic.game import game_simulation_tick
 from map.generation.map import init_random
 from ui.drawFrame import drawFrame
-from ui.utils import image, text
+from ui.framework.image import loadImages
+from ui.framework.text import loadFont
 # from utils.time_tester import test_tick
 
 def setup():
 	init_random()
-	image.setup()
-	text.setup()
+	loadFont("font1", "monospace", 40)
+	loadFont("font2", "monospace", 24, True)
+
+	loadImages({
+		'exit'			: './assets/close_button.png',
+		'sand'			: './assets/terrain/suspicious_sand_0.png',
+		'stone'			: './assets/terrain/stone.png',
+		'snow'			: './assets/terrain/diorite.png',
+		'grass'			: './assets/terrain/grass.png',
+		'wood'			: './assets/terrain/wood.png',
+		'coal'			: './assets/ressource/coal_ore.png',
+		'iron'			: './assets/ressource/iron_ore.png',
+		'iron2'			: './assets/ressource/iron_ore2.png',
+		'precious'		: './assets/ressource/diamond_ore3.png',
+		'rare'			: './assets/ressource/emerald_ore3.png',
+		'copper'		: './assets/ressource/copper_ore.png',
+		'salt'			: './assets/ressource/salt.png',
+		'oil'			: './assets/ressource/oil.png',
+		'fertile_land'	: './assets/ressource/fertile_land.png',
+	})
 
 
 def tick():

@@ -4,10 +4,8 @@ Ce fichier gère les events custom pour le jeu
 
 import pygame
 
-from globals import SelectedTile, Zoom, gestionMenu
-from ui.utils import ui_array
-
-from globals import gestionMenu
+from globals import Zoom
+from ui.framework import menu_click
 
 def handleEvents(event: pygame.event.Event):
 	match event.type: # type: ignore
@@ -18,6 +16,6 @@ def handleEvents(event: pygame.event.Event):
 				Zoom.increment()
 		case pygame.MOUSEBUTTONUP:
 			if (event.button == 1):
-				ui_array.menu_click(event.pos)
+				menu_click(event.pos)
 		# case _:
 		# 	print(event)

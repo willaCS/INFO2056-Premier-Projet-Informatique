@@ -88,10 +88,6 @@ def composant_clickOutside(button, pos):
 
 composants = []
 
-def menu_add(composant):
-    global composants
-    composants.append(composant)
-
 def menu_hide_all():
     global composants
     for composant in composants:
