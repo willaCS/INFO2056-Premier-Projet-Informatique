@@ -44,11 +44,11 @@ topBar = composant_new(1, [
 			((TOP_BAR_HEIGHT - PADDING) * index + PADDING, PADDING),
 			(TOP_BAR_HEIGHT - 2 * PADDING, TOP_BAR_HEIGHT - 2 * PADDING)
 		),
-		lambda rect, value=value: centerTextButton(
+		lambda rect, value=value: centerTextButton(rect, 
 			'font1', f"{value[0]}",
 			vc.ACCENT if Screenmode.val == value[1] else vc.BACKGROUND,
 			vc.ROUNDING_SMOOTH, vc.PRIMARY
-		)(rect),
+		),
 		lambda pos, value=value: Screenmode.select(value[1])
 	) for index, value in enumerate([
 		("A", Screenmode.SCREENMODE_MAIN),
@@ -83,11 +83,11 @@ topBar = composant_new(1, [
 			(Window.resolution[0] - (6-i) * (TOP_BAR_HEIGHT - PADDING), 0 + PADDING),
 			(TOP_BAR_HEIGHT - 2 * PADDING, TOP_BAR_HEIGHT - 2 * PADDING)
 		),
-		lambda rect, i=i: centerTextButton(
+		lambda rect, i=i: centerTextButton(rect, 
 			'font1', f"{i}",
 			vc.PRIMARY if Speed.val == 0 else vc.ACCENT if Speed.val >= i else vc.BACKGROUND,
 			vc.ROUNDING_SMOOTH, vc.PRIMARY
-		)(rect),
+		),
 		lambda pos, i=i: Speed.set(i),
 	) for i in range(1, 6)),
 ])

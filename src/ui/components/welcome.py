@@ -34,7 +34,7 @@ welcomeMenu = composant_new(0, [
 			),
 			(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 		),
-		centerTextButton('font2', "Play", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
+		lambda rect: centerTextButton(rect, 'font2', "Play", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: gestionMenu.change_menu(gestionMenu.MENU_JEU),
 	),
 
@@ -48,7 +48,7 @@ welcomeMenu = composant_new(0, [
 			),
 			(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 		),
-		centerTextButton('font2', "Settings", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
+		lambda rect: centerTextButton(rect, 'font2', "Settings", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: gestionMenu.change_menu(gestionMenu.MENU_REGLAGE),
 	),
 
@@ -59,7 +59,7 @@ welcomeMenu = composant_new(0, [
 			((Window.half_resolution[0] - 150), (Window.half_resolution[1] + (BOUTON_HAUTEUR + BOUTON_ESPACE) * 3)),
 			(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 		),
-		centerTextButton('font2', "Exit", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
+		lambda rect: centerTextButton(rect, 'font2', "Exit", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: Window.stop(),
 	),
 ])

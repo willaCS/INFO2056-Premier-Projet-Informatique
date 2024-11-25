@@ -51,7 +51,7 @@ settingsMenu = composant_new(0, [
 			),
 			(OPTION_WIDTH, OPTION_HEIGHT)
 		),
-		centerTextButton('font2', "AZERTY", vc.BACKGROUND3, vc.ROUNDING_SMOOTH, vc.ACCENT),
+		lambda rect: centerTextButton(rect, 'font2', "AZERTY", vc.BACKGROUND3, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: None,
 	),
 
@@ -65,7 +65,7 @@ settingsMenu = composant_new(0, [
 			),
 			(OPTION_WIDTH, OPTION_HEIGHT)
 		),
-		centerTextButton('font2', "QWERTY", vc.BACKGROUND3, vc.ROUNDING_SMOOTH, vc.ACCENT),
+		lambda rect: centerTextButton(rect, 'font2', "QWERTY", vc.BACKGROUND3, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: None,
 	),
 
@@ -76,7 +76,7 @@ settingsMenu = composant_new(0, [
 			((Window.half_resolution[0] - BOUTON_LARGEUR // 2), (Window.half_resolution[1] + (BOUTON_HAUTEUR + vc.PADDING) * 2)),
 			(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 		),
-		centerTextButton('font2', "Exit", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
+		lambda rect: centerTextButton(rect, 'font2', "Exit", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: gestionMenu.change_menu(gestionMenu.MENU_INTRO),
 	),
 ])
