@@ -12,7 +12,7 @@ def _drawBackground(rect):
 	drawText('font2', (rect[1][0] // 2, rect[1][1] // 2), "The Capitalism Island 2", vc.TEXT, "center")
 
 def _drawButton(rect, message):
-	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
+	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH, hover=vc.PRIMARY)
 	drawText('font2', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "center")
 
 
