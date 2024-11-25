@@ -18,11 +18,11 @@ def _drawSettingBar(rect, message):
 	drawText('font2', (rect[0][0] + vc.PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midleft")
 
 def _drawSettingExit(rect, message):
-	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
+	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH, hover=vc.ACCENT)
 	drawText('font2', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "center")
 
 def _drawSettingButton(rect, message):
-	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_SMOOTH)
+	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_SMOOTH, hover=vc.ACCENT)
 	drawText('font2', (rect[0][0] + vc.PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midleft")
 
 
