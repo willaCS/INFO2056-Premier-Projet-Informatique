@@ -42,7 +42,7 @@ industryPrintMap = {
 }
 
 def print_industry(industry):
-	return industryPrintMap[Plant.type(industry)][0]
+	return industryPrintMap[industry][0]
 
 def draw_industry(industry):
 	func = industryPrintMap.get(

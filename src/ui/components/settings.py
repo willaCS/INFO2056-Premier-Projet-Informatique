@@ -1,6 +1,7 @@
 import Window
 from ui import gestionMenu
 from ui import visual_config as vc
+from ui.common.buttons import centerTextButton
 from ui.framework import composant_new, button_new, composant_show, drawRect, drawText
 
 BOUTON_LARGEUR = 400
@@ -16,15 +17,6 @@ def _drawBackground(rect):
 def _drawSettingBar(rect, message):
 	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
 	drawText('font2', (rect[0][0] + vc.PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midleft")
-
-def _drawSettingExit(rect, message):
-	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH, hover=vc.ACCENT)
-	drawText('font2', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "center")
-
-def _drawSettingButton(rect, message):
-	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_SMOOTH, hover=vc.ACCENT)
-	drawText('font2', (rect[0][0] + vc.PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midleft")
-
 
 settingsMenu = composant_new(0, [
 	# Background
@@ -59,7 +51,7 @@ settingsMenu = composant_new(0, [
 			),
 			(OPTION_WIDTH, OPTION_HEIGHT)
 		),
-		lambda rect: _drawSettingButton(rect, "AZERTY"),
+		centerTextButton('font2', "AZERTY", vc.BACKGROUND3, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: None,
 	),
 
@@ -73,7 +65,7 @@ settingsMenu = composant_new(0, [
 			),
 			(OPTION_WIDTH, OPTION_HEIGHT)
 		),
-		lambda rect: _drawSettingButton(rect, "QWERTY"),
+		centerTextButton('font2', "QWERTY", vc.BACKGROUND3, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: None,
 	),
 
@@ -84,7 +76,7 @@ settingsMenu = composant_new(0, [
 			((Window.half_resolution[0] - BOUTON_LARGEUR // 2), (Window.half_resolution[1] + (BOUTON_HAUTEUR + vc.PADDING) * 2)),
 			(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 		),
-		lambda rect: _drawSettingExit(rect, "Exit"),
+		centerTextButton('font2', "Exit", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: gestionMenu.change_menu(gestionMenu.MENU_INTRO),
 	),
 ])

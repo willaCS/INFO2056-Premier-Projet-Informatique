@@ -2,7 +2,7 @@ import pygame
 
 import Window
 
-hover_cursor = None
+hover_cursor = (0, 0)
 
 def updateHoverCursor(pos):
 	global hover_cursor
@@ -10,7 +10,6 @@ def updateHoverCursor(pos):
 
 def drawRect(rect, color, rounding = 0, outline = 0, hover = None):
 	global hover_cursor
-	# print(rect, hover_cursor)
 	if hover is not None and pygame.Rect(rect).collidepoint(hover_cursor):
 		color = hover
 	else:

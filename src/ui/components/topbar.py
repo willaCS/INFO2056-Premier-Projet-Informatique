@@ -3,6 +3,7 @@ from globals import all
 from model import Speed
 from model.market import player_wallet
 from ui import Screenmode, visual_config as vc
+from ui.common.buttons import centerTextButton
 from ui.components.tech import drawTech
 from ui.framework import button_new, composant_new, composant_show, drawRect, drawText, longNumber, drawCircle
 
@@ -14,10 +15,6 @@ STAT_WIDTH = 300
 
 COLOR_DARK_RED = (120, 0, 0)
 COLOR_GRAY = (80, 80, 80)
-
-def drawModeButton(rect, message, color):
-	drawRect(rect, color, vc.ROUNDING_SMOOTH, hover=vc.PRIMARY)
-	drawText('font1', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "center")
 
 def drawStat(rect, num, num_incr, color, hasHover):
 	longNumber(num)
@@ -47,7 +44,11 @@ topBar = composant_new(1, [
 			((TOP_BAR_HEIGHT - PADDING) * index + PADDING, PADDING),
 			(TOP_BAR_HEIGHT - 2 * PADDING, TOP_BAR_HEIGHT - 2 * PADDING)
 		),
-		lambda rect, value=value: drawModeButton(rect, f"{value[0]}", vc.ACCENT if Screenmode.val == value[1] else vc.BACKGROUND),
+		lambda rect, value=value: centerTextButton(
+			'font1', f"{value[0]}",
+			vc.ACCENT if Screenmode.val == value[1] else vc.BACKGROUND,
+			vc.ROUNDING_SMOOTH, vc.PRIMARY
+		)(rect),
 		lambda pos, value=value: Screenmode.select(value[1])
 	) for index, value in enumerate([
 		("A", Screenmode.SCREENMODE_MAIN),
@@ -82,7 +83,11 @@ topBar = composant_new(1, [
 			(Window.resolution[0] - (6-i) * (TOP_BAR_HEIGHT - PADDING), 0 + PADDING),
 			(TOP_BAR_HEIGHT - 2 * PADDING, TOP_BAR_HEIGHT - 2 * PADDING)
 		),
-		lambda rect, i=i: drawModeButton(rect, f"{i}", vc.PRIMARY if Speed.val == 0 else vc.ACCENT if Speed.val >= i else vc.BACKGROUND),
+		lambda rect, i=i: centerTextButton(
+			'font1', f"{i}",
+			vc.PRIMARY if Speed.val == 0 else vc.ACCENT if Speed.val >= i else vc.BACKGROUND,
+			vc.ROUNDING_SMOOTH, vc.PRIMARY
+		)(rect),
 		lambda pos, i=i: Speed.set(i),
 	) for i in range(1, 6)),
 ])

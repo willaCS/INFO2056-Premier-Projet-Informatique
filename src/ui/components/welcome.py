@@ -1,6 +1,7 @@
 import Window
 from ui import gestionMenu
 from ui import visual_config as vc
+from ui.common.buttons import centerTextButton
 from ui.framework import composant_new, button_new, composant_show, drawText, drawRect
 
 BOUTON_LARGEUR = 300
@@ -10,11 +11,6 @@ BOUTON_ESPACE = 5
 def _drawBackground(rect):
 	drawRect(rect, vc.SECONDARY)
 	drawText('font2', (rect[1][0] // 2, rect[1][1] // 2), "The Capitalism Island 2", vc.TEXT, "center")
-
-def _drawButton(rect, message):
-	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH, hover=vc.ACCENT)
-	drawText('font2', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "center")
-
 
 welcomeMenu = composant_new(0, [
 	# Background
@@ -38,7 +34,7 @@ welcomeMenu = composant_new(0, [
 			),
 			(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 		),
-		lambda rect: _drawButton(rect, "Play"),
+		centerTextButton('font2', "Play", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: gestionMenu.change_menu(gestionMenu.MENU_JEU),
 	),
 
@@ -52,7 +48,7 @@ welcomeMenu = composant_new(0, [
 			),
 			(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 		),
-		lambda rect: _drawButton(rect, "Settings"),
+		centerTextButton('font2', "Settings", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: gestionMenu.change_menu(gestionMenu.MENU_REGLAGE),
 	),
 
@@ -63,7 +59,7 @@ welcomeMenu = composant_new(0, [
 			((Window.half_resolution[0] - 150), (Window.half_resolution[1] + (BOUTON_HAUTEUR + BOUTON_ESPACE) * 3)),
 			(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 		),
-		lambda rect: _drawButton(rect, "Exit"),
+		centerTextButton('font2', "Exit", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: Window.stop(),
 	),
 ])

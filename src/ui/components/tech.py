@@ -1,6 +1,7 @@
 import Window
 from model.industry.technologiesTree import get_tech_for_draw, add_tech
 from ui import visual_config as vc
+from ui.common.buttons import centerTextButton
 from ui.framework import composant_hide, composant_new, button_new, composant_show, drawImage, drawRect, drawText
 from ui.map.industry import print_industry
 
@@ -48,27 +49,15 @@ def _selectTech(i, j):
 
 
 
-
-
-def _drawBackground(rect):
-	drawRect(rect, vc.BACKGROUND2, vc.ROUNDING_HARD)
-	drawRect(rect, vc.PRIMARY, vc.ROUNDING_HARD, BORDER_WIDTH)
-
 def _drawExitButon(rect):
 	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
 	drawImage('exit', rect)
-
-def _drawHeader(rect):
-	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
-	drawText('font1', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), "Technologies", vc.TEXT, 'center')
 
 def _drawTech(rect, i, j):
 	global tech_selected
 	tech = get_tech_for_draw(i, j)
 	color = vc.PRIMARY if tech_selected == (i, j) else vc.SECONDARY if tech['unlocked'] else vc.BACKGROUND3
-	drawRect(rect, color, vc.ROUNDING_SMOOTH)
-	drawText('font2', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), tech['name'], vc.TEXT, 'center')
-
+	centerTextButton('font2', tech['name'], color, vc.ROUNDING_SMOOTH)(rect)
 
 def _drawTechInfo(rect):
 	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
@@ -78,18 +67,6 @@ def _drawTechInfo(rect):
 	for i in range(len(tech['unlocks'])):
 		message = "Unlocks {}".format(print_industry(tech['unlocks'][i]))
 		drawText('font2', (rect[0][0] + vc.PADDING + BORDER_WIDTH, rect[0][1] + vc.PADDING + BORDER_WIDTH + 30 * i), message, vc.TEXT)
-
-def _drawAddTechCost(rect):
-	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
-	if tech_selected is None:
-		return
-	tech = get_tech_for_draw(tech_selected[0], tech_selected[1])
-	message = "{}".format(tech['cost'])
-	drawText('font2', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, 'center')
-
-def _drawAddTechButton(rect):
-	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
-	drawText('font2', (rect[0][0] + rect[1][0] // 2, rect[0][1] + rect[1][1] // 2), "Add", vc.TEXT, 'center')
 
 techMenu = composant_new(10, [
 	# Background
@@ -105,7 +82,8 @@ techMenu = composant_new(10, [
 				TECH_MENU_SIZE[1] * 2
 			),
 		),
-		_drawBackground,
+		lambda rect: drawRect(rect, vc.BACKGROUND2, vc.ROUNDING_HARD) or\
+					drawRect(rect, vc.PRIMARY, vc.ROUNDING_HARD, BORDER_WIDTH),
 		lambda pos: None,
 		lambda pos: composant_hide(techMenu)
 	),
@@ -120,7 +98,7 @@ techMenu = composant_new(10, [
 			),
 			HEADER_SIZE,
 		),
-		_drawHeader,
+		centerTextButton('font2', "Technologies", vc.BACKGROUND3, vc.ROUNDING_HARD),
 		lambda pos: None,
 	),
 
@@ -176,7 +154,9 @@ techMenu = composant_new(10, [
 			),
 			ADD_TECH_COST_SIZE,
 		),
-		_drawAddTechCost,
+		centerTextButton(
+			'font2', "{}".format(get_tech_for_draw(tech_selected[0], tech_selected[1])['cost']) if tech_selected else "",
+			vc.BACKGROUND3, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: None,
 	),
 
@@ -190,7 +170,7 @@ techMenu = composant_new(10, [
 			),
 			ADD_TECH_SIZE,
 		),
-		_drawAddTechButton,
+		centerTextButton('font2', "Add", vc.BACKGROUND3, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: add_tech(tech_selected[0], tech_selected[1]),
 	),
 ])
