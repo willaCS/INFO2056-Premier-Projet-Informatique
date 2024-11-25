@@ -57,7 +57,7 @@ def _drawTech(rect, i, j):
 	global tech_selected
 	tech = get_tech_for_draw(i, j)
 	color = vc.PRIMARY if tech_selected == (i, j) else vc.SECONDARY if tech['unlocked'] else vc.BACKGROUND3
-	lambda rect: centerTextButton(rect, 'font2', tech['name'], color, vc.ROUNDING_SMOOTH, vc.ACCENT)(rect)
+	centerTextButton(rect, 'font2', tech['name'], color, vc.ROUNDING_SMOOTH, vc.ACCENT)
 
 def _drawTechInfo(rect):
 	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
@@ -154,9 +154,9 @@ techMenu = composant_new(10, [
 			),
 			ADD_TECH_COST_SIZE,
 		),
-		lambda rect: lambda rect: centerTextButton(rect, 
+		lambda rect: centerTextButton(rect, 
 			'font2', "{}".format(get_tech_for_draw(tech_selected[0], tech_selected[1])['cost']) if tech_selected else "",
-			vc.BACKGROUND3, vc.ROUNDING_SMOOTH, vc.ACCENT)(rect),
+			vc.BACKGROUND3, vc.ROUNDING_SMOOTH, vc.ACCENT),
 		lambda pos: None,
 	),
 
