@@ -5,20 +5,26 @@ from .ressource import draw_ressource
 from ui.framework import drawRect, drawImage
 
 drawTerrainTileMap = {
-	TerrainTile.TERRAINTILETYPE_DEEPSEA			: lambda rect, h, h4: drawRect(rect, (0, 0, 255 + h * 4)),
-	TerrainTile.TERRAINTILETYPE_SEA				: lambda rect, h, h4: drawRect(rect, (0, 0, 255 + h * 4)),
-	TerrainTile.TERRAINTILETYPE_BEACH			: lambda rect, h, h4: drawImage('sand', rect),
-	TerrainTile.TERRAINTILETYPE_PLAIN			: lambda rect, h, h4: drawImage('grass', rect),
-	TerrainTile.TERRAINTILETYPE_FOREST			: lambda rect, h, h4: drawImage('wood', rect),
-	TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE	: lambda rect, h, h4: drawImage('stone', rect),
-	TerrainTile.TERRAINTILETYPE_MOUNTAIN_TOP	: lambda rect, h, h4: drawImage('snow', rect),
+	TerrainTile.TERRAINTILETYPE_DEEPSEA			: ('Deep sea',		lambda rect, h, h4: drawRect(rect, (0, 0, 255 + h * 4))),
+	TerrainTile.TERRAINTILETYPE_SEA				: ('Sea',			lambda rect, h, h4: drawRect(rect, (0, 0, 255 + h * 4))),
+	TerrainTile.TERRAINTILETYPE_BEACH			: ('Beach',			lambda rect, h, h4: drawImage('sand', rect)),
+	TerrainTile.TERRAINTILETYPE_PLAIN			: ('Plain',			lambda rect, h, h4: drawImage('grass', rect)),
+	TerrainTile.TERRAINTILETYPE_FOREST			: ('Forest',		lambda rect, h, h4: drawImage('wood', rect)),
+	TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE	: ('Moutain Side',	lambda rect, h, h4: drawImage('stone', rect)),
+	TerrainTile.TERRAINTILETYPE_MOUNTAIN_TOP	: ('Montain Top',	lambda rect, h, h4: drawImage('snow', rect)),
 }
+
+def print_terrain_tile(tile: TerrainTile.types):
+	return drawTerrainTileMap.get(
+		TerrainTile.type(tile),
+		lambda rect, h, h4: ('', drawRect(rect, (0, 0, 0)))
+	)[0]
 
 def draw_terrain(tile: TerrainTile.types):
 	func = drawTerrainTileMap.get(
 		TerrainTile.type(tile),
-		lambda rect, h, h4: drawRect(rect, (0, 0, 0))
-	)
+		lambda rect, h, h4: ('', drawRect(rect, (0, 0, 0)))
+	)[1]
 	h = TerrainTile.height(tile)
 	h4 = h % 4 * 16
 	if TerrainTile.ressource(tile) != None:
