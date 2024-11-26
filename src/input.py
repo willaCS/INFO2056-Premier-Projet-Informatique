@@ -14,8 +14,46 @@ from model.market import player_wallet
 from ui import Cursor, Screenmode, SelectedTile, Zoom
 from ui.components.tech import drawTech
 from ui.map.map import drawTile
+from ui import gestionClavier
+
+
 
 def repeatKey(key: int):
+	if gestionClavier.clavier == gestionClavier.CLAVIER_AZERTY:
+		repeatKey_azerty(key)
+	else:
+		repeatKey_qwerty(key)
+		 
+def singleKey(key: int):
+	if gestionClavier.clavier == gestionClavier.CLAVIER_AZERTY:
+		singleKey_azerty(key)
+	else:
+		singleKey_qwerty(key)
+
+ 
+
+def repeatKey_azerty(key: int):
+	match key:
+		case pygame.K_v:
+			Cursor.reset()
+		case pygame.K_z | pygame.K_UP:
+			Cursor.move_up()
+		case pygame.K_q | pygame.K_LEFT:
+			Cursor.move_left()
+		case pygame.K_s | pygame.K_DOWN:
+			Cursor.move_down()
+		case pygame.K_d | pygame.K_RIGHT:
+			Cursor.move_right()
+		case pygame.K_r:
+			Zoom.decrement()
+		case pygame.K_f:
+			Zoom.increment()
+		case _:
+			pass
+
+
+
+def repeatKey_qwerty(key):
 	match key:
 		case pygame.K_v:
 			Cursor.reset()
@@ -35,7 +73,7 @@ def repeatKey(key: int):
 			pass
 		
 
-def singleKey(key: int):
+def singleKey_qwerty(key: int):
 	match key:
 		case pygame.K_ESCAPE:
 			Window.stop()
@@ -88,28 +126,8 @@ def singleKey(key: int):
 		case _:
 			pass
 
-
-def repeatKey_azerty(key: int):
-	match key:
-		case pygame.K_v:
-			Cursor.reset()
-		case pygame.K_w | pygame.K_UP:
-			Cursor.move_up()
-		case pygame.K_a | pygame.K_LEFT:
-			Cursor.move_left()
-		case pygame.K_s | pygame.K_DOWN:
-			Cursor.move_down()
-		case pygame.K_d | pygame.K_RIGHT:
-			Cursor.move_right()
-		case pygame.K_r:
-			Zoom.decrement()
-		case pygame.K_f:
-			Zoom.increment()
-		case _:
-			pass
-		
-
-def singleKey_qwerty(key: int):
+	
+def singleKey_azerty(key):
 	match key:
 		case pygame.K_ESCAPE:
 			Window.stop()
@@ -141,30 +159,31 @@ def singleKey_qwerty(key: int):
 			Speed.set(5)
 		case pygame.K_BACKSPACE:
 			if SelectedTile.val:
-				if not Map.tile_is_empty(SelectedTile.val):
-					Map.remove(SelectedTile.val)
+				if not plants.tile_is_empty(SelectedTile.val):
+					plants.remove(SelectedTile.val)
+					drawTile(SelectedTile.val, True) # Refresh cache for draw
 				SelectedTile.clear()
-		case pygame.K_z:
+		case pygame.K_w:
 			if SelectedTile.val:
-				if Map.tile_is_empty(SelectedTile.val):
+				if plants.tile_is_empty(SelectedTile.val):
 					building = testing.activeBuilding()
-					Map.place(Tile.init(building['type'], building['id'], SelectedTile.val)) # type: ignore
-					refresh_color(SelectedTile.val)
+					plants.place(Plant.init(building['id'], SelectedTile.val)) # type: ignore
 				SelectedTile.clear()
 		case pygame.K_x:
 			testing.next()
 		case pygame.K_c:
 			testing.prev()
+		case pygame.K_o:
+			player_wallet.science += 10
+		case pygame.K_p:
+			drawTech()
 		case _:
 			pass
 
-is_azerty = True
-is_qwerty = False
+	
+	
 
-def azerty():
-	global is_azerty, is_qwerty
 
-	if is_azerty == True:
-		print("Azerty")
+
+
  
-

@@ -1,5 +1,5 @@
 import Window
-from ui import gestionMenu
+from ui import gestionMenu, gestionMode
 from ui import visual_config as vc
 from ui.common.buttons import centerTextButton
 from ui.framework import composant_new, button_new, composant_show, drawText, drawRect
@@ -12,6 +12,9 @@ def _drawBackground(rect):
 	drawRect(rect, vc.SECONDARY)
 	drawText('font2', (rect[1][0] // 2, rect[1][1] // 2), "The Capitalism Island 2", vc.TEXT, "center")
 
+		
+
+
 welcomeMenu = composant_new(0, [
 	# Background
 	button_new(
@@ -23,6 +26,7 @@ welcomeMenu = composant_new(0, [
 		_drawBackground,
 		lambda pos: None,
 	),
+	
 
 	# Bouton Play
 	button_new(
