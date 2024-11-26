@@ -11,17 +11,16 @@ NB_TECH_BRANCH = 5
 TECH_PER_BRANCH = 3
 
 TECH_MENU_SIZE = (500, 300)
-BORDER_WIDTH = 5
 
 CLOSE_BUTTON_SIZE = (75, 75)
 
 HEADER_SIZE = (
-	(TECH_MENU_SIZE[0] - (vc.PADDING + BORDER_WIDTH)) * 2 - CLOSE_BUTTON_SIZE[1] - vc.PADDING,
+	(TECH_MENU_SIZE[0] - (vc.PADDING + vc.MENU_BORDER_WIDTH)) * 2 - CLOSE_BUTTON_SIZE[1] - vc.PADDING,
 	CLOSE_BUTTON_SIZE[1]
 )
 
 TECH_SIZE = (
-	((TECH_MENU_SIZE[0] - (vc.PADDING + BORDER_WIDTH)) * 2 - (NB_TECH_BRANCH - 1) * vc.PADDING) / NB_TECH_BRANCH,
+	((TECH_MENU_SIZE[0] - (vc.PADDING + vc.MENU_BORDER_WIDTH)) * 2 - (NB_TECH_BRANCH - 1) * vc.PADDING) / NB_TECH_BRANCH,
 	75
 )
 
@@ -32,12 +31,12 @@ ADD_TECH_SIZE = (
 
 ADD_TECH_COST_SIZE = (
 	150,
-	(TECH_MENU_SIZE[1] - (vc.PADDING + BORDER_WIDTH)) * 2 - (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1) - ADD_TECH_SIZE[1] - vc.PADDING,
+	(TECH_MENU_SIZE[1] - (vc.PADDING + vc.MENU_BORDER_WIDTH)) * 2 - (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1) - ADD_TECH_SIZE[1] - vc.PADDING,
 )
 
 TECH_INFO_SIZE = (
-	(TECH_MENU_SIZE[0] - (vc.PADDING + BORDER_WIDTH)) * 2 - (ADD_TECH_SIZE[0] + vc.PADDING),
-	(TECH_MENU_SIZE[1] - (vc.PADDING + BORDER_WIDTH)) * 2 - (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1),
+	(TECH_MENU_SIZE[0] - (vc.PADDING + vc.MENU_BORDER_WIDTH)) * 2 - (ADD_TECH_SIZE[0] + vc.PADDING),
+	(TECH_MENU_SIZE[1] - (vc.PADDING + vc.MENU_BORDER_WIDTH)) * 2 - (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1),
 )
 
 def closeTech(pos):
@@ -66,7 +65,7 @@ def _drawTechInfo(rect):
 	tech = get_tech_for_draw(tech_selected[0], tech_selected[1])
 	for i in range(len(tech['unlocks'])):
 		message = "Unlocks {}".format(print_industry(tech['unlocks'][i]))
-		drawText('font2', (rect[0][0] + vc.PADDING + BORDER_WIDTH, rect[0][1] + vc.PADDING + BORDER_WIDTH + 30 * i), message, vc.TEXT)
+		drawText('font2', (rect[0][0] + vc.PADDING + vc.MENU_BORDER_WIDTH, rect[0][1] + vc.PADDING + vc.MENU_BORDER_WIDTH + 30 * i), message, vc.TEXT)
 
 techMenu = composant_new(10, [
 	# Background
@@ -83,7 +82,7 @@ techMenu = composant_new(10, [
 			),
 		),
 		lambda rect: drawRect(rect, vc.BACKGROUND2, vc.ROUNDING_HARD) or\
-					drawRect(rect, vc.PRIMARY, vc.ROUNDING_HARD, BORDER_WIDTH),
+					drawRect(rect, vc.PRIMARY, vc.ROUNDING_HARD, vc.MENU_BORDER_WIDTH),
 		lambda pos: None,
 		lambda pos: composant_hide(techMenu)
 	),
@@ -93,8 +92,8 @@ techMenu = composant_new(10, [
 		2,
 		lambda: (
 			(
-				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + BORDER_WIDTH),
-				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + BORDER_WIDTH),
+				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + vc.MENU_BORDER_WIDTH),
+				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + vc.MENU_BORDER_WIDTH),
 			),
 			HEADER_SIZE,
 		),
@@ -107,8 +106,8 @@ techMenu = composant_new(10, [
 		2,
 		lambda: (
 			(
-				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + BORDER_WIDTH) + HEADER_SIZE[0] + vc.PADDING,
-				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + BORDER_WIDTH),
+				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + vc.MENU_BORDER_WIDTH) + HEADER_SIZE[0] + vc.PADDING,
+				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + vc.MENU_BORDER_WIDTH),
 			),
 			CLOSE_BUTTON_SIZE,
 		),
@@ -121,8 +120,8 @@ techMenu = composant_new(10, [
 		2,
 		lambda i=i, j=j: (
 			(
-				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + BORDER_WIDTH) + (TECH_SIZE[0] + vc.PADDING) * i,
-				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + BORDER_WIDTH) + (TECH_SIZE[1] + vc.PADDING) * j + HEADER_SIZE[1] + vc.PADDING,
+				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + vc.MENU_BORDER_WIDTH) + (TECH_SIZE[0] + vc.PADDING) * i,
+				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + vc.MENU_BORDER_WIDTH) + (TECH_SIZE[1] + vc.PADDING) * j + HEADER_SIZE[1] + vc.PADDING,
 			),
 			TECH_SIZE,
 		),
@@ -135,8 +134,8 @@ techMenu = composant_new(10, [
 		2,
 		lambda: (
 			(
-				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + BORDER_WIDTH),
-				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + BORDER_WIDTH) + (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1),
+				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + vc.MENU_BORDER_WIDTH),
+				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + vc.MENU_BORDER_WIDTH) + (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1),
 			),
 			TECH_INFO_SIZE,
 		),
@@ -149,8 +148,8 @@ techMenu = composant_new(10, [
 		2,
 		lambda: (
 			(
-				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + BORDER_WIDTH) + TECH_INFO_SIZE[0] + vc.PADDING,
-				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + BORDER_WIDTH) + (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1),
+				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + vc.MENU_BORDER_WIDTH) + TECH_INFO_SIZE[0] + vc.PADDING,
+				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + vc.MENU_BORDER_WIDTH) + (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1),
 			),
 			ADD_TECH_COST_SIZE,
 		),
@@ -165,8 +164,8 @@ techMenu = composant_new(10, [
 		2,
 		lambda: (
 			(
-				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + BORDER_WIDTH) + TECH_INFO_SIZE[0] + vc.PADDING,
-				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + BORDER_WIDTH) + (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1) + ADD_TECH_COST_SIZE[1] + vc.PADDING,
+				Window.half_resolution[0] - TECH_MENU_SIZE[0] + (vc.PADDING + vc.MENU_BORDER_WIDTH) + TECH_INFO_SIZE[0] + vc.PADDING,
+				Window.half_resolution[1] - TECH_MENU_SIZE[1] + (vc.PADDING + vc.MENU_BORDER_WIDTH) + (TECH_SIZE[1] + vc.PADDING) * (TECH_PER_BRANCH + 1) + ADD_TECH_COST_SIZE[1] + vc.PADDING,
 			),
 			ADD_TECH_SIZE,
 		),

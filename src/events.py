@@ -24,22 +24,6 @@ def handleEvents(event: pygame.event.Event):
 		# 	print(event)
 
 
-def isInRectangle(pos, rect):
-	return pos[0] > rect[0][0] and pos[1] > rect[0][1]\
-		and pos[0] <= rect[0][0] + rect[1][0] and pos[1] <= rect[0][1] + rect[1][1]
-
-def handleClickEventsMenu(position):
-	if isInRectangle(position, drawMenu.bouton_settings):
-		gestionMenu.change_menu(gestionMenu.MENU_REGLAGE)
-
-	if isInRectangle(position, drawMenu.bouton_jouer):
-		gestionMenu.change_menu(gestionMenu.MENU_JEU)
-	
-	if isInRectangle(position, drawSettings.bouton_back):
-		gestionMenu.change_menu(gestionMenu.MENU_INTRO)
-	
-	if isInRectangle(position, drawSettings.bouton_azerty):
-		gestionClavier.change_clavier(gestionClavier.CLAVIER_AZERTY)
 
 
 	
