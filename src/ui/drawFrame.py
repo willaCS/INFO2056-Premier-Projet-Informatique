@@ -5,10 +5,11 @@ Ce fichier gère la fonction drawFrame appelée chaque tick
 import Window
 
 from ui.drawMap import drawMap
-from globals import all, testing, gestionMenu
+from globals import all, testing, gestionMenu, gestionClavier
 from ui.drawUI import drawUI
 import ui.drawMenu
 import ui.drawSettings
+from src import input
 
 # menu
 # sidemenu -> info case menu construction
@@ -45,6 +46,13 @@ def drawFrame():
 	
 	
 	
+
+
+
+def drawFrame_settings():
+	match gestionClavier.clavier:
+		case gestionClavier.CLAVIER_AZERTY:
+			input.repeatKey_azerty()
 
 
 

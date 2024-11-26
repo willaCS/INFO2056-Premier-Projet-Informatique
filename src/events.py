@@ -6,9 +6,11 @@ import pygame
 
 from globals import SelectedTile, Zoom
 from ui import drawMenu
+from ui import drawSettings
 from ui import ui_array
-
+import input
 from globals import gestionMenu
+from globals import gestionClavier
 
 def handleEvents(event: pygame.event.Event):
 	match event.type: # type: ignore
@@ -36,6 +38,19 @@ def handleClickEventsMenu(position):
 
 	if isInRectangle(position, drawMenu.bouton_jouer):
 		gestionMenu.change_menu(gestionMenu.MENU_JEU)
+	
+	if isInRectangle(position, drawSettings.bouton_back):
+		gestionMenu.change_menu(gestionMenu.MENU_INTRO)
+	
+	if isInRectangle(position, drawSettings.bouton_azerty):
+		gestionClavier.change_clavier(gestionClavier.CLAVIER_AZERTY)
+
+
+	
+	
+
+	
+ 
 
  		
 		

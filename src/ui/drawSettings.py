@@ -1,7 +1,7 @@
 import pygame
 import Window
 
-from globals import all
+from globals import all, gestionMenu
  
 
 ROUGE = (255,0,0)
@@ -18,11 +18,13 @@ BOUTON_ESPACE = 1
 
 
 
+bouton_back = (((0 + 5), (0 + 10)), (BOUTON_RETOUR_LARGEUR, BOUTON_RETOUR_HAUTEUR))
 
 def bouton_retour():
     pygame.draw.rect(Window.inst, ROUGE, (((0 + 5), (0 + 10)), (BOUTON_RETOUR_LARGEUR, BOUTON_RETOUR_HAUTEUR)))
     bouton_reglage_texte = all.font2.render("RETOUR", True, NOIR) 
     Window.inst.blit(bouton_reglage_texte, (((Window.half_resolution[0] - 2) - 4), ((Window.half_resolution[1] + 2)) + 5))
+    
 
 
 
@@ -47,3 +49,4 @@ def bouton_qwerty():
 
 
     
+

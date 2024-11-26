@@ -44,5 +44,4 @@ bouton_jouer = (((Window.half_resolution[0] - 150), (Window.half_resolution[1] +
 
         
 
-
-
+ 
