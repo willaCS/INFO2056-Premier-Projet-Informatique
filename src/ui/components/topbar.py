@@ -5,7 +5,14 @@ from model.market import player_wallet
 from ui import Screenmode, visual_config as vc
 from ui.common.buttons import centerTextButton
 from ui.components.tech import drawTech
-from ui.framework import button_new, composant_new, composant_show, drawRect, drawText, longNumber, drawCircle
+from ui.framework import button_new, composant_new, composant_show, drawRect, drawText, longNumber, drawCircle, drawImage 
+from ui import gestionMenu
+ 
+
+def draw_exit_button(rect):
+	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH, hover=vc.PRIMARY)
+	drawImage('exit', rect)
+
 
 
 TOP_BAR_HEIGHT = 60
@@ -80,7 +87,7 @@ topBar = composant_new(1, [
 	# Vitesse de la simulation
 	*(button_new(2,
 		lambda i=i: (
-			(Window.resolution[0] - (6-i) * (TOP_BAR_HEIGHT - PADDING), 0 + PADDING),
+			(Window.resolution[0] - (7-i) * (TOP_BAR_HEIGHT - PADDING), 0 + PADDING),
 			(TOP_BAR_HEIGHT - 2 * PADDING, TOP_BAR_HEIGHT - 2 * PADDING)
 		),
 		lambda rect, i=i: centerTextButton(rect, 
@@ -90,8 +97,18 @@ topBar = composant_new(1, [
 		),
 		lambda pos, i=i: Speed.set(i),
 	) for i in range(1, 6)),
+
+	#exit
+	button_new(2, 
+		lambda: (
+			(Window.resolution[0] - 1 * (TOP_BAR_HEIGHT - PADDING), 0 + PADDING),
+			(TOP_BAR_HEIGHT - 2 * PADDING, TOP_BAR_HEIGHT - 2 * PADDING)
+		), 
+		draw_exit_button, 
+		lambda pos: gestionMenu.change_menu(gestionMenu.MENU_INTRO)
+	)
 ])
 
 
 def showTopBar():
-	composant_show(topBar)
+	composant_show(topBar) 
