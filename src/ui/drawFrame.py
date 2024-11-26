@@ -34,10 +34,6 @@ def drawFrame():
 			# selectedbuilding = all.font.render(testing.activeBuilding()['name'], True, (255, 0, 0)) # type: ignore
 			# Window.inst.blit(selectedbuilding, (Window.resolution[0] // 8, Window.resolution[0] // 10))
 	menu_draw()
-	
-	
-	
-
 
 
 
