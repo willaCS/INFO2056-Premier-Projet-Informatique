@@ -24,6 +24,7 @@ def setup():
 	init_random()
 	loadFont("font1", "monospace", 40)
 	loadFont("font2", "monospace", 24, True)
+	loadFont("font3", "monospace", 22, True)
 
 	loadImages({
 		'exit'			: './assets/close_button.png',
