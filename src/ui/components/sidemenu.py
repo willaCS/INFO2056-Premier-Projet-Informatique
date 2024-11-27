@@ -2,16 +2,19 @@ import Window
 from globals import all
 from ui import SelectedTile
 from ui import visual_config as vc
+from ui.map.terrainTile import print_terrain_tile
+from ui.map.ressource import print_ressource
+from ui.common.buttons import centerTextButton
 from ui.components.topbar import TOP_BAR_HEIGHT
-from model.terrain.terrain import get_terrain_tile
 from ui.framework import button_new, composant_hide, composant_new, composant_show, drawRect, drawImage, drawText
 from model.terrain import TerrainTile
-from ui.common.buttons import centerTextButton
+from model.terrain.terrain import get_terrain_tile
 
 
 MENU_MARGIN = 5 #en pixels
 EXIT_BUTTON_BORDER = 2 #en pixels
 CLOSE_BUTTON_SIZE = (75, 75)
+RESOURCE_BUTTON_WIDTH = 250
 LARGEUR_SIDEMENU = 470
 
 
@@ -28,31 +31,29 @@ def closeSideMenu(pos):
 
 
 def __drawSideMenu(rect):
+	global tiletype
 	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
 	drawRect(rect, vc.PRIMARY, vc.ROUNDING_SMOOTH, vc.MENU_BORDER_WIDTH)
-	terrain = get_terrain_tile(SelectedTile.val)
-	#print(TerrainTile.type(terrain))
-	Tiletype = ""
-	match TerrainTile.type(terrain):
-		case 7:
-			Tiletype = "MOUNTAIN_TOP Tile"
-		case 6:
-			Tiletype = "MOUNTAIN_SIDE Tile"
-		case 5:
-			Tiletype = "FOREST Tile"
-		case 4:
-			Tiletype = "PLAIN Tile"
-		case 3:
-			Tiletype = "BEACH Tile"
-		case 2:
-			Tiletype = "SEA Tile"
-		case 1:
-			Tiletype = "DEEPSEA Tile"
 
 def __drawExitButon(rect):
 	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
 	drawImage('exit', rect)
 
+def __drawRessource(rect):
+	if not SelectedTile.val:
+		centerTextButton(rect, "font1", "", vc.BACKGROUND3, vc.ROUNDING_SMOOTH)
+		return
+	terrain = get_terrain_tile(SelectedTile.val)
+	ressource = TerrainTile.ressource(terrain)
+	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_SMOOTH)
+	position, taille = rect
+	if ressource == None:
+		return
+		#centerTextButton(((position[0] + taille[0] / 3,position[1]), (taille[0] * 2/3, taille[1])), "font3", "no ressource present", vc.BACKGROUND3, vc.ROUNDING_SMOOTH)
+	else:
+		drawText("font3", (position[0] + taille[0] / 3,position[1] + taille[0] * 1/15), print_ressource(ressource), vc.TEXT)
+		drawImage('stone', ((position[0] + taille[0] * 1/15, position[1] + taille[0] * 1/15), (taille[0] * 1/6, taille[0] * 1/6)))
+		#centerTextButton(((position[0] + taille[0] / 3,position[1]), (taille[0] * 2/3, taille[1])), "font3", print_ressource(ressource), vc.BACKGROUND3, vc.ROUNDING_SMOOTH)
 
 
 
@@ -83,7 +84,25 @@ sideMenu = composant_new(2, [
 				CLOSE_BUTTON_SIZE[1]
 			)
 		),
-		lambda rect: centerTextButton(rect, "font2", "test", vc.BACKGROUND3, vc.ROUNDING_SMOOTH)
+		lambda rect: centerTextButton(rect, "font2", print_terrain_tile(get_terrain_tile(SelectedTile.val)) if SelectedTile.val else "", vc.BACKGROUND3, vc.ROUNDING_SMOOTH)
+	),
+
+
+	# resource
+	button_new(
+		2,
+		lambda: 
+		(
+			(
+				0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING,
+				TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2 * vc.PADDING + CLOSE_BUTTON_SIZE[1] 
+			),
+			(
+				LARGEUR_SIDEMENU - 2 * (vc.MENU_BORDER_WIDTH + vc.PADDING) - 2 * MENU_MARGIN,
+				RESOURCE_BUTTON_WIDTH
+			)
+		),
+		__drawRessource
 	),
 
 	# Close button
