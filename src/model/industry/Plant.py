@@ -14,6 +14,8 @@ def init(type: int, position: coord) -> types:
 	return {
 		"type": type,
 		"position": position,
+		"xp": 0,
+		"generated": 0
 	}
 
 def type(tile: types) -> int:
@@ -21,3 +23,9 @@ def type(tile: types) -> int:
 
 def position(tile: types) -> coord:
 	return tile["position"]
+
+def xp(tile: types) -> int:
+	return tile["xp"]
+
+def generated(tile: types) -> int:
+	return tile["generated"]

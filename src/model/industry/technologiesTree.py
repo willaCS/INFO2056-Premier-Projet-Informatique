@@ -1,7 +1,9 @@
 from model.industry import technologies
 from model.market import player_wallet
+from model.terrain import Ressource, TerrainTile
+from model.terrain.terrain import get_terrain_tile
 
-unlocked = [
+default_unlocked = [
 	technologies.INDUSTRY_WHEAT_FIELDS,
 	technologies.INDUSTRY_FISHINGBOAT,
 	technologies.INDUSTRY_LUMBERMILL,
@@ -178,8 +180,6 @@ def add_tech(i, j):
 		return
 	player_wallet.science -= tech['cost']
 	tech['unlocked'] = True
-	for unlock in tech['unlocks']:
-		unlocked.append(unlock)
 
 def get_unlocked_techs():
 	return [
@@ -190,7 +190,7 @@ def get_unlocked_techs():
 
 def get_unlocked_buildings():
 	return [
-		*unlocked,
+		*default_unlocked,
 		*(unlock
 			for tree in techTree
 			for tech in tree['techs'] if tech['unlocked']
@@ -202,3 +202,24 @@ def get_tech_for_draw(i, j):
 	j = j if i < len(techTree) else j + 3
 	i = i if i < len(techTree) else len(techTree) - 1
 	return techTree[i]['techs'][j]
+
+
+def get_placable_on(coord):
+	unlocked = get_unlocked_buildings()
+	terrain = get_terrain_tile(coord)
+	ressource = TerrainTile.ressource(terrain)
+	
+	res = []
+	for indus in technologies.industry:
+		if not indus in unlocked:
+			continue
+		test_ind = technologies.industry[indus]
+		for place_on in test_ind['place_on']:
+			if place_on['type'] == technologies.PLACE_ON_RESSOURCE:
+				if ressource and place_on['id'] == Ressource.type(ressource):
+					res.append(indus)
+			elif place_on['type'] == technologies.PLACE_ON_TERRAIN:
+				if place_on['id'] == TerrainTile.type(terrain):
+					res.append(indus)
+	print(res)
+	return res

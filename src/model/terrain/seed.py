@@ -28,8 +28,13 @@ def load_seed():
 			int(random_lcg() * 400 - 200), # offset_y
 		])
 
-def _gausse2d(height: int, width_x: float, width_y: float, offset_x: int, offset_y: int, coordinates: coord_i):
+def _gausse(height: int, width_x: float, width_y: float, offset_x: int, offset_y: int, coordinates: coord_i):
 	return height * math.pow(2, width_x * -math.pow(coordinates[0] + offset_x, 2) - width_y * math.pow(coordinates[1] + offset_y, 2))
+
+def _gausse2d(coordinates: coord_i, random: List[int | float]):
+	return _gausse(random[0], random[1], random[2], random[6], random[7], coordinates)\
+		+ _gausse(random[3], random[4], random[5], random[6], random[7], coordinates)
+
 
 def get_height(coord: coord_i):
 	global random_list
@@ -39,8 +44,7 @@ def get_height(coord: coord_i):
 
 	res = 0
 	for ran in random_list:
-		res += _gausse2d(ran[0], ran[1], ran[2], ran[6], ran[7], coord) # type: ignore
-		res += _gausse2d(ran[3], ran[4], ran[5], ran[6], ran[7], coord) # type: ignore
+		res += _gausse2d(coord, ran)
 	res -= 32
 	return int(res)
 

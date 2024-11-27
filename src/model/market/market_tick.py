@@ -34,9 +34,9 @@ def generate_goods(tile, amount = None):
 	techno = technologies.industry[Plant.type(tile)]
 
 	if not amount:
-		amount = int(1 + tile['xp'] / 100)
-	print(amount, tile['xp'], tile['generated'])
-	
+		amount = int(1 + Plant.xp(tile) / 100)
+	# print(amount, Plant.xp(tile), Plant.generated(tile))
+
 	for input in techno['input']:
 		stockpile.buy_stock(input, amount)
 	stockpile.add_stock(techno['output'], amount)

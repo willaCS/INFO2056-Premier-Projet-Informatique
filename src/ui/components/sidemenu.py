@@ -30,7 +30,7 @@ def closeSideMenu(pos):
 def __drawSideMenu(rect):
 	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
 	drawRect(rect, vc.PRIMARY, vc.ROUNDING_SMOOTH, vc.MENU_BORDER_WIDTH)
-	terrain = get_terrain_tile(SelectedTile.val)
+	terrain = get_terrain_tile(SelectedTile.val if SelectedTile.val is not None else (0, 0))
 	#print(TerrainTile.type(terrain))
 	Tiletype = ""
 	match TerrainTile.type(terrain):

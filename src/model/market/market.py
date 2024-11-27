@@ -83,9 +83,9 @@ market = {
 }
 
 def sell_market(goods_type, amounts):
-	print('sell', amounts, 'de', Goods.print_goods(goods_type), 'au prix de', int(market[goods_type] * 0.9))
+	# print('sell', amounts, 'de', Goods.print_goods(goods_type), 'au prix de', int(market[goods_type] * 0.9))
 	player_wallet.money += int(market[goods_type] * 0.9 * amounts)
 
 def buy_market(goods_type, amounts):
-	print('buy', amounts, 'de', Goods.print_goods(goods_type), 'au prix de', market[goods_type])
+	# print('buy', amounts, 'de', Goods.print_goods(goods_type), 'au prix de', market[goods_type])
 	player_wallet.money -= int(market[goods_type] * amounts)

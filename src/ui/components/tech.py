@@ -56,7 +56,7 @@ def _drawTech(rect, i, j):
 	global tech_selected
 	tech = get_tech_for_draw(i, j)
 	color = vc.PRIMARY if tech_selected == (i, j) else vc.SECONDARY if tech['unlocked'] else vc.BACKGROUND3
-	centerTextButton(rect, 'font2', tech['name'], color, vc.ROUNDING_SMOOTH, vc.ACCENT)
+	centerTextButton(rect, 'font2', tech['name'], color, vc.ROUNDING_SMOOTH, vc.ACCENT if not tech_selected == (i, j) else None)
 
 def _drawTechInfo(rect):
 	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)

@@ -66,11 +66,6 @@ def place(tile: Plant.types) -> bool:
 	return False
 
 def plant_add_experience(tile, amount):
-	if not 'xp' in tile:
-		tile['xp'] = 0
-	if not 'generated' in tile:
-		tile['generated'] = 0
-	
 	tile['xp'] += 1
 	tile['generated'] += amount
 

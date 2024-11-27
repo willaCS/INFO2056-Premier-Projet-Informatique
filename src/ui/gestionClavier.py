@@ -1,7 +1,7 @@
 CLAVIER_AZERTY = 0
 CLAVIER_QWERTY = 1
 
-clavier = CLAVIER_AZERTY
+clavier = CLAVIER_QWERTY
 
 
 def change_clavier(new_clavier):
