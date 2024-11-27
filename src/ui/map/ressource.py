@@ -17,8 +17,8 @@ ressourceDrawMap = {
 	Ressource.RESSOURCE_STONE:           ('stone'          , lambda rect, h, h4: drawImage('stone', rect)),							
 }
 
-def print_ressource(type):
-	return ressourceDrawMap[type][0]
+def print_ressource(ressource):
+	return ressourceDrawMap[Ressource.type(ressource)][0]
 
 def draw_ressource(tile):
 	func = ressourceDrawMap.get(
