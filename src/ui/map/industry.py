@@ -1,17 +1,25 @@
 from model.industry import Plant, technologies
-from ui import Zoom
+from ui import Screenmode, Zoom
+from ui.framework.draw import drawRect
 from ui.framework.image import drawImage
 
 def drawIndustry(key):
+	
 	def res(rect):
 		pad = Zoom.tile_size // 16
-		drawImage('industry', rect)
-		if rect[1][1] - pad * 2 < 1:
-			return
-		drawImage(key,
-			((rect[0][0] + pad, rect[0][1] + pad),
-			(rect[1][0] - pad * 2, rect[1][1] - pad * 2)
-		))
+		match Screenmode.val:
+			case Screenmode.SCREENMODE_MAIN:
+				drawImage('industry', rect)
+				if rect[1][1] - pad * 2 < 1:
+					return
+				drawImage(key,
+					((rect[0][0] + pad, rect[0][1] + pad),
+					(rect[1][0] - pad * 2, rect[1][1] - pad * 2)
+				))
+			case Screenmode.SCREENMODE_ECONOMY_SUPPLY:
+				drawRect(rect, (255, 255, 0))
+			case _:
+				drawRect(rect, (0, 0, 0))
 	return res
 
 industryPrintMap = {
