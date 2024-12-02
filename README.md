@@ -1,45 +1,45 @@
 # INFO2056-Premier-Projet-Informatique
 # Goods
 
-| Name                  | Image                                                                                |
-| --------------------- | ------------------------------------------------------------------------------------ |
-| Fish                  | ![[2024-2025/INFO2056-A-a_Premier_Projet_Informatique/ppi/docs/image/fish.png]]      |
-| Salt                  | ![[2024-2025/INFO2056-A-a_Premier_Projet_Informatique/ppi/docs/image/salt.png]]      |
-| Wheat                 | ![[wheat.png]]                                                                       |
-| Potato                | ![[potato.png]]                                                                      |
-| Cotton                | ![[string.png]]                                                                      |
-| Rice                  | ![[rice.png]]                                                                        |
-| Fur                   | ![[leather.png]]                                                                     |
-| Wood                  | ![[2024-2025/INFO2056-A-a_Premier_Projet_Informatique/ppi/assets/goods/wood.png]]    |
-| Sand                  | ![[2024-2025/INFO2056-A-a_Premier_Projet_Informatique/ppi/assets/goods/sand.png]]    |
-| Stone                 | ![[2024-2025/INFO2056-A-a_Premier_Projet_Informatique/ppi/assets/goods/stone.png]]   |
-| Oil                   | ![[barrel.png]]                                                                      |
-| Coal                  | ![[2024-2025/INFO2056-A-a_Premier_Projet_Informatique/ppi/assets/goods/coal.png]]    |
-| Iron                  | ![[2024-2025/INFO2056-A-a_Premier_Projet_Informatique/ppi/assets/goods/iron.png]]    |
-| Copper                | ![[2024-2025/INFO2056-A-a_Premier_Projet_Informatique/ppi/assets/goods/copper.png]]  |
-| Precious Metal        | ![[2024-2025/INFO2056-A-a_Premier_Projet_Informatique/ppi/assets/goods/diamond.png]] |
-| Rare Metal            | ![[2024-2025/INFO2056-A-a_Premier_Projet_Informatique/ppi/assets/goods/emerald.png]] |
-| Bread                 | ![[bread.png]]                                                                       |
-| Alcohol               | ![[beer.png]]                                                                        |
-| Sushi                 |                                                                                      |
-| Textile               | ![[part_fabric_blue.png]]                                                            |
-| Clothes               |                                                                                      |
-| Furniture             | ![[bookshelf.png]]                                                                   |
-| Steel                 | ![[ingot_superalloy.png]]                                                            |
-| Tools                 | ![[tool_fancy_iron_hammer.png]]                                                      |
-| Cement                |                                                                                      |
-| Fuel                  | ![[part_fuelcan_full.png]]                                                           |
-| Plastic               |                                                                                      |
-| Glass                 | ![[glass.png]]                                                                       |
-| Electronics Component | ![[part_electronic_chip.png]]                                                        |
-| Radio                 | ![[radio.png]]                                                                       |
-| Computer              | ![[computer.png]]                                                                    |
-| Guns                  |                                                                                      |
-| Engine                |                                                                                      |
-| Car                   |                                                                                      |
-| Planes                |                                                                                      |
-| Jewelry               | ![[ring.png]]                                                                        |
-| Phone                 | ![[phone.png]]                                                                       |
+| Name                  | Image                                                                                               |
+| --------------------- | --------------------------------------------------------------------------------------------------- |
+| Fish                  | <img src="./assets/goods/fish.png"                          alt="drawing" style="width:80px"/> |
+| Salt                  | <img src="./assets/goods/salt.png"                          alt="drawing" style="width:80px"/> |
+| Wheat                 | <img src="./assets/goods/wheat.png"                         alt="drawing" style="width:80px"/> |
+| Potato                | <img src="./assets/goods/potato.png"                        alt="drawing" style="width:80px"/> |
+| Cotton                | <img src="./assets/goods/string.png"                        alt="drawing" style="width:80px"/> |
+| Rice                  | <img src="./assets/goods/rice.png"                          alt="drawing" style="width:80px"/> |
+| Fur                   | <img src="./assets/goods/leather.png"                       alt="drawing" style="width:80px"/> |
+| Wood                  | <img src="./assets/goods/wood.png"                          alt="drawing" style="width:80px"/> |
+| Sand                  | <img src="./assets/goods/sand.png"                          alt="drawing" style="width:80px"/> |
+| Stone                 | <img src="./assets/goods/stone.png"                         alt="drawing" style="width:80px"/> |
+| Oil                   | <img src="./assets/goods/barrel.png"                        alt="drawing" style="width:80px"/> |
+| Coal                  | <img src="./assets/goods/coal.png"                          alt="drawing" style="width:80px"/> |
+| Iron                  | <img src="./assets/goods/iron.png"                          alt="drawing" style="width:80px"/> |
+| Copper                | <img src="./assets/goods/copper.png"                        alt="drawing" style="width:80px"/> |
+| Precious Metal        | <img src="./assets/goods/diamond.png"                       alt="drawing" style="width:80px"/> |
+| Rare Metal            | <img src="./assets/goods/emerald.png"                       alt="drawing" style="width:80px"/> |
+| Bread                 | <img src="./assets/goods/bread.png"                         alt="drawing" style="width:80px"/> |
+| Alcohol               | <img src="./assets/goods/beer.png"                          alt="drawing" style="width:80px"/> |
+| Sushi                 | <img src="./assets/goods/sushi.png"                         alt="drawing" style="width:80px"/> |
+| Textile               | <img src="./assets/goods/part_fabric_blue.png"              alt="drawing" style="width:80px"/> |
+| Clothes               | <img src="./assets/goods/clothes.png"                       alt="drawing" style="width:80px"/> |
+| Furniture             | <img src="./assets/goods/bookshelf.png"                     alt="drawing" style="width:80px"/> |
+| Steel                 | <img src="./assets/goods/ingot_superalloy.png"              alt="drawing" style="width:80px"/> |
+| Tools                 | <img src="./assets/goods/tool_fancy_iron_hammer.png"        alt="drawing" style="width:80px"/> |
+| Cement                | <img src="./assets/goods/cement.png"                        alt="drawing" style="width:80px"/> |
+| Fuel                  | <img src="./assets/goods/part_fuelcan_full.png"             alt="drawing" style="width:80px"/> |
+| Plastic               | <img src="./assets/goods/food_dough.png"                    alt="drawing" style="width:80px"/> |
+| Glass                 | <img src="./assets/goods/glass.png"                         alt="drawing" style="width:80px"/> |
+| Electronics Component | <img src="./assets/goods/part_electronic_chip.png"          alt="drawing" style="width:80px"/> |
+| Radio                 | <img src="./assets/goods/radio.png"                         alt="drawing" style="width:80px"/> |
+| Computer              | <img src="./assets/goods/computer.png"                      alt="drawing" style="width:80px"/> |
+| Guns                  | <img src="./assets/goods/gun.png"                           alt="drawing" style="width:80px"/> |
+| Engine                | <img src="./assets/goods/engine.png"                        alt="drawing" style="width:80px"/> |
+| Car                   | <img src="./assets/goods/car.png"                           alt="drawing" style="width:80px"/> |
+| Planes                | <img src="./assets/goods/plane.png"                         alt="drawing" style="width:80px"/> |
+| Jewelry               | <img src="./assets/goods/ring.png"                          alt="drawing" style="width:80px"/> |
+| Phone                 | <img src="./assets/goods/phone.png"                         alt="drawing" style="width:80px"/> |
 
 
 ## Terrain Tiles
