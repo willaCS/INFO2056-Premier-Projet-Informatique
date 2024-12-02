@@ -58,19 +58,19 @@
 
 |                                                                            | Ressources type | Industry                   |
 | -------------------------------------------------------------------------- | --------------- | -------------------------- |
-| <img src="./docs/image/fish.png"        alt="drawing" style="width:30px"/> | Fish            | Fishing Boat               |
-| <img src="./docs/image/salt.png"        alt="drawing" style="width:30px"/> | Salt            | Salt Extraction            |
-| <img src="./docs/image/grass.png"      alt="drawing" style="width:30px"/>  | Fertile Land    | Carrots<br>Wheat<br>Potato |
-| <img src="./docs/image/tall_grass.png" alt="drawing" style="width:30px"/>  | Hunting Grouds  | Fur Hunting Grounds        |
-| <img src="./docs/image/wood.png"        alt="drawing" style="width:30px"/> | Wood            | Lumbermill                 |
-| <img src="./docs/image/oil.png"       alt="drawing" style="width:30px"/>   | Oil             | Oil Well                   |
-| <img src="./docs/image/coal.png"        alt="drawing" style="width:30px"/> | Coal            | Coal Mine                  |
-| <img src="./docs/image/iron.png"        alt="drawing" style="width:30px"/> | Iron            | Iron Mine                  |
-| <img src="./docs/image/copper.png"      alt="drawing" style="width:30px"/> | Copper          | Copper Mine                |
-| <img src="./docs/image/diamond.png"     alt="drawing" style="width:30px"/> | Precious Metals | Precious Metal Mine        |
-| <img src="./docs/image/emerald.png"     alt="drawing" style="width:30px"/> | Rare Metals     | Rare Metal Mine            |
-| <img src="./docs/image/sand.png"        alt="drawing" style="width:30px"/> | Sand            | Sand Query                 |
-| <img src="./docs/image/stone.png"       alt="drawing" style="width:30px"/> | Stone           | Stone Query                |
+| <img src="./assets/goods/fish.png"        alt="drawing" style="width:30px"/> | Fish            | Fishing Boat               |
+| <img src="./assets/goods/salt.png"        alt="drawing" style="width:30px"/> | Salt            | Salt Extraction            |
+| <img src="./assets/goods/grass.png"      alt="drawing" style="width:30px"/>  | Fertile Land    | Carrots<br>Wheat<br>Potato |
+| <img src="./assets/goods/tall_grass.png" alt="drawing" style="width:30px"/>  | Hunting Grouds  | Fur Hunting Grounds        |
+| <img src="./assets/goods/wood.png"        alt="drawing" style="width:30px"/> | Wood            | Lumbermill                 |
+| <img src="./assets/goods/oil.png"       alt="drawing" style="width:30px"/>   | Oil             | Oil Well                   |
+| <img src="./assets/goods/coal.png"        alt="drawing" style="width:30px"/> | Coal            | Coal Mine                  |
+| <img src="./assets/goods/iron.png"        alt="drawing" style="width:30px"/> | Iron            | Iron Mine                  |
+| <img src="./assets/goods/copper.png"      alt="drawing" style="width:30px"/> | Copper          | Copper Mine                |
+| <img src="./assets/goods/diamond.png"     alt="drawing" style="width:30px"/> | Precious Metals | Precious Metal Mine        |
+| <img src="./assets/goods/emerald.png"     alt="drawing" style="width:30px"/> | Rare Metals     | Rare Metal Mine            |
+| <img src="./assets/goods/sand.png"        alt="drawing" style="width:30px"/> | Sand            | Sand Query                 |
+| <img src="./assets/goods/stone.png"       alt="drawing" style="width:30px"/> | Stone           | Stone Query                |
 
 
 ## Industries
