@@ -2,6 +2,8 @@
 Ce fichier gère la fonction drawFrame appelée chaque tick
 """
 
+import Window
+from globals import testing
 from ui import SelectedTile
 import ui.components.settings
 import ui.components.map
@@ -11,6 +13,7 @@ import ui.components.sidemenu
 import ui.components.welcome
 from ui import gestionMenu
 from ui.framework import menu_draw
+from ui.framework.text import drawText
 
 # menu
 # sidemenu -> info case menu construction
@@ -31,9 +34,8 @@ def drawFrame():
 				ui.components.sidemenu.showSideMenu()
 			ui.components.map.drawMapComponent()
 			ui.components.topbar.showTopBar()
-			# selectedbuilding = all.font.render(testing.activeBuilding()['name'], True, (255, 0, 0)) # type: ignore
-			# Window.inst.blit(selectedbuilding, (Window.resolution[0] // 8, Window.resolution[0] // 10))
 	menu_draw()
+	drawText('font1', (Window.resolution[0] // 8, Window.resolution[0] // 10), testing.activeBuilding()['name'], (255, 0, 0))
 
 
 
