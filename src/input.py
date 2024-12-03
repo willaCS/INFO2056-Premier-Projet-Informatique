@@ -7,7 +7,6 @@ s'execute qu'une seule fois
 import pygame
 
 import Window
-from globals import testing
 from model import Speed
 from model.industry import Plant, plants
 from model.market import player_wallet
@@ -109,16 +108,6 @@ def singleKey_qwerty(key: int):
 					plants.remove(SelectedTile.val)
 					drawTile(SelectedTile.val, True) # Refresh cache for draw
 				SelectedTile.clear()
-		case pygame.K_z:
-			if SelectedTile.val:
-				if plants.tile_is_empty(SelectedTile.val):
-					building = testing.activeBuilding()
-					plants.place(Plant.init(building['id'], SelectedTile.val)) # type: ignore
-				# SelectedTile.clear()
-		case pygame.K_x:
-			testing.next()
-		case pygame.K_c:
-			testing.prev()
 		case pygame.K_o:
 			player_wallet.science += 10
 		case pygame.K_p:
@@ -163,16 +152,6 @@ def singleKey_azerty(key):
 					plants.remove(SelectedTile.val)
 					drawTile(SelectedTile.val, True) # Refresh cache for draw
 				SelectedTile.clear()
-		case pygame.K_w:
-			if SelectedTile.val:
-				if plants.tile_is_empty(SelectedTile.val):
-					building = testing.activeBuilding()
-					plants.place(Plant.init(building['id'], SelectedTile.val)) # type: ignore
-				# SelectedTile.clear()
-		case pygame.K_x:
-			testing.next()
-		case pygame.K_c:
-			testing.prev()
 		case pygame.K_o:
 			player_wallet.science += 10
 		case pygame.K_p:

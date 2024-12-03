@@ -1,5 +1,4 @@
 import Window
-from globals import all
 from model import Speed
 from model.market import player_wallet
 from ui import Screenmode, visual_config as vc

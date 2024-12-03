@@ -1,4 +1,5 @@
 import Window
+from model.industry import Plant, plants
 from model.industry.technologiesTree import get_placable_on
 from ui import SelectedTile
 from ui import visual_config as vc
@@ -14,7 +15,7 @@ EXIT_BUTTON_BORDER = 2 #en pixels
 CLOSE_BUTTON_SIZE = (75, 75)
 RESOURCE_BUTTON_WIDTH = 250
 LARGEUR_SIDEMENU = 470
-NOMBRE_DE_COLONNES = 5
+NOMBRE_DE_COLONNES = 4
 
 
 
@@ -23,11 +24,6 @@ def closeplaceBuildingsMenu(pos):
 	SelectedTile.val = None
 	composant_hide(placeBuildingsMenu)
 	composant_temp_remove(placeBuildingsMenu)
-
-
-
- 
-
 
 
 
@@ -95,27 +91,27 @@ placeBuildingsMenu = composant_new(3, [
 
 
 def showplaceBuildingsMenu():
-	print(len(placeBuildingsMenu['buttons']))
 	if placeBuildingsMenu['hidden']:
 		can_be_build = get_placable_on(SelectedTile.val)
 
+		tile_width = ((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES
 		composant_add_temp(placeBuildingsMenu, [
 			button_new(
 				2,
-				lambda i=i: (
+				lambda index=index: (
 					(
-						0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING + (i%NOMBRE_DE_COLONNES) * ((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING + 2*vc.PADDING)// NOMBRE_DE_COLONNES,
-						TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2 * vc.PADDING  + CLOSE_BUTTON_SIZE[1] + (i//NOMBRE_DE_COLONNES)*((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING + 2*vc.PADDING) // NOMBRE_DE_COLONNES
+						0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING + (index % NOMBRE_DE_COLONNES) * (tile_width + vc.PADDING),
+						TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2 * vc.PADDING  + CLOSE_BUTTON_SIZE[1] + (index // NOMBRE_DE_COLONNES)*(tile_width + vc.PADDING)
 					),
 					(
-						((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES,
-						((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES
+						tile_width,
+						tile_width,
 					)
 				),
-				
-				draw_industry_by_id(can_be_build[i])
+				draw_industry_by_id(building_id),
+				lambda pos, building_id=building_id: plants.place(Plant.init(building_id, SelectedTile.val))
 			)
-			for i in range(len(can_be_build))
+			for index, building_id in enumerate(can_be_build)
 		])
 		composant_show(placeBuildingsMenu)
  

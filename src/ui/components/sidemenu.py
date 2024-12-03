@@ -1,5 +1,4 @@
 import Window
-from globals import all
 from ui import SelectedTile
 from ui import visual_config as vc
 from ui.framework.framework import composant_add_temp, composant_temp_remove

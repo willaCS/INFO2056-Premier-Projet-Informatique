@@ -1,6 +1,5 @@
 import Window
 from ui import Cursor
-from globals.all import COLOR_WHITE
 from model.industry import plants
 from model.terrain.terrain import get_terrain_tile
 from ui import SelectedTile, Zoom
@@ -9,6 +8,7 @@ from ui.map import draw_industry, draw_terrain_tile
 from utils.cache import add_cache
 from ui.map.utils import coord_to_px
 from utils.mytyping import Color, coord_i
+from ui import visual_config as vc
 
 @add_cache
 def _drawTerrain(coord: coord_i):
@@ -66,4 +66,4 @@ def drawMap(rect):
 	
 	# Draw Selected Tile
 	if SelectedTile.val:
-		_drawTileOutline(COLOR_WHITE, SelectedTile.val)
+		_drawTileOutline((255, 255, 255), SelectedTile.val)
