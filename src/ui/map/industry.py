@@ -66,6 +66,7 @@ def print_industry(industry):
 	return industryPrintMap[industry][0]
 
 def draw_industry(industry):
+	print(industry)
 	return industryPrintMap.get(
 		Plant.type(industry),
 		('', lambda rect: None)

@@ -4,6 +4,7 @@ from model.industry.technologiesTree import get_placable_on
 from ui import SelectedTile
 from ui import visual_config as vc
 from ui.framework.framework import composant_add_temp, composant_temp_remove
+from ui.map.industry import draw_industry
 from ui.map.terrainTile import print_terrain_tile
 from ui.map.ressource import print_ressource
 from ui.common.buttons import centerTextButton
@@ -115,7 +116,7 @@ def showplaceBuildingsMenu():
 						((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES
 					)
 				),
-				lambda rect: drawRect(rect, (0, 0, 255)),
+				draw_industry(can_be_build[i])
 			)
 			for i in range(len(can_be_build))
 		])
