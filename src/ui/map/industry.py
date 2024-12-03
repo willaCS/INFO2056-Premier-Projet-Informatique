@@ -66,8 +66,10 @@ def print_industry(industry):
 	return industryPrintMap[industry][0]
 
 def draw_industry(industry):
-	print(industry)
+	return draw_industry_by_id(Plant.type(industry))
+
+def draw_industry_by_id(industry_id):
 	return industryPrintMap.get(
-		Plant.type(industry),
+		industry_id,
 		('', lambda rect: None)
 	)[1]
