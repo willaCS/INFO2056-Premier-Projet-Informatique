@@ -9,7 +9,7 @@ from typing import Callable, Dict
 from pygame.event import Event
 from utils.mytyping import coord_i
 
-DEFAULT_RESOLUTION = (1200, 800)
+DEFAULT_RESOLUTION = (1280, 1024)
 
 __done = False
 __tickrate = 60
