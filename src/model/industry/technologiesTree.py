@@ -205,6 +205,8 @@ def get_tech_for_draw(i, j):
 
 
 def get_placable_on(coord):
+	if not coord:
+		return []
 	unlocked = get_unlocked_buildings()
 	terrain = get_terrain_tile(coord)
 	ressource = TerrainTile.ressource(terrain)

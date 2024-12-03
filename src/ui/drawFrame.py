@@ -5,6 +5,7 @@ Ce fichier gère la fonction drawFrame appelée chaque tick
 import Window
 from globals import testing
 from ui import SelectedTile
+import ui.components.placeBuildings
 import ui.components.settings
 import ui.components.map
 import ui.components.tech
@@ -32,6 +33,7 @@ def drawFrame():
 		case gestionMenu.MENU_JEU:
 			if SelectedTile.val:
 				ui.components.sidemenu.showSideMenu()
+				ui.components.placeBuildings.showplaceBuildingsMenu()
 			ui.components.map.drawMapComponent()
 			ui.components.topbar.showTopBar()
 	menu_draw()
