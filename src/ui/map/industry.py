@@ -3,18 +3,19 @@ from ui import Screenmode, Zoom
 from ui.framework.draw import drawRect
 from ui.framework.image import drawImage
 
+PADDING = 10
+
 def drawIndustry(key):
 	
 	def res(rect):
-		pad = Zoom.tile_size // 16
 		match Screenmode.val:
 			case Screenmode.SCREENMODE_MAIN:
 				drawImage('industry', rect)
-				if rect[1][1] - pad * 2 < 1:
+				if rect[1][1] - PADDING * 2 < 1:
 					return
 				drawImage(key,
-					((rect[0][0] + pad, rect[0][1] + pad),
-					(rect[1][0] - pad * 2, rect[1][1] - pad * 2)
+					((rect[0][0] + PADDING, rect[0][1] + PADDING),
+					(rect[1][0] - PADDING * 2, rect[1][1] - PADDING * 2)
 				))
 			case Screenmode.SCREENMODE_ECONOMY_SUPPLY:
 				drawRect(rect, (255, 255, 0))
