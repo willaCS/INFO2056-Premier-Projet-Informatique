@@ -10,7 +10,6 @@ def button_new(
         drawArg,
         exec = None,
         execOutside = lambda pos: None,
-        temp = False,
     ):
     return {
         "z": z,
@@ -18,7 +17,7 @@ def button_new(
         "drawArg": drawArg,
         "exec": exec,
         "execOutside": execOutside,
-        "temp": temp,
+        "temp": False,
     }
 
 def button_draw(button):
@@ -84,8 +83,9 @@ def composant_clickOutside(button, pos):
     for button in button["buttons"]:
         button_clickOutside(button, pos)
 
-def composant_temp_comp(composant, button_array):
+def composant_add_temp(composant, button_array):
     for but in button_array:
+        but['temp'] = True
         composant["buttons"].append(but)
 
 def composant_temp_remove(composant):

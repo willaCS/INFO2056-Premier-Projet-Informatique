@@ -3,7 +3,7 @@ from globals import all
 from model.industry.technologiesTree import get_placable_on
 from ui import SelectedTile
 from ui import visual_config as vc
-from ui.framework.framework import composant_temp_comp, composant_temp_remove
+from ui.framework.framework import composant_add_temp, composant_temp_remove
 from ui.map.terrainTile import print_terrain_tile
 from ui.map.ressource import print_ressource
 from ui.common.buttons import centerTextButton
@@ -99,9 +99,10 @@ placeBuildingsMenu = composant_new(3, [
 
 
 def showplaceBuildingsMenu():
+	print(len(placeBuildingsMenu['buttons']))
 	if placeBuildingsMenu['hidden']:
 		can_be_build = get_placable_on(SelectedTile.val)
-		xxx = [
+		composant_add_temp(placeBuildingsMenu, [
 			button_new(
 				2,
 				lambda i=i: (
@@ -115,11 +116,9 @@ def showplaceBuildingsMenu():
 					)
 				),
 				lambda rect: drawRect(rect, (0, 0, 255)),
-				temp=True
 			)
 			for i in range(len(can_be_build))
-		]
-		composant_temp_comp(placeBuildingsMenu, xxx)
+		])
 		composant_show(placeBuildingsMenu)
  
 
