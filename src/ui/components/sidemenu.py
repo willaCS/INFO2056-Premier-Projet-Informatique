@@ -27,7 +27,7 @@ def closeSideMenu(pos):
 
 
 def prio(rect):
-	if TerrainTile.ressource(get_terrain_tile(SelectedTile.val)) == None:
+	if SelectedTile.val and TerrainTile.ressource(get_terrain_tile(SelectedTile.val)) == None:
 		return
 	else:
 		__drawRessource(rect)

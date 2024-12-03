@@ -114,7 +114,7 @@ def singleKey_qwerty(key: int):
 				if plants.tile_is_empty(SelectedTile.val):
 					building = testing.activeBuilding()
 					plants.place(Plant.init(building['id'], SelectedTile.val)) # type: ignore
-				SelectedTile.clear()
+				# SelectedTile.clear()
 		case pygame.K_x:
 			testing.next()
 		case pygame.K_c:
