@@ -45,7 +45,7 @@ goodsMap = {
 def print_goods(type):
 	return goodsMap[type][0]
 
-def draw_goods(type, rect):
+def draw_goods(type):
 	return goodsMap.get(
 		type,
 		('', lambda rect: None)

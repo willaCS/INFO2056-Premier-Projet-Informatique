@@ -26,6 +26,11 @@ def closeSideMenu(pos):
 
 
 
+def prio(rect):
+	if TerrainTile.ressource(get_terrain_tile(SelectedTile.val)) == None:
+		return
+	else:
+		__drawRessource(rect)
 
 
 
@@ -88,7 +93,7 @@ sideMenu = composant_new(2, [
 	),
 
 
-	# resource
+	# second button
 	button_new(
 		2,
 		lambda: 
@@ -102,7 +107,7 @@ sideMenu = composant_new(2, [
 				RESOURCE_BUTTON_WIDTH
 			)
 		),
-		__drawRessource
+		prio
 	),
 
 	# Close button
