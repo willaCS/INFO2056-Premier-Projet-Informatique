@@ -3,6 +3,7 @@ from globals import all
 from model.industry.technologiesTree import get_placable_on
 from ui import SelectedTile
 from ui import visual_config as vc
+from ui.framework.framework import composant_temp_comp, composant_temp_remove
 from ui.map.terrainTile import print_terrain_tile
 from ui.map.ressource import print_ressource
 from ui.common.buttons import centerTextButton
@@ -25,6 +26,7 @@ def closeplaceBuildingsMenu(pos):
 	global placeBuildingsMenu
 	SelectedTile.val = None
 	composant_hide(placeBuildingsMenu)
+	composant_temp_remove(placeBuildingsMenu)
 
 
 
@@ -36,7 +38,6 @@ def closeplaceBuildingsMenu(pos):
 def __drawSideMenu(rect):
 	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
 	drawRect(rect, vc.PRIMARY, vc.ROUNDING_SMOOTH, vc.MENU_BORDER_WIDTH)
-	get_placable_on(SelectedTile.val)
 	
 
 
@@ -93,61 +94,33 @@ placeBuildingsMenu = composant_new(3, [
 		closeplaceBuildingsMenu
 
 	),
-	
-    
-	
-    button_new(
-		2,
-		lambda: (
-			(
-				0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING,
-				TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2 * vc.PADDING  + CLOSE_BUTTON_SIZE[1]
-            ),
-			(
-				((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1)* vc.PADDING) // NOMBRE_DE_COLONNES,
-				((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1)* vc.PADDING) // NOMBRE_DE_COLONNES
-				
-            )
-        ),
-    	lambda rect: drawRect(rect, (255, 0, 0))
-    ),
-	
-    button_new(
-		2,
-		lambda: (
-			(
-				0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2* vc.PADDING + ((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1)* vc.PADDING) // NOMBRE_DE_COLONNES,
-				TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2 * vc.PADDING  + CLOSE_BUTTON_SIZE[1]
-            ),
-			(
-				((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1)* vc.PADDING) // NOMBRE_DE_COLONNES,
-				((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1)* vc.PADDING) // NOMBRE_DE_COLONNES
-				
-            )
-        ),
-    	lambda rect: drawRect(rect, (0, 255, 0))
-    ),
-	button_new(
-		2,
-		lambda: (
-			(
-				0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 3* vc.PADDING + 2*((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1)* vc.PADDING) // NOMBRE_DE_COLONNES,
-				TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2 * vc.PADDING  + CLOSE_BUTTON_SIZE[1]
-            ),
-			(
-				((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1)* vc.PADDING) // NOMBRE_DE_COLONNES,
-				((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1)* vc.PADDING) // NOMBRE_DE_COLONNES
-				
-            )
-        ),
-    	lambda rect: drawRect(rect, (0, 0, 255))
-    ),
 ])
 
 
 
 def showplaceBuildingsMenu():
-	composant_show(placeBuildingsMenu)
+	if placeBuildingsMenu['hidden']:
+		can_be_build = get_placable_on(SelectedTile.val)
+		xxx = [
+			button_new(
+				2,
+				lambda i=i: (
+					(
+						0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING + i * ((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES,
+						TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2 * vc.PADDING  + CLOSE_BUTTON_SIZE[1]
+					),
+					(
+						((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES,
+						((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES
+					)
+				),
+				lambda rect: drawRect(rect, (0, 0, 255)),
+				temp=True
+			)
+			for i in range(len(can_be_build))
+		]
+		composant_temp_comp(placeBuildingsMenu, xxx)
+		composant_show(placeBuildingsMenu)
  
 
  
