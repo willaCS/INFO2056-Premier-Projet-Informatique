@@ -6,7 +6,6 @@ from ui import visual_config as vc
 from ui.framework.framework import composant_add_temp, composant_temp_remove
 from ui.map.industry import draw_industry_by_id
 from ui.common.buttons import centerTextButton
-from ui.components.topbar import TOP_BAR_HEIGHT
 from ui.framework import button_new, composant_hide, composant_new, composant_show, drawRect, drawImage
 
 
@@ -43,8 +42,8 @@ placeBuildingsMenu = composant_new(3, [
 	# Background
 	button_new(1,
 		lambda: (
-			(0 + MENU_MARGIN, TOP_BAR_HEIGHT + MENU_MARGIN),
-			(LARGEUR_SIDEMENU - 2 * MENU_MARGIN, Window.resolution[1] - TOP_BAR_HEIGHT - 2 * MENU_MARGIN),
+			(0 + MENU_MARGIN, vc.TOP_BAR_HEIGHT + MENU_MARGIN),
+			(LARGEUR_SIDEMENU - 2 * MENU_MARGIN, Window.resolution[1] - vc.TOP_BAR_HEIGHT - 2 * MENU_MARGIN),
 		),
 		__drawSideMenu,
 		lambda pos: None,
@@ -59,7 +58,7 @@ placeBuildingsMenu = composant_new(3, [
 		(
 			(
 				0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING,
-				TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING
+				vc.TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING
 			),
 			(
 				LARGEUR_SIDEMENU - 2 * (vc.MENU_BORDER_WIDTH + vc.PADDING) - vc.PADDING - 2 * MENU_MARGIN - CLOSE_BUTTON_SIZE[0],
@@ -78,7 +77,7 @@ placeBuildingsMenu = composant_new(3, [
 		lambda: (
 			(
 				LARGEUR_SIDEMENU - MENU_MARGIN - vc.PADDING - vc.MENU_BORDER_WIDTH - CLOSE_BUTTON_SIZE[0],
-				TOP_BAR_HEIGHT + MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH
+				vc.TOP_BAR_HEIGHT + MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH
 			),
 			CLOSE_BUTTON_SIZE
 		),
@@ -101,7 +100,7 @@ def showplaceBuildingsMenu():
 				lambda index=index: (
 					(
 						0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING + (index % NOMBRE_DE_COLONNES) * (tile_width + vc.PADDING),
-						TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2 * vc.PADDING  + CLOSE_BUTTON_SIZE[1] + (index // NOMBRE_DE_COLONNES)*(tile_width + vc.PADDING)
+						vc.TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2 * vc.PADDING  + CLOSE_BUTTON_SIZE[1] + (index // NOMBRE_DE_COLONNES)*(tile_width + vc.PADDING)
 					),
 					(
 						tile_width,

@@ -1,6 +1,6 @@
 import Window
 from ui import SelectedTile
-from ui.components.topbar import TOP_BAR_HEIGHT
+from ui import visual_config as vc
 from ui.framework import button_new, composant_new, composant_show
 from ui.map.map import drawMap
 
@@ -11,11 +11,11 @@ map_component = composant_new(0, [
 		lambda: (
 			(
 				0,
-				TOP_BAR_HEIGHT,
+				vc.TOP_BAR_HEIGHT,
 			),
 			(
 				Window.resolution[0],
-				Window.resolution[1] - TOP_BAR_HEIGHT
+				Window.resolution[1] - vc.TOP_BAR_HEIGHT
 			),
 		),
 		drawMap,

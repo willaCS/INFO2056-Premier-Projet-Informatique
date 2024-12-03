@@ -6,7 +6,6 @@ from ui.map.terrainTile import print_terrain_tile
 from ui.map.ressource import print_ressource
 from ui.map.goods import draw_goods, ressources_to_goods
 from ui.common.buttons import centerTextButton
-from ui.components.topbar import TOP_BAR_HEIGHT
 from ui.framework import button_new, composant_hide, composant_new, composant_show, drawRect, drawImage, drawText
 from model.terrain import Ressource, TerrainTile
 from model.terrain.terrain import get_terrain_tile
@@ -15,7 +14,7 @@ from model.terrain.terrain import get_terrain_tile
 MENU_MARGIN = 5 #en pixels
 EXIT_BUTTON_BORDER = 2 #en pixels
 CLOSE_BUTTON_SIZE = (75, 75)
-RESOURCE_BUTTON_HEIGHT = (Window.resolution[1]- 2 * (MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING)  - TOP_BAR_HEIGHT - 2 * vc.PADDING- CLOSE_BUTTON_SIZE[1]) / 2
+RESOURCE_BUTTON_HEIGHT = (Window.resolution[1]- 2 * (MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING) - vc.TOP_BAR_HEIGHT - 2 * vc.PADDING- CLOSE_BUTTON_SIZE[1]) / 2
 LARGEUR_SIDEMENU = 470
 
 
@@ -77,8 +76,8 @@ sideMenu = composant_new(2, [
 	# Background
 	button_new(1,
 		lambda: (
-			(0 + MENU_MARGIN, TOP_BAR_HEIGHT + MENU_MARGIN),
-			(LARGEUR_SIDEMENU - 2 * MENU_MARGIN, Window.resolution[1] - TOP_BAR_HEIGHT - 2 * MENU_MARGIN),
+			(0 + MENU_MARGIN, vc.TOP_BAR_HEIGHT + MENU_MARGIN),
+			(LARGEUR_SIDEMENU - 2 * MENU_MARGIN, Window.resolution[1] - vc.TOP_BAR_HEIGHT - 2 * MENU_MARGIN),
 		),
 		__drawSideMenu,
 		lambda pos: None,
@@ -93,7 +92,7 @@ sideMenu = composant_new(2, [
 		(
 			(
 				0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING,
-				TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING
+				vc.TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING
 			),
 			(
 				LARGEUR_SIDEMENU - 2 * (vc.MENU_BORDER_WIDTH + vc.PADDING) - vc.PADDING - 2 * MENU_MARGIN - CLOSE_BUTTON_SIZE[0],
@@ -111,7 +110,7 @@ sideMenu = composant_new(2, [
 		(
 			(
 				0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING,
-				TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2 * vc.PADDING + CLOSE_BUTTON_SIZE[1] 
+				vc.TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2 * vc.PADDING + CLOSE_BUTTON_SIZE[1] 
 			),
 			(
 				LARGEUR_SIDEMENU - 2 * (vc.MENU_BORDER_WIDTH + vc.PADDING) - 2 * MENU_MARGIN,
@@ -129,7 +128,7 @@ sideMenu = composant_new(2, [
 	# 	(
 	# 		(
 	# 			0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING,
-	# 			TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 3 * vc.PADDING + CLOSE_BUTTON_SIZE[1] + RESOURCE_BUTTON_HEIGHT
+	# 			vc.TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 3 * vc.PADDING + CLOSE_BUTTON_SIZE[1] + RESOURCE_BUTTON_HEIGHT
 	# 		),
 	# 		(
 	# 			LARGEUR_SIDEMENU - 2 * (vc.MENU_BORDER_WIDTH + vc.PADDING) - 2 * MENU_MARGIN,
@@ -146,7 +145,7 @@ sideMenu = composant_new(2, [
 		lambda: (
 			(
 				LARGEUR_SIDEMENU - MENU_MARGIN - vc.PADDING - vc.MENU_BORDER_WIDTH - CLOSE_BUTTON_SIZE[0],
-				TOP_BAR_HEIGHT + MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH
+				vc.TOP_BAR_HEIGHT + MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH
 			),
 			CLOSE_BUTTON_SIZE
 		),

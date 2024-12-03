@@ -3,6 +3,7 @@ from model import Speed
 from model.market import player_wallet
 from ui import Screenmode, visual_config as vc
 from ui.common.buttons import centerTextButton
+from ui.components.stock import showStockMenu
 from ui.components.tech import drawTech
 from ui.framework import button_new, composant_new, composant_show, drawRect, drawText, longNumber, drawCircle, drawImage 
 from ui import gestionMenu
@@ -14,7 +15,7 @@ def draw_exit_button(rect):
 
 
 
-TOP_BAR_HEIGHT = 60
+
 PADDING = 5
 
 STAT_WIDTH = 300
@@ -22,13 +23,13 @@ STAT_WIDTH = 300
 COLOR_DARK_RED = (120, 0, 0)
 COLOR_GRAY = (80, 80, 80)
 
-def drawStat(rect, num, num_incr, color, hasHover):
+def drawStat(rect, num, num_incr, color):
 	longNumber(num)
-	message = f"{longNumber(num)} (+{longNumber(num_incr)})"
-	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH, hover=vc.SECONDARY if hasHover else None)
+	message = f"{longNumber(num)} ({'+' if num_incr >= 0 else ''}{longNumber(num_incr)})"
+	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH, hover=vc.SECONDARY)
 	drawCircle(
 		(rect[0][0] + rect[1][1] // 2, rect[0][1] + rect[1][1] // 2),
-		TOP_BAR_HEIGHT // 2 - PADDING * 2,
+		vc.TOP_BAR_HEIGHT // 2 - PADDING * 2,
 		color,
 	)
 	drawText('font2', (rect[0][0] + rect[1][0] - PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midright")
@@ -38,7 +39,7 @@ topBar = composant_new(1, [
 	button_new(1,
 		lambda : (
 			(0, 0),
-			(Window.resolution[0], TOP_BAR_HEIGHT)
+			(Window.resolution[0], vc.TOP_BAR_HEIGHT)
 		),
 		lambda rect: drawRect(rect, (40, 40, 40)),
 		lambda pos: None,
@@ -47,8 +48,8 @@ topBar = composant_new(1, [
 	# Mode de la carte
 	*(button_new(2,
 		(
-			((TOP_BAR_HEIGHT - PADDING) * index + PADDING, PADDING),
-			(TOP_BAR_HEIGHT - 2 * PADDING, TOP_BAR_HEIGHT - 2 * PADDING)
+			((vc.TOP_BAR_HEIGHT - PADDING) * index + PADDING, PADDING),
+			(vc.TOP_BAR_HEIGHT - 2 * PADDING, vc.TOP_BAR_HEIGHT - 2 * PADDING)
 		),
 		lambda rect, value=value: centerTextButton(rect, 
 			'font1', f"{value[0]}",
@@ -66,28 +67,28 @@ topBar = composant_new(1, [
 	# Money
 	button_new(2,
 		(
-			((TOP_BAR_HEIGHT - PADDING) * 4 + PADDING, PADDING),
-			(STAT_WIDTH, TOP_BAR_HEIGHT - 2 * PADDING)
+			((vc.TOP_BAR_HEIGHT - PADDING) * 4 + PADDING, PADDING),
+			(STAT_WIDTH, vc.TOP_BAR_HEIGHT - 2 * PADDING)
 		),
-		lambda rect: drawStat(rect, player_wallet.money, player_wallet.money_incr, (255, 180, 0), False),
-		lambda pos: None,
+		lambda rect: drawStat(rect, player_wallet.money, player_wallet.money_incr, (255, 180, 0)),
+		showStockMenu,
 	),
 
 	# Science
 	button_new(2,
 		(
-			((TOP_BAR_HEIGHT - PADDING) * 4 + PADDING * 2 + STAT_WIDTH, PADDING),
-			(STAT_WIDTH, TOP_BAR_HEIGHT - 2 * PADDING)
+			((vc.TOP_BAR_HEIGHT - PADDING) * 4 + PADDING * 2 + STAT_WIDTH, PADDING),
+			(STAT_WIDTH, vc.TOP_BAR_HEIGHT - 2 * PADDING)
 		),
-		lambda rect: drawStat(rect, player_wallet.science, player_wallet.science_incr, (0, 200, 200), True),
+		lambda rect: drawStat(rect, player_wallet.science, player_wallet.science_incr, (0, 200, 200)),
 		lambda pos: drawTech(),
 	),
 	
 	# Vitesse de la simulation
 	*(button_new(2,
 		lambda i=i: (
-			(Window.resolution[0] - (7-i) * (TOP_BAR_HEIGHT - PADDING), 0 + PADDING),
-			(TOP_BAR_HEIGHT - 2 * PADDING, TOP_BAR_HEIGHT - 2 * PADDING)
+			(Window.resolution[0] - (7-i) * (vc.TOP_BAR_HEIGHT - PADDING), 0 + PADDING),
+			(vc.TOP_BAR_HEIGHT - 2 * PADDING, vc.TOP_BAR_HEIGHT - 2 * PADDING)
 		),
 		lambda rect, i=i: centerTextButton(rect, 
 			'font1', f"{i}",
@@ -100,8 +101,8 @@ topBar = composant_new(1, [
 	#exit
 	button_new(2, 
 		lambda: (
-			(Window.resolution[0] - 1 * (TOP_BAR_HEIGHT - PADDING), 0 + PADDING),
-			(TOP_BAR_HEIGHT - 2 * PADDING, TOP_BAR_HEIGHT - 2 * PADDING)
+			(Window.resolution[0] - 1 * (vc.TOP_BAR_HEIGHT - PADDING), 0 + PADDING),
+			(vc.TOP_BAR_HEIGHT - 2 * PADDING, vc.TOP_BAR_HEIGHT - 2 * PADDING)
 		), 
 		draw_exit_button, 
 		lambda pos: gestionMenu.change_menu(gestionMenu.MENU_INTRO)

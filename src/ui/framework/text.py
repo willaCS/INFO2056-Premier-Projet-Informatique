@@ -7,16 +7,17 @@ def loadFont(id: str, name: str, size: int, bold: bool = False):
 	fonts[id] = pygame.font.SysFont(name, size, bold)
 
 def longNumber(number: int) -> str:
-	if number < 1000:
-		return str(number)
-	elif number < 1000000:
-		return str((number // 10) / 100) + "K"
-	elif number < 1000000000:
-		return str((number // 10000) / 100) + "M"
-	elif number < 1000000000000:
-		return str((number // 10000000) / 100) + "B"
+	print(number)
+	if abs(number / (10 ** 12)) >= 1:
+		return str((number // (10 ** (12 - 2))) / 100) + "T"
+	elif abs(number / (10 ** 9)) >= 1:
+		return str((number // (10 ** (9 - 2))) / 100) + "B"
+	elif abs(number / (10 ** 6)) >= 1:
+		return str((number // (10 ** (6 - 2))) / 100) + "M"
+	elif abs(number / (10 ** 3)) >= 1:
+		return str((number // (10 ** (3 - 2))) / 100) + "K"
 	else:
-		return str((number // 10000000000) / 100) + "T"
+		return str(number)
 
 # anchor can be one of the following:
 # topleft, bottomleft, topright, bottomright
