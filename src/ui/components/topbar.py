@@ -2,7 +2,7 @@ import Window
 from model import Speed
 from model.market import player_wallet
 from ui import Screenmode, visual_config as vc
-from ui.common.buttons import centerTextButton
+from ui.common.buttons import centerTextButton, exit_button
 from ui.components.stock import showStockMenu
 from ui.components.tech import drawTech
 from ui.framework import component, component_show, component_hide, drawRect, drawText, longNumber, drawCircle, drawImage 
@@ -101,8 +101,7 @@ topBar = component(
 				(parent[1][0] - (parent[1][1]), 0),
 				(parent[1][1], parent[1][1])
 			), 
-			draw=lambda rect: drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH, hover=vc.PRIMARY) or\
-							  drawImage('exit', rect), 
+			draw=exit_button, 
 			click=lambda: gestionMenu.change_menu(gestionMenu.MENU_INTRO)
 		)
 	]

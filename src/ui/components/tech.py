@@ -1,7 +1,7 @@
 import Window
 from model.industry.technologiesTree import get_tech_for_draw, add_tech
 from ui import visual_config as vc
-from ui.common.buttons import centerTextButton
+from ui.common.buttons import centerTextButton, exit_button
 from ui.framework import component, component_show, component_hide, drawImage, drawRect, drawText
 from ui.map.industry import print_industry
 
@@ -11,8 +11,6 @@ NB_TECH_BRANCH = 5
 TECH_PER_BRANCH = 3
 
 TECH_MENU_SIZE = (500, 300)
-
-CLOSE_BUTTON_SIZE = (75, 75)
 
 HEADER_HEIGHT=75
 TECH_HEIGHT=75
@@ -26,10 +24,6 @@ def _selectTech(i, j):
 	tech_selected = (i, j)
 
 
-
-def _drawExitButon(rect):
-	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
-	drawImage('exit', rect)
 
 def _drawTech(rect, i, j):
 	global tech_selected
@@ -70,7 +64,7 @@ techMenu = component(
 			rect=lambda parent: (
 				(0, 0),
 				(
-					parent[1][0] - CLOSE_BUTTON_SIZE[1] - vc.PADDING,
+					parent[1][0] - HEADER_HEIGHT - vc.PADDING,
 					HEADER_HEIGHT,
 				)
 			),
@@ -85,7 +79,7 @@ techMenu = component(
 				(parent[1][0] - HEADER_HEIGHT, 0),
 				(HEADER_HEIGHT, HEADER_HEIGHT)
 			),
-			draw=_drawExitButon,
+			draw=exit_button,
 			click=closeTech,
 		),
 

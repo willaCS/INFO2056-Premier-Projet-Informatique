@@ -6,7 +6,7 @@ from ui import visual_config as vc
 from ui.map.goods import draw_goods
 from ui.map.industry import PADDING
 from ui.map.terrainTile import print_terrain_tile
-from ui.common.buttons import centerRightTextButton, centerTextButton
+from ui.common.buttons import centerRightTextButton, centerTextButton, exit_button
 from ui.framework import component, component_hide, component_show, drawRect, drawImage
 from model.terrain.terrain import get_terrain_tile
 
@@ -15,7 +15,6 @@ MENU_MARGIN = 5 #en pixels
 EXIT_BUTTON_BORDER = 2 #en pixels
 CLOSE_BUTTON_SIZE = (75, 75)
 RESOURCE_BUTTON_HEIGHT = (Window.resolution[1]- 2 * (MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING) - vc.TOP_BAR_HEIGHT - 2 * vc.PADDING- CLOSE_BUTTON_SIZE[1]) / 2
-LARGEUR_SIDEMENU = 470
 
 NUMBER_OF_GOODS = Goods.GOODS_SAND
 NUMBER_OF_COLUMNS = 3
@@ -49,10 +48,10 @@ def drawStock(goods_id):
 stockMenu = component(
 	z=3,
 	margin=vc.PADDING,
-	padding=vc.PADDING * 2,
+	padding=vc.PADDING + vc.MENU_BORDER_WIDTH,
 	rect=lambda parent: (
 		(0, vc.TOP_BAR_HEIGHT),
-		(LARGEUR_SIDEMENU, parent[1][1] - vc.TOP_BAR_HEIGHT),
+		(vc.LARGEUR_SIDEMENU, parent[1][1] - vc.TOP_BAR_HEIGHT),
 	),
 	draw=lambda rect: drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH) or \
 					  drawRect(rect, vc.PRIMARY, vc.ROUNDING_SMOOTH, vc.MENU_BORDER_WIDTH),
@@ -80,8 +79,7 @@ stockMenu = component(
 				(parent[1][0] - CLOSE_BUTTON_SIZE[0], 0),
 				CLOSE_BUTTON_SIZE
 			),
-			draw=lambda rect: drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD) or \
-								drawImage('exit', rect),
+			draw=exit_button,
 			click=closeStockMenu,
 		),
 

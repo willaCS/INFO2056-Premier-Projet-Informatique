@@ -4,7 +4,7 @@ from model.industry.technologiesTree import get_placable_on
 from ui import SelectedTile
 from ui import visual_config as vc
 from ui.map.industry import draw_industry_by_id
-from ui.common.buttons import centerTextButton
+from ui.common.buttons import centerTextButton, exit_button
 from ui.framework import component, component_hide, component_show, drawRect, drawImage
 
 
@@ -12,7 +12,6 @@ MENU_MARGIN = 5 #en pixels
 EXIT_BUTTON_BORDER = 2 #en pixels
 CLOSE_BUTTON_SIZE = (75, 75)
 RESOURCE_BUTTON_WIDTH = 250
-LARGEUR_SIDEMENU = 470
 NOMBRE_DE_COLONNES = 4
 
 
@@ -26,10 +25,10 @@ def closeplaceBuildingsMenu(pos):
 placeBuildingsMenu = component(
 	z=1,
 	margin=MENU_MARGIN,
-	padding=vc.PADDING * 2,
+	padding=vc.PADDING + vc.MENU_BORDER_WIDTH,
 	rect=lambda parent: (
 		(0, vc.TOP_BAR_HEIGHT),
-		(LARGEUR_SIDEMENU, parent[1][1] - vc.TOP_BAR_HEIGHT),
+		(vc.LARGEUR_SIDEMENU, parent[1][1] - vc.TOP_BAR_HEIGHT),
 	),
 	draw=lambda rect: drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH) or\
 					  drawRect(rect, vc.PRIMARY, vc.ROUNDING_SMOOTH, vc.MENU_BORDER_WIDTH),
@@ -55,8 +54,7 @@ placeBuildingsMenu = component(
 				(parent[1][0] - CLOSE_BUTTON_SIZE[0], 0),
 				CLOSE_BUTTON_SIZE
 			),
-			draw=lambda rect: drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD) or\
-							  drawImage('exit', rect),
+			draw=exit_button,
 			click=closeplaceBuildingsMenu,
 		),
 	]
@@ -65,10 +63,10 @@ placeBuildingsMenu = component(
 
 
 def showplaceBuildingsMenu():
-	# if placeBuildingsMenu['hidden']:
+	# if placeBuildingsMenu['_hidden']:
 		can_be_build = get_placable_on(SelectedTile.val)
 
-		tile_width = ((LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES
+		tile_width = ((vc.LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES
 		# composant_add_temp(placeBuildingsMenu, [
 		# 	button_new(
 		# 		2,
@@ -87,7 +85,7 @@ def showplaceBuildingsMenu():
 		# 	)
 		# 	for index, building_id in enumerate(can_be_build)
 		# ])
-		component_show(placeBuildingsMenu)
+		# component_show(placeBuildingsMenu)
  
 
 

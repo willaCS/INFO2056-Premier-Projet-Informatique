@@ -34,7 +34,7 @@ MENU_BORDER_WIDTH = 5
 PADDING = 5
 
 TOP_BAR_HEIGHT = 60
-
+LARGEUR_SIDEMENU = 470
 
 
 def change_Background(mode):

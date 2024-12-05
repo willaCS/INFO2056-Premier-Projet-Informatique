@@ -21,7 +21,7 @@ main_component = component(
 		map_component,
 		placeBuildingsMenu,
 		settingsMenu,
-		# sideMenu,
+		sideMenu,
 		stockMenu,
 		techMenu,
 		topBar,
