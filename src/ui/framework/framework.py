@@ -127,3 +127,17 @@ def component_click(component, pos, has_already_clicked=False):
 
 def component_add_parent(component, parent):
 	component['_parent'] = parent
+
+
+
+
+
+
+def component_add_temp(component, new_childs):
+	for child in new_childs:
+		child['_temp'] = True
+		component['_childs'].append(child)
+		component_add_parent(child, component)
+
+def component_temp_remove(component):
+    component['_childs'] = [child for child in component['_childs'] if not child['_temp']]

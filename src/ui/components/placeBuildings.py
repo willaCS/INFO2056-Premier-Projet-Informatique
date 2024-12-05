@@ -3,6 +3,7 @@ from model.industry import Plant, plants
 from model.industry.technologiesTree import get_placable_on
 from ui import SelectedTile
 from ui import visual_config as vc
+from ui.framework.framework import component_add_temp
 from ui.map.industry import draw_industry_by_id
 from ui.common.buttons import centerTextButton, exit_button
 from ui.framework import component, component_hide, component_show, drawRect, drawImage
@@ -13,7 +14,6 @@ EXIT_BUTTON_BORDER = 2 #en pixels
 CLOSE_BUTTON_SIZE = (75, 75)
 RESOURCE_BUTTON_WIDTH = 250
 NOMBRE_DE_COLONNES = 4
-
 
 
 def closeplaceBuildingsMenu(pos):
@@ -67,25 +67,25 @@ def showplaceBuildingsMenu():
 		can_be_build = get_placable_on(SelectedTile.val)
 
 		tile_width = ((vc.LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES
-		# composant_add_temp(placeBuildingsMenu, [
-		# 	button_new(
-		# 		2,
-		# 		lambda index=index: (
-		# 			(
-		# 				0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING + (index % NOMBRE_DE_COLONNES) * (tile_width + vc.PADDING),
-		# 				vc.TOP_BAR_HEIGHT + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2 * vc.PADDING  + CLOSE_BUTTON_SIZE[1] + (index // NOMBRE_DE_COLONNES)*(tile_width + vc.PADDING)
-		# 			),
-		# 			(
-		# 				tile_width,
-		# 				tile_width,
-		# 			)
-		# 		),
-		# 		draw_industry_by_id(building_id),
-		# 		lambda pos, building_id=building_id: plants.place(Plant.init(building_id, SelectedTile.val))
-		# 	)
-		# 	for index, building_id in enumerate(can_be_build)
-		# ])
-		# component_show(placeBuildingsMenu)
+		component_add_temp(placeBuildingsMenu, [
+			component(
+				z=2,
+				rect=lambda parent, x=index % NOMBRE_DE_COLONNES, y=index // NOMBRE_DE_COLONNES: (
+					(
+						x * (tile_width + vc.PADDING),
+						y * (tile_width + vc.PADDING) + CLOSE_BUTTON_SIZE[1] + vc.PADDING,
+					),
+					(
+						tile_width,
+						tile_width,
+					)
+				),
+				draw=draw_industry_by_id(building_id),
+				click=lambda pos, building_id=building_id: plants.place(Plant.init(building_id, SelectedTile.val))
+			)
+			for index, building_id in enumerate(can_be_build)
+		])
+		component_show(placeBuildingsMenu)
  
 
 
