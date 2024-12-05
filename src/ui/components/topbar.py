@@ -5,16 +5,8 @@ from ui import Screenmode, visual_config as vc
 from ui.common.buttons import centerTextButton
 from ui.components.stock import showStockMenu
 from ui.components.tech import drawTech
-from ui.framework import button_new, composant_new, composant_show, drawRect, drawText, longNumber, drawCircle, drawImage 
+from ui.framework import component, component_show, component_hide, drawRect, drawText, longNumber, drawCircle, drawImage 
 from ui import gestionMenu
- 
-
-def draw_exit_button(rect):
-	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH, hover=vc.PRIMARY)
-	drawImage('exit', rect)
-
-
-
 
 PADDING = 5
 
@@ -34,81 +26,88 @@ def drawStat(rect, num, num_incr, color):
 	)
 	drawText('font2', (rect[0][0] + rect[1][0] - PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midright")
 
-topBar = composant_new(1, [
-	# Background
-	button_new(1,
-		lambda : (
-			(0, 0),
-			(Window.resolution[0], vc.TOP_BAR_HEIGHT)
-		),
-		lambda rect: drawRect(rect, (40, 40, 40)),
-		lambda pos: None,
+topBar = component(
+	z=1,
+	padding=vc.PADDING,
+	rect=lambda parent: (
+		(0, 0),
+		(parent[1][0], vc.TOP_BAR_HEIGHT)
 	),
+	draw=lambda rect: drawRect(rect, (40, 40, 40)),
+	click=lambda pos: None,
+	childs=[
+		# Mode de la carte
+		*(component(
+			z=2,
+			# margin=vc.PADDING,
+			rect=lambda parent, index=index: (
+				((parent[1][1] + vc.PADDING) * index, 0),
+				(parent[1][1], parent[1][1])
+			),
+			draw=lambda rect, is_in, value=value: centerTextButton(rect, 
+				'font1', value[0],
+				vc.ACCENT if Screenmode.val == value[1] else vc.BACKGROUND,
+				vc.ROUNDING_SMOOTH, vc.PRIMARY
+			),
+			click=lambda pos, value=value: Screenmode.select(value[1])
+		) for index, value in enumerate([
+			("A", Screenmode.SCREENMODE_MAIN),
+			("B", Screenmode.SCREENMODE_ECONOMY_SUPPLY),
+			("C", Screenmode.SCREENMODE_ECONOMY_DEMAND),
+			("D", Screenmode.SCREENMODE_TRANSPORT),
+		])),
 
-	# Mode de la carte
-	*(button_new(2,
-		(
-			((vc.TOP_BAR_HEIGHT - PADDING) * index + PADDING, PADDING),
-			(vc.TOP_BAR_HEIGHT - 2 * PADDING, vc.TOP_BAR_HEIGHT - 2 * PADDING)
+		# Money
+		component(
+			z=2,
+			rect=lambda parent: (
+				((parent[1][1] + vc.PADDING) * 4, 0),
+				(STAT_WIDTH, parent[1][1])
+			),
+			draw=lambda rect: drawStat(rect, player_wallet.money, player_wallet.money_incr, (255, 180, 0)),
+			click=showStockMenu,
 		),
-		lambda rect, value=value: centerTextButton(rect, 
-			'font1', f"{value[0]}",
-			vc.ACCENT if Screenmode.val == value[1] else vc.BACKGROUND,
-			vc.ROUNDING_SMOOTH, vc.PRIMARY
-		),
-		lambda pos, value=value: Screenmode.select(value[1])
-	) for index, value in enumerate([
-		("A", Screenmode.SCREENMODE_MAIN),
-		("B", Screenmode.SCREENMODE_ECONOMY_SUPPLY),
-		("C", Screenmode.SCREENMODE_ECONOMY_DEMAND),
-		("D", Screenmode.SCREENMODE_TRANSPORT),
-	])),
 
-	# Money
-	button_new(2,
-		(
-			((vc.TOP_BAR_HEIGHT - PADDING) * 4 + PADDING, PADDING),
-			(STAT_WIDTH, vc.TOP_BAR_HEIGHT - 2 * PADDING)
+		# Science
+		component(
+			z=2,
+			rect=lambda parent: (
+				((parent[1][1] + vc.PADDING) * 4 + (STAT_WIDTH + vc.PADDING), 0),
+				(STAT_WIDTH, parent[1][1])
+			),
+			draw=lambda rect: drawStat(rect, player_wallet.science, player_wallet.science_incr, (0, 200, 200)),
+			click=drawTech,
 		),
-		lambda rect: drawStat(rect, player_wallet.money, player_wallet.money_incr, (255, 180, 0)),
-		showStockMenu,
-	),
+		
+		# Vitesse de la simulation
+		*(component(
+			z=2,
+			rect=lambda parent, i=i: (
+				(parent[1][0] - (7-i) * (parent[1][1] + vc.PADDING) + vc.PADDING, 0),
+				(parent[1][1], parent[1][1])
+			),
+			draw=lambda rect, hover, i=i: centerTextButton(rect, 
+				'font1', f"{i}",
+				vc.PRIMARY if Speed.val == 0 else vc.ACCENT if Speed.val >= i else vc.BACKGROUND,
+				vc.ROUNDING_SMOOTH, vc.PRIMARY
+			),
+			click=lambda pos, i=i: Speed.set(i),
+		) for i in range(1, 6)),
 
-	# Science
-	button_new(2,
-		(
-			((vc.TOP_BAR_HEIGHT - PADDING) * 4 + PADDING * 2 + STAT_WIDTH, PADDING),
-			(STAT_WIDTH, vc.TOP_BAR_HEIGHT - 2 * PADDING)
-		),
-		lambda rect: drawStat(rect, player_wallet.science, player_wallet.science_incr, (0, 200, 200)),
-		lambda pos: drawTech(),
-	),
-	
-	# Vitesse de la simulation
-	*(button_new(2,
-		lambda i=i: (
-			(Window.resolution[0] - (7-i) * (vc.TOP_BAR_HEIGHT - PADDING), 0 + PADDING),
-			(vc.TOP_BAR_HEIGHT - 2 * PADDING, vc.TOP_BAR_HEIGHT - 2 * PADDING)
-		),
-		lambda rect, i=i: centerTextButton(rect, 
-			'font1', f"{i}",
-			vc.PRIMARY if Speed.val == 0 else vc.ACCENT if Speed.val >= i else vc.BACKGROUND,
-			vc.ROUNDING_SMOOTH, vc.PRIMARY
-		),
-		lambda pos, i=i: Speed.set(i),
-	) for i in range(1, 6)),
-
-	#exit
-	button_new(2, 
-		lambda: (
-			(Window.resolution[0] - 1 * (vc.TOP_BAR_HEIGHT - PADDING), 0 + PADDING),
-			(vc.TOP_BAR_HEIGHT - 2 * PADDING, vc.TOP_BAR_HEIGHT - 2 * PADDING)
-		), 
-		draw_exit_button, 
-		lambda pos: gestionMenu.change_menu(gestionMenu.MENU_INTRO)
-	)
-])
+		#exit
+		component(
+			z=2, 
+			rect=lambda parent: (
+				(parent[1][0] - (parent[1][1]), 0),
+				(parent[1][1], parent[1][1])
+			), 
+			draw=lambda rect: drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH, hover=vc.PRIMARY) or\
+							  drawImage('exit', rect), 
+			click=lambda: gestionMenu.change_menu(gestionMenu.MENU_INTRO)
+		)
+	]
+)
 
 
 def showTopBar():
-	composant_show(topBar) 
+	component_show(topBar) 

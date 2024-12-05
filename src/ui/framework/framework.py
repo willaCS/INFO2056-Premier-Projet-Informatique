@@ -1,123 +1,129 @@
-def isInRectangle(pos, rect):
-    return rect[0][0] <= pos[0] and pos[0] <= rect[0][0] + rect[1][0]\
-        and rect[0][1] <= pos[1] and pos[1] <= rect[0][1] + rect[1][1]
+emptyLambda = lambda: None
 
+def component(
+	rect,
+	margin=0,
+	padding=0,
+	z=0,
+	draw=emptyLambda,
+	click=emptyLambda,
+	clickOutside=emptyLambda,
+	childs=[]
+):
+	res = {
+		'_rect': rect,
+		'margin': margin,
+		'padding': padding,
+		'z': z,
 
+		'_draw': draw,
+		'_click': click,
+		'_clickOutside': clickOutside,
 
-def button_new(
-        z,
-        rect,
-        drawArg,
-        exec = None,
-        execOutside = lambda pos: None,
-    ):
-    return {
-        "z": z,
-        "rect": rect,
-        "drawArg": drawArg,
-        "exec": exec,
-        "execOutside": execOutside,
-        "temp": False,
-    }
+		'_hidden': False,
+		'_temp': False,
 
-def button_draw(button):
-    r = button["rect"] if not callable(button["rect"]) else button["rect"]()
-    button["drawArg"](r)
+		'_parent': None,
+		'_childs': childs,
+	}
 
-def button_click(button, pos):
-    if button["exec"] is None:
-        button["execOutside"](pos)
-        return False
-    r = button["rect"] if not callable(button["rect"]) else button["rect"]()
-    if isInRectangle(pos, r):
-        button["exec"](pos)
-        return True
-    else:
-        button["execOutside"](pos)
-        return False
+	for child in res['_childs']:
+		component_add_parent(child, res)
+	return res
+	
+def component_show(component):
+	component['_hidden'] = False
 
-def button_clickOutside(button, pos):
-    r = button["rect"] if not callable(button["rect"]) else button["rect"]()
-    if not isInRectangle(pos, r):
-        button["execOutside"](pos)
+def component_hide(component):
+	component['_hidden'] = True
 
 
 
 
 
+def _component_baseRect(component, parent_rect):
+	if callable(component['_rect']):
+		if component['_parent'] and component['_rect'].__code__.co_argcount >= 1:
+			return component['_rect'](parent_rect)
+		else:
+			return component['_rect']()
+	else:
+		return component['_rect']
 
-def composant_new(z, buttons):
-    res = {
-        "z": z,
-        "buttons": buttons,
-        "hidden": True
-    }
-    composants.append(res)
-    return res
 
-def composant_hide(button):
-    button["hidden"] = True
+def component_rect(component):
+	parent = component_child_rect(component['_parent']) if component['_parent'] else ((0, 0), (0, 0))
+	base = _component_baseRect(component, parent)
+	# print('base',base, component)
+	return (
+		(
+			parent[0][0] + base[0][0] + component['margin'],
+			parent[0][1] + base[0][1] + component['margin'],
+		),
+		(
+			base[1][0] - 2 * component['margin'],
+			base[1][1] - 2 * component['margin'],
+		),
+	)
 
-def composant_show(button):
-    button["hidden"] = False
-
-def composant_draw(button):
-    if button["hidden"]:
-        return
-    button["buttons"].sort(key=lambda c: c['z'])
-    for button in button["buttons"]:
-        button_draw(button)
-
-def composant_click(button, pos):
-    if button["hidden"]:
-        return False
-    button["buttons"].sort(key=lambda c: c['z'], reverse=True)
-    for button in button["buttons"]:
-        if button_click(button, pos):
-            return True
-    return False
-
-def composant_clickOutside(button, pos):
-    if button["hidden"]:
-        return
-    for button in button["buttons"]:
-        button_clickOutside(button, pos)
-
-def composant_add_temp(composant, button_array):
-    for but in button_array:
-        but['temp'] = True
-        composant["buttons"].append(but)
-
-def composant_temp_remove(composant):
-    composant["buttons"] = [but for but in composant["buttons"] if not but['temp']]
+def component_child_rect(component):
+	parent = component_child_rect(component['_parent']) if component['_parent'] else ((0, 0), (0, 0))
+	base = _component_baseRect(component, parent)
+	return (
+		(
+			parent[0][0] + base[0][0] + component['margin'] + component['padding'],
+			parent[0][1] + base[0][1] + component['margin'] + component['padding'],
+		),
+		(
+			base[1][0] - 2 * (component['padding'] + component['margin']),
+			base[1][1] - 2 * (component['padding'] + component['margin']),
+		),
+	)
+	
 
 
 
 
 
-composants = []
 
-def menu_hide_all():
-    global composants
-    for composant in composants:
-        composant_hide(composant)
+def component_draw(component, mouse_position):
+	if component['_hidden']:
+		return	
+	rect = component_rect(component)
+	if component['_draw'].__code__.co_argcount >= 2:
+		component['_draw'](rect, component_is_in(component, mouse_position))
+	else:
+		component['_draw'](rect)
+	component['_childs'].sort(key=lambda c: c['z'])
+	for child in component['_childs']:
+		component_draw(child, mouse_position)
 
-def menu_draw():
-    global composants
-    composants.sort(key=lambda c: c['z'])
-    for composant in composants:
-        if not composant["hidden"]:
-            composant_draw(composant)
+def component_is_in(component, pos):
+	rect = component_rect(component)
+	return rect[0][0] <= pos[0] <= rect[0][0] + rect[1][0]\
+		and rect[0][1] <= pos[1] <= rect[0][1] + rect[1][1]
 
-def menu_click(pos):
-    has_clicked = False
-    composants.sort(key=lambda c: c['z'], reverse=True)
-    for composant in composants:
-        if composant["hidden"]:
-            continue
-        if has_clicked:
-            composant_clickOutside(composant, pos)
-            continue
-        if composant_click(composant, pos):
-            has_clicked = True
-    return has_clicked
+def component_click(component, pos, has_already_clicked=False):
+	if component['_hidden']:
+		return False
+	component['_childs'].sort(key=lambda c: c['z'], reverse=True)
+	for child in component['_childs']:
+		if component_click(child, pos, has_already_clicked):
+			has_already_clicked = True
+	if component['_click'] is not None and component_is_in(component, pos):
+		if has_already_clicked:
+			return has_already_clicked
+		has_already_clicked = True
+		if component['_click'].__code__.co_argcount >= 1:
+			component['_click'](pos)
+		else:
+			component['_click']()
+	else:
+		if component['_clickOutside'].__code__.co_argcount >= 1:
+			component['_clickOutside'](pos)
+		else:
+			component['_clickOutside']()
+	return has_already_clicked
+
+def component_add_parent(component, parent):
+	component['_parent'] = parent

@@ -8,5 +8,4 @@ __all__ = [
 from .draw import drawRect, drawCircle
 from .text import drawText, longNumber, loadFont
 from .image import drawImage
-from .framework import button_new, composant_new, composant_show,\
-	composant_hide, menu_draw, menu_click, menu_hide_all
+from .framework import component, component_draw, component_click, component_hide, component_show

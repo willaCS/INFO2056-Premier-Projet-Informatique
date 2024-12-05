@@ -7,13 +7,13 @@ import pygame
 from signal import signal, SIGINT
 from typing import Callable, Dict
 from pygame.event import Event
-from utils.mytyping import coord_i
 
-DEFAULT_RESOLUTION = (1280, 1024)
+DEFAULT_RESOLUTION = (1200, 800)
 
 __done = False
 __tickrate = 60
 
+mouse_position = (0, 0)
 repeatKeyMap: Dict[int, bool] = {}
 __singleKey: Callable[[int], None] = lambda key: None
 __repeatKey: Callable[[int], None] = lambda key: None
@@ -102,7 +102,7 @@ def __handle_events():
 	- gère les mises à jours de taille de l'écran
 	- gère la fermeture de la fenêtre
 	"""
-	global repeatKeyMap
+	global repeatKeyMap, mouse_position
 
 	for event in pygame.event.get():
 		match event.type:
@@ -115,6 +115,9 @@ def __handle_events():
 			
 			case pygame.KEYUP:
 				repeatKeyMap[event.key] = False
+
+			case pygame.MOUSEMOTION:
+				mouse_position = event.pos
 
 			case pygame.WINDOWRESIZED:
 				__update_resolution((event.x, event.y))
@@ -134,7 +137,7 @@ def __handle_events():
 
 
 
-def __update_resolution(coord: coord_i):
+def __update_resolution(coord):
 	"""
 	Set les variables de résolutions après une mise à jour.
 	"""
