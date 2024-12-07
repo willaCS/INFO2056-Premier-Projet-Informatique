@@ -1,6 +1,7 @@
 import Window
 from ui import SelectedTile
 from ui import visual_config as vc
+from ui.framework.framework import component_add_temp
 from ui.map.terrainTile import print_terrain_tile
 from ui.map.ressource import print_ressource
 from ui.map.goods import draw_goods, ressources_to_goods
@@ -52,6 +53,10 @@ def __drawRessource(rect):
 	#print(goods)
 
 	if len(goods) > 1:
+		for good in goods:
+			draw_func = draw_goods(good)
+			draw_func(((position[0] + taille[0] * 1/15, position[1] + 50 + space), (spacer, spacer)))
+			space += spacer
 		space = 0
 		spacer = (RESOURCE_BUTTON_HEIGHT - 50) / len(goods)
 		for good in goods:
@@ -143,21 +148,27 @@ sideMenu = component(
 
 def showSideMenu():
 	if sideMenu['_hidden']:
-		# composant_add_temp(sideMenu, [
-		# 	button_new(
-		# 		3,
-		# 		lambda: 
-		# 		(
-		# 			(
-		# 				0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2 * vc.PADDING,
-		# 				230
-		# 			),
-		# 			(
-		# 				LARGEUR_SIDEMENU - 2 * (vc.MENU_BORDER_WIDTH + vc.PADDING) - 2 * MENU_MARGIN - 2 * vc.PADDING,
-		# 				73.33333333333333
-		# 			)
-		# 		),
-		# 		__drawRessourceButton
-		# 	),
-		# ])
+		terrain = get_terrain_tile(SelectedTile.val)
+		ressource = TerrainTile.ressource(terrain)
+		if not ressource:
+			return
+		goods = ressources_to_goods(Ressource.type(ressource))
+		component_add_temp(sideMenu, [
+			component(
+				z=3,
+				rect=lambda parent: 
+				(
+					(
+						0,
+						230
+					),
+					(
+						parent[1][0],
+						73.33333333333333
+					)
+				),
+				draw=__drawRessourceButton
+			)
+			for good in goods
+		])
 		component_show(sideMenu)
