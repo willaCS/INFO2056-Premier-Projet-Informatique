@@ -58,6 +58,10 @@ def __drawRessource(rect):
 	#print(goods)
 
 	if len(goods) > 1:
+		for good in goods:
+			draw_func = draw_goods(good)
+			draw_func(((position[0] + taille[0] * 1/15, position[1] + 50 + space), (spacer, spacer)))
+			space += spacer
 		space = 0
 		spacer = (RESOURCE_BUTTON_HEIGHT - 50) / len(goods)
 		for good in goods:
@@ -159,6 +163,9 @@ sideMenu = composant_new(2, [
 
 def showSideMenu():
 	if sideMenu['hidden']:
+		terrain = get_terrain_tile(SelectedTile.val)
+		ressource = TerrainTile.ressource(terrain)
+		goods = ressources_to_goods(Ressource.type(ressource))
 		composant_add_temp(sideMenu, [
 			button_new(
 				3,
@@ -174,6 +181,7 @@ def showSideMenu():
 					)
 				),
 				__drawRessourceButton
-			),
+			)
+			for good in goods
 		])
 		composant_show(sideMenu)
