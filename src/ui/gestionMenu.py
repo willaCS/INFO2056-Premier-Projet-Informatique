@@ -1,4 +1,4 @@
-from ui.framework import menu_hide_all
+from ui.components import main
 
 
 MENU_INTRO = 0
@@ -11,7 +11,7 @@ menu = MENU_JEU
 def change_menu(new_menu):
     global menu
 
-    menu_hide_all()
+    main.hide_all()
     menu = new_menu
 
 

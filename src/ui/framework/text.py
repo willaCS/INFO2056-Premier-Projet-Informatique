@@ -7,7 +7,6 @@ def loadFont(id: str, name: str, size: int, bold: bool = False):
 	fonts[id] = pygame.font.SysFont(name, size, bold)
 
 def longNumber(number: int) -> str:
-	print(number)
 	if abs(number / (10 ** 12)) >= 1:
 		return str((number // (10 ** (12 - 2))) / 100) + "T"
 	elif abs(number / (10 ** 9)) >= 1:

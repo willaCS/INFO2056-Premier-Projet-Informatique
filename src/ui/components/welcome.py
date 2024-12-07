@@ -2,7 +2,7 @@ import Window
 from ui import gestionMenu, gestionMode
 from ui import visual_config as vc
 from ui.common.buttons import centerTextButton
-from ui.framework import composant_new, button_new, composant_show, drawText, drawRect
+from ui.framework import component, component_show, component_hide, drawText, drawRect
 
 BOUTON_LARGEUR = 300
 BOUTON_HAUTEUR = 40
@@ -15,58 +15,55 @@ def _drawBackground(rect):
 		
 
 
-welcomeMenu = composant_new(0, [
-	# Background
-	button_new(
-		0,
-		lambda: (
-			(0, 0),
-			Window.resolution
-		),
-		_drawBackground,
-		lambda pos: None,
-	),
-	
-
-	# Bouton Play
-	button_new(
-		1,
-		lambda: (
-			(
-				Window.half_resolution[0] - BOUTON_LARGEUR // 2,
-				Window.half_resolution[1] + (BOUTON_HAUTEUR + BOUTON_ESPACE)
+welcomeMenu = component(
+	z=0,
+	rect=lambda parent: parent,
+	draw=_drawBackground,
+	click=lambda pos: None,
+	childs=[
+		# Bouton Play
+		component(
+			z=1,
+			rect=lambda parent: (
+				(
+					(parent[1][0] - BOUTON_LARGEUR) // 2,
+					parent[1][1] // 2 + (BOUTON_HAUTEUR + BOUTON_ESPACE)
+				),
+				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 			),
-			(BOUTON_LARGEUR, BOUTON_HAUTEUR)
+			draw=lambda rect: centerTextButton(rect, 'font2', "Play", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
+			click=lambda: gestionMenu.change_menu(gestionMenu.MENU_JEU),
 		),
-		lambda rect: centerTextButton(rect, 'font2', "Play", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
-		lambda pos: gestionMenu.change_menu(gestionMenu.MENU_JEU),
-	),
 
-	# Bouton Settings 
-	button_new(
-		1,
-		lambda: (
-			(
-				Window.half_resolution[0] - BOUTON_LARGEUR // 2,
-				Window.half_resolution[1] + (BOUTON_HAUTEUR + BOUTON_ESPACE) * 2
+		# # Bouton Settings 
+		component(
+			z=1,
+			rect=lambda parent: (
+				(
+					(parent[1][0] - BOUTON_LARGEUR) // 2,
+					parent[1][1] // 2 + (BOUTON_HAUTEUR + BOUTON_ESPACE) * 2
+				),
+				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 			),
-			(BOUTON_LARGEUR, BOUTON_HAUTEUR)
+			draw=lambda rect: centerTextButton(rect, 'font2', "Settings", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
+			click=lambda: gestionMenu.change_menu(gestionMenu.MENU_REGLAGE),
 		),
-		lambda rect: centerTextButton(rect, 'font2', "Settings", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
-		lambda pos: gestionMenu.change_menu(gestionMenu.MENU_REGLAGE),
-	),
 
-	# Bouton Exit 
-	button_new(
-		1,
-		lambda: (
-			((Window.half_resolution[0] - 150), (Window.half_resolution[1] + (BOUTON_HAUTEUR + BOUTON_ESPACE) * 3)),
-			(BOUTON_LARGEUR, BOUTON_HAUTEUR)
+		# Bouton Exit 
+		component(
+			z=1,
+			rect=lambda parent: (
+				(
+					(parent[1][0] - BOUTON_LARGEUR) // 2,
+					parent[1][1] // 2 + (BOUTON_HAUTEUR + BOUTON_ESPACE) * 3
+				),
+				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
+			),
+			draw=lambda rect: centerTextButton(rect, 'font2', "Exit", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
+			click=Window.stop,
 		),
-		lambda rect: centerTextButton(rect, 'font2', "Exit", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
-		lambda pos: Window.stop(),
-	),
-])
+	]
+)
 
 def drawWelcome():
-	composant_show(welcomeMenu)
+	component_show(welcomeMenu)

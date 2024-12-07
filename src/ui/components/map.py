@@ -1,27 +1,24 @@
 import Window
 from ui import SelectedTile
 from ui import visual_config as vc
-from ui.framework import button_new, composant_new, composant_show
+from ui.framework import component, component_show
 from ui.map.map import drawMap
 
-map_component = composant_new(0, [
-	# Map
-	button_new(
-		1,
-		lambda: (
-			(
-				0,
-				vc.TOP_BAR_HEIGHT,
-			),
-			(
-				Window.resolution[0],
-				Window.resolution[1] - vc.TOP_BAR_HEIGHT
-			),
+map_component = component(
+	z=1,
+	rect=lambda: (
+		(
+			0,
+			vc.TOP_BAR_HEIGHT,
 		),
-		drawMap,
-		lambda pos: SelectedTile.select(pos),
+		(
+			Window.resolution[0],
+			Window.resolution[1] - vc.TOP_BAR_HEIGHT
+		),
 	),
-])
+	draw=drawMap,
+	click=lambda pos: SelectedTile.select(pos),
+)
 
 def drawMapComponent():
-	composant_show(map_component)
+	component_show(map_component)

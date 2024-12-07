@@ -4,6 +4,7 @@ Ce fichier gère la fonction drawFrame appelée chaque tick
 
 import Window
 from ui import SelectedTile
+from ui.components.main import draw
 import ui.components.placeBuildings
 import ui.components.settings
 import ui.components.map
@@ -12,7 +13,6 @@ import ui.components.topbar
 import ui.components.sidemenu
 import ui.components.welcome
 from ui import gestionMenu
-from ui.framework import menu_draw
 from ui.framework.text import drawText
 
 # menu
@@ -21,7 +21,6 @@ from ui.framework.text import drawText
 # affichage texture sur map
 
 def drawFrame():
-	
 	match gestionMenu.menu:
 		case gestionMenu.MENU_INTRO:
 			ui.components.welcome.drawWelcome()
@@ -35,7 +34,7 @@ def drawFrame():
 				# ui.components.placeBuildings.showplaceBuildingsMenu()
 			ui.components.map.drawMapComponent()
 			ui.components.topbar.showTopBar()
-	menu_draw()
+	draw()
 
 
 
