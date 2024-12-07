@@ -3,7 +3,7 @@ from model.industry import Plant, plants
 from model.industry.technologiesTree import get_placable_on
 from ui import SelectedTile
 from ui import visual_config as vc
-from ui.framework.framework import component_add_temp
+from ui.framework.framework import component_add_temp, component_temp_remove
 from ui.map.industry import draw_industry_by_id
 from ui.common.buttons import centerTextButton, exit_button
 from ui.framework import component, component_hide, component_show, drawRect, drawImage
@@ -20,10 +20,10 @@ def closeplaceBuildingsMenu(pos):
 	global placeBuildingsMenu
 	SelectedTile.val = None
 	component_hide(placeBuildingsMenu)
-	# composant_temp_remove(placeBuildingsMenu)
+	component_temp_remove(placeBuildingsMenu)
 
 placeBuildingsMenu = component(
-	z=1,
+	z=3,
 	margin=MENU_MARGIN,
 	padding=vc.PADDING + vc.MENU_BORDER_WIDTH,
 	rect=lambda parent: (
@@ -63,7 +63,7 @@ placeBuildingsMenu = component(
 
 
 def showplaceBuildingsMenu():
-	# if placeBuildingsMenu['_hidden']:
+	if placeBuildingsMenu['_hidden']:
 		can_be_build = get_placable_on(SelectedTile.val)
 
 		tile_width = ((vc.LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES

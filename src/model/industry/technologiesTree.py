@@ -223,5 +223,5 @@ def get_placable_on(coord):
 			elif place_on['type'] == technologies.PLACE_ON_TERRAIN:
 				if place_on['id'] == TerrainTile.type(terrain):
 					res.append(indus)
-	print(res)
+	# print(res)
 	return res
