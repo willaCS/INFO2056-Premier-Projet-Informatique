@@ -146,31 +146,6 @@ sideMenu = component(
 
 
 def showSideMenu():
-<<<<<<< HEAD
-	if sideMenu['hidden']:
-		terrain = get_terrain_tile(SelectedTile.val)
-		ressource = TerrainTile.ressource(terrain)
-		goods = ressources_to_goods(Ressource.type(ressource))
-		composant_add_temp(sideMenu, [
-			button_new(
-				3,
-				lambda: 
-				(
-					(
-						0 + MENU_MARGIN + vc.MENU_BORDER_WIDTH + 2 * vc.PADDING,
-						230
-					),
-					(
-						LARGEUR_SIDEMENU - 2 * (vc.MENU_BORDER_WIDTH + vc.PADDING) - 2 * MENU_MARGIN - 2 * vc.PADDING,
-						73.33333333333333
-					)
-				),
-				__drawRessourceButton
-			)
-			for good in goods
-		])
-		composant_show(sideMenu)
-=======
 	if sideMenu['_hidden']:
 		# composant_add_temp(sideMenu, [
 		# 	button_new(
@@ -190,4 +165,3 @@ def showSideMenu():
 		# 	),
 		# ])
 		component_show(sideMenu)
->>>>>>> origin/main
