@@ -4,7 +4,7 @@ from model.industry.technologiesTree import get_placable_on
 from ui import SelectedTile
 from ui import visual_config as vc
 from ui.framework.framework import component_add_temp, component_temp_remove
-from ui.map.industry import draw_industry_by_id
+from ui.map.industry import draw_industry_by_id, draw_industry_menu
 from ui.common.buttons import centerTextButton, exit_button
 from ui.framework import component, component_hide, component_show, drawRect, drawImage
 
@@ -80,8 +80,8 @@ def showplaceBuildingsMenu():
 						tile_width,
 					)
 				),
-				draw=draw_industry_by_id(building_id),
-				click=lambda pos, building_id=building_id: plants.place(Plant.init(building_id, SelectedTile.val))
+				draw=draw_industry_menu(building_id),
+				click=lambda pos, building_id=building_id: plants.place(building_id, SelectedTile.val)
 			)
 			for index, building_id in enumerate(can_be_build)
 		])

@@ -12,3 +12,6 @@ def centerRightTextButton(rect, font, message, color_background, rounding, paddi
 def exit_button(rect):
 	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD, hover=vc.PRIMARY)
 	drawImage('exit', rect),
+
+def centerRightText(rect, font, message, padding, color):
+	drawText(font, (rect[0][0] + rect[1][0] - padding, rect[0][1] + rect[1][1] // 2), message, color, "midright")

@@ -10,6 +10,7 @@ Ce fichier permet de faire :
 
 from typing import Dict, List
 
+from model.market import player_wallet
 from model.terrain import Ressource, TerrainTile
 from model.terrain.terrain import get_terrain_tile
 from model.industry import Plant, technologies
@@ -39,19 +40,12 @@ def tile_is_empty(coord: coord_i):
 		return True
 	return Plant.type(tile) == technologies.INDUSTRY_NONE
 
-# action by the player to place a new industry on the map
-def place(tile: Plant.types) -> bool:
-	if get(Plant.position(tile)) != None:
-		return False
-	terrain = get_terrain_tile(Plant.position(tile))
-	tileProtect = technologies.get_data(Plant.type(tile))
-	place_on: List[Dict[str, int]] = tileProtect['place_on']
-	for can_place in place_on: 
+def _can_place_on_terrain(terrain, technology):
+	for can_place in technology['place_on']: 
 		can_place_id: int = can_place['id']
 		match can_place['type']:
 			case technologies.PLACE_ON_TERRAIN:
 				if TerrainTile.type(terrain) == can_place_id:
-					add(tile)
 					return True
 			case technologies.PLACE_ON_RESSOURCE:
 				ressource = TerrainTile.ressource(terrain)
@@ -59,11 +53,23 @@ def place(tile: Plant.types) -> bool:
 					continue
 				can_place = can_place_id
 				if Ressource.type(ressource) == can_place_id:
-					add(tile)
 					return True
 			case _:
-				pass
+				raise 'Invalid Technology'
 	return False
+
+# action by the player to place a new industry on the map
+def place(industry_id, position):
+	if get(position) != None:
+		return
+	
+	terrain = get_terrain_tile(position)
+	technology = technologies.get_data(industry_id)
+
+	if _can_place_on_terrain(terrain, technology)\
+		and player_wallet.has_money(technology['price']):
+		player_wallet.buy(technology['price'])
+		add(Plant.init(industry_id, position))
 
 def plant_add_experience(tile, amount):
 	tile['xp'] += 1

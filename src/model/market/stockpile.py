@@ -1,5 +1,5 @@
 from model.market import player_wallet
-from model.market.market import buy_market, sell_market
+from model.market.market import buy_market, get_bundle_size, sell_market
 
 BUNDLE_SIZE = 100
 
@@ -23,16 +23,16 @@ def buy_stock(ressource_type, amount):
 
 def sell_stock_to_market():
 	original_money = player_wallet.money
-	# TODO : sell stock only by bundle of 1000
 	
 	for s in stock:
 		if stock[s] == 0:
 			continue
 		elif stock[s] > 0:
-			if stock[s] // BUNDLE_SIZE > 0:
-				num_bundle = stock[s] // BUNDLE_SIZE
-				stock[s] = stock[s] % BUNDLE_SIZE
-				sell_market(num_bundle, stock[s])
+			bundle_size = get_bundle_size(s)
+			if stock[s] // bundle_size > 0:
+				num_bundle = stock[s] // bundle_size
+				stock[s] = stock[s] % bundle_size
+				sell_market(s, num_bundle)
 		else:
 			buy_market(s, -stock[s])
 			stock[s] = 0

@@ -110,6 +110,8 @@ def singleKey_qwerty(key: int):
 				SelectedTile.clear()
 		case pygame.K_o:
 			player_wallet.science += 10
+		case pygame.K_l:
+			player_wallet.money += 100000000
 		case pygame.K_p:
 			drawTech()
 		case _:
@@ -154,6 +156,8 @@ def singleKey_azerty(key):
 				SelectedTile.clear()
 		case pygame.K_o:
 			player_wallet.science += 10
+		case pygame.K_l:
+			player_wallet.money += 100000000
 		case pygame.K_p:
 			drawTech()
 		case _:

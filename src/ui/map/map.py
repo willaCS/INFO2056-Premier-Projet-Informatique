@@ -4,7 +4,7 @@ from model.industry import plants
 from model.terrain.terrain import get_terrain_tile
 from ui import SelectedTile, Zoom
 from ui.framework import drawRect
-from ui.map import draw_industry, draw_terrain_tile
+from ui.map import draw_industry_map, draw_terrain_tile
 from utils.cache import add_cache
 from ui.map.utils import coord_to_px
 from utils.mytyping import Color, coord_i
@@ -22,7 +22,7 @@ def drawTile(tile_coord: coord_i):
 
 	print(tile)
 
-	return draw_industry(tile)
+	return draw_industry_map(tile)
 
 def _drawTileOutline(color: Color, coord: coord_i):
 	new_coord = coord_to_px(coord)

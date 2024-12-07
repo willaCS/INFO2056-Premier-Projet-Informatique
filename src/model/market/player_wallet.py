@@ -13,3 +13,10 @@ def wallet_tick():
 	i = 0
 	money_incr = 0
 	science_incr = 0
+
+def has_money(price):
+	return money >= price
+
+def buy(price):
+	global money
+	money -= price
