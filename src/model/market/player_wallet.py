@@ -18,5 +18,11 @@ def has_money(price):
 	return money >= price
 
 def buy(price):
-	global money
+	global money, money_incr
 	money -= price
+	money_incr -= price
+
+def sell(price):
+	global money, money_incr
+	money += price	
+	money_incr += price

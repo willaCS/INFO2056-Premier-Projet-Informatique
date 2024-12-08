@@ -1,85 +1,47 @@
 from model.market import player_wallet
 from model.market import Goods
 
-PRICE_GOODS_FISH					= 1
-PRICE_GOODS_SALT					= 1
-PRICE_GOODS_WHEAT					= 1
-PRICE_GOODS_POTATO					= 1
-PRICE_GOODS_COTTON					= 4
-PRICE_GOODS_RICE					= 2
-PRICE_GOODS_FUR						= 3
-PRICE_GOODS_WOOD					= 1
-PRICE_GOODS_OIL						= 7
-PRICE_GOODS_COAL					= 5
-PRICE_GOODS_IRON					= 6
-PRICE_GOODS_COPPER					= 6
-PRICE_GOODS_PRECIOUS_METAL			= 10
-PRICE_GOODS_RARE_METAL				= 8
-PRICE_GOODS_STONE					= 1
-PRICE_GOODS_SAND					= 1
-PRICE_GOODS_BREAD					= PRICE_GOODS_WHEAT + 2
-PRICE_GOODS_ALCOHOL					= PRICE_GOODS_POTATO + 2
-PRICE_GOODS_SUSHI					= PRICE_GOODS_RICE + PRICE_GOODS_SALT + PRICE_GOODS_FISH + 2
-PRICE_GOODS_TEXTILE					= PRICE_GOODS_COTTON + 2
-PRICE_GOODS_CLOTHES					= PRICE_GOODS_TEXTILE + 2
-PRICE_GOODS_FURNITURE				= PRICE_GOODS_WOOD + PRICE_GOODS_IRON + 2
-PRICE_GOODS_STEEL					= PRICE_GOODS_IRON + PRICE_GOODS_COAL + 2
-PRICE_GOODS_TOOLS					= PRICE_GOODS_STEEL + 2
-PRICE_GOODS_CEMENT					= PRICE_GOODS_STONE + PRICE_GOODS_SAND + 2
-PRICE_GOODS_FUEL					= PRICE_GOODS_OIL + 2
-PRICE_GOODS_PLASTIC					= PRICE_GOODS_FUEL + 2
-PRICE_GOODS_GLASS					= PRICE_GOODS_SAND + 2
-PRICE_GOODS_ELECTRONICS_COMPONENT	= PRICE_GOODS_GLASS + PRICE_GOODS_PLASTIC + PRICE_GOODS_COPPER + 2
-PRICE_GOODS_RADIO					= PRICE_GOODS_STEEL + PRICE_GOODS_COPPER + 2
-PRICE_GOODS_COMPUTER				= PRICE_GOODS_ELECTRONICS_COMPONENT + PRICE_GOODS_STEEL + 2
-PRICE_GOODS_GUNS					= PRICE_GOODS_STEEL + 2
-PRICE_GOODS_ENGINE					= PRICE_GOODS_FUEL + PRICE_GOODS_STEEL + 2
-PRICE_GOODS_CAR						= PRICE_GOODS_ENGINE + PRICE_GOODS_STEEL + PRICE_GOODS_GLASS + 2
-PRICE_GOODS_PLANES					= PRICE_GOODS_ENGINE + PRICE_GOODS_STEEL + PRICE_GOODS_GLASS + PRICE_GOODS_RADIO + 2
-PRICE_GOODS_JEWELRY					= PRICE_GOODS_PRECIOUS_METAL + 2
-PRICE_GOODS_PHONE					= PRICE_GOODS_ELECTRONICS_COMPONENT + PRICE_GOODS_PLASTIC + PRICE_GOODS_GLASS + 2
-
-
-
+TAXE = 0.9
 
 market = {
-	Goods.GOODS_FISH					: (PRICE_GOODS_FISH,					100),
-	Goods.GOODS_SALT					: (PRICE_GOODS_SALT,					100),
-	Goods.GOODS_WHEAT					: (PRICE_GOODS_WHEAT,					1000),
-	Goods.GOODS_POTATO					: (PRICE_GOODS_POTATO,					100),
-	Goods.GOODS_COTTON					: (PRICE_GOODS_COTTON,					100),
-	Goods.GOODS_RICE					: (PRICE_GOODS_RICE,					100),
-	Goods.GOODS_FUR						: (PRICE_GOODS_FUR,						100),
-	Goods.GOODS_WOOD					: (PRICE_GOODS_WOOD,					100),
-	Goods.GOODS_STONE					: (PRICE_GOODS_STONE,					100),
-	Goods.GOODS_SAND					: (PRICE_GOODS_SAND,					100),
-	Goods.GOODS_OIL						: (PRICE_GOODS_OIL,						100),
-	Goods.GOODS_COAL					: (PRICE_GOODS_COAL,					100),
-	Goods.GOODS_IRON					: (PRICE_GOODS_IRON,					100),
-	Goods.GOODS_COPPER					: (PRICE_GOODS_COPPER,					100),
-	Goods.GOODS_PRECIOUS_METAL			: (PRICE_GOODS_PRECIOUS_METAL,			100),
-	Goods.GOODS_RARE_METAL				: (PRICE_GOODS_RARE_METAL,				100),
-	Goods.GOODS_BREAD					: (PRICE_GOODS_BREAD,					100),
-	Goods.GOODS_ALCOHOL					: (PRICE_GOODS_ALCOHOL,					100),
-	Goods.GOODS_SUSHI					: (PRICE_GOODS_SUSHI,					100),
-	Goods.GOODS_TEXTILE					: (PRICE_GOODS_TEXTILE,					100),
-	Goods.GOODS_CLOTHES					: (PRICE_GOODS_CLOTHES,					100),
-	Goods.GOODS_FURNITURE				: (PRICE_GOODS_FURNITURE,				100),
-	Goods.GOODS_STEEL					: (PRICE_GOODS_STEEL,					100),
-	Goods.GOODS_TOOLS					: (PRICE_GOODS_TOOLS,					100),
-	Goods.GOODS_CEMENT					: (PRICE_GOODS_CEMENT,					100),
-	Goods.GOODS_FUEL					: (PRICE_GOODS_FUEL,					100),
-	Goods.GOODS_PLASTIC					: (PRICE_GOODS_PLASTIC,					100),
-	Goods.GOODS_GLASS					: (PRICE_GOODS_GLASS,					100),
-	Goods.GOODS_ELECTRONICS_COMPONENT	: (PRICE_GOODS_ELECTRONICS_COMPONENT,	100),
-	Goods.GOODS_RADIO					: (PRICE_GOODS_RADIO,					100),
-	Goods.GOODS_COMPUTER				: (PRICE_GOODS_COMPUTER,				100),
-	Goods.GOODS_GUNS					: (PRICE_GOODS_GUNS,					100),
-	Goods.GOODS_ENGINE					: (PRICE_GOODS_ENGINE,					100),
-	Goods.GOODS_CAR						: (PRICE_GOODS_CAR,						100),
-	Goods.GOODS_PLANES					: (PRICE_GOODS_PLANES,					100),
-	Goods.GOODS_JEWELRY					: (PRICE_GOODS_JEWELRY,					100),
-	Goods.GOODS_PHONE					: (PRICE_GOODS_PHONE,					1),
+	# name								   price		lot_size
+	Goods.GOODS_FISH					: (2,			100),
+	Goods.GOODS_SALT					: (1,			100),
+	Goods.GOODS_WHEAT					: (2,			1000),
+	Goods.GOODS_POTATO					: (1,			100),
+	Goods.GOODS_COTTON					: (4,			100),
+	Goods.GOODS_RICE					: (2,			100),
+	Goods.GOODS_FUR						: (3,			100),
+	Goods.GOODS_WOOD					: (1,			100),
+	Goods.GOODS_STONE					: (1,			100),
+	Goods.GOODS_SAND					: (1,			100),
+	Goods.GOODS_OIL						: (7,			100),
+	Goods.GOODS_COAL					: (5,			100),
+	Goods.GOODS_IRON					: (6,			100),
+	Goods.GOODS_COPPER					: (6,			100),
+	Goods.GOODS_PRECIOUS_METAL			: (10,			100),
+	Goods.GOODS_RARE_METAL				: (8,			100),
+	Goods.GOODS_BREAD					: (3,			100),
+	Goods.GOODS_ALCOHOL					: (3,			100),
+	Goods.GOODS_SUSHI					: (6,			100),
+	Goods.GOODS_TEXTILE					: (6,			100),
+	Goods.GOODS_CLOTHES					: (8,			100),
+	Goods.GOODS_FURNITURE				: (9,			100),
+	Goods.GOODS_STEEL					: (13,			100),
+	Goods.GOODS_TOOLS					: (15,			100),
+	Goods.GOODS_CEMENT					: (4,			100),
+	Goods.GOODS_FUEL					: (9,			100),
+	Goods.GOODS_PLASTIC					: (11,			100),
+	Goods.GOODS_GLASS					: (3,			100),
+	Goods.GOODS_ELECTRONICS_COMPONENT	: (22,			100),
+	Goods.GOODS_RADIO					: (21,			100),
+	Goods.GOODS_COMPUTER				: (37,			100),
+	Goods.GOODS_GUNS					: (15,			100),
+	Goods.GOODS_ENGINE					: (2000,		100),
+	Goods.GOODS_CAR						: (10000,		100),
+	Goods.GOODS_PLANES					: (100000,		10),
+	Goods.GOODS_JEWELRY					: (10000,		100),
+	Goods.GOODS_PHONE					: (20000,		1),
 }
 
 def get_price(goods_type):
@@ -89,9 +51,9 @@ def get_bundle_size(goods_type):
 	return market[goods_type][1]
 
 def sell_market(goods_type, amounts):
-	# print('sell', amounts, 'de', Goods.print_goods(goods_type), 'au prix de', int(market[goods_type] * 0.9))
-	player_wallet.money += int(get_price(goods_type) * 0.9 * amounts)
+	print('sell', amounts, 'de', Goods.print_goods(goods_type), 'au prix de', int(get_price(goods_type) * TAXE))
+	player_wallet.sell(int(get_price(goods_type) * TAXE * amounts))
 
 def buy_market(goods_type, amounts):
-	# print('buy', amounts, 'de', Goods.print_goods(goods_type), 'au prix de', market[goods_type])
-	player_wallet.money -= int(get_price(goods_type) * amounts)
+	print('buy', amounts, 'de', Goods.print_goods(goods_type), 'au prix de', market[goods_type])
+	player_wallet.buy(int(get_price(goods_type) * amounts))

@@ -1,3 +1,4 @@
+from model.stat import utils
 import Window
 from model import Speed
 from model.market import player_wallet
@@ -64,7 +65,7 @@ topBar = component(
 				((parent[1][1] + vc.PADDING) * 4, 0),
 				(STAT_WIDTH, parent[1][1])
 			),
-			draw=lambda rect: drawStat(rect, player_wallet.money, player_wallet.money_incr, (255, 180, 0)),
+			draw=lambda rect: drawStat(rect, player_wallet.money, utils.get_stat('money'), (255, 180, 0)),
 			click=showStockMenu,
 		),
 

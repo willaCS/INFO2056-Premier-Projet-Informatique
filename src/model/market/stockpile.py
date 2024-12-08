@@ -1,3 +1,4 @@
+from model.stat import utils
 from model.market import player_wallet
 from model.market.market import buy_market, get_bundle_size, sell_market
 
@@ -21,9 +22,11 @@ def buy_stock(ressource_type, amount):
 		stock[ressource_type] = 0
 	stock[ressource_type] -= amount
 
+original_money = player_wallet.money
+
 def sell_stock_to_market():
-	original_money = player_wallet.money
-	
+	global original_money
+
 	for s in stock:
 		if stock[s] == 0:
 			continue
@@ -37,4 +40,5 @@ def sell_stock_to_market():
 			buy_market(s, -stock[s])
 			stock[s] = 0
 	player_wallet.money_incr = player_wallet.money - original_money
+	original_money = player_wallet.money
 

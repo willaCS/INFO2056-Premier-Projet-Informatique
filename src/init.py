@@ -8,6 +8,7 @@ pygame est prêt.
 import os
 
 from model.gameTick import game_model_tick
+from model.stat.setup import setup_stats
 from model.terrain.terrain import init_random
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
@@ -25,6 +26,8 @@ def setup():
 	loadFont("font1", "monospace", 40)
 	loadFont("font2", "monospace", 24, True)
 	loadFont("font3", "monospace", 22, True)
+
+	setup_stats()
 
 	loadImages({
 		'exit'			: './assets/close_button.png',
