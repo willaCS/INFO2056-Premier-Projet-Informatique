@@ -76,7 +76,7 @@ topBar = component(
 				((parent[1][1] + vc.PADDING) * 4 + (STAT_WIDTH + vc.PADDING), 0),
 				(STAT_WIDTH, parent[1][1])
 			),
-			draw=lambda rect: drawStat(rect, player_wallet.science, player_wallet.science_incr, (0, 200, 200)),
+			draw=lambda rect: drawStat(rect, player_wallet.science, utils.get_stat('science'), (0, 200, 200)),
 			click=drawTech,
 		),
 		

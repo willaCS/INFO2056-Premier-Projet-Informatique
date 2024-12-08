@@ -7,7 +7,6 @@ DELAY = 1000
 STAT_RESET = 10
 
 def add_stat(key, add, get):
-	print('xd')
 	stats[key] = {
 		"data": [],
 		"add": add,
@@ -27,7 +26,6 @@ def stat_tick():
 			elem["data"].remove(elem["data"][0])
 		x = elem["add"]()
 		elem["data"].append(x)
-		print(elem["data"], x)
 
 
 def get_stat(key):

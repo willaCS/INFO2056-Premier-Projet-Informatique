@@ -174,6 +174,8 @@ def add_tech(i, j):
 	j = j if i < len(techTree) else j + 3
 	i = i if i < len(techTree) else len(techTree) - 1
 	tech = techTree[i]['techs'][j]
+	if tech['unlocked']:
+		return
 	if player_wallet.science < tech['cost']:
 		return
 	if j != 0 and not techTree[i]['techs'][j - 1]['unlocked']:

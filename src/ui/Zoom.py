@@ -18,9 +18,9 @@ opti_factor = 2
 
 def __update():
 	global tile_size, line_width, outline_width,opti_factor
-	tile_size = 200 / val
-	line_width = 25 / val
-	outline_width = 15 / val
+	tile_size = 200 // val
+	line_width = 25 // val
+	outline_width = 15 // val
 	opti_factor = max(2 ** int(math.log2(val / 10)), 1)
 
 def increment():
