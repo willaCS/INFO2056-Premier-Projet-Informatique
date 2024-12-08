@@ -135,6 +135,8 @@ def component_add_parent(component, parent):
 
 def component_add_temp(component, new_childs):
 	for child in new_childs:
+		if not child:
+			continue
 		child['_temp'] = True
 		component['_childs'].append(child)
 		component_add_parent(child, component)
