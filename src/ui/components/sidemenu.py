@@ -26,64 +26,19 @@ def closeSideMenu(pos):
 	component_temp_remove(sideMenu)
 
 
-def prio(rect):
-	if SelectedTile.val and TerrainTile.ressource(get_terrain_tile(SelectedTile.val)) == None:
-		return
-	else:
-		__draw_carte(rect)
-
-
-
-
-def __drawExitButon(rect):
-	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
-	drawImage('exit', rect)
-
 def __drawRessourceButton(rect, good):
 	drawRect(rect, vc.BACKGROUND2, vc.ROUNDING_SMOOTH)
-	print(good)
 	position, taille = rect
 	draw_func = draw_goods(good)
 	draw_func(((position[0] + (taille[1] - 50) / 2, position[1] + (taille[1] - 50) / 2), (50, 50)))
-	centerTextButton((
+	centerTextButton(
+		(
 			(position[0] + 50 + 2 * vc.PADDING, position[1] + vc.PADDING),
 			(taille[0] - 2 * vc.PADDING - 50 - vc.PADDING, taille[1] - 2 * vc.PADDING)
-		), 'font3', '{}'.format(print_goods(good)), vc.BACKGROUND3, vc.ROUNDING_SMOOTH, vc.PADDING)
-
-def __draw_carte(rect):
-	drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_SMOOTH)
-	# position, taille = rect
-	# drawText("font3", (position[0] + taille[0] / 2,position[1] + taille[0] * 1/15), print_ressource(ressource), vc.TEXT, "center" )
-	#print(Ressource.type(ressource))
-	# goods = ressources_to_goods(Ressource.type(ressource))
-	#print(goods)
-
-	# if len(goods) > 1:
-		# for good in goods:
-			# draw_func = draw_goods(good)
-			# draw_func(((position[0] + taille[0] * 1/15, position[1] + 50 + space), (spacer, spacer)))
-			# space += spacer
-		# space = 0
-		# spacer = (RESOURCE_BUTTON_HEIGHT - 50) / len(goods)
-		# for good in goods:
-			# draw_func = draw_goods(good)
-			# draw_func(((position[0] + taille[0] * 1/15, position[1] + 50 + space), (spacer, spacer)))
-			# space += spacer
-	# else:
-		# good = goods[0]
-		# draw_func = draw_goods(good)
-		# print((position[0] + taille[0] * 1/15, position[1] + 50 + taille[0] * 1/15), (taille[0] * 1/6, taille[0] * 1/6))
-		# draw_func(((position[0] + taille[0] * 1/15, position[1] + 50 + taille[0] * 1/15), (taille[0] * 1/6, taille[0] * 1/6)))
-	
-def __drawRessource(rect):
-	# terrain = get_terrain_tile(SelectedTile.val)
-	# ressource = TerrainTile.ressource(terrain)
-	# drawRect(rect, vc.BACKGROUND2, vc.ROUNDING_SMOOTH)
-	# position, taille = rect
-	# drawText("font3", (position[0] + taille[0] / 2,position[1] + taille[0] * 1/15), "Ressource", vc.TEXT, "center" )
-	centerTextButton(rect, "font3", "Ressource", vc.BACKGROUND2, vc.ROUNDING_SMOOTH,)
-
-
+		),
+		'font3', '{}'.format(print_goods(good)),
+		vc.BACKGROUND3, vc.ROUNDING_SMOOTH
+	)
 
 sideMenu = component(
 	z=2,
@@ -122,97 +77,51 @@ sideMenu = component(
 			draw=exit_button,
 			click=closeSideMenu
 		),
-
-		# first button
-		component(
-			z=2,
-			rect=lambda parent: (
-				(
-					0,
-					HEADER_HEIGHT + vc.PADDING,
-				),
-				(
-					parent[1][0],
-					RESOURCE_CARTE_HEIGHT
-				)
-			),
-			draw=lambda rect: None,
-			childs=[
-				*[component(
-					z=2,
-					margin=vc.PADDING // 2,
-					rect=lambda parent: (
-						(
-							0,
-							0,
-						),
-						(
-							parent[1][0],
-							parent[1][1],
-						)
-					),
-					draw=__draw_carte,
-					)
-				],
-			]
-		),
-
-
-		# second button
-		# component(
-			# z=2,
-			# rect=lambda parent: (
-				# (
-					# 0,
-					# HEADER_HEIGHT + vc.PADDING + RESOURCE_BUTTON_HEIGHT + vc.PADDING,
-				# ),
-				# (
-					# parent[1][0],
-					# RESOURCE_BUTTON_HEIGHT
-				# )
-			# ),
-			# draw=prio
-		# ),
 	]
 )
 
-
-
-def showSideMenu():
-	if sideMenu['_hidden']:
-		terrain = get_terrain_tile(SelectedTile.val)
-		ressource = TerrainTile.ressource(terrain)
-		if not ressource:
-			return
-		goods = ressources_to_goods(Ressource.type(ressource))
-		print(goods)
-		component_add_temp(sideMenu, [
+def carteRessource(pos):
+	terrain = get_terrain_tile(SelectedTile.val)
+	ressource = TerrainTile.ressource(terrain)
+	if not ressource:
+		return
+	goods = ressources_to_goods(Ressource.type(ressource))
+	return component(
+		z=2,
+		padding=vc.PADDING,
+		rect=lambda parent: (
+			(
+				0,
+				HEADER_HEIGHT + vc.PADDING + pos * (RESOURCE_CARTE_HEIGHT + vc.PADDING),
+			),
+			(
+				parent[1][0],
+				RESOURCE_CARTE_HEIGHT
+			)
+		),
+		draw=lambda rect: drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_SMOOTH),
+		childs=[
 			component(
 				z=3,
-				#margin=MENU_MARGIN,
 				rect=lambda parent: (
+					(0, 0),
 					(
-						vc.PADDING,
-						(HEADER_HEIGHT + vc.PADDING) + vc.PADDING,
-					),
-					(
-						parent[1][0] - 2 * vc.PADDING,
+						parent[1][0],
 						RESOURCE_BUTTON_HEIGHT,
 					)
 				),
-				draw=__drawRessource,
+				draw=lambda rect: centerTextButton(rect, "font3", "Ressource", vc.BACKGROUND2, vc.ROUNDING_SMOOTH,),
 			),
 
 			*(component(
 				z=3,
-				#margin=MENU_MARGIN,
 				rect=lambda parent, y=index: (
 					(
-						vc.PADDING,
-						(HEADER_HEIGHT + vc.PADDING) + (RESOURCE_BUTTON_HEIGHT + vc.PADDING) + vc.PADDING + y * (RESOURCE_BUTTON_HEIGHT + vc.PADDING),
+						0,
+						(y + 1) * (RESOURCE_BUTTON_HEIGHT + vc.PADDING),
 					),
 					(
-						parent[1][0] - 2 * vc.PADDING,
+						parent[1][0],
 						RESOURCE_BUTTON_HEIGHT,
 					)
 				),
@@ -220,6 +129,25 @@ def showSideMenu():
 			)
 			for index,good in enumerate(goods)
 			),
-							
-		])
+		]
+	)
+
+def showSideMenu():
+	if sideMenu['_hidden']:
+		res = []
+		index = 0
+
+		# if index < 2 and industry:
+		# 	res.append(carteIndustry(index))
+		# 	index += 1
+
+		# if index < 2 and has_ressource:
+		res.append(carteRessource(index))
+			# index += 1
+		
+		# if index < 2:
+		# 	res.append(cartePlus(index))
+		# 	index += 1
+
+		component_add_temp(sideMenu, res)
 		component_show(sideMenu)
