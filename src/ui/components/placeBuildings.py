@@ -3,6 +3,7 @@ from model.industry import Plant, plants
 from model.industry.technologiesTree import get_placable_on
 from ui import SelectedTile
 from ui import visual_config as vc
+
 from ui.framework.framework import component_add_temp, component_temp_remove
 from ui.map.industry import draw_industry_by_id, draw_industry_menu
 from ui.common.buttons import centerTextButton, exit_button
@@ -16,14 +17,16 @@ RESOURCE_BUTTON_WIDTH = 250
 NOMBRE_DE_COLONNES = 4
 
 
-def closeplaceBuildingsMenu(pos):
+def closeplaceBuildingsMenu():
 	global placeBuildingsMenu
-	SelectedTile.val = None
+	# SelectedTile.val = None
 	component_hide(placeBuildingsMenu)
 	component_temp_remove(placeBuildingsMenu)
+	from ui.components.sidemenu import refreshSideMenu
+	refreshSideMenu()
 
 placeBuildingsMenu = component(
-	z=3,
+	z=4,
 	margin=MENU_MARGIN,
 	padding=vc.PADDING + vc.MENU_BORDER_WIDTH,
 	rect=lambda parent: (
@@ -65,6 +68,7 @@ placeBuildingsMenu = component(
 def showplaceBuildingsMenu():
 	if placeBuildingsMenu['_hidden']:
 		can_be_build = get_placable_on(SelectedTile.val)
+		print('xd')
 
 		tile_width = ((vc.LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES
 		component_add_temp(placeBuildingsMenu, [
@@ -81,7 +85,8 @@ def showplaceBuildingsMenu():
 					)
 				),
 				draw=draw_industry_menu(building_id),
-				click=lambda pos, building_id=building_id: plants.place(building_id, SelectedTile.val)
+				click=lambda pos, building_id=building_id: plants.place(building_id, SelectedTile.val)\
+					or closeplaceBuildingsMenu()
 			)
 			for index, building_id in enumerate(can_be_build)
 		])

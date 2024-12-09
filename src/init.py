@@ -31,6 +31,9 @@ def setup():
 
 	loadImages({
 		'exit'			: './assets/close_button.png',
+		'arrow'			: './assets/arrow.png',
+		'plus'			: './assets/plus.png',
+
 		'sand'			: './assets/terrain/suspicious_sand_0.png',
 		'stone'			: './assets/terrain/stone.png',
 		'snow'			: './assets/terrain/diorite.png',

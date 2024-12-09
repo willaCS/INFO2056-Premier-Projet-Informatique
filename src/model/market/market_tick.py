@@ -29,6 +29,8 @@ def industry_tick(tile, terrainTile):
 		case _:
 			generate_goods(tile)
 
+def level(tile):
+	return int(1 + Plant.xp(tile) / 100)
 
 def generate_goods(tile, amount = None):	
 	techno = technologies.industry[Plant.type(tile)]

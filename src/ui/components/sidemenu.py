@@ -1,12 +1,15 @@
 import Window
+from model.market.market_tick import level
 from ui import SelectedTile
 from ui import visual_config as vc
+from ui.components.placeBuildings import showplaceBuildingsMenu
 from ui.framework.framework import component_add_temp, component_temp_remove
+from ui.framework.text import longNumber
 from ui.map.terrainTile import print_terrain_tile
 from ui.map.ressource import print_ressource
 from ui.map.goods import draw_goods, ressources_to_goods, print_goods
-from ui.map.industry import draw_industry, print_industry
-from ui.common.buttons import centerTextButton, exit_button
+from ui.map.industry import draw_industry_menu, print_industry, draw_industry_product
+from ui.common.buttons import centerLeftTextButton, centerRightTextButton, centerTextButton, exit_button
 from ui.framework import component, component_hide, component_show, drawRect, drawImage, drawText
 from model.terrain import Ressource, TerrainTile
 from model.terrain.terrain import get_terrain_tile
@@ -22,11 +25,16 @@ RESOURCE_CARTE_HEIGHT = (Window.resolution[1] - 2 * (MENU_MARGIN + vc.MENU_BORDE
 RESOURCE_BUTTON_HEIGHT = (RESOURCE_CARTE_HEIGHT - 6 * vc.PADDING) / 5
 
 
-def closeSideMenu(pos):
+def closeSideMenu():
 	global sideMenu
 	SelectedTile.val = None
 	component_hide(sideMenu) 
 	component_temp_remove(sideMenu)
+
+def refreshSideMenu():
+	global sideMenu
+	component_temp_remove(sideMenu)
+	createTemp()
 
 
 def __drawRessourceButton(rect, good):
@@ -43,20 +51,19 @@ def __drawRessourceButton(rect, good):
 		vc.BACKGROUND3, vc.ROUNDING_SMOOTH
 	)
 
-def __drawBuildingButton(rect, building):
-	print(building)
+def __drawBuildingButton(rect, building_id):
 	drawRect(rect, vc.BACKGROUND2, vc.ROUNDING_SMOOTH)
 	position, taille = rect
-	draw_func = draw_industry(building)
-	draw_func(((position[0] + (taille[1] - 50) / 2, position[1] + (taille[1] - 50) / 2), (50, 50)))
-	# centerTextButton(
-		# (
-			# (position[0] + 50 + 2 * vc.PADDING, position[1] + vc.PADDING),
-			# (taille[0] - 2 * vc.PADDING - 50 - vc.PADDING, taille[1] - 2 * vc.PADDING)
-		# ),
-		# 'font3', '{}'.format(print_industry(building)),
-		# vc.BACKGROUND3, vc.ROUNDING_SMOOTH
-	# )
+	draw_func = draw_industry_menu(building_id)
+	draw_func(((position[0] + (taille[1] - 50) / 2, position[1] + (taille[1] - 50) / 2), (50, 50)), False)
+	centerTextButton(
+		(
+			(position[0] + 50 + 2 * vc.PADDING, position[1] + vc.PADDING),
+			(taille[0] - 2 * vc.PADDING - 50 - vc.PADDING, taille[1] - 2 * vc.PADDING)
+		),
+		'font3', '{}'.format(print_industry(building_id)),
+		vc.BACKGROUND2, vc.ROUNDING_SMOOTH
+	)
 
 
 sideMenu = component(
@@ -154,6 +161,7 @@ def carteRessource(pos):
 
 def carteIndustry(pos):
 	building = plants.get(SelectedTile.val)
+	building_id = Plant.type(building)
 	if not plants.get(SelectedTile.val):
 		return
 
@@ -181,7 +189,7 @@ def carteIndustry(pos):
 						RESOURCE_BUTTON_HEIGHT,
 					)
 				),
-				draw=lambda rect: centerTextButton(rect, "font3", "Building", vc.BACKGROUND2, vc.ROUNDING_SMOOTH,),
+				draw=lambda rect: centerTextButton(rect, "font3", "Building", vc.BACKGROUND2, vc.ROUNDING_SMOOTH),
 			),
 
 			component(
@@ -189,36 +197,196 @@ def carteIndustry(pos):
 				rect=lambda parent: (
 					(
 						0,
-						(RESOURCE_BUTTON_HEIGHT + vc.PADDING),
+						(RESOURCE_BUTTON_HEIGHT + vc.PADDING) * 1,
 					),
 					(
 						parent[1][0],
 						RESOURCE_BUTTON_HEIGHT,
 					)
 				),
-				draw=lambda rect, is_in, building=building: __drawBuildingButton(rect, building)
+				draw=lambda rect, is_in, building_id=building_id: __drawBuildingButton(rect, building_id)
+			),
+
+			component(
+				z=3,
+				rect=lambda parent: (
+					(
+						0,
+						(RESOURCE_BUTTON_HEIGHT + vc.PADDING) * 2,
+					),
+					(
+						parent[1][0],
+						RESOURCE_BUTTON_HEIGHT,
+					)
+				),
+				draw=draw_industry_product(building_id),
+				childs=[],
+			),
+
+			component(
+				z=3,
+				rect=lambda parent: (
+					(
+						0,
+						(RESOURCE_BUTTON_HEIGHT + vc.PADDING) * 3,
+					),
+					(
+						parent[1][0],
+						RESOURCE_BUTTON_HEIGHT,
+					)
+				),
+				draw=lambda rect: None,
+				childs=[
+					component(
+						z=3,
+						rect=lambda parent: (
+							(
+								0,
+								0,
+							),
+							(
+								parent[1][0] // 2,
+								parent[1][1],
+							)
+						),
+						draw=lambda rect: centerLeftTextButton(
+							rect,
+							'font3', '{}'.format("Generated"),
+							vc.BACKGROUND2, vc.ROUNDING_SMOOTH, vc.PADDING
+						)
+					),
+					
+					component(
+						z=3,
+						rect=lambda parent: (
+							(
+								parent[1][0] // 2 + vc.PADDING,
+								0,
+							),
+							(
+								parent[1][0] // 2 - vc.PADDING,
+								parent[1][1],
+							)
+						),
+						draw=lambda rect: centerRightTextButton(
+							rect,
+							'font3', longNumber(building['generated']),
+							vc.BACKGROUND2, vc.ROUNDING_SMOOTH, vc.PADDING
+						)
+					),
+				],
+			),
+
+			component(
+				z=3,
+				rect=lambda parent: (
+					(
+						0,
+						(RESOURCE_BUTTON_HEIGHT + vc.PADDING) * 4,
+					),
+					(
+						parent[1][0],
+						RESOURCE_BUTTON_HEIGHT,
+					)
+				),
+				draw=lambda rect: None,
+				childs=[
+					component(
+						z=3,
+						rect=lambda parent: (
+							(
+								0,
+								0,
+							),
+							(
+								parent[1][0] // 2,
+								parent[1][1],
+							)
+						),
+						draw=lambda rect: centerLeftTextButton(
+							rect,
+							'font3', '{}'.format("Level"),
+							vc.BACKGROUND2, vc.ROUNDING_SMOOTH, vc.PADDING
+						)
+					),
+					
+					component(
+						z=3,
+						rect=lambda parent: (
+							(
+								parent[1][0] // 2 + vc.PADDING,
+								0,
+							),
+							(
+								parent[1][0] // 2 - vc.PADDING,
+								parent[1][1],
+							)
+						),
+						draw=lambda rect: centerRightTextButton(
+							rect,
+							'font3', longNumber(level(building)),
+							vc.BACKGROUND2, vc.ROUNDING_SMOOTH, vc.PADDING
+						)
+					),
+				],
+			),
+
+		]
+	)
+
+def cartePlus(pos):
+	return component(
+		z=2,
+		padding=vc.PADDING,
+		rect=lambda parent: (
+			(
+				0,
+				HEADER_HEIGHT + vc.PADDING + pos * (RESOURCE_CARTE_HEIGHT + vc.PADDING),
+			),
+			(
+				parent[1][0],
+				RESOURCE_CARTE_HEIGHT
+			)
+		),
+		draw=lambda rect: drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_SMOOTH, hover=vc.ACCENT),
+		click=showplaceBuildingsMenu,
+		childs=[
+			component(
+				z=3,
+				rect=lambda parent: (
+					((parent[1][0] - parent[1][1]) // 2, 0),
+					(
+						parent[1][1],
+						parent[1][1],
+					)
+				),
+				draw=lambda rect: drawImage('plus', rect),
+				click=None
 			),
 		]
 	)
 
+def createTemp():
+	res = []
+	index = 0
+	# print(get(SelectedTile.val))
+
+
+	if index < 2 and plants.get(SelectedTile.val):
+		res.append(carteIndustry(index))
+		index += 1
+
+	if index < 2 and TerrainTile.ressource(get_terrain_tile(SelectedTile.val)):
+		res.append(carteRessource(index))
+		index += 1
+	
+	if index < 2:
+		res.append(cartePlus(index))
+		index += 1
+
+	component_add_temp(sideMenu, res)
+	component_show(sideMenu)
+
 def showSideMenu():
 	if sideMenu['_hidden']:
-		res = []
-		index = 0
-		# print(get(SelectedTile.val))
-
-
-		if index < 2 and plants.get(SelectedTile.val):
-			res.append(carteIndustry(index))
-			index += 1
-
-		# if index < 2 and has_ressource:
-		res.append(carteRessource(index))
-			# index += 1
-		
-		# if index < 2:
-		# 	res.append(cartePlus(index))
-		# 	index += 1
-
-		component_add_temp(sideMenu, res)
-		component_show(sideMenu)
+		createTemp()
