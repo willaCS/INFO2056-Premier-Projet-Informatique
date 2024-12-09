@@ -5,10 +5,13 @@ from ui.framework.framework import component_add_temp, component_temp_remove
 from ui.map.terrainTile import print_terrain_tile
 from ui.map.ressource import print_ressource
 from ui.map.goods import draw_goods, ressources_to_goods, print_goods
+from ui.map.industry import draw_industry, print_industry
 from ui.common.buttons import centerTextButton, exit_button
 from ui.framework import component, component_hide, component_show, drawRect, drawImage, drawText
 from model.terrain import Ressource, TerrainTile
 from model.terrain.terrain import get_terrain_tile
+from model.industry import plants
+from model.industry import Plant
 
 
 MENU_MARGIN = 5 #en pixels
@@ -39,6 +42,22 @@ def __drawRessourceButton(rect, good):
 		'font3', '{}'.format(print_goods(good)),
 		vc.BACKGROUND3, vc.ROUNDING_SMOOTH
 	)
+
+def __drawBuildingButton(rect, building):
+	print(building)
+	drawRect(rect, vc.BACKGROUND2, vc.ROUNDING_SMOOTH)
+	position, taille = rect
+	draw_func = draw_industry(building)
+	draw_func(((position[0] + (taille[1] - 50) / 2, position[1] + (taille[1] - 50) / 2), (50, 50)))
+	# centerTextButton(
+		# (
+			# (position[0] + 50 + 2 * vc.PADDING, position[1] + vc.PADDING),
+			# (taille[0] - 2 * vc.PADDING - 50 - vc.PADDING, taille[1] - 2 * vc.PADDING)
+		# ),
+		# 'font3', '{}'.format(print_industry(building)),
+		# vc.BACKGROUND3, vc.ROUNDING_SMOOTH
+	# )
+
 
 sideMenu = component(
 	z=2,
@@ -132,14 +151,66 @@ def carteRessource(pos):
 		]
 	)
 
+
+def carteIndustry(pos):
+	building = plants.get(SelectedTile.val)
+	if not plants.get(SelectedTile.val):
+		return
+
+	return component(
+		z=2,
+		padding=vc.PADDING,
+		rect=lambda parent: (
+			(
+				0,
+				HEADER_HEIGHT + vc.PADDING + pos * (RESOURCE_CARTE_HEIGHT + vc.PADDING),
+			),
+			(
+				parent[1][0],
+				RESOURCE_CARTE_HEIGHT
+			)
+		),
+		draw=lambda rect: drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_SMOOTH),
+		childs=[
+			component(
+				z=3,
+				rect=lambda parent: (
+					(0, 0),
+					(
+						parent[1][0],
+						RESOURCE_BUTTON_HEIGHT,
+					)
+				),
+				draw=lambda rect: centerTextButton(rect, "font3", "Building", vc.BACKGROUND2, vc.ROUNDING_SMOOTH,),
+			),
+
+			component(
+				z=3,
+				rect=lambda parent: (
+					(
+						0,
+						(RESOURCE_BUTTON_HEIGHT + vc.PADDING),
+					),
+					(
+						parent[1][0],
+						RESOURCE_BUTTON_HEIGHT,
+					)
+				),
+				draw=lambda rect, is_in, building=building: __drawBuildingButton(rect, building)
+			),
+		]
+	)
+
 def showSideMenu():
 	if sideMenu['_hidden']:
 		res = []
 		index = 0
+		# print(get(SelectedTile.val))
 
-		# if index < 2 and industry:
-		# 	res.append(carteIndustry(index))
-		# 	index += 1
+
+		if index < 2 and plants.get(SelectedTile.val):
+			res.append(carteIndustry(index))
+			index += 1
 
 		# if index < 2 and has_ressource:
 		res.append(carteRessource(index))
