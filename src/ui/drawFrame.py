@@ -31,7 +31,7 @@ def drawFrame():
 		case gestionMenu.MENU_JEU:
 			if SelectedTile.val:
 				ui.components.sidemenu.showSideMenu()
-				# ui.components.placeBuildings.showplaceBuildingsMenu()
+				ui.components.placeBuildings.showplaceBuildingsMenu()
 			ui.components.map.drawMapComponent()
 			ui.components.topbar.showTopBar()
 	draw()
