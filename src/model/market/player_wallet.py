@@ -22,6 +22,10 @@ def buy(price):
 	money -= price
 	money_incr -= price
 
+def buy2(price):
+	global money
+	money -= price
+
 def sell(price):
 	global money, money_incr
 	money += price	

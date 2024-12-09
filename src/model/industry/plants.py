@@ -60,7 +60,7 @@ def _can_place_on_terrain(terrain, technology):
 
 # action by the player to place a new industry on the map
 def place(industry_id, position):
-	if get(position) != None:
+	if not position or get(position) != None:
 		return
 	
 	terrain = get_terrain_tile(position)
@@ -68,7 +68,7 @@ def place(industry_id, position):
 
 	if _can_place_on_terrain(terrain, technology)\
 		and player_wallet.has_money(technology['price']):
-		player_wallet.buy(technology['price'])
+		player_wallet.buy2(technology['price'])
 		add(Plant.init(industry_id, position))
 
 def plant_add_experience(tile, amount):

@@ -107,7 +107,6 @@ def singleKey_qwerty(key: int):
 				if not plants.tile_is_empty(SelectedTile.val):
 					plants.remove(SelectedTile.val)
 					drawTile(SelectedTile.val, True) # Refresh cache for draw
-				SelectedTile.clear()
 		case pygame.K_o:
 			player_wallet.science += 10
 		case pygame.K_l:
@@ -153,7 +152,6 @@ def singleKey_azerty(key):
 				if not plants.tile_is_empty(SelectedTile.val):
 					plants.remove(SelectedTile.val)
 					drawTile(SelectedTile.val, True) # Refresh cache for draw
-				SelectedTile.clear()
 		case pygame.K_o:
 			player_wallet.science += 10
 		case pygame.K_l:
