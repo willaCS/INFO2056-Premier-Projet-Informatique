@@ -19,7 +19,7 @@ types = Dict[str, int | str]
 def init(type: int, richness: int, height: int) -> types:
 	return {
 		"type": type,
-		"richness": richness,
+		"richness": 0,
 		"height": height,
 	}
 
