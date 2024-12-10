@@ -5,9 +5,9 @@ TAXE = 0.9
 
 market = {
 	# name								   price		lot_size
-	Goods.GOODS_FISH					: (2,			100),
+	Goods.GOODS_FISH					: (200,			1),
 	Goods.GOODS_SALT					: (1,			100),
-	Goods.GOODS_WHEAT					: (2,			1000),
+	Goods.GOODS_WHEAT					: (100000,			1),
 	Goods.GOODS_POTATO					: (1,			100),
 	Goods.GOODS_COTTON					: (4,			100),
 	Goods.GOODS_RICE					: (2,			100),
@@ -39,9 +39,9 @@ market = {
 	Goods.GOODS_GUNS					: (15,			100),
 	Goods.GOODS_ENGINE					: (2000,		100),
 	Goods.GOODS_CAR						: (10000,		100),
-	Goods.GOODS_PLANES					: (100000,		10),
+	Goods.GOODS_PLANES					: (10000000000,		10),
 	Goods.GOODS_JEWELRY					: (10000,		100),
-	Goods.GOODS_PHONE					: (20000,		1),
+	Goods.GOODS_PHONE					: (2000000000,		1),
 }
 
 def get_price(goods_type):
