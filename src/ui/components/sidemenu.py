@@ -5,11 +5,10 @@ from ui.components.placeBuildings import showplaceBuildingsMenu
 from ui.framework.framework import component_add_temp, component_temp_remove
 from ui.framework.text import longNumber
 from ui.map.terrainTile import print_terrain_tile
-from ui.map.ressource import print_ressource
 from ui.map.goods import draw_goods, ressources_to_goods, print_goods
-from ui.map.industry import draw_industry_menu, print_industry, draw_industry_product
+from ui.map.industry import draw_industry_menu2, print_industry, draw_industry_product
 from ui.common.buttons import centerLeftTextButton, centerRightTextButton, centerTextButton, exit_button
-from ui.framework import component, component_hide, component_show, drawRect, drawImage, drawText
+from ui.framework import component, component_hide, component_show, drawRect, drawImage
 from model.terrain import Ressource, TerrainTile
 from model.terrain.terrain import get_terrain_tile
 from model.industry import plants
@@ -53,7 +52,7 @@ def __drawRessourceButton(rect, good):
 def __drawBuildingButton(rect, building_id):
 	drawRect(rect, vc.BACKGROUND2, vc.ROUNDING_SMOOTH)
 	position, taille = rect
-	draw_func = draw_industry_menu(building_id)
+	draw_func = draw_industry_menu2(building_id)
 	draw_func(((position[0] + (taille[1] - 50) / 2, position[1] + (taille[1] - 50) / 2), (50, 50)), False)
 	centerTextButton(
 		(
