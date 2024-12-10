@@ -1080,6 +1080,7 @@ model_technologyTree_techTree = [
 
 # action by player to unlock a technology
 def model_technologyTree_add_tech(i, j):
+	global model_market_wallet_science
 	# TODO add check if player has enough science points
 	j = j if i < len(model_technologyTree_techTree) else j + 3
 	i = i if i < len(model_technologyTree_techTree) else len(model_technologyTree_techTree) - 1
@@ -1324,11 +1325,13 @@ def model_market_stockpile_get_stock(ressource_type):
 	)
 
 def model_market_stockpile_add_stock(ressource_type, amount):
+	global model_market_stockpile_stock
 	if not ressource_type in model_market_stockpile_stock:
 		model_market_stockpile_stock[ressource_type] = 0
 	model_market_stockpile_stock[ressource_type] += amount
 
 def model_market_stockpile_buy_stock(ressource_type, amount):
+	global model_market_stockpile_stock
 	if not ressource_type in model_market_stockpile_stock:
 		model_market_stockpile_stock[ressource_type] = 0
 	model_market_stockpile_stock[ressource_type] -= amount
@@ -1336,7 +1339,7 @@ def model_market_stockpile_buy_stock(ressource_type, amount):
 original_money = model_market_wallet_money
 
 def model_market_stockpile_sell_stock_to_market():
-	global original_money
+	global original_money, model_market_wallet_money_incr
 
 	for s in model_market_stockpile_stock:
 		if model_market_stockpile_stock[s] == 0:
@@ -1354,13 +1357,13 @@ def model_market_stockpile_sell_stock_to_market():
 	original_money = model_market_wallet_money
 
 def model_stat_setup_get_money():
-	global model_market_wallet_money_incr
+	global model_market_wallet_money_incr, model_market_wallet_money_incr
 	res = model_market_wallet_money_incr
 	model_market_wallet_money_incr = 0
 	return res
 
 def model_stat_setup_get_science():
-	global model_market_wallet_science_incr
+	global model_market_wallet_science_incr, model_market_wallet_science_incr
 	res = model_market_wallet_science_incr
 	model_market_wallet_science_incr = 0
 	return res
@@ -1908,34 +1911,34 @@ ui_map_goods_goodsMap = {
 	model_market_goods_GOODS_POTATO					: ('Potato'						, lambda rect: ui_framework_image_drawImage('good_potato', rect)),
 	model_market_goods_GOODS_COTTON					: ('Cotton'						, lambda rect: ui_framework_image_drawImage('good_cotton', rect)),
 	model_market_goods_GOODS_RICE					: ('Rice'						, lambda rect: ui_framework_image_drawImage('good_rice', rect)),
-	model_market_goods_GOODS_FUR						: ('Fur'						, lambda rect: ui_framework_image_drawImage('good_fur', rect)),
+	model_market_goods_GOODS_FUR					: ('Fur'						, lambda rect: ui_framework_image_drawImage('good_fur', rect)),
 	model_market_goods_GOODS_WOOD					: ('Wood'						, lambda rect: ui_framework_image_drawImage('good_wood', rect)),
-	model_market_goods_GOODS_OIL						: ('Oil'						, lambda rect: ui_framework_image_drawImage('good_oil', rect)),
+	model_market_goods_GOODS_OIL					: ('Oil'						, lambda rect: ui_framework_image_drawImage('good_oil', rect)),
 	model_market_goods_GOODS_COAL					: ('Coal'						, lambda rect: ui_framework_image_drawImage('good_coal', rect)),
 	model_market_goods_GOODS_IRON					: ('Iron'						, lambda rect: ui_framework_image_drawImage('good_iron', rect)),
 	model_market_goods_GOODS_COPPER					: ('Copper'						, lambda rect: ui_framework_image_drawImage('good_copper', rect)),
 	model_market_goods_GOODS_PRECIOUS_METAL			: ('Precious Metal'				, lambda rect: ui_framework_image_drawImage('good_precious_metal', rect)),
 	model_market_goods_GOODS_RARE_METAL				: ('Rare Metal'					, lambda rect: ui_framework_image_drawImage('good_rare_metal', rect)),
 	model_market_goods_GOODS_BREAD					: ('Bread'						, lambda rect: ui_framework_image_drawImage('good_bread', rect)),
-	model_market_goods_GOODS_ALCOHOL					: ('Alcohol'					, lambda rect: ui_framework_image_drawImage('good_alcohol', rect)),
+	model_market_goods_GOODS_ALCOHOL				: ('Alcohol'					, lambda rect: ui_framework_image_drawImage('good_alcohol', rect)),
 	model_market_goods_GOODS_SUSHI					: ('Sushi'						, lambda rect: ui_framework_image_drawImage('good_sushi', rect)),
-	model_market_goods_GOODS_TEXTILE					: ('Textile'					, lambda rect: ui_framework_image_drawImage('good_textile', rect)),
-	model_market_goods_GOODS_CLOTHES					: ('Clothes'					, lambda rect: ui_framework_image_drawImage('good_clothes', rect)),
+	model_market_goods_GOODS_TEXTILE				: ('Textile'					, lambda rect: ui_framework_image_drawImage('good_textile', rect)),
+	model_market_goods_GOODS_CLOTHES				: ('Clothes'					, lambda rect: ui_framework_image_drawImage('good_clothes', rect)),
 	model_market_goods_GOODS_FURNITURE				: ('Furniture'					, lambda rect: ui_framework_image_drawImage('good_furniture', rect)),
 	model_market_goods_GOODS_STEEL					: ('Steel'						, lambda rect: ui_framework_image_drawImage('good_steel', rect)),
 	model_market_goods_GOODS_TOOLS					: ('Tools'						, lambda rect: ui_framework_image_drawImage('good_tools', rect)),
 	model_market_goods_GOODS_CEMENT					: ('Cement'						, lambda rect: ui_framework_image_drawImage('good_cement', rect)),	
 	model_market_goods_GOODS_FUEL					: ('Fuel'						, lambda rect: ui_framework_image_drawImage('good_fuel', rect)),
-	model_market_goods_GOODS_PLASTIC					: ('Plastic'					, lambda rect: ui_framework_image_drawImage('good_plastic', rect)),
+	model_market_goods_GOODS_PLASTIC				: ('Plastic'					, lambda rect: ui_framework_image_drawImage('good_plastic', rect)),
 	model_market_goods_GOODS_GLASS					: ('Glass'						, lambda rect: ui_framework_image_drawImage('good_glass', rect)),
 	model_market_goods_GOODS_ELECTRONICS_COMPONENT	: ('Electronic Components'		, lambda rect: ui_framework_image_drawImage('good_electronics_component', rect)),
 	model_market_goods_GOODS_RADIO					: ('Radio'						, lambda rect: ui_framework_image_drawImage('good_radio', rect)),
 	model_market_goods_GOODS_COMPUTER				: ('Computer'					, lambda rect: ui_framework_image_drawImage('good_computer', rect)),
 	model_market_goods_GOODS_GUNS					: ('Guns'						, lambda rect: ui_framework_image_drawImage('good_guns', rect)),
 	model_market_goods_GOODS_ENGINE					: ('Engine'						, lambda rect: ui_framework_image_drawImage('good_engine', rect)),
-	model_market_goods_GOODS_CAR						: ('Car'						, lambda rect: ui_framework_image_drawImage('good_car', rect)),
+	model_market_goods_GOODS_CAR					: ('Car'						, lambda rect: ui_framework_image_drawImage('good_car', rect)),
 	model_market_goods_GOODS_PLANES					: ('Planes'						, lambda rect: ui_framework_image_drawImage('good_planes', rect)),
-	model_market_goods_GOODS_JEWELRY					: ('Jewelry'					, lambda rect: ui_framework_image_drawImage('good_jewelry', rect)),
+	model_market_goods_GOODS_JEWELRY				: ('Jewelry'					, lambda rect: ui_framework_image_drawImage('good_jewelry', rect)),
 	model_market_goods_GOODS_PHONE					: ('Phone'						, lambda rect: ui_framework_image_drawImage('good_phone', rect)),
 	model_market_goods_GOODS_STONE					: ('Stone'						, lambda rect: ui_framework_image_drawImage('good_stone', rect)),
 	model_market_goods_GOODS_SAND					: ('Sand'						, lambda rect: ui_framework_image_drawImage('good_sand', rect)),
@@ -2047,7 +2050,6 @@ def ui_component_welcome_getEasterEgg(mode):
 def ui_component_welcome__drawBackground(rect):
 	xxx = ui_component_welcome_getEasterEgg(ui_component_welcome_easterEgg)
 	ui_framework_image_drawImage(xxx[1], rect)
-	# drawRect(rect, SECONDARY)
 	ui_framework_text_drawText('title', (rect[1][0] // 2, rect[1][1] // 2), xxx[0], (255, 255, 255), "center")
 
 		
@@ -2495,7 +2497,7 @@ ui_component_sidemenu_RESOURCE_BUTTON_HEIGHT = (ui_component_sidemenu_RESOURCE_C
 
 
 def closeSideMenu():
-	global sideMenu
+	global sideMenu, SelectedTile_val
 	SelectedTile_val = None
 	ui_framework_framework_component_hide(sideMenu) 
 	ui_framework_framework_component_temp_remove(sideMenu)
@@ -2999,7 +3001,6 @@ def ui_component_placeBuilding_closeplaceBuildingsMenu():
 	# val = None
 	ui_framework_framework_component_hide(ui_component_placeBuilding_placeBuildingsMenu)
 	ui_framework_framework_component_temp_remove(ui_component_placeBuilding_placeBuildingsMenu)
-	from ui.components.sidemenu import refreshSideMenu
 	refreshSideMenu()
 
 ui_component_placeBuilding_placeBuildingsMenu = ui_framework_framework_component(
