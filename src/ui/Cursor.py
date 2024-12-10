@@ -4,24 +4,24 @@ Le curseur est le centre de l'écran
 """
 
 from ui import Zoom
-from utils.mytyping import mut_coord_f
+from utils.mytyping import utils_myTyping_mut_coord_f
 
-val: mut_coord_f = [0, 0]
-cursor_speed = 0.1
+Cursor_val: utils_myTyping_mut_coord_f = [0, 0]
+Cursor_cursor_speed = 0.1
 
-def reset():
-	global val
-	val = [0, 0]
+def Cursor_reset():
+	global Cursor_val
+	Cursor_val = [0, 0]
 
-def move_right():
-	val[0] -= cursor_speed * Zoom.val
+def Cursor_move_right():
+	Cursor_val[0] -= Cursor_cursor_speed * Zoom.Zoom_val
 
-def move_left():
-	val[0] += cursor_speed * Zoom.val
+def Cursor_move_left():
+	Cursor_val[0] += Cursor_cursor_speed * Zoom.Zoom_val
 
-def move_up():
-	val[1] -= cursor_speed * Zoom.val
+def Cursor_move_up():
+	Cursor_val[1] -= Cursor_cursor_speed * Zoom.Zoom_val
 
-def move_down():
-	val[1] += cursor_speed * Zoom.val
+def Cursor_move_down():
+	Cursor_val[1] += Cursor_cursor_speed * Zoom.Zoom_val
 

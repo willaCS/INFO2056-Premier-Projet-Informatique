@@ -1,6 +1,6 @@
 emptyLambda = lambda: None
 
-def component(
+def ui_framework_framework_component(
 	rect,
 	margin=0,
 	padding=0,
@@ -28,20 +28,20 @@ def component(
 	}
 
 	for child in res['_childs']:
-		component_add_parent(child, res)
+		ui_framework_framework_component_add_parent(child, res)
 	return res
 	
-def component_show(component):
+def ui_framework_framework_component_show(component):
 	component['_hidden'] = False
 
-def component_hide(component):
+def ui_framework_framework_component_hide(component):
 	component['_hidden'] = True
 
 
 
 
 
-def _component_baseRect(component, parent_rect):
+def ui_framework_framework__component_baseRect(component, parent_rect):
 	if callable(component['_rect']):
 		if component['_parent'] and component['_rect'].__code__.co_argcount >= 1:
 			return component['_rect'](parent_rect)
@@ -51,9 +51,9 @@ def _component_baseRect(component, parent_rect):
 		return component['_rect']
 
 
-def component_rect(component):
-	parent = component_child_rect(component['_parent']) if component['_parent'] else ((0, 0), (0, 0))
-	base = _component_baseRect(component, parent)
+def ui_framework_framework_component_rect(component):
+	parent = ui_framework_framework_component_child_rect(component['_parent']) if component['_parent'] else ((0, 0), (0, 0))
+	base = ui_framework_framework__component_baseRect(component, parent)
 	# print('base',base, component)
 	return (
 		(
@@ -66,9 +66,9 @@ def component_rect(component):
 		),
 	)
 
-def component_child_rect(component):
-	parent = component_child_rect(component['_parent']) if component['_parent'] else ((0, 0), (0, 0))
-	base = _component_baseRect(component, parent)
+def ui_framework_framework_component_child_rect(component):
+	parent = ui_framework_framework_component_child_rect(component['_parent']) if component['_parent'] else ((0, 0), (0, 0))
+	base = ui_framework_framework__component_baseRect(component, parent)
 	return (
 		(
 			parent[0][0] + base[0][0] + component['margin'] + component['padding'],
@@ -86,31 +86,31 @@ def component_child_rect(component):
 
 
 
-def component_draw(component, mouse_position):
+def ui_framework_framework_component_draw(component, mouse_position):
 	if component['_hidden']:
 		return	
-	rect = component_rect(component)
+	rect = ui_framework_framework_component_rect(component)
 	if component['_draw'].__code__.co_argcount >= 2:
-		component['_draw'](rect, component_is_in(component, mouse_position))
+		component['_draw'](rect, ui_framework_framework_component_is_in(component, mouse_position))
 	else:
 		component['_draw'](rect)
 	component['_childs'].sort(key=lambda c: c['z'])
 	for child in component['_childs']:
-		component_draw(child, mouse_position)
+		ui_framework_framework_component_draw(child, mouse_position)
 
-def component_is_in(component, pos):
-	rect = component_rect(component)
+def ui_framework_framework_component_is_in(component, pos):
+	rect = ui_framework_framework_component_rect(component)
 	return rect[0][0] <= pos[0] <= rect[0][0] + rect[1][0]\
 		and rect[0][1] <= pos[1] <= rect[0][1] + rect[1][1]
 
-def component_click(component, pos, has_already_clicked=False):
+def ui_framework_framework_component_click(component, pos, has_already_clicked=False):
 	if component['_hidden']:
 		return False
 	component['_childs'].sort(key=lambda c: c['z'], reverse=True)
 	for child in component['_childs']:
-		if component_click(child, pos, has_already_clicked):
+		if ui_framework_framework_component_click(child, pos, has_already_clicked):
 			has_already_clicked = True
-	if component['_click'] is not None and component_is_in(component, pos):
+	if component['_click'] is not None and ui_framework_framework_component_is_in(component, pos):
 		if has_already_clicked:
 			return has_already_clicked
 		has_already_clicked = True
@@ -125,7 +125,7 @@ def component_click(component, pos, has_already_clicked=False):
 			component['_clickOutside']()
 	return has_already_clicked
 
-def component_add_parent(component, parent):
+def ui_framework_framework_component_add_parent(component, parent):
 	component['_parent'] = parent
 
 
@@ -133,13 +133,13 @@ def component_add_parent(component, parent):
 
 
 
-def component_add_temp(component, new_childs):
+def ui_framework_framework_component_add_temp(component, new_childs):
 	for child in new_childs:
 		if not child:
 			continue
 		child['_temp'] = True
 		component['_childs'].append(child)
-		component_add_parent(child, component)
+		ui_framework_framework_component_add_parent(child, component)
 
-def component_temp_remove(component):
+def ui_framework_framework_component_temp_remove(component):
     component['_childs'] = [child for child in component['_childs'] if not child['_temp']]

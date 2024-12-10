@@ -1,24 +1,25 @@
 import Window
 from ui import gestionMenu, gestionMode
 from ui import visual_config as vc
-from ui.common.buttons import centerTextButton
-from ui.framework import component, component_show, component_hide, drawText, drawRect
-from ui.framework.image import drawImage
+from ui.common.buttons import ui_common_centerTextButton
+from ui.framework.framework import ui_framework_framework_component, ui_framework_framework_component_show, ui_framework_framework_component_hide
+from ui.framework.image import ui_framework_image_drawImage
+from ui.framework.text import ui_framework_text_drawText
 
-BOUTON_LARGEUR = 300
-BOUTON_HAUTEUR = 40
-BOUTON_ESPACE = 5
+ui_component_welcome_BOUTON_LARGEUR = 300
+ui_component_welcome_BOUTON_HAUTEUR = 40
+ui_component_welcome_BOUTON_ESPACE = 5
 
-easterEgg = 0
+ui_component_welcome_easterEgg = 0
 
-def toggleEasterEgg(mode=0):
-	global easterEgg
-	if easterEgg == mode:
-		easterEgg = 0
+def ui_component_welcome_toggleEasterEgg(mode=0):
+	global ui_component_welcome_easterEgg
+	if ui_component_welcome_easterEgg == mode:
+		ui_component_welcome_easterEgg = 0
 	else:
-		easterEgg = mode
+		ui_component_welcome_easterEgg = mode
 
-def getEasterEgg(mode):
+def ui_component_welcome_getEasterEgg(mode):
 	match mode:
 		case 0:
 			return ('Capitalism Island 2', 'background')
@@ -27,85 +28,85 @@ def getEasterEgg(mode):
 		case 2:
 			return ('Colonisalism Island 2', 'background3')
 
-def _drawBackground(rect):
-	xxx = getEasterEgg(easterEgg)
-	drawImage(xxx[1], rect)
+def ui_component_welcome__drawBackground(rect):
+	xxx = ui_component_welcome_getEasterEgg(ui_component_welcome_easterEgg)
+	ui_framework_image_drawImage(xxx[1], rect)
 	# drawRect(rect, vc.SECONDARY)
-	drawText('title', (rect[1][0] // 2, rect[1][1] // 2), xxx[0], (255, 255, 255), "center")
+	ui_framework_text_drawText('title', (rect[1][0] // 2, rect[1][1] // 2), xxx[0], (255, 255, 255), "center")
 
 		
 
 
-welcomeMenu = component(
+ui_component_welcome_welcomeMenu = ui_framework_framework_component(
 	z=0,
 	rect=lambda parent: parent,
-	draw=_drawBackground,
+	draw=ui_component_welcome__drawBackground,
 	childs=[
 		# Bouton Play
-		component(
+		ui_framework_framework_component(
 			z=1,
 			rect=lambda parent: (
 				(
-					(parent[1][0] - BOUTON_LARGEUR) // 2,
-					parent[1][1] // 2 + (BOUTON_HAUTEUR + BOUTON_ESPACE)
+					(parent[1][0] - ui_component_welcome_BOUTON_LARGEUR) // 2,
+					parent[1][1] // 2 + (ui_component_welcome_BOUTON_HAUTEUR + ui_component_welcome_BOUTON_ESPACE)
 				),
-				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
+				(ui_component_welcome_BOUTON_LARGEUR, ui_component_welcome_BOUTON_HAUTEUR)
 			),
-			draw=lambda rect: centerTextButton(rect, 'font2', "Play", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
-			click=lambda: gestionMenu.change_menu(gestionMenu.MENU_JEU),
+			draw=lambda rect: ui_common_centerTextButton(rect, 'font2', "Play", vc.VC_BACKGROUND, vc.VC_ROUNDING_SMOOTH, vc.VC_ACCENT),
+			click=lambda: gestionMenu.change_menu(gestionMenu.GestionMenu_MENU_JEU),
 		),
 
 		# # Bouton Settings 
-		component(
+		ui_framework_framework_component(
 			z=1,
 			rect=lambda parent: (
 				(
-					(parent[1][0] - BOUTON_LARGEUR) // 2,
-					parent[1][1] // 2 + (BOUTON_HAUTEUR + BOUTON_ESPACE) * 2
+					(parent[1][0] - ui_component_welcome_BOUTON_LARGEUR) // 2,
+					parent[1][1] // 2 + (ui_component_welcome_BOUTON_HAUTEUR + ui_component_welcome_BOUTON_ESPACE) * 2
 				),
-				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
+				(ui_component_welcome_BOUTON_LARGEUR, ui_component_welcome_BOUTON_HAUTEUR)
 			),
-			draw=lambda rect: centerTextButton(rect, 'font2', "Settings", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
-			click=lambda: gestionMenu.change_menu(gestionMenu.MENU_REGLAGE),
+			draw=lambda rect: ui_common_centerTextButton(rect, 'font2', "Settings", vc.VC_BACKGROUND, vc.VC_ROUNDING_SMOOTH, vc.VC_ACCENT),
+			click=lambda: gestionMenu.change_menu(gestionMenu.GestionMenu_MENU_REGLAGE),
 		),
 
 		# Bouton Exit 
-		component(
+		ui_framework_framework_component(
 			z=1,
 			rect=lambda parent: (
 				(
-					(parent[1][0] - BOUTON_LARGEUR) // 2,
-					parent[1][1] // 2 + (BOUTON_HAUTEUR + BOUTON_ESPACE) * 3
+					(parent[1][0] - ui_component_welcome_BOUTON_LARGEUR) // 2,
+					parent[1][1] // 2 + (ui_component_welcome_BOUTON_HAUTEUR + ui_component_welcome_BOUTON_ESPACE) * 3
 				),
-				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
+				(ui_component_welcome_BOUTON_LARGEUR, ui_component_welcome_BOUTON_HAUTEUR)
 			),
-			draw=lambda rect: centerTextButton(rect, 'font2', "Exit", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
-			click=Window.stop,
+			draw=lambda rect: ui_common_centerTextButton(rect, 'font2', "Exit", vc.VC_BACKGROUND, vc.VC_ROUNDING_SMOOTH, vc.VC_ACCENT),
+			click=Window.Window_stop,
 		),
 
 		# Bouton Easter Egg 
-		component(
+		ui_framework_framework_component(
 			z=1,
 			rect=lambda parent: (
 				(0, 0),
 				(100, 100)
 			),
 			draw=lambda rect: None,
-			click=lambda: toggleEasterEgg(1),
+			click=lambda: ui_component_welcome_toggleEasterEgg(1),
 		),
 
 		# Bouton Easter Egg 
-		component(
+		ui_framework_framework_component(
 			z=1,
 			rect=lambda parent: (
 				(parent[1][0] - 100, 0),
 				(100, 100)
 			),
 			draw=lambda rect: None,
-			click=lambda: toggleEasterEgg(2),
+			click=lambda: ui_component_welcome_toggleEasterEgg(2),
 		),
 	]
 )
 
-def drawWelcome():
-	component_show(welcomeMenu)
+def ui_component_welcome_drawWelcome():
+	ui_framework_framework_component_show(ui_component_welcome_welcomeMenu)

@@ -1,12 +1,12 @@
-CLAVIER_AZERTY = 0
-CLAVIER_QWERTY = 1
+GestionClavider_CLAVIER_AZERTY = 0
+GestionClavider_CLAVIER_QWERTY = 1
 
-clavier = CLAVIER_QWERTY
+GestionClavider_clavier = GestionClavider_CLAVIER_QWERTY
 
 
-def change_clavier(new_clavier):
-    global clavier
-    clavier = new_clavier
+def GestionClavider_change_clavier(new_clavier):
+    global GestionClavider_clavier
+    GestionClavider_clavier = new_clavier
 
 
 

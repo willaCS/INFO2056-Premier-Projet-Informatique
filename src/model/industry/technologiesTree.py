@@ -1,16 +1,16 @@
 from model.industry import technologies
 from model.market import player_wallet
 from model.terrain import Ressource, TerrainTile
-from model.terrain.terrain import get_terrain_tile
+from model.terrain.terrain import model_terrain_terrain_get_terrain_tile
 
-default_unlocked = [
-	technologies.INDUSTRY_WHEAT_FIELDS,
-	technologies.INDUSTRY_FISHINGBOAT,
-	technologies.INDUSTRY_LUMBERMILL,
-	technologies.INDUSTRY_STONEQUERY,
+model_technologyTree_default_unlocked = [
+	technologies.model_technologies_INDUSTRY_WHEAT_FIELDS,
+	technologies.model_technologies_INDUSTRY_FISHINGBOAT,
+	technologies.model_technologies_INDUSTRY_LUMBERMILL,
+	technologies.model_technologies_INDUSTRY_STONEQUERY,
 ]
 
-techTree = [
+model_technologyTree_techTree = [
 	{
 		"name": "Food",
 		"techs": [
@@ -19,8 +19,8 @@ techTree = [
 				"cost": 100,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_POTATO_FIELDS,
-					technologies.INDUSTRY_BREADFACTORY,
+					technologies.model_technologies_INDUSTRY_POTATO_FIELDS,
+					technologies.model_technologies_INDUSTRY_BREADFACTORY,
 				]
 			},
 			{
@@ -28,8 +28,8 @@ techTree = [
 				"cost": 250,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_SALTEXTRACTION,
-					technologies.INDUSTRY_RICE_FIELDS,
+					technologies.model_technologies_INDUSTRY_SALTEXTRACTION,
+					technologies.model_technologies_INDUSTRY_RICE_FIELDS,
 				]
 			},
 			{
@@ -37,8 +37,8 @@ techTree = [
 				"cost": 750,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_SUSHIFACTORY,
-					technologies.INDUSTRY_ALCOHOLFACTORY,
+					technologies.model_technologies_INDUSTRY_SUSHIFACTORY,
+					technologies.model_technologies_INDUSTRY_ALCOHOLFACTORY,
 				]
 			},
 		]
@@ -51,8 +51,8 @@ techTree = [
 				"cost": 100,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_COTTON_FIELDS,
-					technologies.INDUSTRY_SANDQUERY,
+					technologies.model_technologies_INDUSTRY_COTTON_FIELDS,
+					technologies.model_technologies_INDUSTRY_SANDQUERY,
 				]
 			},
 			{
@@ -60,9 +60,9 @@ techTree = [
 				"cost": 250,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_TEXTILEFACTORY,
-					technologies.INDUSTRY_FURNITUREFACTORY,
-					technologies.INDUSTRY_CEMENTFACTORY,
+					technologies.model_technologies_INDUSTRY_TEXTILEFACTORY,
+					technologies.model_technologies_INDUSTRY_FURNITUREFACTORY,
+					technologies.model_technologies_INDUSTRY_CEMENTFACTORY,
 				]
 			},
 			{
@@ -70,8 +70,8 @@ techTree = [
 				"cost": 500,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_CLOTHESFACTORY,
-					technologies.INDUSTRY_GLASSFACTORY,
+					technologies.model_technologies_INDUSTRY_CLOTHESFACTORY,
+					technologies.model_technologies_INDUSTRY_GLASSFACTORY,
 				]
 			},
 		]
@@ -84,7 +84,7 @@ techTree = [
 				"cost": 150,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_COALMINE,
+					technologies.model_technologies_INDUSTRY_COALMINE,
 				]
 			},
 			{
@@ -92,8 +92,8 @@ techTree = [
 				"cost": 500,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_IRONMINE,
-					technologies.INDUSTRY_COPPERMINE,
+					technologies.model_technologies_INDUSTRY_IRONMINE,
+					technologies.model_technologies_INDUSTRY_COPPERMINE,
 				]
 			},
 			{
@@ -101,9 +101,9 @@ techTree = [
 				"cost": 5000,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_PRECIOUSMETALMINE,
-					technologies.INDUSTRY_RAREMETALMINE,
-					technologies.INDUSTRY_JEWELRYWORKSHOP,
+					technologies.model_technologies_INDUSTRY_PRECIOUSMETALMINE,
+					technologies.model_technologies_INDUSTRY_RAREMETALMINE,
+					technologies.model_technologies_INDUSTRY_JEWELRYWORKSHOP,
 				]
 			},
 		]
@@ -116,7 +116,7 @@ techTree = [
 				"cost": 10,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_STEELMILL,
+					technologies.model_technologies_INDUSTRY_STEELMILL,
 				]
 			},
 			{
@@ -124,7 +124,7 @@ techTree = [
 				"cost": 20,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_OILWELL,
+					technologies.model_technologies_INDUSTRY_OILWELL,
 				]
 			},
 			{
@@ -132,8 +132,8 @@ techTree = [
 				"cost": 30,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_REFINARY,
-					technologies.INDUSTRY_RADIOFACTORY,
+					technologies.model_technologies_INDUSTRY_REFINARY,
+					technologies.model_technologies_INDUSTRY_RADIOFACTORY,
 				]
 			},
 			{
@@ -141,8 +141,8 @@ techTree = [
 				"cost": 40,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_PLASTICFACTORY,
-					technologies.INDUSTRY_GUNFACTORY,
+					technologies.model_technologies_INDUSTRY_PLASTICFACTORY,
+					technologies.model_technologies_INDUSTRY_GUNFACTORY,
 				]
 			},
 			{
@@ -150,9 +150,9 @@ techTree = [
 				"cost": 50,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_ELECTRONICCOMPONENTSFACTORY,
-					technologies.INDUSTRY_ENGINEFACTORY,
-					technologies.INDUSTRY_CARFACTORY,
+					technologies.model_technologies_INDUSTRY_ELECTRONICCOMPONENTSFACTORY,
+					technologies.model_technologies_INDUSTRY_ENGINEFACTORY,
+					technologies.model_technologies_INDUSTRY_CARFACTORY,
 				]
 			},
 			{
@@ -160,9 +160,9 @@ techTree = [
 				"cost": 60,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_COMPUTERFACTORY,
-					technologies.INDUSTRY_PLANESFACTORY,
-					technologies.INDUSTRY_PHONEFACTORY,
+					technologies.model_technologies_INDUSTRY_COMPUTERFACTORY,
+					technologies.model_technologies_INDUSTRY_PLANESFACTORY,
+					technologies.model_technologies_INDUSTRY_PHONEFACTORY,
 				]
 			},
 		]
@@ -170,61 +170,60 @@ techTree = [
 ]
 
 # action by player to unlock a technology
-def add_tech(i, j):
+def model_technologyTree_add_tech(i, j):
 	# TODO add check if player has enough science points
-	j = j if i < len(techTree) else j + 3
-	i = i if i < len(techTree) else len(techTree) - 1
-	tech = techTree[i]['techs'][j]
+	j = j if i < len(model_technologyTree_techTree) else j + 3
+	i = i if i < len(model_technologyTree_techTree) else len(model_technologyTree_techTree) - 1
+	tech = model_technologyTree_techTree[i]['techs'][j]
 	if tech['unlocked']:
 		return
-	if player_wallet.science < tech['cost']:
+	if player_wallet.model_market_wallet_science < tech['cost']:
 		return
-	if j != 0 and not techTree[i]['techs'][j - 1]['unlocked']:
+	if j != 0 and not model_technologyTree_techTree[i]['techs'][j - 1]['unlocked']:
 		return
-	player_wallet.science -= tech['cost']
+	player_wallet.model_market_wallet_science -= tech['cost']
 	tech['unlocked'] = True
 
-def get_unlocked_techs():
+def model_technologyTree_get_unlocked_techs():
 	return [
 		tech
-			for tree in techTree
+			for tree in model_technologyTree_techTree
 			for tech in tree['techs'] if tech['unlocked']
 	]
 
-def get_unlocked_buildings():
+def model_technologyTree_get_unlocked_buildings():
 	return [
-		*default_unlocked,
+		*model_technologyTree_default_unlocked,
 		*(unlock
-			for tree in techTree
+			for tree in model_technologyTree_techTree
 			for tech in tree['techs'] if tech['unlocked']
 			for unlock in tech['unlocks']
 		)
 	]
 
-def get_tech_for_draw(i, j):
-	j = j if i < len(techTree) else j + 3
-	i = i if i < len(techTree) else len(techTree) - 1
-	return techTree[i]['techs'][j]
+def model_technologyTree_get_tech_for_draw(i, j):
+	j = j if i < len(model_technologyTree_techTree) else j + 3
+	i = i if i < len(model_technologyTree_techTree) else len(model_technologyTree_techTree) - 1
+	return model_technologyTree_techTree[i]['techs'][j]
 
 
-def get_placable_on(coord):
+def model_technologyTree_get_placable_on(coord):
 	if not coord:
 		return []
-	unlocked = get_unlocked_buildings()
-	terrain = get_terrain_tile(coord)
-	ressource = TerrainTile.ressource(terrain)
+	unlocked = model_technologyTree_get_unlocked_buildings()
+	terrain = model_terrain_terrain_get_terrain_tile(coord)
+	ressource = TerrainTile.model_terrain_terrainTile_ressource(terrain)
 	
 	res = []
-	for indus in technologies.industry:
+	for indus in technologies.model_technologies_industry:
 		if not indus in unlocked:
 			continue
-		test_ind = technologies.industry[indus]
+		test_ind = technologies.model_technologies_industry[indus]
 		for place_on in test_ind['place_on']:
-			if place_on['type'] == technologies.PLACE_ON_RESSOURCE:
-				if ressource and place_on['id'] == Ressource.type(ressource):
+			if place_on['type'] == technologies.model_technologies_PLACE_ON_RESSOURCE:
+				if ressource and place_on['id'] == Ressource.model_terrain_ressource_type(ressource):
 					res.append(indus)
-			elif place_on['type'] == technologies.PLACE_ON_TERRAIN:
-				if place_on['id'] == TerrainTile.type(terrain):
+			elif place_on['type'] == technologies.model_technologies_PLACE_ON_TERRAIN:
+				if place_on['id'] == TerrainTile.model_terrain_terrainTile_type(terrain):
 					res.append(indus)
-	# print(res)
 	return res

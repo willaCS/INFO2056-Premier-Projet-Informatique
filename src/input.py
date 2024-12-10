@@ -8,76 +8,76 @@ import pygame
 
 import Window
 from model import Speed
-from model.industry import Plant, plants
+from model.industry import plants
 from model.market import player_wallet
 from ui import Cursor, Screenmode, SelectedTile, Zoom
-from ui.components.tech import drawTech
-from ui.map.map import drawTile
+from ui.components.tech import ui_component_tech_drawTech
+from ui.map.map import ui_map_map_drawTile
 from ui import gestionClavier
 
 
 
-def repeatKey(key: int):
-	if gestionClavier.clavier == gestionClavier.CLAVIER_AZERTY:
-		repeatKey_azerty(key)
+def input_repeatKey(key: int):
+	if gestionClavier.GestionClavider_clavier == gestionClavier.GestionClavider_CLAVIER_AZERTY:
+		input_repeatKey_azerty(key)
 	else:
-		repeatKey_qwerty(key)
+		input_repeatKey_qwerty(key)
 		 
-def singleKey(key: int):
-	if gestionClavier.clavier == gestionClavier.CLAVIER_AZERTY:
-		singleKey_azerty(key)
+def input_singleKey(key: int):
+	if gestionClavier.GestionClavider_clavier == gestionClavier.GestionClavider_CLAVIER_AZERTY:
+		input_singleKey_azerty(key)
 	else:
-		singleKey_qwerty(key)
+		input_singleKey_qwerty(key)
 
  
 
-def repeatKey_azerty(key: int):
+def input_repeatKey_azerty(key: int):
 	match key:
 		case pygame.K_v:
-			Cursor.reset()
+			Cursor.Cursor_reset()
 		case pygame.K_z | pygame.K_UP:
-			Cursor.move_up()
+			Cursor.Cursor_move_up()
 		case pygame.K_q | pygame.K_LEFT:
-			Cursor.move_left()
+			Cursor.Cursor_move_left()
 		case pygame.K_s | pygame.K_DOWN:
-			Cursor.move_down()
+			Cursor.Cursor_move_down()
 		case pygame.K_d | pygame.K_RIGHT:
-			Cursor.move_right()
+			Cursor.Cursor_move_right()
 		case pygame.K_r:
-			Zoom.decrement()
+			Zoom.Zoom_decrement()
 		case pygame.K_f:
-			Zoom.increment()
+			Zoom.Zoom_increment()
 		case _:
 			pass
 
 
 
-def repeatKey_qwerty(key):
+def input_repeatKey_qwerty(key):
 	match key:
 		case pygame.K_v:
-			Cursor.reset()
+			Cursor.Cursor_reset()
 		case pygame.K_w | pygame.K_UP:
-			Cursor.move_up()
+			Cursor.Cursor_move_up()
 		case pygame.K_a | pygame.K_LEFT:
-			Cursor.move_left()
+			Cursor.Cursor_move_left()
 		case pygame.K_s | pygame.K_DOWN:
-			Cursor.move_down()
+			Cursor.Cursor_move_down()
 		case pygame.K_d | pygame.K_RIGHT:
-			Cursor.move_right()
+			Cursor.Cursor_move_right()
 		case pygame.K_r:
-			Zoom.decrement()
+			Zoom.Zoom_decrement()
 		case pygame.K_f:
-			Zoom.increment()
+			Zoom.Zoom_increment()
 		case _:
 			pass
 		
 
-def singleKey_qwerty(key: int):
+def input_singleKey_qwerty(key: int):
 	match key:
 		case pygame.K_ESCAPE:
-			Window.stop()
+			Window.Window_stop()
 		case pygame.K_F11:
-			Window.toggleFullscreen()
+			Window.Window_toggleFullscreen()
 		case pygame.K_1:
 			Screenmode.select(Screenmode.SCREENMODE_MAIN)
 		case pygame.K_2:
@@ -87,42 +87,42 @@ def singleKey_qwerty(key: int):
 		case pygame.K_4:
 			Screenmode.select(Screenmode.SCREENMODE_TRANSPORT)
 		case pygame.K_t:
-			Speed.increment()
+			Speed.model_speed_increment()
 		case pygame.K_g:
-			Speed.decrement()
+			Speed.model_speed_decrement()
 		case pygame.K_SPACE:
-			Speed.pause()
+			Speed.model_speed_pause()
 		case pygame.K_KP1:
-			Speed.set(1)
+			Speed.model_speed_set(1)
 		case pygame.K_KP2:
-			Speed.set(2)
+			Speed.model_speed_set(2)
 		case pygame.K_KP3:
-			Speed.set(3)
+			Speed.model_speed_set(3)
 		case pygame.K_KP4:
-			Speed.set(4)
+			Speed.model_speed_set(4)
 		case pygame.K_KP5:
-			Speed.set(5)
+			Speed.model_speed_set(5)
 		case pygame.K_BACKSPACE:
-			if SelectedTile.val:
-				if not plants.tile_is_empty(SelectedTile.val):
-					plants.remove(SelectedTile.val)
-					drawTile(SelectedTile.val, True) # Refresh cache for draw
+			if SelectedTile.SelectedTile_val:
+				if not plants.model_plants_tile_is_empty(SelectedTile.SelectedTile_val):
+					plants.model_plants_remove(SelectedTile.SelectedTile_val)
+					ui_map_map_drawTile(SelectedTile.SelectedTile_val, True) # Refresh cache for draw
 		case pygame.K_o:
-			player_wallet.science += 10
+			player_wallet.model_market_wallet_science += 10
 		case pygame.K_l:
-			player_wallet.money += 100000000
+			player_wallet.model_market_wallet_money += 100000000
 		case pygame.K_p:
-			drawTech()
+			ui_component_tech_drawTech()
 		case _:
 			pass
 
 	
-def singleKey_azerty(key):
+def input_singleKey_azerty(key):
 	match key:
 		case pygame.K_ESCAPE:
-			Window.stop()
+			Window.Window_stop()
 		case pygame.K_F11:
-			Window.toggleFullscreen()
+			Window.Window_toggleFullscreen()
 		case pygame.K_1:
 			Screenmode.select(Screenmode.SCREENMODE_MAIN)
 		case pygame.K_2:
@@ -132,32 +132,32 @@ def singleKey_azerty(key):
 		case pygame.K_4:
 			Screenmode.select(Screenmode.SCREENMODE_TRANSPORT)
 		case pygame.K_t:
-			Speed.increment()
+			Speed.model_speed_increment()
 		case pygame.K_g:
-			Speed.decrement()
+			Speed.model_speed_decrement()
 		case pygame.K_SPACE:
-			Speed.pause()
+			Speed.model_speed_pause()
 		case pygame.K_KP1:
-			Speed.set(1)
+			Speed.model_speed_set(1)
 		case pygame.K_KP2:
-			Speed.set(2)
+			Speed.model_speed_set(2)
 		case pygame.K_KP3:
-			Speed.set(3)
+			Speed.model_speed_set(3)
 		case pygame.K_KP4:
-			Speed.set(4)
+			Speed.model_speed_set(4)
 		case pygame.K_KP5:
-			Speed.set(5)
+			Speed.model_speed_set(5)
 		case pygame.K_BACKSPACE:
-			if SelectedTile.val:
-				if not plants.tile_is_empty(SelectedTile.val):
-					plants.remove(SelectedTile.val)
-					drawTile(SelectedTile.val, True) # Refresh cache for draw
+			if SelectedTile.SelectedTile_val:
+				if not plants.model_plants_tile_is_empty(SelectedTile.SelectedTile_val):
+					plants.model_plants_remove(SelectedTile.SelectedTile_val)
+					ui_map_map_drawTile(SelectedTile.SelectedTile_val, True) # Refresh cache for draw
 		case pygame.K_o:
-			player_wallet.science += 10
+			player_wallet.model_market_wallet_science += 10
 		case pygame.K_l:
-			player_wallet.money += 100000000
+			player_wallet.model_market_wallet_money += 100000000
 		case pygame.K_p:
-			drawTech()
+			ui_component_tech_drawTech()
 		case _:
 			pass
 

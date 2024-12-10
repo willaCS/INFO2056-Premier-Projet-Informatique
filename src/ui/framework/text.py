@@ -1,10 +1,10 @@
 import pygame
 import Window
 
-fonts = {}
+ui_framework_text_fonts = {}
 
-def loadFont(id: str, name: str, size: int, bold: bool = False):
-	fonts[id] = pygame.font.SysFont(name, size, bold)
+def ui_framework_text_loadFont(id: str, name: str, size: int, bold: bool = False):
+	ui_framework_text_fonts[id] = pygame.font.SysFont(name, size, bold)
 
 def longNumber(number: int) -> str:
 	if abs(number / (10 ** 12)) >= 1:
@@ -22,17 +22,17 @@ def longNumber(number: int) -> str:
 # topleft, bottomleft, topright, bottomright
 # midtop, midleft, midbottom, midright
 # center, centerx, centery
-def drawText(
+def ui_framework_text_drawText(
 	fontId: str,
 	coord,
 	text: str,
 	color,
 	anchor: str = "topleft"
 ):
-	font = fonts.get(fontId) # type: pygame.font.Font
+	font = ui_framework_text_fonts.get(fontId) # type: pygame.font.Font
 	if font is None:
 		raise ValueError(f"Font {fontId} not loaded")
 	text_prepared = font.render(text, True, color)
 	rect = text_prepared.get_rect()
 	setattr(rect, anchor, coord)
-	Window.inst.blit(text_prepared, rect)
+	Window.Window_inst.blit(text_prepared, rect)

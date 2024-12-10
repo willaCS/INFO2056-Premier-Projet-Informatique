@@ -1,21 +1,21 @@
-money = 10
-money_incr = 0
-science = 0
-science_incr = 0
+model_market_wallet_money = 10
+model_market_wallet_money_incr = 0
+model_market_wallet_science = 0
+model_market_wallet_science_incr = 0
 
-def has_money(price):
-	return money >= price
+def model_market_wallet_has_money(price):
+	return model_market_wallet_money >= price
 
-def buy(price):
-	global money, money_incr
-	money -= price
-	money_incr -= price
+def model_market_wallet_buy(price):
+	global model_market_wallet_money, model_market_wallet_money_incr
+	model_market_wallet_money -= price
+	model_market_wallet_money_incr -= price
 
-def buy2(price):
-	global money
-	money -= price
+def model_market_wallet_buy2(price):
+	global model_market_wallet_money
+	model_market_wallet_money -= price
 
-def sell(price):
-	global money, money_incr
-	money += price	
-	money_incr += price
+def model_market_wallet_sell(price):
+	global model_market_wallet_money, model_market_wallet_money_incr
+	model_market_wallet_money += price	
+	model_market_wallet_money_incr += price

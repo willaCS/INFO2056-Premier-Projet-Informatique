@@ -1,17 +1,17 @@
 from ui.components import main
 
 
-MENU_INTRO = 0
-MENU_REGLAGE = 1
-MENU_JEU = 2
+GestionMenu_MENU_INTRO = 0
+GestionMenu_MENU_REGLAGE = 1
+GestionMenu_MENU_JEU = 2
 
-menu = MENU_INTRO
+menu = GestionMenu_MENU_INTRO
 
 
 def change_menu(new_menu):
     global menu
 
-    main.hide_all()
+    main.ui_component_main_hide_all()
     menu = new_menu
 
 

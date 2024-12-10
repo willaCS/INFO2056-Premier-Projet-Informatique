@@ -7,32 +7,32 @@ Exemple: le nombre de pixel que fait une case.
 import math
 
 
-val = 100
-__zoom_speed = 1.05
-__zoom_min = 1
-__zoom_max = 1000
-tile_size = 0
-line_width = 0
-outline_width = 0
-opti_factor = 2
+Zoom_val = 100
+Zoom__zoom_speed = 1.05
+Zoom__zoom_min = 1
+Zoom__zoom_max = 1000
+Zoom_tile_size = 0
+Zoom_line_width = 0
+Zoom_outline_width = 0
+Zoom_opti_factor = 2
 
-def __update():
-	global tile_size, line_width, outline_width,opti_factor
-	tile_size = 200 / val
-	line_width = 25 / val
-	outline_width = 15 / val
-	opti_factor = max(2 ** int(math.log2(val / 10)), 1)
+def Zoom__update():
+	global Zoom_tile_size, Zoom_line_width, Zoom_outline_width,Zoom_opti_factor
+	Zoom_tile_size = 200 / Zoom_val
+	Zoom_line_width = 25 / Zoom_val
+	Zoom_outline_width = 15 / Zoom_val
+	Zoom_opti_factor = max(2 ** int(math.log2(Zoom_val / 10)), 1)
 
-def increment():
-	global val
-	if val < __zoom_max:
-		val *= __zoom_speed
-		__update()
+def Zoom_increment():
+	global Zoom_val
+	if Zoom_val < Zoom__zoom_max:
+		Zoom_val *= Zoom__zoom_speed
+		Zoom__update()
 
-def decrement():
-	global val
-	if val > __zoom_min:
-		val /= __zoom_speed
-		__update()
+def Zoom_decrement():
+	global Zoom_val
+	if Zoom_val > Zoom__zoom_min:
+		Zoom_val /= Zoom__zoom_speed
+		Zoom__update()
 
-__update()
+Zoom__update()

@@ -1,137 +1,140 @@
 import Window
 from ui import gestionMenu
 from ui import visual_config as vc
-from ui.common.buttons import centerTextButton
-from ui.framework import component, component_show, component_hide, drawRect, drawText
+from ui.common.buttons import ui_common_centerTextButton
+from ui.framework.framework import ui_framework_framework_component, ui_framework_framework_component_show, ui_framework_framework_component_hide
+from ui.framework.draw import ui_framework_draw_drawRect
+from ui.framework.image import ui_framework_image_drawImage
 from ui import gestionClavier, gestionMode
 from ui import visual_config
+from ui.framework.text import ui_framework_text_drawText
 
-BOUTON_LARGEUR = 400
-BOUTON_HAUTEUR = 50
+ui_component_settings_BOUTON_LARGEUR = 400
+ui_component_settings_BOUTON_HAUTEUR = 50
 
-OPTION_HEIGHT = BOUTON_HAUTEUR - 2 * vc.PADDING
-OPTION_WIDTH = 120
+ui_component_settings_OPTION_HEIGHT = ui_component_settings_BOUTON_HAUTEUR - 2 * vc.VC_PADDING
+ui_component_settings_OPTION_WIDTH = 120
 
 
-def _drawBackground(rect):
-	drawRect(rect, vc.SECONDARY)
+def ui_component_settings__drawBackground(rect):
+	ui_framework_draw_drawRect(rect, vc.VC_SECONDARY)
 
-def _drawSettingBar(rect, message):
-	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
-	drawText('font2', (rect[0][0] + vc.PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midleft")
+def ui_component_settings__drawSettingBar(rect, message):
+	ui_framework_draw_drawRect(rect, vc.VC_BACKGROUND, vc.VC_ROUNDING_SMOOTH)
+	ui_framework_text_drawText('font2', (rect[0][0] + vc.VC_PADDING, rect[0][1] + rect[1][1] // 2), message, vc.VC_TEXT, "midleft")
 
-settingsMenu = component(
+ui_component_settings_settingsMenu = ui_framework_framework_component(
 	z=0,
 	rect=lambda: (
 		(0, 0),
-		Window.resolution
+		Window.Window_resolution
 	),
-	draw=_drawBackground,
+	draw=ui_component_settings__drawBackground,
 	click=lambda: None,
 	childs=[
 		# Keyboard Layout
-		component(
+		ui_framework_framework_component(
 			z=1,
-			padding=vc.PADDING,
+			padding=vc.VC_PADDING,
 			rect=lambda parent: (
 				(
-					(parent[1][0] - BOUTON_LARGEUR) // 2,
-					parent[1][1] // 2 + (BOUTON_HAUTEUR + vc.PADDING),
+					(parent[1][0] - ui_component_settings_BOUTON_LARGEUR) // 2,
+					parent[1][1] // 2 + (ui_component_settings_BOUTON_HAUTEUR + vc.VC_PADDING),
 				),
-				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
+				(ui_component_settings_BOUTON_LARGEUR, ui_component_settings_BOUTON_HAUTEUR)
 			),
-			draw=lambda rect: _drawSettingBar(rect, "Layout"),
+			draw=lambda rect: ui_component_settings__drawSettingBar(rect, "Layout"),
 			click=lambda: None,
 			childs=[
 				# Bouton Azerty 
-				component(
+				ui_framework_framework_component(
 					z=2,
 					rect=lambda parent: (
-						(parent[1][0] - OPTION_WIDTH, 0),
-						(OPTION_WIDTH, OPTION_HEIGHT)
+						(parent[1][0] - ui_component_settings_OPTION_WIDTH, 0),
+						(ui_component_settings_OPTION_WIDTH, ui_component_settings_OPTION_HEIGHT)
 					),
-					draw=lambda rect: centerTextButton(rect, 'font2', "AZERTY",
-						vc.ACCENT if gestionClavier.clavier == gestionClavier.CLAVIER_AZERTY else vc.BACKGROUND3,
-						vc.ROUNDING_SMOOTH, vc.ACCENT
+					draw=lambda rect: ui_common_centerTextButton(rect, 'font2', "AZERTY",
+						vc.VC_ACCENT if gestionClavier.GestionClavider_clavier == gestionClavier.GestionClavider_CLAVIER_AZERTY else vc.VC_BACKGROUND3,
+						vc.VC_ROUNDING_SMOOTH, vc.VC_ACCENT
 					),
-					click=lambda: gestionClavier.change_clavier(gestionClavier.CLAVIER_AZERTY)
+					click=lambda: gestionClavier.GestionClavider_change_clavier(gestionClavier.GestionClavider_CLAVIER_AZERTY)
 				),
 
 				# Bouton Qwerty 
-				component(
+				ui_framework_framework_component(
 					z=2,
 					rect=lambda parent: (
-						(parent[1][0] - OPTION_WIDTH * 2 - vc.PADDING, 0),
-						(OPTION_WIDTH, OPTION_HEIGHT)
+						(parent[1][0] - ui_component_settings_OPTION_WIDTH * 2 - vc.VC_PADDING, 0),
+						(ui_component_settings_OPTION_WIDTH, ui_component_settings_OPTION_HEIGHT)
 					),
-					draw=lambda rect: centerTextButton(rect, 'font2', "QWERTY",
-						vc.ACCENT if gestionClavier.clavier == gestionClavier.CLAVIER_QWERTY else vc.BACKGROUND3,
-						vc.ROUNDING_SMOOTH, vc.ACCENT
+					draw=lambda rect: ui_common_centerTextButton(rect, 'font2', "QWERTY",
+						vc.VC_ACCENT if gestionClavier.GestionClavider_clavier == gestionClavier.GestionClavider_CLAVIER_QWERTY else vc.VC_BACKGROUND3,
+						vc.VC_ROUNDING_SMOOTH, vc.VC_ACCENT
 					),
-					click=lambda: gestionClavier.change_clavier(gestionClavier.CLAVIER_QWERTY)
+					click=lambda: gestionClavier.GestionClavider_change_clavier(gestionClavier.GestionClavider_CLAVIER_QWERTY)
 				),
 			]
 		),
 
 		# Style
-		component(
+		ui_framework_framework_component(
 			z=1,
-			padding=vc.PADDING,
+			padding=vc.VC_PADDING,
 			rect=lambda parent: (
 				(
-					(parent[1][0] - BOUTON_LARGEUR) // 2,
-					parent[1][1] // 2 + (BOUTON_HAUTEUR + vc.PADDING) * 2,
+					(parent[1][0] - ui_component_settings_BOUTON_LARGEUR) // 2,
+					parent[1][1] // 2 + (ui_component_settings_BOUTON_HAUTEUR + vc.VC_PADDING) * 2,
 				),
-				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
+				(ui_component_settings_BOUTON_LARGEUR, ui_component_settings_BOUTON_HAUTEUR)
 			),
-			draw=lambda rect: _drawSettingBar(rect, "Style"),
+			draw=lambda rect: ui_component_settings__drawSettingBar(rect, "Style"),
 			click=lambda: None,
 			childs=[
 				# Bouton Light
-				component(
+				ui_framework_framework_component(
 					z=2,
 					rect=lambda parent: (
-						(parent[1][0] - OPTION_WIDTH, 0),
-						(OPTION_WIDTH, OPTION_HEIGHT)
+						(parent[1][0] - ui_component_settings_OPTION_WIDTH, 0),
+						(ui_component_settings_OPTION_WIDTH, ui_component_settings_OPTION_HEIGHT)
 					),
-					draw=lambda rect: centerTextButton(rect, 'font2', "LIGHT",
-						vc.ACCENT if gestionMode.mode == gestionMode.MODE_LIGHT else vc.BACKGROUND3,
-						vc.ROUNDING_SMOOTH, vc.ACCENT
+					draw=lambda rect: ui_common_centerTextButton(rect, 'font2', "LIGHT",
+						vc.VC_ACCENT if gestionMode.GestionMode_mode == gestionMode.GestionMode_MODE_LIGHT else vc.VC_BACKGROUND3,
+						vc.VC_ROUNDING_SMOOTH, vc.VC_ACCENT
 					),
-					click=lambda: visual_config.change_Background(gestionMode.MODE_LIGHT),
+					click=lambda: visual_config.VC_change_Background(gestionMode.GestionMode_MODE_LIGHT),
 				),
 
 				# Bouton Dark
-				component(
+				ui_framework_framework_component(
 					z=2,
 					rect=lambda parent: (
-						(parent[1][0] - OPTION_WIDTH * 2 - vc.PADDING, 0),
-						(OPTION_WIDTH, OPTION_HEIGHT)
+						(parent[1][0] - ui_component_settings_OPTION_WIDTH * 2 - vc.VC_PADDING, 0),
+						(ui_component_settings_OPTION_WIDTH, ui_component_settings_OPTION_HEIGHT)
 					),
-					draw=lambda rect: centerTextButton(rect, 'font2', "DARK",
-						vc.ACCENT if gestionMode.mode == gestionMode.MODE_DARK else vc.BACKGROUND3,
-						vc.ROUNDING_SMOOTH, vc.ACCENT
+					draw=lambda rect: ui_common_centerTextButton(rect, 'font2', "DARK",
+						vc.VC_ACCENT if gestionMode.GestionMode_mode == gestionMode.GestionMode_MODE_DARK else vc.VC_BACKGROUND3,
+						vc.VC_ROUNDING_SMOOTH, vc.VC_ACCENT
 					),
-					click=lambda: visual_config.change_Background(gestionMode.MODE_DARK),
+					click=lambda: visual_config.VC_change_Background(gestionMode.GestionMode_MODE_DARK),
 				),
 			]
 		),
 
 		# Bouton Retour 
-		component(
+		ui_framework_framework_component(
 			z=5,
 			rect=lambda parent: (
 				(
-					(parent[1][0] - BOUTON_LARGEUR) // 2,
-					parent[1][1] // 2 + (BOUTON_HAUTEUR + vc.PADDING) * 3,
+					(parent[1][0] - ui_component_settings_BOUTON_LARGEUR) // 2,
+					parent[1][1] // 2 + (ui_component_settings_BOUTON_HAUTEUR + vc.VC_PADDING) * 3,
 				),
-				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
+				(ui_component_settings_BOUTON_LARGEUR, ui_component_settings_BOUTON_HAUTEUR)
 			),
-			draw=lambda rect: centerTextButton(rect, 'font2', 'Exit', vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
-			click=lambda pos: gestionMenu.change_menu(gestionMenu.MENU_INTRO),
+			draw=lambda rect: ui_common_centerTextButton(rect, 'font2', 'Exit', vc.VC_BACKGROUND, vc.VC_ROUNDING_SMOOTH, vc.VC_ACCENT),
+			click=lambda pos: gestionMenu.change_menu(gestionMenu.GestionMenu_MENU_INTRO),
 		),
 	]
 )
 
-def drawSettings():
-	component_show(settingsMenu)
+def ui_component_settings_drawSettings():
+	ui_framework_framework_component_show(ui_component_settings_settingsMenu)

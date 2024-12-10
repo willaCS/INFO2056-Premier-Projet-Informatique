@@ -7,17 +7,17 @@ On peut faire :
 
 import Window
 from ui import Zoom
-from utils.mytyping import coord_f, coord_i
+from utils.mytyping import utils_myTyping_coord_f, utils_myTyping_coord_i
 from ui import Cursor
 
-def coord_to_px(coord: coord_f) -> coord_i:
+def ui_map_utils_coord_to_px(coord: utils_myTyping_coord_f) -> utils_myTyping_coord_i:
 	return (
-		int(Window.half_resolution[0] + int(Cursor.val[0] * Zoom.tile_size) + (coord[0]) * Zoom.tile_size),
-		int(Window.half_resolution[1] - int(Cursor.val[1] * Zoom.tile_size) - (coord[1]) * Zoom.tile_size),
+		int(Window.Window_half_resolution[0] + int(Cursor.Cursor_val[0] * Zoom.Zoom_tile_size) + (coord[0]) * Zoom.Zoom_tile_size),
+		int(Window.Window_half_resolution[1] - int(Cursor.Cursor_val[1] * Zoom.Zoom_tile_size) - (coord[1]) * Zoom.Zoom_tile_size),
 	)
 
-def px_to_coord(coord: coord_i) -> coord_f:
+def ui_map_utils_px_to_coord(coord: utils_myTyping_coord_i) -> utils_myTyping_coord_f:
 	return (
-		(coord[0] - Window.half_resolution[0]) / Zoom.tile_size - Cursor.val[0],
-		-((coord[1] - Window.half_resolution[1]) / Zoom.tile_size + Cursor.val[1]),
+		(coord[0] - Window.Window_half_resolution[0]) / Zoom.Zoom_tile_size - Cursor.Cursor_val[0],
+		-((coord[1] - Window.Window_half_resolution[1]) / Zoom.Zoom_tile_size + Cursor.Cursor_val[1]),
 	)

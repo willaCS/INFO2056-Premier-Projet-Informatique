@@ -2,13 +2,13 @@ import pygame
 
 import Window
 
-images_loaded = {}
+ui_framework_image_images_loaded = {}
 
-def loadImages(images):
+def ui_framework_image_loadImages(images):
 	for key in images:
-		images_loaded[key] = pygame.image.load(images[key]).convert_alpha(Window.inst)
+		ui_framework_image_images_loaded[key] = pygame.image.load(images[key]).convert_alpha(Window.Window_inst)
 
-def drawImage(image_key, rect):
-	img_inst = images_loaded[image_key]
+def ui_framework_image_drawImage(image_key, rect):
+	img_inst = ui_framework_image_images_loaded[image_key]
 	img = pygame.transform.scale(img_inst, rect[1])
-	Window.inst.blit(img, rect[0])
+	Window.Window_inst.blit(img, rect[0])

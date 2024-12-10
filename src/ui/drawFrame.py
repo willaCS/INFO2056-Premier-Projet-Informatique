@@ -2,9 +2,8 @@
 Ce fichier gère la fonction drawFrame appelée chaque tick
 """
 
-import Window
 from ui import SelectedTile
-from ui.components.main import draw
+from ui.components.main import ui_component_main_draw
 import ui.components.placeBuildings
 import ui.components.settings
 import ui.components.map
@@ -13,28 +12,27 @@ import ui.components.topbar
 import ui.components.sidemenu
 import ui.components.welcome
 from ui import gestionMenu
-from ui.framework.text import drawText
 
 # menu
 # sidemenu -> info case menu construction
 # tech tree
 # affichage texture sur map
 
-def drawFrame():
+def ui_drawFrame_drawFrame():
 	match gestionMenu.menu:
-		case gestionMenu.MENU_INTRO:
-			ui.components.welcome.drawWelcome()
+		case gestionMenu.GestionMenu_MENU_INTRO:
+			ui.components.welcome.ui_component_welcome_drawWelcome()
 			
-		case gestionMenu.MENU_REGLAGE:
-			ui.components.settings.drawSettings()
+		case gestionMenu.GestionMenu_MENU_REGLAGE:
+			ui.components.settings.ui_component_settings_drawSettings()
 			
-		case gestionMenu.MENU_JEU:
-			if SelectedTile.val:
+		case gestionMenu.GestionMenu_MENU_JEU:
+			if SelectedTile.SelectedTile_val:
 				ui.components.sidemenu.showSideMenu()
 				# ui.components.placeBuildings.showplaceBuildingsMenu()
-			ui.components.map.drawMapComponent()
-			ui.components.topbar.showTopBar()
-	draw()
+			ui.components.map.ui_component_map_drawMapComponent()
+			ui.components.topbar.ui_component_tobpar_showTopBar()
+	ui_component_main_draw()
 
 
 

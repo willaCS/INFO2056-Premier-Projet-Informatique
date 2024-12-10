@@ -10,27 +10,27 @@ from pygame.event import Event
 
 DEFAULT_RESOLUTION = (1200, 800)
 
-__done = False
-__tickrate = 60
+Window__done = False
+Window__tickrate = 60
 
-mouse_position = (0, 0)
-repeatKeyMap: Dict[int, bool] = {}
-__singleKey: Callable[[int], None] = lambda key: None
-__repeatKey: Callable[[int], None] = lambda key: None
-__handleEvent: Callable[[pygame.event.Event], None] = lambda event: None
+Window_mouse_position = (0, 0)
+Window_repeatKeyMap: Dict[int, bool] = {}
+Window__singleKey: Callable[[int], None] = lambda key: None
+Window__repeatKey: Callable[[int], None] = lambda key: None
+Window__handleEvent: Callable[[pygame.event.Event], None] = lambda event: None
 
-inst = 0
-__is_fullscreen = False
-resolution = DEFAULT_RESOLUTION
-half_resolution = (DEFAULT_RESOLUTION[0]/2, DEFAULT_RESOLUTION[1]/2)
-__windowed_resolution = DEFAULT_RESOLUTION
+Window_inst = 0
+Window__is_fullscreen = False
+Window_resolution = DEFAULT_RESOLUTION
+Window_half_resolution = (DEFAULT_RESOLUTION[0]/2, DEFAULT_RESOLUTION[1]/2)
+Window__windowed_resolution = DEFAULT_RESOLUTION
 
-__setup: Callable[[], None] = lambda: None
-__tick: Callable[[], None] = lambda: None
+Window__setup: Callable[[], None] = lambda: None
+Window__tick: Callable[[], None] = lambda: None
 
 
 
-def init(
+def Window_init(
 	setup:			Callable[[], None]		= lambda: None,
 	tick:			Callable[[], None]		= lambda: None,
 	handleEvent:	Callable[[Event], None]	= lambda event: None,
@@ -51,125 +51,125 @@ def init(
 		tickrate	int					: le nombre de tick par secondes
 	"""
 	
-	global __tickrate, __singleKey, __repeatKey, __handleEvent, __setup, __tick
+	global Window__tickrate, Window__singleKey, Window__repeatKey, Window__handleEvent, Window__setup, Window__tick
 	if (not callable(setup) or not callable(tick)):
 		raise ValueError("setup or tick is not callable")
-	__tickrate = tickrate
-	__singleKey = singleKey
-	__repeatKey = repeatKey
-	__handleEvent = handleEvent
-	__setup = setup
-	__tick = tick
+	Window__tickrate = tickrate
+	Window__singleKey = singleKey
+	Window__repeatKey = repeatKey
+	Window__handleEvent = handleEvent
+	Window__setup = setup
+	Window__tick = tick
 
 	pygame.init()
 
-	signal(SIGINT, lambda signal, frame: stop())
+	signal(SIGINT, lambda signal, frame: Window_stop())
 
-	__update_window()
+	Window__update_window()
 
 
 
-def start():
+def Window_start():
 	"""
 	Lance l'instance et possède la boucle principale.
 	"""
-	global time
-	__setup()
-	time = pygame.time.Clock()
-	while not __done:
-		__handle_events()
-		__tick()
+	global Window_time
+	Window__setup()
+	Window_time = pygame.time.Clock()
+	while not Window__done:
+		Window__handle_events()
+		Window__tick()
 		pygame.display.flip()
-		time.tick(__tickrate)
+		Window_time.tick(Window__tickrate)
 	pygame.display.quit()
 	pygame.quit()
 
 
 
-def stop():
+def Window_stop():
 	"""
 	Termine l'instance
 	"""
-	global __done
-	__done = True
+	global Window__done
+	Window__done = True
 
 
 
-def __handle_events():
+def Window__handle_events():
 	"""
 	Prend tout les évenements pygame et fait trois choses :
 	- gère et execute la fonction singleKey et repeatKey
 	- gère les mises à jours de taille de l'écran
 	- gère la fermeture de la fenêtre
 	"""
-	global repeatKeyMap, mouse_position
+	global Window_repeatKeyMap, Window_mouse_position
 
 	for event in pygame.event.get():
 		match event.type:
 			case pygame.QUIT:
-				stop()
+				Window_stop()
 
 			case pygame.KEYDOWN:
-				__singleKey(event.key)
-				repeatKeyMap[event.key] = True
+				Window__singleKey(event.key)
+				Window_repeatKeyMap[event.key] = True
 			
 			case pygame.KEYUP:
-				repeatKeyMap[event.key] = False
+				Window_repeatKeyMap[event.key] = False
 
 			case pygame.MOUSEMOTION:
-				mouse_position = event.pos
+				Window_mouse_position = event.pos
 
 			case pygame.WINDOWRESIZED:
-				__update_resolution((event.x, event.y))
+				Window__update_resolution((event.x, event.y))
 				
 			case pygame.WINDOWSIZECHANGED:
-				__update_resolution((event.x, event.y))
+				Window__update_resolution((event.x, event.y))
 
 			case _:
 				pass
 						
-		__handleEvent(event)
+		Window__handleEvent(event)
 
-	for (key, is_pressed) in repeatKeyMap.items():
+	for (key, is_pressed) in Window_repeatKeyMap.items():
 		if not is_pressed:
 			continue
-		__repeatKey(key)
+		Window__repeatKey(key)
 
 
 
-def __update_resolution(coord):
+def Window__update_resolution(coord):
 	"""
 	Set les variables de résolutions après une mise à jour.
 	"""
-	global half_resolution, resolution
-	resolution = coord
-	half_resolution = (
-		int(resolution[0] / 2),
-		int(resolution[1] / 2),
+	global Window_half_resolution, Window_resolution
+	Window_resolution = coord
+	Window_half_resolution = (
+		int(Window_resolution[0] / 2),
+		int(Window_resolution[1] / 2),
 	)
 
 
-def __update_window():
+def Window__update_window():
 	"""
 	Crée l'instance Surface pygame en fonction de si c'est en plein écran ou
 	en fenêtré.
 	"""
-	global inst
-	if (__is_fullscreen):
-		inst = pygame.display.set_mode((0,0), pygame.FULLSCREEN | pygame.NOFRAME)
+	global Window_inst
+	if (Window__is_fullscreen):
+		Window_inst = pygame.display.set_mode((0,0), pygame.FULLSCREEN | pygame.NOFRAME)
 	else:
-		inst = pygame.display.set_mode(resolution, pygame.RESIZABLE)
+		Window_inst = pygame.display.set_mode(Window_resolution, pygame.RESIZABLE)
 
 
 
-def toggleFullscreen():
+def Window_toggleFullscreen():
 	"""
 	active ou désactive le plein écran.
 	"""
-	global __windowed_resolution, resolution, __is_fullscreen
-	if (not __is_fullscreen):
-		__windowed_resolution = resolution
+	global Window__windowed_resolution, Window_resolution, Window__is_fullscreen
+	if (not Window__is_fullscreen):
+		Window__windowed_resolution = Window_resolution
 	else:
-		resolution = __windowed_resolution
-	__is_fullscreen = not __is_fullscreen
-	__update_window()
+		Window_resolution = Window__windowed_resolution
+	Window__is_fullscreen = not Window__is_fullscreen
+	Window__update_window()

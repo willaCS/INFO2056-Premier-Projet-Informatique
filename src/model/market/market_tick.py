@@ -1,24 +1,24 @@
 from model.market import stockpile
-from model.industry.plants import map, plant_add_experience
+from model.industry.plants import model_plants_map, plant_add_experience
 from model.market import player_wallet
 from model.industry import Plant, technologies
 
-def market_tick():
-	for plant in sorted(map.values(), key=lambda item: Plant.type(item)):
-		industry_tick(plant)
-	stockpile.sell_stock_to_market()
+def model_market_tick_market_tick():
+	for plant in sorted(model_plants_map.values(), key=lambda item: Plant.model_Plant_type(item)):
+		model_market_tick_industry_tick(plant)
+	stockpile.model_market_stockpile_sell_stock_to_market()
 
-def industry_tick(tile):
-	generate_goods(tile)
+def model_market_tick_industry_tick(tile):
+	model_market_tick_generate_goods(tile)
 
-def generate_goods(tile, amount = 1):	
-	techno = technologies.industry[Plant.type(tile)]
+def model_market_tick_generate_goods(tile, amount = 1):	
+	techno = technologies.model_technologies_industry[Plant.model_Plant_type(tile)]
 
 	for input in techno['input']:
-		stockpile.buy_stock(input, amount)
-	stockpile.add_stock(techno['output'], amount)
+		stockpile.model_market_stockpile_buy_stock(input, amount)
+	stockpile.model_market_stockpile_add_stock(techno['output'], amount)
 
 	tile['generated'] += amount
 
 	if tile['generated'] % 100 == 0:
-		player_wallet.science += 1
+		player_wallet.model_market_wallet_science += 1

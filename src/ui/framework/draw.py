@@ -2,19 +2,19 @@ import pygame
 
 import Window
 
-hover_cursor = (0, 0)
+ui_framework_draw_hover_cursor = (0, 0)
 
-def updateHoverCursor(pos):
-	global hover_cursor
-	hover_cursor = pos
+def ui_framework_draw_updateHoverCursor(pos):
+	global ui_framework_draw_hover_cursor
+	ui_framework_draw_hover_cursor = pos
 
-def drawRect(rect, color, rounding = 0, outline = 0, hover = None):
-	global hover_cursor
-	if hover is not None and pygame.Rect(rect).collidepoint(hover_cursor):
+def ui_framework_draw_drawRect(rect, color, rounding = 0, outline = 0, hover = None):
+	global ui_framework_draw_hover_cursor
+	if hover is not None and pygame.Rect(rect).collidepoint(ui_framework_draw_hover_cursor):
 		color = hover
 	else:
 		color = color
-	pygame.draw.rect(Window.inst, color, rect, outline, rounding)
+	pygame.draw.rect(Window.Window_inst, color, rect, outline, rounding)
 
-def drawCircle(center, radius, color, outline = 0):
-	pygame.draw.circle(Window.inst, color, center, radius, outline)
+def ui_framework_draw_drawCircle(center, radius, color, outline = 0):
+	pygame.draw.circle(Window.Window_inst, color, center, radius, outline)

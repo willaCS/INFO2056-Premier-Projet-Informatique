@@ -7,30 +7,30 @@ pygame est prêt.
 
 import os
 
-from model.gameTick import game_model_tick
-from model.stat.setup import setup_stats
-from model.terrain.terrain import init_random
+from model.gameTick import model_gameTick_game_model_tick
+from model.stat.setup import model_stat_setup_setup_stats
+from model.terrain.terrain import model_terrain_terrain_init_random
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
 import Window
 from model import Speed
-from events import handleEvents
-from input import repeatKey, singleKey
-from ui.drawFrame import drawFrame
-from ui.framework.image import loadImages
-from ui.framework.text import loadFont
+from events import events_handleEvents
+from input import input_repeatKey, input_singleKey
+from ui.drawFrame import ui_drawFrame_drawFrame
+from ui.framework.image import ui_framework_image_loadImages
+from ui.framework.text import ui_framework_text_loadFont
 # from utils.time_tester import test_tick
 
-def setup():
-	init_random()
-	loadFont("font1", "monospace", 40)
-	loadFont("font2", "monospace", 24, True)
-	loadFont("font3", "monospace", 22, True)
-	loadFont("title", "monospace", 50, True)
+def init_setup():
+	model_terrain_terrain_init_random()
+	ui_framework_text_loadFont("font1", "monospace", 40)
+	ui_framework_text_loadFont("font2", "monospace", 24, True)
+	ui_framework_text_loadFont("font3", "monospace", 22, True)
+	ui_framework_text_loadFont("title", "monospace", 50, True)
 
-	setup_stats()
+	model_stat_setup_setup_stats()
 
-	loadImages({
+	ui_framework_image_loadImages({
 		'exit'			: './assets/close_button.png',
 		'arrow'			: './assets/arrow.png',
 		'plus'			: './assets/plus.png',
@@ -96,18 +96,18 @@ def setup():
 	})
 
 
-def tick():
-	game_model_tick()
-	drawFrame()
+def init_tick():
+	model_gameTick_game_model_tick()
+	ui_drawFrame_drawFrame()
 	# test_tick()
 
 
 
-def	main():
-	Window.init(setup, tick, handleEvents, repeatKey, singleKey)
-	Window.start()
+def	init_main():
+	Window.Window_init(init_setup, init_tick, events_handleEvents, input_repeatKey, input_singleKey)
+	Window.Window_start()
 
 
 
 if __name__ == '__main__':
-	main()
+	init_main()

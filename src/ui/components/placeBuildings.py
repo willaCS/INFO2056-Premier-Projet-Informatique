@@ -1,96 +1,93 @@
-import Window
-from model.industry import Plant, plants
-from model.industry.technologiesTree import get_placable_on
+from model.industry import plants
+from model.industry.technologiesTree import model_technologyTree_get_placable_on
 from ui import SelectedTile
 from ui import visual_config as vc
 
-from ui.framework.framework import component_add_temp, component_temp_remove
-from ui.map.industry import draw_industry_by_id, draw_industry_menu
-from ui.common.buttons import centerTextButton, exit_button
-from ui.framework import component, component_hide, component_show, drawRect, drawImage
+from ui.framework.framework import ui_framework_framework_component_add_temp, ui_framework_framework_component_temp_remove
+from ui.map.industry import ui_map_industry_draw_industry_menu
+from ui.common.buttons import ui_common_centerTextButton, ui_common_exit_button
+from ui.framework.framework import ui_framework_framework_component, ui_framework_framework_component_hide, ui_framework_framework_component_show
+from ui.framework.draw import ui_framework_draw_drawRect
 
+ui_component_placeBuilding_EXIT_BUTTON_BORDER = 2 #en pixels
+ui_component_placeBuilding_CLOSE_BUTTON_SIZE = (75, 75)
+ui_component_placeBuilding_RESOURCE_BUTTON_WIDTH = 250
+ui_component_placeBuilding_NOMBRE_DE_COLONNES = 5
 
-MENU_MARGIN = 5 #en pixels
-EXIT_BUTTON_BORDER = 2 #en pixels
-CLOSE_BUTTON_SIZE = (75, 75)
-RESOURCE_BUTTON_WIDTH = 250
-NOMBRE_DE_COLONNES = 5
-
-
-def closeplaceBuildingsMenu():
-	global placeBuildingsMenu
+def ui_component_placeBuilding_closeplaceBuildingsMenu():
+	global ui_component_placeBuilding_placeBuildingsMenu
 	# SelectedTile.val = None
-	component_hide(placeBuildingsMenu)
-	component_temp_remove(placeBuildingsMenu)
+	ui_framework_framework_component_hide(ui_component_placeBuilding_placeBuildingsMenu)
+	ui_framework_framework_component_temp_remove(ui_component_placeBuilding_placeBuildingsMenu)
 	from ui.components.sidemenu import refreshSideMenu
 	refreshSideMenu()
 
-placeBuildingsMenu = component(
+ui_component_placeBuilding_placeBuildingsMenu = ui_framework_framework_component(
 	z=4,
-	margin=MENU_MARGIN,
-	padding=vc.PADDING + vc.MENU_BORDER_WIDTH,
+	margin=vc.VC_MENU_BORDER_WIDTH,
+	padding=vc.VC_PADDING + vc.VC_MENU_BORDER_WIDTH,
 	rect=lambda parent: (
-		(0, vc.TOP_BAR_HEIGHT),
-		(vc.LARGEUR_SIDEMENU, parent[1][1] - vc.TOP_BAR_HEIGHT),
+		(0, vc.VC_TOP_BAR_HEIGHT),
+		(vc.VC_LARGEUR_SIDEMENU, parent[1][1] - vc.VC_TOP_BAR_HEIGHT),
 	),
-	draw=lambda rect: drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH) or\
-					  drawRect(rect, vc.PRIMARY, vc.ROUNDING_SMOOTH, vc.MENU_BORDER_WIDTH),
-	clickOutside=closeplaceBuildingsMenu,
+	draw=lambda rect: ui_framework_draw_drawRect(rect, vc.VC_BACKGROUND, vc.VC_ROUNDING_SMOOTH) or\
+					  ui_framework_draw_drawRect(rect, vc.VC_PRIMARY, vc.VC_ROUNDING_SMOOTH, vc.VC_MENU_BORDER_WIDTH),
+	clickOutside=ui_component_placeBuilding_closeplaceBuildingsMenu,
 	childs=[
 		# Header
-		component(
+		ui_framework_framework_component(
 			z=2,
 			rect=lambda parent: (
 				(0, 0),
 				(
-					parent[1][0] - (CLOSE_BUTTON_SIZE[0] + vc.PADDING),
-					CLOSE_BUTTON_SIZE[1]
+					parent[1][0] - (ui_component_placeBuilding_CLOSE_BUTTON_SIZE[0] + vc.VC_PADDING),
+					ui_component_placeBuilding_CLOSE_BUTTON_SIZE[1]
 				)
 			),
-			draw=lambda rect: centerTextButton(rect, "font2", "Place Building", vc.BACKGROUND3, vc.ROUNDING_SMOOTH),
+			draw=lambda rect: ui_common_centerTextButton(rect, "font2", "Place Building", vc.VC_BACKGROUND3, vc.VC_ROUNDING_SMOOTH),
 		),
 
 		# Close button
-		component(
+		ui_framework_framework_component(
 			z=2,
 			rect=lambda parent: (
-				(parent[1][0] - CLOSE_BUTTON_SIZE[0], 0),
-				CLOSE_BUTTON_SIZE
+				(parent[1][0] - ui_component_placeBuilding_CLOSE_BUTTON_SIZE[0], 0),
+				ui_component_placeBuilding_CLOSE_BUTTON_SIZE
 			),
-			draw=exit_button,
-			click=closeplaceBuildingsMenu,
+			draw=ui_common_exit_button,
+			click=ui_component_placeBuilding_closeplaceBuildingsMenu,
 		),
 	]
 )
 
 
 
-def showplaceBuildingsMenu():
-	if placeBuildingsMenu['_hidden']:
-		can_be_build = get_placable_on(SelectedTile.val)
+def ui_component_placeBuilding_showplaceBuildingsMenu():
+	if ui_component_placeBuilding_placeBuildingsMenu['_hidden']:
+		can_be_build = model_technologyTree_get_placable_on(SelectedTile.SelectedTile_val)
 		print('xd')
 
-		tile_width = ((vc.LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES
-		component_add_temp(placeBuildingsMenu, [
-			component(
+		tile_width = ((vc.VC_LARGEUR_SIDEMENU - 2 * (vc.VC_MENU_BORDER_WIDTH + vc.VC_PADDING + vc.VC_MENU_BORDER_WIDTH)) - (ui_component_placeBuilding_NOMBRE_DE_COLONNES - 1) * vc.VC_PADDING) // ui_component_placeBuilding_NOMBRE_DE_COLONNES
+		ui_framework_framework_component_add_temp(ui_component_placeBuilding_placeBuildingsMenu, [
+			ui_framework_framework_component(
 				z=2,
-				rect=lambda parent, x=index % NOMBRE_DE_COLONNES, y=index // NOMBRE_DE_COLONNES: (
+				rect=lambda parent, x=index % ui_component_placeBuilding_NOMBRE_DE_COLONNES, y=index // ui_component_placeBuilding_NOMBRE_DE_COLONNES: (
 					(
-						x * (tile_width + vc.PADDING),
-						y * (tile_width + vc.PADDING) + CLOSE_BUTTON_SIZE[1] + vc.PADDING,
+						x * (tile_width + vc.VC_PADDING),
+						y * (tile_width + vc.VC_PADDING) + ui_component_placeBuilding_CLOSE_BUTTON_SIZE[1] + vc.VC_PADDING,
 					),
 					(
 						tile_width,
 						tile_width,
 					)
 				),
-				draw=draw_industry_menu(building_id),
-				click=lambda pos, building_id=building_id: plants.place(building_id, SelectedTile.val)\
-					or closeplaceBuildingsMenu()
+				draw=ui_map_industry_draw_industry_menu(building_id),
+				click=lambda pos, building_id=building_id: plants.model_plants_place(building_id, SelectedTile.SelectedTile_val)\
+					or ui_component_placeBuilding_closeplaceBuildingsMenu()
 			)
 			for index, building_id in enumerate(can_be_build)
 		])
-		component_show(placeBuildingsMenu)
+		ui_framework_framework_component_show(ui_component_placeBuilding_placeBuildingsMenu)
  
 
 

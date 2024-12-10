@@ -1,17 +1,17 @@
 from model.market import player_wallet
-from .utils import add_stat
+from .utils import model_stat_setup_add_stat
 
-def get_money():
-	res = player_wallet.money_incr
-	player_wallet.money_incr = 0
+def model_stat_setup_get_money():
+	res = player_wallet.model_market_wallet_money_incr
+	player_wallet.model_market_wallet_money_incr = 0
 	return res
 
-def get_science():
-	res = player_wallet.science_incr
-	player_wallet.science_incr = 0
+def model_stat_setup_get_science():
+	res = player_wallet.model_market_wallet_science_incr
+	player_wallet.model_market_wallet_science_incr = 0
 	return res
 
-def average(data):
+def model_stat_setup_average(data):
 	if len(data) <= 0:
 		return 0
 	res = 0
@@ -19,14 +19,14 @@ def average(data):
 		res += elem
 	return res / len(data)
 
-def setup_stats():
-	add_stat(
+def model_stat_setup_setup_stats():
+	model_stat_setup_add_stat(
 		'money',
-		get_money,
-		lambda data: average(data)
+		model_stat_setup_get_money,
+		lambda data: model_stat_setup_average(data)
 	)
-	add_stat(
+	model_stat_setup_add_stat(
 		'science',
-		get_science,
-		lambda data: average(data)
+		model_stat_setup_get_science,
+		lambda data: model_stat_setup_average(data)
 	)

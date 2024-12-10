@@ -7,10 +7,10 @@ Une case est une structure ayant ces variables :
 
 from typing import Dict, Tuple
 
-coord = Tuple[int, int]
-types = Dict[str, int | coord]
+model_Plant_coord = Tuple[int, int]
+model_Plant_types = Dict[str, int | model_Plant_coord]
 
-def init(type: int, position: coord) -> types:
+def model_Plant_init(type: int, position: model_Plant_coord) -> model_Plant_types:
 	return {
 		"type": type,
 		"position": position,
@@ -18,14 +18,14 @@ def init(type: int, position: coord) -> types:
 		"generated": 0
 	}
 
-def type(tile: types) -> int:
+def model_Plant_type(tile: model_Plant_types) -> int:
 	return tile["type"]
 
-def position(tile: types) -> coord:
+def model_Plant_position(tile: model_Plant_types) -> model_Plant_coord:
 	return tile["position"]
 
-def xp(tile: types) -> int:
+def model_Plant_xp(tile: model_Plant_types) -> int:
 	return tile["xp"]
 
-def generated(tile: types) -> int:
+def model_Plant_generated(tile: model_Plant_types) -> int:
 	return tile["generated"]

@@ -12,67 +12,67 @@ from typing import Dict, List
 
 from model.market import player_wallet
 from model.terrain import Ressource, TerrainTile
-from model.terrain.terrain import get_terrain_tile
+from model.terrain.terrain import model_terrain_terrain_get_terrain_tile
 from model.industry import Plant, technologies
-from utils.mytyping import coord_i
+from utils.mytyping import utils_myTyping_coord_i
 
-def init() -> Dict[coord_i, Plant.types]:
+def model_plants_init() -> Dict[utils_myTyping_coord_i, Plant.model_Plant_types]:
 	return {}
 
-def get(coord: coord_i) -> Plant.types | None:
-	global map
-	return map.get(coord)
+def model_plants_get(coord: utils_myTyping_coord_i) -> Plant.model_Plant_types | None:
+	global model_plants_map
+	return model_plants_map.get(coord)
 
-def add(tile: Plant.types):
-	global map
-	if get(Plant.position(tile)):
+def model_plants_add(tile: Plant.model_Plant_types):
+	global model_plants_map
+	if model_plants_get(Plant.model_Plant_position(tile)):
 		raise ValueError('Cannot add two tile on the same space')
-	map[Plant.position(tile)] = tile
+	model_plants_map[Plant.model_Plant_position(tile)] = tile
 
 # action by the player to remove an industry from the map
-def remove(coord: coord_i):
-	global map
-	map.pop(coord)
+def model_plants_remove(coord: utils_myTyping_coord_i):
+	global model_plants_map
+	model_plants_map.pop(coord)
 
-def tile_is_empty(coord: coord_i):
-	tile = get(coord)
+def model_plants_tile_is_empty(coord: utils_myTyping_coord_i):
+	tile = model_plants_get(coord)
 	if not tile:
 		return True
-	return Plant.type(tile) == technologies.INDUSTRY_NONE
+	return Plant.model_Plant_type(tile) == technologies.model_technologies_INDUSTRY_NONE
 
-def _can_place_on_terrain(terrain, technology):
+def model_plants__can_place_on_terrain(terrain, technology):
 	for can_place in technology['place_on']: 
 		can_place_id: int = can_place['id']
 		match can_place['type']:
-			case technologies.PLACE_ON_TERRAIN:
-				if TerrainTile.type(terrain) == can_place_id:
+			case technologies.model_technologies_PLACE_ON_TERRAIN:
+				if TerrainTile.model_terrain_terrainTile_type(terrain) == can_place_id:
 					return True
-			case technologies.PLACE_ON_RESSOURCE:
-				ressource = TerrainTile.ressource(terrain)
+			case technologies.model_technologies_PLACE_ON_RESSOURCE:
+				ressource = TerrainTile.model_terrain_terrainTile_ressource(terrain)
 				if not ressource:
 					continue
 				can_place = can_place_id
-				if Ressource.type(ressource) == can_place_id:
+				if Ressource.model_terrain_ressource_type(ressource) == can_place_id:
 					return True
 			case _:
 				raise 'Invalid Technology'
 	return False
 
 # action by the player to place a new industry on the map
-def place(industry_id, position):
-	if not position or get(position) != None:
+def model_plants_place(industry_id, position):
+	if not position or model_plants_get(position) != None:
 		return
 	
-	terrain = get_terrain_tile(position)
-	technology = technologies.get_data(industry_id)
+	terrain = model_terrain_terrain_get_terrain_tile(position)
+	technology = technologies.model_technologies_get_data(industry_id)
 
-	if _can_place_on_terrain(terrain, technology)\
-		and player_wallet.has_money(technology['price']):
-		player_wallet.buy2(technology['price'])
-		add(Plant.init(industry_id, position))
+	if model_plants__can_place_on_terrain(terrain, technology)\
+		and player_wallet.model_market_wallet_has_money(technology['price']):
+		player_wallet.model_market_wallet_buy2(technology['price'])
+		model_plants_add(Plant.model_Plant_init(industry_id, position))
 
 def plant_add_experience(tile, amount):
 	tile['xp'] += 1
 	tile['generated'] += amount
 
-map = init()
+model_plants_map = model_plants_init()

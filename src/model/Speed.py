@@ -13,44 +13,44 @@ tick_index = 0
 _delta_tick_simation = 10
 
 # action by the player to increase the speed of the simulation
-def increment():
+def model_speed_increment():
 	global val
 	if val < 5:
 		val += 1
-		_update_tick_simulation()
+		model_speed__update_tick_simulation()
 
 # action by the player to decrease the speed of the simulation
-def decrement():
+def model_speed_decrement():
 	global val
 	if val > 1:
 		val -= 1
-		_update_tick_simulation()
+		model_speed__update_tick_simulation()
 
 # action by the player to set the speed of the simulation
-def set(new_speed: int):
+def model_speed_set(new_speed: int):
 	global val
 	val = new_speed
-	_update_tick_simulation()
+	model_speed__update_tick_simulation()
 
 # action by the player to pause the simulation
-def pause():
+def model_speed_pause():
 	global val, __prev_val
 	if (val != 0):
 		__prev_val = val
 		val = 0
 	else:
 		val = __prev_val
-	_update_tick_simulation()
+	model_speed__update_tick_simulation()
 
-def can_execute_simulation():
+def model_speed_can_execute_simulation():
 	global tick_index
 	tick_index += 1
-	if (tick_index > _delta_tick_simation and gestionMenu.menu == gestionMenu.MENU_JEU):
+	if (tick_index > _delta_tick_simation and gestionMenu.menu == gestionMenu.GestionMenu_MENU_JEU):
 		tick_index = 0
 		return True
 	return False
 
-def _update_tick_simulation():
+def model_speed__update_tick_simulation():
 	global _delta_tick_simation
 	match val:
 		case 0:

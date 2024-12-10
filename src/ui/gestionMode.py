@@ -1,14 +1,14 @@
 
 
-MODE_LIGHT = 0
-MODE_DARK = 1
+GestionMode_MODE_LIGHT = 0
+GestionMode_MODE_DARK = 1
  
-mode = MODE_LIGHT
+GestionMode_mode = GestionMode_MODE_LIGHT
 
 
-def change_mode(new_mode):
- global mode
- mode = new_mode
+def GestionMode_change_mode(new_mode):
+	global GestionMode_mode
+	GestionMode_mode = new_mode
 
 
 

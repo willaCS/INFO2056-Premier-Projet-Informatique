@@ -1,74 +1,74 @@
 from model.market import Goods
 from model.terrain import Ressource
-from ui.framework.image import drawImage
+from ui.framework.image import ui_framework_image_drawImage
 
 
-goodsMap = {
-	Goods.GOODS_FISH					: ('Fish'						, lambda rect: drawImage('good_fish', rect)),
-	Goods.GOODS_SALT					: ('Salt'						, lambda rect: drawImage('good_salt', rect)),
-	Goods.GOODS_WHEAT					: ('Wheat'						, lambda rect: drawImage('good_wheat', rect)),
-	Goods.GOODS_POTATO					: ('Potato'						, lambda rect: drawImage('good_potato', rect)),
-	Goods.GOODS_COTTON					: ('Cotton'						, lambda rect: drawImage('good_cotton', rect)),
-	Goods.GOODS_RICE					: ('Rice'						, lambda rect: drawImage('good_rice', rect)),
-	Goods.GOODS_FUR						: ('Fur'						, lambda rect: drawImage('good_fur', rect)),
-	Goods.GOODS_WOOD					: ('Wood'						, lambda rect: drawImage('good_wood', rect)),
-	Goods.GOODS_OIL						: ('Oil'						, lambda rect: drawImage('good_oil', rect)),
-	Goods.GOODS_COAL					: ('Coal'						, lambda rect: drawImage('good_coal', rect)),
-	Goods.GOODS_IRON					: ('Iron'						, lambda rect: drawImage('good_iron', rect)),
-	Goods.GOODS_COPPER					: ('Copper'						, lambda rect: drawImage('good_copper', rect)),
-	Goods.GOODS_PRECIOUS_METAL			: ('Precious Metal'				, lambda rect: drawImage('good_precious_metal', rect)),
-	Goods.GOODS_RARE_METAL				: ('Rare Metal'					, lambda rect: drawImage('good_rare_metal', rect)),
-	Goods.GOODS_BREAD					: ('Bread'						, lambda rect: drawImage('good_bread', rect)),
-	Goods.GOODS_ALCOHOL					: ('Alcohol'					, lambda rect: drawImage('good_alcohol', rect)),
-	Goods.GOODS_SUSHI					: ('Sushi'						, lambda rect: drawImage('good_sushi', rect)),
-	Goods.GOODS_TEXTILE					: ('Textile'					, lambda rect: drawImage('good_textile', rect)),
-	Goods.GOODS_CLOTHES					: ('Clothes'					, lambda rect: drawImage('good_clothes', rect)),
-	Goods.GOODS_FURNITURE				: ('Furniture'					, lambda rect: drawImage('good_furniture', rect)),
-	Goods.GOODS_STEEL					: ('Steel'						, lambda rect: drawImage('good_steel', rect)),
-	Goods.GOODS_TOOLS					: ('Tools'						, lambda rect: drawImage('good_tools', rect)),
-	Goods.GOODS_CEMENT					: ('Cement'						, lambda rect: drawImage('good_cement', rect)),	
-	Goods.GOODS_FUEL					: ('Fuel'						, lambda rect: drawImage('good_fuel', rect)),
-	Goods.GOODS_PLASTIC					: ('Plastic'					, lambda rect: drawImage('good_plastic', rect)),
-	Goods.GOODS_GLASS					: ('Glass'						, lambda rect: drawImage('good_glass', rect)),
-	Goods.GOODS_ELECTRONICS_COMPONENT	: ('Electronic Components'		, lambda rect: drawImage('good_electronics_component', rect)),
-	Goods.GOODS_RADIO					: ('Radio'						, lambda rect: drawImage('good_radio', rect)),
-	Goods.GOODS_COMPUTER				: ('Computer'					, lambda rect: drawImage('good_computer', rect)),
-	Goods.GOODS_GUNS					: ('Guns'						, lambda rect: drawImage('good_guns', rect)),
-	Goods.GOODS_ENGINE					: ('Engine'						, lambda rect: drawImage('good_engine', rect)),
-	Goods.GOODS_CAR						: ('Car'						, lambda rect: drawImage('good_car', rect)),
-	Goods.GOODS_PLANES					: ('Planes'						, lambda rect: drawImage('good_planes', rect)),
-	Goods.GOODS_JEWELRY					: ('Jewelry'					, lambda rect: drawImage('good_jewelry', rect)),
-	Goods.GOODS_PHONE					: ('Phone'						, lambda rect: drawImage('good_phone', rect)),
-	Goods.GOODS_STONE					: ('Stone'						, lambda rect: drawImage('good_stone', rect)),
-	Goods.GOODS_SAND					: ('Sand'						, lambda rect: drawImage('good_sand', rect)),
+ui_map_goods_goodsMap = {
+	Goods.model_market_goods_GOODS_FISH					: ('Fish'						, lambda rect: ui_framework_image_drawImage('good_fish', rect)),
+	Goods.model_market_goods_GOODS_SALT					: ('Salt'						, lambda rect: ui_framework_image_drawImage('good_salt', rect)),
+	Goods.model_market_goods_GOODS_WHEAT					: ('Wheat'						, lambda rect: ui_framework_image_drawImage('good_wheat', rect)),
+	Goods.model_market_goods_GOODS_POTATO					: ('Potato'						, lambda rect: ui_framework_image_drawImage('good_potato', rect)),
+	Goods.model_market_goods_GOODS_COTTON					: ('Cotton'						, lambda rect: ui_framework_image_drawImage('good_cotton', rect)),
+	Goods.model_market_goods_GOODS_RICE					: ('Rice'						, lambda rect: ui_framework_image_drawImage('good_rice', rect)),
+	Goods.model_market_goods_GOODS_FUR						: ('Fur'						, lambda rect: ui_framework_image_drawImage('good_fur', rect)),
+	Goods.model_market_goods_GOODS_WOOD					: ('Wood'						, lambda rect: ui_framework_image_drawImage('good_wood', rect)),
+	Goods.model_market_goods_GOODS_OIL						: ('Oil'						, lambda rect: ui_framework_image_drawImage('good_oil', rect)),
+	Goods.model_market_goods_GOODS_COAL					: ('Coal'						, lambda rect: ui_framework_image_drawImage('good_coal', rect)),
+	Goods.model_market_goods_GOODS_IRON					: ('Iron'						, lambda rect: ui_framework_image_drawImage('good_iron', rect)),
+	Goods.model_market_goods_GOODS_COPPER					: ('Copper'						, lambda rect: ui_framework_image_drawImage('good_copper', rect)),
+	Goods.model_market_goods_GOODS_PRECIOUS_METAL			: ('Precious Metal'				, lambda rect: ui_framework_image_drawImage('good_precious_metal', rect)),
+	Goods.model_market_goods_GOODS_RARE_METAL				: ('Rare Metal'					, lambda rect: ui_framework_image_drawImage('good_rare_metal', rect)),
+	Goods.model_market_goods_GOODS_BREAD					: ('Bread'						, lambda rect: ui_framework_image_drawImage('good_bread', rect)),
+	Goods.model_market_goods_GOODS_ALCOHOL					: ('Alcohol'					, lambda rect: ui_framework_image_drawImage('good_alcohol', rect)),
+	Goods.model_market_goods_GOODS_SUSHI					: ('Sushi'						, lambda rect: ui_framework_image_drawImage('good_sushi', rect)),
+	Goods.model_market_goods_GOODS_TEXTILE					: ('Textile'					, lambda rect: ui_framework_image_drawImage('good_textile', rect)),
+	Goods.model_market_goods_GOODS_CLOTHES					: ('Clothes'					, lambda rect: ui_framework_image_drawImage('good_clothes', rect)),
+	Goods.model_market_goods_GOODS_FURNITURE				: ('Furniture'					, lambda rect: ui_framework_image_drawImage('good_furniture', rect)),
+	Goods.model_market_goods_GOODS_STEEL					: ('Steel'						, lambda rect: ui_framework_image_drawImage('good_steel', rect)),
+	Goods.model_market_goods_GOODS_TOOLS					: ('Tools'						, lambda rect: ui_framework_image_drawImage('good_tools', rect)),
+	Goods.model_market_goods_GOODS_CEMENT					: ('Cement'						, lambda rect: ui_framework_image_drawImage('good_cement', rect)),	
+	Goods.model_market_goods_GOODS_FUEL					: ('Fuel'						, lambda rect: ui_framework_image_drawImage('good_fuel', rect)),
+	Goods.model_market_goods_GOODS_PLASTIC					: ('Plastic'					, lambda rect: ui_framework_image_drawImage('good_plastic', rect)),
+	Goods.model_market_goods_GOODS_GLASS					: ('Glass'						, lambda rect: ui_framework_image_drawImage('good_glass', rect)),
+	Goods.model_market_goods_GOODS_ELECTRONICS_COMPONENT	: ('Electronic Components'		, lambda rect: ui_framework_image_drawImage('good_electronics_component', rect)),
+	Goods.model_market_goods_GOODS_RADIO					: ('Radio'						, lambda rect: ui_framework_image_drawImage('good_radio', rect)),
+	Goods.model_market_goods_GOODS_COMPUTER				: ('Computer'					, lambda rect: ui_framework_image_drawImage('good_computer', rect)),
+	Goods.model_market_goods_GOODS_GUNS					: ('Guns'						, lambda rect: ui_framework_image_drawImage('good_guns', rect)),
+	Goods.model_market_goods_GOODS_ENGINE					: ('Engine'						, lambda rect: ui_framework_image_drawImage('good_engine', rect)),
+	Goods.model_market_goods_GOODS_CAR						: ('Car'						, lambda rect: ui_framework_image_drawImage('good_car', rect)),
+	Goods.model_market_goods_GOODS_PLANES					: ('Planes'						, lambda rect: ui_framework_image_drawImage('good_planes', rect)),
+	Goods.model_market_goods_GOODS_JEWELRY					: ('Jewelry'					, lambda rect: ui_framework_image_drawImage('good_jewelry', rect)),
+	Goods.model_market_goods_GOODS_PHONE					: ('Phone'						, lambda rect: ui_framework_image_drawImage('good_phone', rect)),
+	Goods.model_market_goods_GOODS_STONE					: ('Stone'						, lambda rect: ui_framework_image_drawImage('good_stone', rect)),
+	Goods.model_market_goods_GOODS_SAND					: ('Sand'						, lambda rect: ui_framework_image_drawImage('good_sand', rect)),
 }
 
-ressources_to_goods_map = {
-	Ressource.RESSOURCE_FISH           : [Goods.GOODS_FISH],
-	Ressource.RESSOURCE_SALT           : [Goods.GOODS_SALT],
-	Ressource.RESSOURCE_FERTILE_LAND   : [Goods.GOODS_WHEAT, Goods.GOODS_POTATO, Goods.GOODS_COTTON, Goods.GOODS_RICE],
-	Ressource.RESSOURCE_HUNTING_GROUNDS: [Goods.GOODS_FUR],
-	Ressource.RESSOURCE_WOOD           : [Goods.GOODS_WOOD],
-	Ressource.RESSOURCE_OIL            : [Goods.GOODS_OIL],
-	Ressource.RESSOURCE_COAL           : [Goods.GOODS_COAL],
-	Ressource.RESSOURCE_IRON           : [Goods.GOODS_IRON],
-	Ressource.RESSOURCE_COPPER         : [Goods.GOODS_COPPER],
-	Ressource.RESSOURCE_PRECIOUS_METALS: [Goods.GOODS_PRECIOUS_METAL],
-	Ressource.RESSOURCE_RARE_METALS    : [Goods.GOODS_RARE_METAL],
-	Ressource.RESSOURCE_SAND           : [Goods.GOODS_SAND],
-	Ressource.RESSOURCE_STONE          : [Goods.GOODS_STONE],
+ui_map_goods_ressources_to_goods_map = {
+	Ressource.model_terrain_ressource_RESSOURCE_FISH           : [Goods.model_market_goods_GOODS_FISH],
+	Ressource.model_terrain_ressource_RESSOURCE_SALT           : [Goods.model_market_goods_GOODS_SALT],
+	Ressource.model_terrain_ressource_RESSOURCE_FERTILE_LAND   : [Goods.model_market_goods_GOODS_WHEAT, Goods.model_market_goods_GOODS_POTATO, Goods.model_market_goods_GOODS_COTTON, Goods.model_market_goods_GOODS_RICE],
+	Ressource.model_terrain_ressource_RESSOURCE_HUNTING_GROUNDS: [Goods.model_market_goods_GOODS_FUR],
+	Ressource.model_terrain_ressource_RESSOURCE_WOOD           : [Goods.model_market_goods_GOODS_WOOD],
+	Ressource.model_terrain_ressource_RESSOURCE_OIL            : [Goods.model_market_goods_GOODS_OIL],
+	Ressource.model_terrain_ressource_RESSOURCE_COAL           : [Goods.model_market_goods_GOODS_COAL],
+	Ressource.model_terrain_ressource_RESSOURCE_IRON           : [Goods.model_market_goods_GOODS_IRON],
+	Ressource.model_terrain_ressource_RESSOURCE_COPPER         : [Goods.model_market_goods_GOODS_COPPER],
+	Ressource.model_terrain_ressource_RESSOURCE_PRECIOUS_METALS: [Goods.model_market_goods_GOODS_PRECIOUS_METAL],
+	Ressource.model_terrain_ressource_RESSOURCE_RARE_METALS    : [Goods.model_market_goods_GOODS_RARE_METAL],
+	Ressource.model_terrain_ressource_RESSOURCE_SAND           : [Goods.model_market_goods_GOODS_SAND],
+	Ressource.model_terrain_ressource_RESSOURCE_STONE          : [Goods.model_market_goods_GOODS_STONE],
 }
-def ressources_to_goods(ressource_type):
-	return ressources_to_goods_map.get(
+def ui_map_goods_ressources_to_goods(ressource_type):
+	return ui_map_goods_ressources_to_goods_map.get(
 		ressource_type,
 		[]
 	)
 
-def print_goods(type):
-	return goodsMap[type][0]
+def ui_map_goods_print_goods(type):
+	return ui_map_goods_goodsMap[type][0]
 
-def draw_goods(type):
-	return goodsMap.get(
+def ui_map_goods_draw_goods(type):
+	return ui_map_goods_goodsMap.get(
 		type,
 		('', lambda rect: None)
 	)[1]

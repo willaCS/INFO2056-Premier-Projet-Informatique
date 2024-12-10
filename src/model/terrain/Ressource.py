@@ -1,34 +1,34 @@
 from typing import Dict
 
-RESSOURCE_FISH				= 1
-RESSOURCE_SALT				= 2
-RESSOURCE_FERTILE_LAND		= 3
-RESSOURCE_HUNTING_GROUNDS	= 4
-RESSOURCE_WOOD				= 5
-RESSOURCE_OIL				= 6
-RESSOURCE_COAL				= 7
-RESSOURCE_IRON				= 8
-RESSOURCE_COPPER			= 9
-RESSOURCE_PRECIOUS_METALS	= 10
-RESSOURCE_RARE_METALS		= 11
-RESSOURCE_SAND				= 12
-RESSOURCE_STONE				= 13
+model_terrain_ressource_RESSOURCE_FISH				= 1
+model_terrain_ressource_RESSOURCE_SALT				= 2
+model_terrain_ressource_RESSOURCE_FERTILE_LAND		= 3
+model_terrain_ressource_RESSOURCE_HUNTING_GROUNDS	= 4
+model_terrain_ressource_RESSOURCE_WOOD				= 5
+model_terrain_ressource_RESSOURCE_OIL				= 6
+model_terrain_ressource_RESSOURCE_COAL				= 7
+model_terrain_ressource_RESSOURCE_IRON				= 8
+model_terrain_ressource_RESSOURCE_COPPER			= 9
+model_terrain_ressource_RESSOURCE_PRECIOUS_METALS	= 10
+model_terrain_ressource_RESSOURCE_RARE_METALS		= 11
+model_terrain_ressource_RESSOURCE_SAND				= 12
+model_terrain_ressource_RESSOURCE_STONE				= 13
 
-types = Dict[str, int | str]
+model_terrain_ressource_types = Dict[str, int | str]
 
-def init(type: int, richness: int, height: int) -> types:
+def model_terrain_ressource_init(type: int, richness: int, height: int) -> model_terrain_ressource_types:
 	return {
 		"type": type,
 		"richness": 0,
 		"height": height,
 	}
 
-def type(tile: types) -> int:
+def model_terrain_ressource_type(tile: model_terrain_ressource_types) -> int:
 	return tile["type"] # type: ignore
 
-def richness(tile: types) -> int:
+def model_terrain_ressource_richness(tile: model_terrain_ressource_types) -> int:
 	return tile["richness"] # type: ignore
 
-def height(tile: types) -> int:
+def model_terrain_ressource_height(tile: model_terrain_ressource_types) -> int:
 	return tile["height"] # type: ignore
 
