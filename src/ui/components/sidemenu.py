@@ -134,7 +134,7 @@ def carteRessource(pos):
 						RESOURCE_BUTTON_HEIGHT,
 					)
 				),
-				draw=lambda rect: centerTextButton(rect, "font3", "Ressource", vc.BACKGROUND2, vc.ROUNDING_SMOOTH,),
+				draw=lambda rect: centerTextButton(rect, "font3", "Ressources", vc.BACKGROUND2, vc.ROUNDING_SMOOTH,),
 			),
 
 			*(component(

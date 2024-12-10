@@ -9,16 +9,29 @@ BOUTON_LARGEUR = 300
 BOUTON_HAUTEUR = 40
 BOUTON_ESPACE = 5
 
-easterEgg = False
+easterEgg = 0
 
-def toggleEasterEgg():
+def toggleEasterEgg(mode=0):
 	global easterEgg
-	easterEgg = not easterEgg
+	if easterEgg == mode:
+		easterEgg = 0
+	else:
+		easterEgg = mode
+
+def getEasterEgg(mode):
+	match mode:
+		case 0:
+			return ('Capitalism Island 2', 'background')
+		case 1:
+			return ('Communism Island 2', 'background2')
+		case 2:
+			return ('Colonisalism Island 2', 'background3')
 
 def _drawBackground(rect):
-	drawImage('background' if not easterEgg else 'background2', rect)
+	xxx = getEasterEgg(easterEgg)
+	drawImage(xxx[1], rect)
 	# drawRect(rect, vc.SECONDARY)
-	drawText('title', (rect[1][0] // 2, rect[1][1] // 2), "Capitalism Island 2" if not easterEgg else 'Communism Island 2', (255, 255, 255), "center")
+	drawText('title', (rect[1][0] // 2, rect[1][1] // 2), xxx[0], (255, 255, 255), "center")
 
 		
 
@@ -78,7 +91,18 @@ welcomeMenu = component(
 				(100, 100)
 			),
 			draw=lambda rect: None,
-			click=toggleEasterEgg,
+			click=lambda: toggleEasterEgg(1),
+		),
+
+		# Bouton Easter Egg 
+		component(
+			z=1,
+			rect=lambda parent: (
+				(parent[1][0] - 100, 0),
+				(100, 100)
+			),
+			draw=lambda rect: None,
+			click=lambda: toggleEasterEgg(2),
 		),
 	]
 )
