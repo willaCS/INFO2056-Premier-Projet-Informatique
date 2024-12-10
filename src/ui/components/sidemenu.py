@@ -1,5 +1,4 @@
 import Window
-from model.market.market_tick import level
 from ui import SelectedTile
 from ui import visual_config as vc
 from ui.components.placeBuildings import showplaceBuildingsMenu
@@ -324,7 +323,7 @@ def carteIndustry(pos):
 						),
 						draw=lambda rect: centerRightTextButton(
 							rect,
-							'font3', longNumber(level(building)),
+							'font3', longNumber(0),
 							vc.BACKGROUND2, vc.ROUNDING_SMOOTH, vc.PADDING
 						)
 					),

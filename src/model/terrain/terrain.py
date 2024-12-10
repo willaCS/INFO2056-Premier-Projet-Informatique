@@ -79,11 +79,7 @@ def generate_ressource(tile: TerrainTile.types, ressource: int, richness: int, h
 			if height == 9 or height == 10:
 				return Ressource.init(Ressource.RESSOURCE_FERTILE_LAND, richness, height)
 		case TerrainTile.TERRAINTILETYPE_FOREST:
-			match ressource:
-				case 0:
-					return Ressource.init(Ressource.RESSOURCE_HUNTING_GROUNDS, richness, height)
-				case _:
-					return Ressource.init(Ressource.RESSOURCE_WOOD, richness % 5, height)
+			return Ressource.init(Ressource.RESSOURCE_WOOD, richness % 5, height)
 		case TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE:
 			match ressource:
 				case 0:
