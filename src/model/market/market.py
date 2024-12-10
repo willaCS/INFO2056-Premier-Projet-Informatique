@@ -5,26 +5,26 @@ TAXE = 0.9
 
 market = {
 	# name								   price		lot_size
-	Goods.GOODS_FISH					: (2,			100),
-	Goods.GOODS_SALT					: (1,			100),
-	Goods.GOODS_WHEAT					: (2,			1000),
-	Goods.GOODS_POTATO					: (4,			100),
-	Goods.GOODS_COTTON					: (4,			100),
-	Goods.GOODS_RICE					: (2,			100),
+	Goods.GOODS_FISH					: (1,			60),
+	Goods.GOODS_SALT					: (4,			20),
+	Goods.GOODS_WHEAT					: (1,			60),
+	Goods.GOODS_POTATO					: (2,			28),
+	Goods.GOODS_COTTON					: (2,			30),
+	Goods.GOODS_RICE					: (2,			15),
 	Goods.GOODS_FUR						: (3,			100),
-	Goods.GOODS_WOOD					: (1,			100),
-	Goods.GOODS_STONE					: (1,			100),
-	Goods.GOODS_SAND					: (1,			100),
+	Goods.GOODS_WOOD					: (1,			60),
+	Goods.GOODS_STONE					: (1,			26),
+	Goods.GOODS_SAND					: (2,			30),
 	Goods.GOODS_OIL						: (7,			100),
-	Goods.GOODS_COAL					: (5,			100),
-	Goods.GOODS_IRON					: (6,			100),
-	Goods.GOODS_COPPER					: (6,			100),
-	Goods.GOODS_PRECIOUS_METAL			: (10,			100),
-	Goods.GOODS_RARE_METAL				: (8,			100),
-	Goods.GOODS_BREAD					: (3,			100),
-	Goods.GOODS_ALCOHOL					: (3,			100),
-	Goods.GOODS_SUSHI					: (6,			100),
-	Goods.GOODS_TEXTILE					: (6,			100),
+	Goods.GOODS_COAL					: (4,			20),
+	Goods.GOODS_IRON					: (22,			20),
+	Goods.GOODS_COPPER					: (25,			20),
+	Goods.GOODS_PRECIOUS_METAL			: (2700,		20),
+	Goods.GOODS_RARE_METAL				: (130,			20),
+	Goods.GOODS_BREAD					: (2,			15),
+	Goods.GOODS_ALCOHOL					: (35,			20),
+	Goods.GOODS_SUSHI					: (30,			20),
+	Goods.GOODS_TEXTILE					: (4,			30),
 	Goods.GOODS_CLOTHES					: (8,			100),
 	Goods.GOODS_FURNITURE				: (9,			100),
 	Goods.GOODS_STEEL					: (13,			100),
@@ -52,7 +52,7 @@ def get_bundle_size(goods_type):
 
 def sell_market(goods_type, amounts):
 	print('sell', amounts, 'de', Goods.print_goods(goods_type), 'au prix de', int(get_price(goods_type) * TAXE))
-	player_wallet.sell(int(get_price(goods_type) * TAXE * amounts))
+	player_wallet.sell(int(get_price(goods_type) * TAXE * amounts + 1))
 
 def buy_market(goods_type, amounts):
 	print('buy', amounts, 'de', Goods.print_goods(goods_type), 'au prix de', market[goods_type])
