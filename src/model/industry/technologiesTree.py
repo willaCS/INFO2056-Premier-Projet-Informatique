@@ -17,7 +17,7 @@ techTree = [
 			{
 				"name": "Food 1",
 				"cost": 10,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_POTATO_FIELDS,
 					technologies.INDUSTRY_BREADFACTORY,
@@ -26,7 +26,7 @@ techTree = [
 			{
 				"name": "Food 2",
 				"cost": 20,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_SALTEXTRACTION,
 					technologies.INDUSTRY_RICE_FIELDS,
@@ -35,7 +35,7 @@ techTree = [
 			{
 				"name": "Food 3",
 				"cost": 30,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_SUSHIFACTORY,
 					technologies.INDUSTRY_ALCOHOLFACTORY,
@@ -49,7 +49,7 @@ techTree = [
 			{
 				"name": "Process 1",
 				"cost": 10,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_COTTON_FIELDS,
 					technologies.INDUSTRY_SANDQUERY,
@@ -58,7 +58,7 @@ techTree = [
 			{
 				"name": "Process 2",
 				"cost": 20,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_TEXTILEFACTORY,
 					technologies.INDUSTRY_FURNITUREFACTORY,
@@ -68,7 +68,7 @@ techTree = [
 			{
 				"name": "Process 3",
 				"cost": 30,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_CLOTHESFACTORY,
 					technologies.INDUSTRY_GLASSFACTORY,
@@ -82,7 +82,7 @@ techTree = [
 			{
 				"name": "Metalurgy 1",
 				"cost": 10,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_COALMINE,
 				]
@@ -90,7 +90,7 @@ techTree = [
 			{
 				"name": "Metalurgy 2",
 				"cost": 20,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_IRONMINE,
 					technologies.INDUSTRY_COPPERMINE,
@@ -99,7 +99,7 @@ techTree = [
 			{
 				"name": "Metalurgy 3",
 				"cost": 30,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_PRECIOUSMETALMINE,
 					technologies.INDUSTRY_RAREMETALMINE,
@@ -113,7 +113,7 @@ techTree = [
 			{
 				"name": "Advanced 1",
 				"cost": 10,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_STEELMILL,
 				]
@@ -121,7 +121,7 @@ techTree = [
 			{
 				"name": "Advanced 2",
 				"cost": 20,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_OILWELL,
 				]
@@ -129,7 +129,7 @@ techTree = [
 			{
 				"name": "Advanced 3",
 				"cost": 30,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_REFINARY,
 					technologies.INDUSTRY_RADIOFACTORY,
@@ -138,7 +138,7 @@ techTree = [
 			{
 				"name": "Advanced 4",
 				"cost": 40,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_PLASTICFACTORY,
 					technologies.INDUSTRY_GUNFACTORY,
@@ -147,7 +147,7 @@ techTree = [
 			{
 				"name": "Advanced 5",
 				"cost": 50,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_ELECTRONICCOMPONENTSFACTORY,
 					technologies.INDUSTRY_ENGINEFACTORY,
@@ -157,7 +157,7 @@ techTree = [
 			{
 				"name": "Advanced 6",
 				"cost": 60,
-				"unlocked": True,
+				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_COMPUTERFACTORY,
 					technologies.INDUSTRY_PLANESFACTORY,

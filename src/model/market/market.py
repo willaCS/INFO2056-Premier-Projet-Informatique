@@ -8,7 +8,7 @@ market = {
 	Goods.GOODS_FISH					: (2,			100),
 	Goods.GOODS_SALT					: (1,			100),
 	Goods.GOODS_WHEAT					: (2,			1000),
-	Goods.GOODS_POTATO					: (1,			100),
+	Goods.GOODS_POTATO					: (4,			100),
 	Goods.GOODS_COTTON					: (4,			100),
 	Goods.GOODS_RICE					: (2,			100),
 	Goods.GOODS_FUR						: (3,			100),
