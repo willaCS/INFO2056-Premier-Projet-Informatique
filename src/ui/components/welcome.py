@@ -3,14 +3,16 @@ from ui import gestionMenu, gestionMode
 from ui import visual_config as vc
 from ui.common.buttons import centerTextButton
 from ui.framework import component, component_show, component_hide, drawText, drawRect
+from ui.framework.image import drawImage
 
 BOUTON_LARGEUR = 300
 BOUTON_HAUTEUR = 40
 BOUTON_ESPACE = 5
 
 def _drawBackground(rect):
-	drawRect(rect, vc.SECONDARY)
-	drawText('font2', (rect[1][0] // 2, rect[1][1] // 2), "The Capitalism Island 2", vc.TEXT, "center")
+	drawImage('background', rect)
+	# drawRect(rect, vc.SECONDARY)
+	drawText('title', (rect[1][0] // 2, rect[1][1] // 2), "The Capitalism Island 2", vc.BACKGROUND, "center")
 
 		
 

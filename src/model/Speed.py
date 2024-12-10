@@ -4,6 +4,8 @@ Ce fichier gère la vitesse de simulation du jeu.
 
 from math import inf
 
+from ui import gestionMenu
+
 
 __prev_val = 3
 val = 3
@@ -43,7 +45,7 @@ def pause():
 def can_execute_simulation():
 	global tick_index
 	tick_index += 1
-	if (tick_index > _delta_tick_simation):
+	if (tick_index > _delta_tick_simation and gestionMenu.menu == gestionMenu.MENU_JEU):
 		tick_index = 0
 		return True
 	return False

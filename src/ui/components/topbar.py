@@ -16,15 +16,14 @@ STAT_WIDTH = 300
 COLOR_DARK_RED = (120, 0, 0)
 COLOR_GRAY = (80, 80, 80)
 
-def drawStat(rect, num, num_incr, color):
+def drawStat(rect, num, num_incr, image_key):
 	longNumber(num)
 	message = f"{longNumber(num)} ({'+' if num_incr >= 0 else ''}{longNumber(num_incr)})"
 	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH, hover=vc.SECONDARY)
-	drawCircle(
-		(rect[0][0] + rect[1][1] // 2, rect[0][1] + rect[1][1] // 2),
-		vc.TOP_BAR_HEIGHT // 2 - PADDING * 2,
-		color,
-	)
+	drawImage(image_key, (
+		rect[0],
+		(rect[1][1], rect[1][1])
+	))
 	drawText('font2', (rect[0][0] + rect[1][0] - PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midright")
 
 topBar = component(
@@ -34,7 +33,7 @@ topBar = component(
 		(0, 0),
 		(parent[1][0], vc.TOP_BAR_HEIGHT)
 	),
-	draw=lambda rect: drawRect(rect, (40, 40, 40)),
+	draw=lambda rect: drawRect(rect, vc.BACKGROUND3),
 	click=lambda pos: None,
 	childs=[
 		# Mode de la carte
@@ -54,18 +53,16 @@ topBar = component(
 		) for index, value in enumerate([
 			("A", Screenmode.SCREENMODE_MAIN),
 			("B", Screenmode.SCREENMODE_ECONOMY_SUPPLY),
-			("C", Screenmode.SCREENMODE_ECONOMY_DEMAND),
-			("D", Screenmode.SCREENMODE_TRANSPORT),
 		])),
 
 		# Money
 		component(
 			z=2,
 			rect=lambda parent: (
-				((parent[1][1] + vc.PADDING) * 4, 0),
+				((parent[1][1] + vc.PADDING) * 2, 0),
 				(STAT_WIDTH, parent[1][1])
 			),
-			draw=lambda rect: drawStat(rect, player_wallet.money, utils.get_stat('money'), (255, 180, 0)),
+			draw=lambda rect: drawStat(rect, player_wallet.money, utils.get_stat('money'), 'money'),
 			click=showStockMenu,
 		),
 
@@ -73,10 +70,10 @@ topBar = component(
 		component(
 			z=2,
 			rect=lambda parent: (
-				((parent[1][1] + vc.PADDING) * 4 + (STAT_WIDTH + vc.PADDING), 0),
+				((parent[1][1] + vc.PADDING) * 2 + (STAT_WIDTH + vc.PADDING), 0),
 				(STAT_WIDTH, parent[1][1])
 			),
-			draw=lambda rect: drawStat(rect, player_wallet.science, utils.get_stat('science'), (0, 200, 200)),
+			draw=lambda rect: drawStat(rect, player_wallet.science, utils.get_stat('science'), 'science'),
 			click=drawTech,
 		),
 		
