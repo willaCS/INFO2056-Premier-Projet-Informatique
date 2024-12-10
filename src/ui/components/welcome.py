@@ -9,10 +9,16 @@ BOUTON_LARGEUR = 300
 BOUTON_HAUTEUR = 40
 BOUTON_ESPACE = 5
 
+easterEgg = False
+
+def toggleEasterEgg():
+	global easterEgg
+	easterEgg = not easterEgg
+
 def _drawBackground(rect):
-	drawImage('background', rect)
+	drawImage('background' if not easterEgg else 'background2', rect)
 	# drawRect(rect, vc.SECONDARY)
-	drawText('title', (rect[1][0] // 2, rect[1][1] // 2), "The Capitalism Island 2", vc.BACKGROUND, "center")
+	drawText('title', (rect[1][0] // 2, rect[1][1] // 2), "Capitalism Island 2" if not easterEgg else 'Communism Island 2', (255, 255, 255), "center")
 
 		
 
@@ -21,7 +27,6 @@ welcomeMenu = component(
 	z=0,
 	rect=lambda parent: parent,
 	draw=_drawBackground,
-	click=lambda pos: None,
 	childs=[
 		# Bouton Play
 		component(
@@ -63,6 +68,17 @@ welcomeMenu = component(
 			),
 			draw=lambda rect: centerTextButton(rect, 'font2', "Exit", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
 			click=Window.stop,
+		),
+
+		# Bouton Easter Egg 
+		component(
+			z=1,
+			rect=lambda parent: (
+				(0, 0),
+				(100, 100)
+			),
+			draw=lambda rect: None,
+			click=toggleEasterEgg,
 		),
 	]
 )

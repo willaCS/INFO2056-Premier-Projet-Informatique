@@ -37,6 +37,7 @@ def setup():
 		'money'			: './assets/coin.png',
 		'science'		: './assets/science.png',
 		'background'	: './assets/background.jpeg',
+		'background2'	: './assets/communism.jpg',
 
 		'sand'			: './assets/terrain/suspicious_sand_0.png',
 		'stone'			: './assets/terrain/stone.png',
