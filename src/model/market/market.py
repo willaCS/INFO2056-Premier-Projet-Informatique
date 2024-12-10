@@ -1,7 +1,7 @@
 from model.market import player_wallet
 from model.market import Goods
 
-TAXE = 0.9
+model_market_market_TAXE = 0.9
 
 model_market_market_market = {
 	# name								   price		lot_size
@@ -51,8 +51,8 @@ def model_market_market_get_bundle_size(goods_type):
 	return model_market_market_market[goods_type][1]
 
 def model_market_market_sell_market(goods_type, amounts):
-	print('sell', amounts, 'de', Goods.model_market_goods_print_goods(goods_type), 'au prix de', int(model_market_market_get_price(goods_type) * TAXE))
-	player_wallet.model_market_wallet_sell(int(model_market_market_get_price(goods_type) * TAXE * amounts + 1))
+	print('sell', amounts, 'de', Goods.model_market_goods_print_goods(goods_type), 'au prix de', int(model_market_market_get_price(goods_type) * model_market_market_TAXE))
+	player_wallet.model_market_wallet_sell(int(model_market_market_get_price(goods_type) * model_market_market_TAXE * amounts + 1))
 
 def model_market_market_buy_market(goods_type, amounts):
 	print('buy', amounts, 'de', Goods.model_market_goods_print_goods(goods_type), 'au prix de', model_market_market_market[goods_type])
