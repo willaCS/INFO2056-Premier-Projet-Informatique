@@ -16,7 +16,7 @@ techTree = [
 		"techs": [
 			{
 				"name": "Food 1",
-				"cost": 10,
+				"cost": 100,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_POTATO_FIELDS,
@@ -25,7 +25,7 @@ techTree = [
 			},
 			{
 				"name": "Food 2",
-				"cost": 20,
+				"cost": 250,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_SALTEXTRACTION,
@@ -34,7 +34,7 @@ techTree = [
 			},
 			{
 				"name": "Food 3",
-				"cost": 30,
+				"cost": 750,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_SUSHIFACTORY,
@@ -48,7 +48,7 @@ techTree = [
 		"techs": [
 			{
 				"name": "Process 1",
-				"cost": 10,
+				"cost": 100,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_COTTON_FIELDS,
@@ -57,7 +57,7 @@ techTree = [
 			},
 			{
 				"name": "Process 2",
-				"cost": 20,
+				"cost": 250,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_TEXTILEFACTORY,
@@ -67,7 +67,7 @@ techTree = [
 			},
 			{
 				"name": "Process 3",
-				"cost": 30,
+				"cost": 500,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_CLOTHESFACTORY,
@@ -81,7 +81,7 @@ techTree = [
 		"techs": [
 			{
 				"name": "Metalurgy 1",
-				"cost": 10,
+				"cost": 150,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_COALMINE,
@@ -89,7 +89,7 @@ techTree = [
 			},
 			{
 				"name": "Metalurgy 2",
-				"cost": 20,
+				"cost": 500,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_IRONMINE,
@@ -98,7 +98,7 @@ techTree = [
 			},
 			{
 				"name": "Metalurgy 3",
-				"cost": 30,
+				"cost": 5000,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_PRECIOUSMETALMINE,
