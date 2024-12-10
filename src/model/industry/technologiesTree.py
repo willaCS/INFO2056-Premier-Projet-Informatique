@@ -103,6 +103,7 @@ techTree = [
 				"unlocks": [
 					technologies.INDUSTRY_PRECIOUSMETALMINE,
 					technologies.INDUSTRY_RAREMETALMINE,
+					technologies.INDUSTRY_JEWELRYWORKSHOP,
 				]
 			},
 		]

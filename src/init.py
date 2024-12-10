@@ -26,6 +26,7 @@ def setup():
 	loadFont("font1", "monospace", 40)
 	loadFont("font2", "monospace", 24, True)
 	loadFont("font3", "monospace", 22, True)
+	loadFont("title", "monospace", 50, True)
 
 	setup_stats()
 
@@ -33,6 +34,9 @@ def setup():
 		'exit'			: './assets/close_button.png',
 		'arrow'			: './assets/arrow.png',
 		'plus'			: './assets/plus.png',
+		'money'			: './assets/coin.png',
+		'science'		: './assets/science.png',
+		'background'	: './assets/background.jpeg',
 
 		'sand'			: './assets/terrain/suspicious_sand_0.png',
 		'stone'			: './assets/terrain/stone.png',
