@@ -1,3 +1,12 @@
+# Capitalist Island 2
+# By:
+#  - Willems Arthur
+#  - Cormann Adrien
+#  - Lhermerout Thomas
+#
+# Link to github for unbundled Code:
+# https://github.com/willaCS/INFO2056-Premier-Projet-Informatique
+
 import math
 import random
 import signal
