@@ -1,8 +1,8 @@
-import Window
 from model.industry.technologiesTree import get_tech_for_draw, add_tech
+from ui.framework.framework import Component
 from ui import visual_config as vc
 from ui.common.buttons import centerTextButton, exit_button
-from ui.framework import component, component_show, component_hide, drawImage, drawRect, drawText
+from ui.framework import drawRect, drawText
 from ui.map.industry import print_industry
 
 tech_selected = None
@@ -17,7 +17,7 @@ TECH_HEIGHT=75
 TECH_COST_WIDTH=150
 
 def closeTech(pos):
-	component_hide(techMenu)
+	techMenu.hide()
 
 def _selectTech(i, j):
 	global tech_selected
@@ -40,7 +40,7 @@ def _drawTechInfo(rect):
 		message = "Unlocks {}".format(print_industry(tech['unlocks'][i]))
 		drawText('font2', (rect[0][0] + vc.PADDING + vc.MENU_BORDER_WIDTH, rect[0][1] + vc.PADDING + vc.MENU_BORDER_WIDTH + 30 * i), message, vc.TEXT)
 
-techMenu = component(
+techMenu = Component(
 	z=10,
 	padding=vc.PADDING + vc.MENU_BORDER_WIDTH,
 	rect=lambda parent: (
@@ -56,10 +56,10 @@ techMenu = component(
 	draw=lambda rect: drawRect(rect, vc.BACKGROUND2, vc.ROUNDING_HARD) or\
 					  drawRect(rect, vc.PRIMARY, vc.ROUNDING_HARD, vc.MENU_BORDER_WIDTH),
 	click=lambda pos: print('xd'),
-	clickOutside=lambda pos: component_hide(techMenu),
+	clickOutside=lambda pos: techMenu.hide(),
 	childs=[
 		# Header
-		component(
+		Component(
 			z=2,
 			rect=lambda parent: (
 				(0, 0),
@@ -73,7 +73,7 @@ techMenu = component(
 		),
 
 		# Close button
-		component(
+		Component(
 			z=2,
 			rect=lambda parent: (
 				(parent[1][0] - HEADER_HEIGHT, 0),
@@ -84,7 +84,7 @@ techMenu = component(
 		),
 
 		# Techs
-		*[(component(
+		*[(Component(
 			z=2,
 			rect=lambda parent, x=x, y=y: (
 				(
@@ -101,7 +101,7 @@ techMenu = component(
 		)) for x in range(NB_TECH_BRANCH) for y in range(TECH_PER_BRANCH)],
 
 		# Selected Tech Info
-		component(
+		Component(
 			z=2,
 			rect=lambda parent: (
 				(
@@ -118,7 +118,7 @@ techMenu = component(
 		),
 
 		# Add Tech Cost
-		component(
+		Component(
 			z=2,
 			rect=lambda parent: (
 				(
@@ -138,7 +138,7 @@ techMenu = component(
 		),
 
 		# Add Tech Button
-		component(
+		Component(
 			z=2,
 			rect=lambda parent: (
 				(
@@ -154,4 +154,4 @@ techMenu = component(
 )
 
 def drawTech():
-	component_show(techMenu)
+	techMenu.show()

@@ -1,8 +1,9 @@
 import Window
+from ui.framework.framework import Component
 from ui import gestionMenu
 from ui import visual_config as vc
 from ui.common.buttons import centerTextButton
-from ui.framework import component, component_show, component_hide, drawRect, drawText
+from ui.framework import drawRect, drawText
 from ui import gestionClavier, gestionMode
 from ui import visual_config
 
@@ -20,7 +21,7 @@ def _drawSettingBar(rect, message):
 	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
 	drawText('font2', (rect[0][0] + vc.PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midleft")
 
-settingsMenu = component(
+settingsMenu = Component(
 	z=0,
 	rect=lambda: (
 		(0, 0),
@@ -30,7 +31,7 @@ settingsMenu = component(
 	click=lambda: None,
 	childs=[
 		# Keyboard Layout
-		component(
+		Component(
 			z=1,
 			padding=vc.PADDING,
 			rect=lambda parent: (
@@ -44,7 +45,7 @@ settingsMenu = component(
 			click=lambda: None,
 			childs=[
 				# Bouton Azerty 
-				component(
+				Component(
 					z=2,
 					rect=lambda parent: (
 						(parent[1][0] - OPTION_WIDTH, 0),
@@ -58,7 +59,7 @@ settingsMenu = component(
 				),
 
 				# Bouton Qwerty 
-				component(
+				Component(
 					z=2,
 					rect=lambda parent: (
 						(parent[1][0] - OPTION_WIDTH * 2 - vc.PADDING, 0),
@@ -74,7 +75,7 @@ settingsMenu = component(
 		),
 
 		# Style
-		component(
+		Component(
 			z=1,
 			padding=vc.PADDING,
 			rect=lambda parent: (
@@ -88,7 +89,7 @@ settingsMenu = component(
 			click=lambda: None,
 			childs=[
 				# Bouton Light
-				component(
+				Component(
 					z=2,
 					rect=lambda parent: (
 						(parent[1][0] - OPTION_WIDTH, 0),
@@ -102,7 +103,7 @@ settingsMenu = component(
 				),
 
 				# Bouton Dark
-				component(
+				Component(
 					z=2,
 					rect=lambda parent: (
 						(parent[1][0] - OPTION_WIDTH * 2 - vc.PADDING, 0),
@@ -118,7 +119,7 @@ settingsMenu = component(
 		),
 
 		# Bouton Retour 
-		component(
+		Component(
 			z=5,
 			rect=lambda parent: (
 				(
@@ -134,4 +135,4 @@ settingsMenu = component(
 )
 
 def drawSettings():
-	component_show(settingsMenu)
+	settingsMenu.show()

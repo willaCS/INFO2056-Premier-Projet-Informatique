@@ -2,13 +2,13 @@ import Window
 from ui import SelectedTile
 from ui import visual_config as vc
 from ui.components.placeBuildings import showplaceBuildingsMenu
-from ui.framework.framework import component_add_temp, component_temp_remove
+from ui.framework.framework import Component
 from ui.framework.text import longNumber
 from ui.map.terrainTile import print_terrain_tile
 from ui.map.goods import draw_goods, ressources_to_goods, print_goods
 from ui.map.industry import draw_industry_menu2, print_industry, draw_industry_product
 from ui.common.buttons import centerLeftTextButton, centerRightTextButton, centerTextButton, exit_button
-from ui.framework import component, component_hide, component_show, drawRect, drawImage
+from ui.framework import drawRect, drawImage
 from model.terrain import Ressource, TerrainTile
 from model.terrain.terrain import get_terrain_tile
 from model.industry import plants
@@ -26,12 +26,12 @@ RESOURCE_BUTTON_HEIGHT = (RESOURCE_CARTE_HEIGHT - 6 * vc.PADDING) / 5
 def closeSideMenu():
 	global sideMenu
 	SelectedTile.val = None
-	component_hide(sideMenu) 
-	component_temp_remove(sideMenu)
+	sideMenu.hide() 
+	sideMenu.temp_remove()
 
 def refreshSideMenu():
 	global sideMenu
-	component_temp_remove(sideMenu)
+	sideMenu.temp_remove()
 	createTemp()
 
 
@@ -64,7 +64,7 @@ def __drawBuildingButton(rect, building_id):
 	)
 
 
-sideMenu = component(
+sideMenu = Component(
 	z=2,
 	margin=MENU_MARGIN,
 	padding=vc.PADDING + vc.MENU_BORDER_WIDTH,
@@ -78,7 +78,7 @@ sideMenu = component(
 	clickOutside=closeSideMenu,
 	childs=[
 		# Header
-		component(
+		Component(
 			z=2,
 			rect=lambda parent: 
 			(
@@ -92,7 +92,7 @@ sideMenu = component(
 		),
 
 		# Close button
-		component(
+		Component(
 			z=2,
 			rect=lambda parent: (
 				(parent[1][0] - CLOSE_BUTTON_SIZE[0], 0),
@@ -110,7 +110,7 @@ def carteRessource(pos):
 	if not ressource:
 		return
 	goods = ressources_to_goods(Ressource.type(ressource))
-	return component(
+	return Component(
 		z=2,
 		padding=vc.PADDING,
 		rect=lambda parent: (
@@ -125,7 +125,7 @@ def carteRessource(pos):
 		),
 		draw=lambda rect: drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_SMOOTH),
 		childs=[
-			component(
+			Component(
 				z=3,
 				rect=lambda parent: (
 					(0, 0),
@@ -137,7 +137,7 @@ def carteRessource(pos):
 				draw=lambda rect: centerTextButton(rect, "font3", "Ressources", vc.BACKGROUND2, vc.ROUNDING_SMOOTH,),
 			),
 
-			*(component(
+			*(Component(
 				z=3,
 				rect=lambda parent, y=index: (
 					(
@@ -163,7 +163,7 @@ def carteIndustry(pos):
 	if not plants.get(SelectedTile.val):
 		return
 
-	return component(
+	return Component(
 		z=2,
 		padding=vc.PADDING,
 		rect=lambda parent: (
@@ -178,7 +178,7 @@ def carteIndustry(pos):
 		),
 		draw=lambda rect: drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_SMOOTH),
 		childs=[
-			component(
+			Component(
 				z=3,
 				rect=lambda parent: (
 					(0, 0),
@@ -190,7 +190,7 @@ def carteIndustry(pos):
 				draw=lambda rect: centerTextButton(rect, "font3", "Building", vc.BACKGROUND2, vc.ROUNDING_SMOOTH),
 			),
 
-			component(
+			Component(
 				z=3,
 				rect=lambda parent: (
 					(
@@ -205,7 +205,7 @@ def carteIndustry(pos):
 				draw=lambda rect, is_in, building_id=building_id: __drawBuildingButton(rect, building_id)
 			),
 
-			component(
+			Component(
 				z=3,
 				rect=lambda parent: (
 					(
@@ -221,7 +221,7 @@ def carteIndustry(pos):
 				childs=[],
 			),
 
-			component(
+			Component(
 				z=3,
 				rect=lambda parent: (
 					(
@@ -235,7 +235,7 @@ def carteIndustry(pos):
 				),
 				draw=lambda rect: None,
 				childs=[
-					component(
+					Component(
 						z=3,
 						rect=lambda parent: (
 							(
@@ -254,7 +254,7 @@ def carteIndustry(pos):
 						)
 					),
 					
-					component(
+					Component(
 						z=3,
 						rect=lambda parent: (
 							(
@@ -275,7 +275,7 @@ def carteIndustry(pos):
 				],
 			),
 
-			component(
+			Component(
 				z=3,
 				rect=lambda parent: (
 					(
@@ -289,7 +289,7 @@ def carteIndustry(pos):
 				),
 				draw=lambda rect: None,
 				childs=[
-					component(
+					Component(
 						z=3,
 						rect=lambda parent: (
 							(
@@ -308,7 +308,7 @@ def carteIndustry(pos):
 						)
 					),
 					
-					component(
+					Component(
 						z=3,
 						rect=lambda parent: (
 							(
@@ -333,7 +333,7 @@ def carteIndustry(pos):
 	)
 
 def cartePlus(pos):
-	return component(
+	return Component(
 		z=2,
 		padding=vc.PADDING,
 		rect=lambda parent: (
@@ -349,7 +349,7 @@ def cartePlus(pos):
 		draw=lambda rect: drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_SMOOTH, hover=vc.ACCENT),
 		click=showplaceBuildingsMenu,
 		childs=[
-			component(
+			Component(
 				z=3,
 				rect=lambda parent: (
 					((parent[1][0] - parent[1][1]) // 2, 0),
@@ -382,9 +382,9 @@ def createTemp():
 		res.append(cartePlus(index))
 		index += 1
 
-	component_add_temp(sideMenu, res)
-	component_show(sideMenu)
+	sideMenu.add_temp(res)
+	sideMenu.show()
 
 def showSideMenu():
-	if sideMenu['_hidden']:
+	if sideMenu._hidden:
 		createTemp()

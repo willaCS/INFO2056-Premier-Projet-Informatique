@@ -1,8 +1,9 @@
 import Window
-from ui import gestionMenu, gestionMode
+from ui.framework.framework import Component
+from ui import gestionMenu
 from ui import visual_config as vc
 from ui.common.buttons import centerTextButton
-from ui.framework import component, component_show, component_hide, drawText, drawRect
+from ui.framework import drawText
 from ui.framework.image import drawImage
 
 BOUTON_LARGEUR = 300
@@ -36,13 +37,13 @@ def _drawBackground(rect):
 		
 
 
-welcomeMenu = component(
+welcomeMenu = Component(
 	z=0,
 	rect=lambda parent: parent,
 	draw=_drawBackground,
 	childs=[
 		# Bouton Play
-		component(
+		Component(
 			z=1,
 			rect=lambda parent: (
 				(
@@ -56,7 +57,7 @@ welcomeMenu = component(
 		),
 
 		# # Bouton Settings 
-		component(
+		Component(
 			z=1,
 			rect=lambda parent: (
 				(
@@ -70,7 +71,7 @@ welcomeMenu = component(
 		),
 
 		# Bouton Exit 
-		component(
+		Component(
 			z=1,
 			rect=lambda parent: (
 				(
@@ -84,7 +85,7 @@ welcomeMenu = component(
 		),
 
 		# Bouton Easter Egg 
-		component(
+		Component(
 			z=1,
 			rect=lambda parent: (
 				(0, 0),
@@ -95,7 +96,7 @@ welcomeMenu = component(
 		),
 
 		# Bouton Easter Egg 
-		component(
+		Component(
 			z=1,
 			rect=lambda parent: (
 				(parent[1][0] - 100, 0),
@@ -108,4 +109,4 @@ welcomeMenu = component(
 )
 
 def drawWelcome():
-	component_show(welcomeMenu)
+	welcomeMenu.show()

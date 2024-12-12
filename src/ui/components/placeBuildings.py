@@ -1,13 +1,12 @@
-import Window
-from model.industry import Plant, plants
+from model.industry import plants
 from model.industry.technologiesTree import get_placable_on
 from ui import SelectedTile
 from ui import visual_config as vc
 
-from ui.framework.framework import component_add_temp, component_temp_remove
-from ui.map.industry import draw_industry_by_id, draw_industry_menu
+from ui.framework.framework import Component
+from ui.map.industry import draw_industry_menu
 from ui.common.buttons import centerTextButton, exit_button
-from ui.framework import component, component_hide, component_show, drawRect, drawImage
+from ui.framework import drawRect
 
 
 MENU_MARGIN = 5 #en pixels
@@ -20,12 +19,12 @@ NOMBRE_DE_COLONNES = 5
 def closeplaceBuildingsMenu():
 	global placeBuildingsMenu
 	# SelectedTile.val = None
-	component_hide(placeBuildingsMenu)
-	component_temp_remove(placeBuildingsMenu)
+	placeBuildingsMenu.hide()
+	placeBuildingsMenu.temp_remove()
 	from ui.components.sidemenu import refreshSideMenu
 	refreshSideMenu()
 
-placeBuildingsMenu = component(
+placeBuildingsMenu = Component(
 	z=4,
 	margin=MENU_MARGIN,
 	padding=vc.PADDING + vc.MENU_BORDER_WIDTH,
@@ -38,7 +37,7 @@ placeBuildingsMenu = component(
 	clickOutside=closeplaceBuildingsMenu,
 	childs=[
 		# Header
-		component(
+		Component(
 			z=2,
 			rect=lambda parent: (
 				(0, 0),
@@ -51,7 +50,7 @@ placeBuildingsMenu = component(
 		),
 
 		# Close button
-		component(
+		Component(
 			z=2,
 			rect=lambda parent: (
 				(parent[1][0] - CLOSE_BUTTON_SIZE[0], 0),
@@ -66,13 +65,13 @@ placeBuildingsMenu = component(
 
 
 def showplaceBuildingsMenu():
-	if placeBuildingsMenu['_hidden']:
+	if placeBuildingsMenu._hidden:
 		can_be_build = get_placable_on(SelectedTile.val)
 		print('xd')
 
 		tile_width = ((vc.LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES
-		component_add_temp(placeBuildingsMenu, [
-			component(
+		placeBuildingsMenu.add_temp([
+			Component(
 				z=2,
 				rect=lambda parent, x=index % NOMBRE_DE_COLONNES, y=index // NOMBRE_DE_COLONNES: (
 					(
@@ -90,7 +89,7 @@ def showplaceBuildingsMenu():
 			)
 			for index, building_id in enumerate(can_be_build)
 		])
-		component_show(placeBuildingsMenu)
+		placeBuildingsMenu.show()
  
 
 

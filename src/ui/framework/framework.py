@@ -125,7 +125,7 @@ class Component:
 				continue
 			child._temp = True
 			self._childs.append(child)
-			child.add_parent(child, self)
+			child.add_parent(self)
 
 	def temp_remove(self):
 		self._childs = [child for child in self._childs if not child._temp]

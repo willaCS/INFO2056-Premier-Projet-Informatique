@@ -1,10 +1,10 @@
 import Window
+from ui.framework.framework import Component
 from ui import SelectedTile
 from ui import visual_config as vc
-from ui.framework import component, component_show
 from ui.map.map import drawMap
 
-map_component = component(
+map_component = Component(
 	z=1,
 	rect=lambda: (
 		(
@@ -21,4 +21,4 @@ map_component = component(
 )
 
 def drawMapComponent():
-	component_show(map_component)
+	map_component.show()

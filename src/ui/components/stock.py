@@ -1,15 +1,12 @@
 import Window
 from model.market import Goods
 from model.market.stockpile import get_stock
+from ui.framework.framework import Component
 from ui import SelectedTile
 from ui import visual_config as vc
 from ui.map.goods import draw_goods
-from ui.map.industry import PADDING
-from ui.map.terrainTile import print_terrain_tile
 from ui.common.buttons import centerRightTextButton, centerTextButton, exit_button
-from ui.framework import component, component_hide, component_show, drawRect, drawImage
-from model.terrain.terrain import get_terrain_tile
-
+from ui.framework import drawRect
 
 MENU_MARGIN = 5 #en pixels
 EXIT_BUTTON_BORDER = 2 #en pixels
@@ -25,12 +22,12 @@ RATIO = (
 )
 
 def showStockMenu(pos):
-	component_show(stockMenu)
+	stockMenu.show()
 
 def closeStockMenu(pos):
 	global stockMenu
 	SelectedTile.val = None
-	component_hide(stockMenu)
+	stockMenu.hide()
 
 def drawStock(goods_id):
 	good = draw_goods(goods_id)
@@ -45,7 +42,7 @@ def drawStock(goods_id):
 	return res
 
 
-stockMenu = component(
+stockMenu = Component(
 	z=3,
 	margin=vc.PADDING,
 	padding=vc.PADDING + vc.MENU_BORDER_WIDTH,
@@ -59,7 +56,7 @@ stockMenu = component(
 	clickOutside=closeStockMenu,
 	childs=[
 		# Header
-		component(
+		Component(
 			z=2,
 			rect=lambda parent: 
 			(
@@ -73,7 +70,7 @@ stockMenu = component(
 		),
 
 		# Close button
-		component(
+		Component(
 			z=2,
 			rect=lambda parent: (
 				(parent[1][0] - CLOSE_BUTTON_SIZE[0], 0),
@@ -83,7 +80,7 @@ stockMenu = component(
 			click=closeStockMenu,
 		),
 
-		component(
+		Component(
 			z=2,
 			rect=lambda parent: (
 				(0 - vc.PADDING // 2, CLOSE_BUTTON_SIZE[1] + vc.PADDING // 2),
@@ -91,7 +88,7 @@ stockMenu = component(
 			),
 			draw=lambda rect: None,
 			childs=[
-				*[component(
+				*[Component(
 					z=2,
 					margin=vc.PADDING // 2,
 					rect=lambda parent, x=(i % NUMBER_OF_COLUMNS), y=(i // NUMBER_OF_COLUMNS): (

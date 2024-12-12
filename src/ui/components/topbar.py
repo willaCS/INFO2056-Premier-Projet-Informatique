@@ -1,12 +1,12 @@
 from model.stat import utils
-import Window
 from model import Speed
 from model.market import player_wallet
+from ui.framework.framework import Component
 from ui import Screenmode, visual_config as vc
 from ui.common.buttons import centerTextButton, exit_button
 from ui.components.stock import showStockMenu
 from ui.components.tech import drawTech
-from ui.framework import component, component_show, component_hide, drawRect, drawText, longNumber, drawCircle, drawImage 
+from ui.framework import drawRect, drawText, longNumber, drawImage 
 from ui import gestionMenu
 
 PADDING = 5
@@ -26,7 +26,7 @@ def drawStat(rect, num, num_incr, image_key):
 	))
 	drawText('font2', (rect[0][0] + rect[1][0] - PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midright")
 
-topBar = component(
+topBar = Component(
 	z=1,
 	padding=vc.PADDING,
 	rect=lambda parent: (
@@ -37,7 +37,7 @@ topBar = component(
 	click=lambda pos: None,
 	childs=[
 		# Mode de la carte
-		*(component(
+		*(Component(
 			z=2,
 			# margin=vc.PADDING,
 			rect=lambda parent, index=index: (
@@ -56,7 +56,7 @@ topBar = component(
 		])),
 
 		# Money
-		component(
+		Component(
 			z=2,
 			rect=lambda parent: (
 				((parent[1][1] + vc.PADDING) * 2, 0),
@@ -67,7 +67,7 @@ topBar = component(
 		),
 
 		# Science
-		component(
+		Component(
 			z=2,
 			rect=lambda parent: (
 				((parent[1][1] + vc.PADDING) * 2 + (STAT_WIDTH + vc.PADDING), 0),
@@ -78,7 +78,7 @@ topBar = component(
 		),
 		
 		# Vitesse de la simulation
-		*(component(
+		*(Component(
 			z=2,
 			rect=lambda parent, i=i: (
 				(parent[1][0] - (7-i) * (parent[1][1] + vc.PADDING) + vc.PADDING, 0),
@@ -93,7 +93,7 @@ topBar = component(
 		) for i in range(1, 6)),
 
 		#exit
-		component(
+		Component(
 			z=2, 
 			rect=lambda parent: (
 				(parent[1][0] - (parent[1][1]), 0),
@@ -107,4 +107,4 @@ topBar = component(
 
 
 def showTopBar():
-	component_show(topBar) 
+	topBar.show() 
