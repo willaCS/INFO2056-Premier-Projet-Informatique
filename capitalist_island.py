@@ -407,15 +407,15 @@ model_plants_map = model_plants_init()
 
 
 model_technologies_INDUSTRY_NONE 							= 0
-model_technologies_INDUSTRY_FISHINGBOAT					= 1
+model_technologies_INDUSTRY_FISHINGBOAT						= 1
 model_technologies_INDUSTRY_SALTEXTRACTION					= 2
 model_technologies_INDUSTRY_WHEAT_FIELDS					= 3
 model_technologies_INDUSTRY_POTATO_FIELDS					= 4
 model_technologies_INDUSTRY_COTTON_FIELDS					= 5
-model_technologies_INDUSTRY_RICE_FIELDS					= 6
+model_technologies_INDUSTRY_RICE_FIELDS						= 6
 model_technologies_INDUSTRY_FURHUNTINGGROUNDS				= 7
 model_technologies_INDUSTRY_LUMBERMILL						= 8
-model_technologies_INDUSTRY_OILWELL						= 9
+model_technologies_INDUSTRY_OILWELL							= 9
 model_technologies_INDUSTRY_COALMINE						= 10
 model_technologies_INDUSTRY_IRONMINE						= 11
 model_technologies_INDUSTRY_COPPERMINE						= 12
@@ -435,12 +435,12 @@ model_technologies_INDUSTRY_PLASTICFACTORY					= 25
 model_technologies_INDUSTRY_GLASSFACTORY					= 26
 model_technologies_INDUSTRY_ELECTRONICCOMPONENTSFACTORY	= 27
 model_technologies_INDUSTRY_RADIOFACTORY					= 28
-model_technologies_INDUSTRY_COMPUTERFACTORY				= 29
+model_technologies_INDUSTRY_COMPUTERFACTORY					= 29
 model_technologies_INDUSTRY_GUNFACTORY						= 30
 model_technologies_INDUSTRY_ENGINEFACTORY					= 31
 model_technologies_INDUSTRY_CARFACTORY						= 32
 model_technologies_INDUSTRY_PLANESFACTORY					= 33
-model_technologies_INDUSTRY_JEWELRYWORKSHOP				= 34
+model_technologies_INDUSTRY_JEWELRYWORKSHOP					= 34
 model_technologies_INDUSTRY_PHONEFACTORY					= 35
 model_technologies_INDUSTRY_STONEQUERY						= 36
 model_technologies_INDUSTRY_SANDQUERY						= 37
@@ -448,40 +448,40 @@ model_technologies_INDUSTRY_SANDQUERY						= 37
 model_technologies_INDUSTRY_FISHINGBOAT_PRICE					= 10
 model_technologies_INDUSTRY_SALTEXTRACTION_PRICE				= 60
 model_technologies_INDUSTRY_WHEAT_FIELDS_PRICE					= 10
-model_technologies_INDUSTRY_POTATO_FIELDS_PRICE				= 40
-model_technologies_INDUSTRY_COTTON_FIELDS_PRICE				= 40
+model_technologies_INDUSTRY_POTATO_FIELDS_PRICE					= 40
+model_technologies_INDUSTRY_COTTON_FIELDS_PRICE					= 40
 model_technologies_INDUSTRY_RICE_FIELDS_PRICE					= 60
-model_technologies_INDUSTRY_FURHUNTINGGROUNDS_PRICE			= 1000
+model_technologies_INDUSTRY_FURHUNTINGGROUNDS_PRICE				= 1000
 model_technologies_INDUSTRY_LUMBERMILL_PRICE					= 10
 model_technologies_INDUSTRY_STONEQUERY_PRICE					= 20
-model_technologies_INDUSTRY_SANDQUERY_PRICE					= 40
-model_technologies_INDUSTRY_OILWELL_PRICE						= 1000
-model_technologies_INDUSTRY_COALMINE_PRICE						= 100
-model_technologies_INDUSTRY_IRONMINE_PRICE						= 500
-model_technologies_INDUSTRY_COPPERMINE_PRICE					= 500
-model_technologies_INDUSTRY_PRECIOUSMETALMINE_PRICE			= 50000
-model_technologies_INDUSTRY_RAREMETALMINE_PRICE				= 2500
-model_technologies_INDUSTRY_BREADFACTORY_PRICE					= 60
-model_technologies_INDUSTRY_ALCOHOLFACTORY_PRICE				= 750
-model_technologies_INDUSTRY_SUSHIFACTORY_PRICE					= 600
+model_technologies_INDUSTRY_SANDQUERY_PRICE						= 40
+model_technologies_INDUSTRY_OILWELL_PRICE						= 110
+model_technologies_INDUSTRY_COALMINE_PRICE						= 50
+model_technologies_INDUSTRY_IRONMINE_PRICE						= 70
+model_technologies_INDUSTRY_COPPERMINE_PRICE					= 70
+model_technologies_INDUSTRY_PRECIOUSMETALMINE_PRICE				= 3000
+model_technologies_INDUSTRY_RAREMETALMINE_PRICE					= 2500
+model_technologies_INDUSTRY_BREADFACTORY_PRICE					= 50
+model_technologies_INDUSTRY_ALCOHOLFACTORY_PRICE				= 100
+model_technologies_INDUSTRY_SUSHIFACTORY_PRICE					= 110
 model_technologies_INDUSTRY_TEXTILEFACTORY_PRICE				= 60
-model_technologies_INDUSTRY_CLOTHESFACTORY_PRICE				= 1000
-model_technologies_INDUSTRY_FURNITUREFACTORY_PRICE				= 100
-model_technologies_INDUSTRY_STEELMILL_PRICE					= 1000
+model_technologies_INDUSTRY_CLOTHESFACTORY_PRICE				= 80
+model_technologies_INDUSTRY_FURNITUREFACTORY_PRICE				= 80
+model_technologies_INDUSTRY_STEELMILL_PRICE						= 100
 model_technologies_INDUSTRY_TOOLINGFACTORY_PRICE				= 1000
-model_technologies_INDUSTRY_CEMENTFACTORY_PRICE				= 1000
+model_technologies_INDUSTRY_CEMENTFACTORY_PRICE					= 70
 model_technologies_INDUSTRY_REFINARY_PRICE						= 1000
-model_technologies_INDUSTRY_PLASTICFACTORY_PRICE				= 1000
-model_technologies_INDUSTRY_GLASSFACTORY_PRICE					= 1000
-model_technologies_INDUSTRY_ELECTRONICCOMPONENTSFACTORY_PRICE	= 1000
-model_technologies_INDUSTRY_RADIOFACTORY_PRICE					= 1000
-model_technologies_INDUSTRY_COMPUTERFACTORY_PRICE				= 5000000
-model_technologies_INDUSTRY_GUNFACTORY_PRICE					= 25000
-model_technologies_INDUSTRY_ENGINEFACTORY_PRICE				= 500000
-model_technologies_INDUSTRY_CARFACTORY_PRICE					= 1000000
-model_technologies_INDUSTRY_PLANESFACTORY_PRICE				= 1000000000
-model_technologies_INDUSTRY_JEWELRYWORKSHOP_PRICE				= 1000
-model_technologies_INDUSTRY_PHONEFACTORY_PRICE					= 10000000
+model_technologies_INDUSTRY_PLASTICFACTORY_PRICE				= 10000
+model_technologies_INDUSTRY_GLASSFACTORY_PRICE					= 70
+model_technologies_INDUSTRY_ELECTRONICCOMPONENTSFACTORY_PRICE	= 30000
+model_technologies_INDUSTRY_RADIOFACTORY_PRICE					= 1500
+model_technologies_INDUSTRY_COMPUTERFACTORY_PRICE				= 150000
+model_technologies_INDUSTRY_GUNFACTORY_PRICE					= 20000
+model_technologies_INDUSTRY_ENGINEFACTORY_PRICE					= 30000
+model_technologies_INDUSTRY_CARFACTORY_PRICE					= 50000
+model_technologies_INDUSTRY_PLANESFACTORY_PRICE					= 500000
+model_technologies_INDUSTRY_JEWELRYWORKSHOP_PRICE				= 5000
+model_technologies_INDUSTRY_PHONEFACTORY_PRICE					= 300000
 
 model_technologies_PLACE_ON_RESSOURCE = 1
 model_technologies_PLACE_ON_TERRAIN = 2
@@ -919,7 +919,7 @@ model_technologyTree_default_unlocked = [
 	model_technologies_INDUSTRY_STONEQUERY,
 ]
 
-model_technologyTree_techTree = [
+model_technologyTree_techTree = techTree = [
 	{
 		"name": "Food",
 		"techs": [
@@ -1022,7 +1022,7 @@ model_technologyTree_techTree = [
 		"techs": [
 			{
 				"name": "Advanced 1",
-				"cost": 10,
+				"cost": 750,
 				"unlocked": False,
 				"unlocks": [
 					model_technologies_INDUSTRY_STEELMILL,
@@ -1030,7 +1030,7 @@ model_technologyTree_techTree = [
 			},
 			{
 				"name": "Advanced 2",
-				"cost": 20,
+				"cost": 1000,
 				"unlocked": False,
 				"unlocks": [
 					model_technologies_INDUSTRY_OILWELL,
@@ -1038,7 +1038,7 @@ model_technologyTree_techTree = [
 			},
 			{
 				"name": "Advanced 3",
-				"cost": 30,
+				"cost": 3000,
 				"unlocked": False,
 				"unlocks": [
 					model_technologies_INDUSTRY_REFINARY,
@@ -1047,7 +1047,7 @@ model_technologyTree_techTree = [
 			},
 			{
 				"name": "Advanced 4",
-				"cost": 40,
+				"cost": 10000,
 				"unlocked": False,
 				"unlocks": [
 					model_technologies_INDUSTRY_PLASTICFACTORY,
@@ -1056,7 +1056,7 @@ model_technologyTree_techTree = [
 			},
 			{
 				"name": "Advanced 5",
-				"cost": 50,
+				"cost": 50000,
 				"unlocked": False,
 				"unlocks": [
 					model_technologies_INDUSTRY_ELECTRONICCOMPONENTSFACTORY,
@@ -1066,7 +1066,7 @@ model_technologyTree_techTree = [
 			},
 			{
 				"name": "Advanced 6",
-				"cost": 60,
+				"cost": 100000,
 				"unlocked": False,
 				"unlocks": [
 					model_technologies_INDUSTRY_COMPUTERFACTORY,
@@ -1287,11 +1287,11 @@ def model_market_market_get_bundle_size(goods_type):
 	return model_market_market_market[goods_type][1]
 
 def model_market_market_sell_market(goods_type, amounts):
-	print('sell', amounts, 'de', model_market_goods_print_goods(goods_type), 'au prix de', int(model_market_market_get_price(goods_type) * model_market_market_TAXE))
+	# print('sell', amounts, 'de', model_market_goods_print_goods(goods_type), 'au prix de', int(model_market_market_get_price(goods_type) * model_market_market_TAXE))
 	model_market_wallet_sell(int(model_market_market_get_price(goods_type) * model_market_market_TAXE * amounts + 1))
 
 def model_market_market_buy_market(goods_type, amounts):
-	print('buy', amounts, 'de', model_market_goods_print_goods(goods_type), 'au prix de', model_market_market_market[goods_type])
+	# print('buy', amounts, 'de', model_market_goods_print_goods(goods_type), 'au prix de', model_market_market_market[goods_type])
 	model_market_wallet_buy(int(model_market_market_get_price(goods_type) * amounts))
 
 model_market_wallet_money = 10
@@ -1539,7 +1539,7 @@ def model_terrain_terrain_init_random():
 	random.seed()
 
 	seed = model_terrain_seed_get_seed()
-	print(seed)
+	# print(seed)
 	model_terrain_seed_load_seed()
 
 	# for i in range(-500 + 0, 500 + 0, 2):
@@ -2147,7 +2147,7 @@ ui_component_tobpar_COLOR_GRAY = (80, 80, 80)
 
 def ui_component_tobpar_drawStat(rect, num, num_incr, image_key):
 	longNumber(num)
-	message = f"{longNumber(num)} ({'+' if num_incr >= 0 else ''}{longNumber(num_incr)})"
+	message = f"{longNumber(num)}"
 	ui_framework_draw_drawRect(rect, VC_BACKGROUND, VC_ROUNDING_SMOOTH, hover=VC_SECONDARY)
 	ui_framework_image_drawImage(image_key, (
 		rect[0],
@@ -2289,7 +2289,7 @@ ui_component_tech_techMenu = ui_framework_framework_component(
 	),
 	draw=lambda rect: ui_framework_draw_drawRect(rect, VC_BACKGROUND2, VC_ROUNDING_HARD) or\
 					  ui_framework_draw_drawRect(rect, VC_PRIMARY, VC_ROUNDING_HARD, VC_MENU_BORDER_WIDTH),
-	click=lambda pos: print('xd'),
+	click=lambda pos: None,
 	clickOutside=lambda pos: ui_framework_framework_component_hide(ui_component_tech_techMenu),
 	childs=[
 		# Header
@@ -3046,7 +3046,6 @@ ui_component_placeBuilding_placeBuildingsMenu = ui_framework_framework_component
 def ui_component_placeBuilding_showplaceBuildingsMenu():
 	if ui_component_placeBuilding_placeBuildingsMenu['_hidden']:
 		can_be_build = model_technologyTree_get_placable_on(SelectedTile_val)
-		print('xd')
 
 		tile_width = ((VC_LARGEUR_SIDEMENU - 2 * (VC_MENU_BORDER_WIDTH + VC_PADDING + VC_MENU_BORDER_WIDTH)) - (ui_component_placeBuilding_NOMBRE_DE_COLONNES - 1) * VC_PADDING) // ui_component_placeBuilding_NOMBRE_DE_COLONNES
 		ui_framework_framework_component_add_temp(ui_component_placeBuilding_placeBuildingsMenu, [
@@ -3315,8 +3314,6 @@ def ui_map_map__drawTerrain(coord: utils_myTyping_coord_i):
 def ui_map_map_drawTile(tile_coord: utils_myTyping_coord_i):
 	tile = model_plants_get(tile_coord)
 	if not tile: return None
-
-	print(tile)
 
 	return ui_map_industry_draw_industry_map(tile)
 
@@ -3680,8 +3677,6 @@ def input_repeatKey_qwerty(key):
 def input_singleKey_qwerty(key: int):
 	global model_market_wallet_science, model_market_wallet_money
 	match key:
-		case pygame.K_ESCAPE:
-			Window_stop()
 		case pygame.K_F11:
 			Window_toggleFullscreen()
 		case pygame.K_1:
