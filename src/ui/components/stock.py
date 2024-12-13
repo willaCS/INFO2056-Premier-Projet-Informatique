@@ -1,4 +1,4 @@
-import Window
+import utils.Window as Window
 from model.market import Goods
 from model.market.stockpile import get_stock
 from ui.framework.framework import Component

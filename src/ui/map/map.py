@@ -1,4 +1,4 @@
-import Window
+import utils.Window as Window
 from ui import Cursor
 from model.industry import plants
 from model.terrain.terrain import get_terrain_tile

@@ -1,17 +1,15 @@
 from typing import List
-
-
-emptyLambda = lambda: None
+from .caller import call
 
 class Component:
-	def __init__(self,
+	def __init__(self, *,
 		rect,
 		margin=0,
 		padding=0,
 		z=0,
-		draw=emptyLambda,
-		click=emptyLambda,
-		clickOutside=emptyLambda,
+		draw=lambda rect: None,
+		click=lambda: None,
+		clickOutside=lambda: None,
 		childs=[] # type: List[Component]
 	):
 		self._rect = rect
@@ -39,10 +37,7 @@ class Component:
 
 	def _baseRect(self, parent_rect):
 		if callable(self._rect):
-			if self._parent and self._rect.__code__.co_argcount >= 1:
-				return self._rect(parent_rect)
-			else:
-				return self._rect()
+			return call(self._rect, parent=parent_rect)
 		else:
 			return self._rect
 	
@@ -78,10 +73,7 @@ class Component:
 		if self._hidden:
 			return	
 		rect = self.rect()
-		if self._draw.__code__.co_argcount >= 2:
-			self._draw(rect, self.is_in(mouse_position))
-		else:
-			self._draw(rect)
+		call(self._draw, rect=rect, is_in=self.is_in(mouse_position))
 		self._childs.sort(key=lambda c: c.z)
 		for child in self._childs:
 			child.draw(mouse_position)
@@ -103,15 +95,9 @@ class Component:
 			if has_already_clicked:
 				return has_already_clicked
 			has_already_clicked = True
-			if self._click.__code__.co_argcount >= 1:
-				self._click(pos)
-			else:
-				self._click()
+			call(self._click, pos=pos)
 		else:
-			if self._clickOutside.__code__.co_argcount >= 1:
-				self._clickOutside(pos)
-			else:
-				self._clickOutside()
+			call(self._clickOutside, pos=pos)
 		return has_already_clicked
 
 	def add_parent(self, parent):

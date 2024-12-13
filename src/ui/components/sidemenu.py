@@ -1,4 +1,4 @@
-import Window
+import utils.Window as Window
 from ui import SelectedTile
 from ui import visual_config as vc
 from ui.components.placeBuildings import showplaceBuildingsMenu

@@ -2,7 +2,7 @@
 Ce fichier gère la fonction drawFrame appelée chaque tick
 """
 
-import Window
+import utils.Window as Window
 from ui import SelectedTile
 from ui.components.main import draw
 import ui.components.placeBuildings

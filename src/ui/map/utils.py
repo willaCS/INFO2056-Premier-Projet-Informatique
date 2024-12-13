@@ -5,7 +5,7 @@ On peut faire :
 - repère sur l'écran => repère sur la carte
 """
 
-import Window
+import utils.Window as Window
 from ui import Zoom
 from utils.mytyping import coord_f, coord_i
 from ui import Cursor

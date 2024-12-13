@@ -1,4 +1,4 @@
-import Window
+import utils.Window as Window
 from ui.framework.framework import Component
 from ui.components.map import map_component
 from ui.components.placeBuildings import placeBuildingsMenu

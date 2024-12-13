@@ -6,7 +6,7 @@ s'execute qu'une seule fois
 
 import pygame
 
-import Window
+import utils.Window as Window
 from model import Speed
 from model.industry import Plant, plants
 from model.market import player_wallet

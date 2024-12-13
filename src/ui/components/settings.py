@@ -1,4 +1,4 @@
-import Window
+import utils.Window as Window
 from ui.framework.framework import Component
 from ui import gestionMenu
 from ui import visual_config as vc
