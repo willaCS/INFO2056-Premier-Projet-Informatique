@@ -1,10 +1,8 @@
-import utils.Window as Window
-from ui.framework.framework import Component
+from utils.Components import Component
 from ui import gestionMenu
 from ui import visual_config as vc
 from ui.common.buttons import centerTextButton
-from ui.framework import drawText
-from ui.framework.image import drawImage
+from utils.Window import Window
 
 BOUTON_LARGEUR = 300
 BOUTON_HAUTEUR = 40
@@ -28,11 +26,11 @@ def getEasterEgg(mode):
 		case 2:
 			return ('Colonisalism Island 2', 'background3')
 
-def _drawBackground(rect):
+def _drawBackground(rect, window: Window):
 	xxx = getEasterEgg(easterEgg)
-	drawImage(xxx[1], rect)
+	window.draw_image(xxx[1], rect)
 	# drawRect(rect, vc.SECONDARY)
-	drawText('title', (rect[1][0] // 2, rect[1][1] // 2), xxx[0], (255, 255, 255), "center")
+	window.draw_text('title', (rect[1][0] // 2, rect[1][1] // 2), xxx[0], (255, 255, 255), "center")
 
 		
 
@@ -52,7 +50,7 @@ welcomeMenu = Component(
 				),
 				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 			),
-			draw=lambda rect: centerTextButton(rect, 'font2', "Play", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
+			draw=centerTextButton('font2', "Play", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
 			click=lambda: gestionMenu.change_menu(gestionMenu.MENU_JEU),
 		),
 
@@ -66,7 +64,7 @@ welcomeMenu = Component(
 				),
 				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 			),
-			draw=lambda rect: centerTextButton(rect, 'font2', "Settings", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
+			draw=centerTextButton('font2', "Settings", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
 			click=lambda: gestionMenu.change_menu(gestionMenu.MENU_REGLAGE),
 		),
 
@@ -80,18 +78,18 @@ welcomeMenu = Component(
 				),
 				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 			),
-			draw=lambda rect: centerTextButton(rect, 'font2', "Exit", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
+			draw=centerTextButton('font2', "Exit", vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
 			click=Window.stop,
 		),
 
 		# Bouton Easter Egg 
 		Component(
 			z=1,
-			rect=lambda parent: (
+			rect=lambda: (
 				(0, 0),
 				(100, 100)
 			),
-			draw=lambda rect: None,
+			draw=lambda: None,
 			click=lambda: toggleEasterEgg(1),
 		),
 
@@ -102,7 +100,7 @@ welcomeMenu = Component(
 				(parent[1][0] - 100, 0),
 				(100, 100)
 			),
-			draw=lambda rect: None,
+			draw=lambda: None,
 			click=lambda: toggleEasterEgg(2),
 		),
 	]

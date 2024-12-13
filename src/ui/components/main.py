@@ -1,5 +1,4 @@
-import utils.Window as Window
-from ui.framework.framework import Component
+from utils.Components import Component
 from ui.components.map import map_component
 from ui.components.placeBuildings import placeBuildingsMenu
 from ui.components.settings import settingsMenu
@@ -11,9 +10,9 @@ from ui.components.welcome import welcomeMenu
 
 main_component = Component(
 	z=0,
-	rect=lambda: (
+	rect=lambda window: (
 		(0, 0),
-		Window.resolution,
+		window.resolution,
 	),
 	draw=lambda rect: None,
 	childs=[
@@ -28,8 +27,8 @@ main_component = Component(
 	]
 )
 
-def draw():
-	main_component.draw(Window.mouse_position)
+def draw(pos):
+	main_component.draw(pos)
 
 def click(pos):
 	main_component.click(pos)

@@ -2,7 +2,6 @@
 Ce fichier gère la fonction drawFrame appelée chaque tick
 """
 
-import utils.Window as Window
 from ui import SelectedTile
 from ui.components.main import draw
 import ui.components.placeBuildings
@@ -13,12 +12,6 @@ import ui.components.topbar
 import ui.components.sidemenu
 import ui.components.welcome
 from ui import gestionMenu
-from ui.framework.text import drawText
-
-# menu
-# sidemenu -> info case menu construction
-# tech tree
-# affichage texture sur map
 
 def drawFrame():
 	match gestionMenu.menu:

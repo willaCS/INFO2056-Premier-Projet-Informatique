@@ -1,10 +1,9 @@
-import utils.Window as Window
 from ui import Cursor
 from model.industry import plants
 from model.terrain.terrain import get_terrain_tile
 from ui import SelectedTile, Zoom
-from ui.framework import drawRect
 from ui.map import draw_industry_map, draw_terrain_tile
+from utils.Window import Window
 from utils.cache import add_cache
 from ui.map.utils import coord_to_px
 from utils.mytyping import Color, coord_i
@@ -19,14 +18,11 @@ def _drawTerrain(coord: coord_i):
 def drawTile(tile_coord: coord_i):
 	tile = plants.get(tile_coord)
 	if not tile: return None
-
-	print(tile)
-
 	return draw_industry_map(tile)
 
-def _drawTileOutline(color: Color, coord: coord_i):
+def _drawTileOutline(window: Window, color: Color, coord: coord_i):
 	new_coord = coord_to_px(coord)
-	drawRect((
+	window.draw_rect((
 			(new_coord[0], int(new_coord[1] - Zoom.tile_size)),
 			(int(Zoom.tile_size), int(Zoom.tile_size))
 		),
@@ -34,11 +30,12 @@ def _drawTileOutline(color: Color, coord: coord_i):
 		outline=int(Zoom.outline_width),
 	)
 
-def drawMap(rect):
-	x_min = int(-Window.half_resolution[0] / Zoom.tile_size - Cursor.val[0]) // Zoom.opti_factor - 2
-	x_max = int( Window.half_resolution[0] / Zoom.tile_size - Cursor.val[0]) // Zoom.opti_factor + 2
-	y_min = int(-Window.half_resolution[1] / Zoom.tile_size - Cursor.val[1]) // Zoom.opti_factor - 2
-	y_max = int( Window.half_resolution[1] / Zoom.tile_size - Cursor.val[1]) // Zoom.opti_factor + 2
+def drawMap(rect, window: Window):
+	half_resolution = (rect[1][0] // 2, rect[1][1] // 2)
+	x_min = int(-half_resolution[0] / Zoom.tile_size - Cursor.val[0]) // Zoom.opti_factor - 2
+	x_max = int( half_resolution[0] / Zoom.tile_size - Cursor.val[0]) // Zoom.opti_factor + 2
+	y_min = int(-half_resolution[1] / Zoom.tile_size - Cursor.val[1]) // Zoom.opti_factor - 2
+	y_max = int( half_resolution[1] / Zoom.tile_size - Cursor.val[1]) // Zoom.opti_factor + 2
 	
 	# Draw Terrain
 	for i in range(x_min, x_max):
@@ -50,7 +47,7 @@ def drawMap(rect):
 				(screen_coord[0], screen_coord[1] - int(Zoom.tile_size)),
 				(int(tile_size) + 1, int(tile_size) + 1)
 			)
-			_drawTerrain(coord)(rect)
+			_drawTerrain(coord)(rect, window)
 	
 	# Draw Buildings
 	for tile_coord in plants.map.keys():
@@ -62,8 +59,8 @@ def drawMap(rect):
 			(screen_coord[0], screen_coord[1] - int(Zoom.tile_size)),
 			(int(Zoom.tile_size) + 1, int(Zoom.tile_size) + 1)
 		)
-		drawTile(tile_coord)(rect)
+		drawTile(tile_coord)(rect, window)
 	
 	# Draw Selected Tile
 	if SelectedTile.val:
-		_drawTileOutline((255, 255, 255), SelectedTile.val)
+		_drawTileOutline(window, (255, 255, 255), SelectedTile.val)

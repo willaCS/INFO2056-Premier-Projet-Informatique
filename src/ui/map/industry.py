@@ -1,10 +1,8 @@
 from model.industry import Plant, technologies
-from ui.framework import text
+from utils.Window import Window
 import ui.visual_config as vc
 from ui import Screenmode, Zoom
 from ui.common.buttons import centerRightText
-from ui.framework.draw import drawRect
-from ui.framework.image import drawImage
 from ui.map import goods
 
 PADDING = 10

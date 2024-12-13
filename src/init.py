@@ -12,6 +12,7 @@ import os
 # from model.terrain.terrain import init_random
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
+from ui.drawFrame import drawFrame
 from utils.Window import Window
 # from model import Speed
 # from events import handleEvents
@@ -101,14 +102,14 @@ def setup(
 	window.load_image('good_phone'					, './assets/goods/phone.png')
 
 def tick():
-	pass
 	# game_model_tick()
-	# drawFrame()
+	drawFrame()
 	# test_tick()
 
 
 
 def	main():
+	global window
 	window = Window(
 		name="Capitalist Island 2",
 		resolution=(800, 800),

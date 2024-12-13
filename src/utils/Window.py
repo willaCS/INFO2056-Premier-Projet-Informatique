@@ -145,7 +145,7 @@ class Window:
 		setattr(rect, anchor, coord)
 		self.instance.blit(text_prepared, rect)
 
-	def drawImage(self, image_key, rect):
+	def draw_image(self, image_key, rect):
 		img_inst = self.images[image_key]
 		img = pygame.transform.scale(img_inst, rect[1])
 		self.instance.blit(img, rect[0])

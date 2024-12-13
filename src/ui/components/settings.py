@@ -1,9 +1,7 @@
-import utils.Window as Window
-from ui.framework.framework import Component
+from utils.Components import Component
 from ui import gestionMenu
 from ui import visual_config as vc
-from ui.common.buttons import centerTextButton
-from ui.framework import drawRect, drawText
+from ui.common.buttons import centerLeftTextButton, centerTextButton
 from ui import gestionClavier, gestionMode
 from ui import visual_config
 
@@ -13,26 +11,16 @@ BOUTON_HAUTEUR = 50
 OPTION_HEIGHT = BOUTON_HAUTEUR - 2 * vc.PADDING
 OPTION_WIDTH = 120
 
-
-def _drawBackground(rect):
-	drawRect(rect, vc.SECONDARY)
-
-def _drawSettingBar(rect, message):
-	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH)
-	drawText('font2', (rect[0][0] + vc.PADDING, rect[0][1] + rect[1][1] // 2), message, vc.TEXT, "midleft")
-
 settingsMenu = Component(
-	z=0,
-	rect=lambda: (
+	rect=lambda window: (
 		(0, 0),
-		Window.resolution
+		window.resolution
 	),
-	draw=_drawBackground,
+	draw=lambda rect, window: window.drawRect(rect, vc.SECONDARY),
 	click=lambda: None,
 	childs=[
 		# Keyboard Layout
 		Component(
-			z=1,
 			padding=vc.PADDING,
 			rect=lambda parent: (
 				(
@@ -41,17 +29,16 @@ settingsMenu = Component(
 				),
 				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 			),
-			draw=lambda rect: _drawSettingBar(rect, "Layout"),
+			draw=centerLeftTextButton('font2', 'Layout', vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.PADDING),
 			click=lambda: None,
 			childs=[
 				# Bouton Azerty 
 				Component(
-					z=2,
 					rect=lambda parent: (
 						(parent[1][0] - OPTION_WIDTH, 0),
 						(OPTION_WIDTH, OPTION_HEIGHT)
 					),
-					draw=lambda rect: centerTextButton(rect, 'font2', "AZERTY",
+					draw=centerTextButton('font2', 'AZERTY',
 						vc.ACCENT if gestionClavier.clavier == gestionClavier.CLAVIER_AZERTY else vc.BACKGROUND3,
 						vc.ROUNDING_SMOOTH, vc.ACCENT
 					),
@@ -60,12 +47,11 @@ settingsMenu = Component(
 
 				# Bouton Qwerty 
 				Component(
-					z=2,
 					rect=lambda parent: (
 						(parent[1][0] - OPTION_WIDTH * 2 - vc.PADDING, 0),
 						(OPTION_WIDTH, OPTION_HEIGHT)
 					),
-					draw=lambda rect: centerTextButton(rect, 'font2', "QWERTY",
+					draw=centerTextButton('font2', 'QWERTY',
 						vc.ACCENT if gestionClavier.clavier == gestionClavier.CLAVIER_QWERTY else vc.BACKGROUND3,
 						vc.ROUNDING_SMOOTH, vc.ACCENT
 					),
@@ -85,17 +71,16 @@ settingsMenu = Component(
 				),
 				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 			),
-			draw=lambda rect: _drawSettingBar(rect, "Style"),
+			draw=centerLeftTextButton('font2', 'Style', vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.PADDING),
 			click=lambda: None,
 			childs=[
 				# Bouton Light
 				Component(
-					z=2,
 					rect=lambda parent: (
 						(parent[1][0] - OPTION_WIDTH, 0),
 						(OPTION_WIDTH, OPTION_HEIGHT)
 					),
-					draw=lambda rect: centerTextButton(rect, 'font2', "LIGHT",
+					draw=centerTextButton('font2', 'LIGHT',
 						vc.ACCENT if gestionMode.mode == gestionMode.MODE_LIGHT else vc.BACKGROUND3,
 						vc.ROUNDING_SMOOTH, vc.ACCENT
 					),
@@ -104,12 +89,11 @@ settingsMenu = Component(
 
 				# Bouton Dark
 				Component(
-					z=2,
 					rect=lambda parent: (
 						(parent[1][0] - OPTION_WIDTH * 2 - vc.PADDING, 0),
 						(OPTION_WIDTH, OPTION_HEIGHT)
 					),
-					draw=lambda rect: centerTextButton(rect, 'font2', "DARK",
+					draw=centerTextButton('font2', 'DARK',
 						vc.ACCENT if gestionMode.mode == gestionMode.MODE_DARK else vc.BACKGROUND3,
 						vc.ROUNDING_SMOOTH, vc.ACCENT
 					),
@@ -120,7 +104,6 @@ settingsMenu = Component(
 
 		# Bouton Retour 
 		Component(
-			z=5,
 			rect=lambda parent: (
 				(
 					(parent[1][0] - BOUTON_LARGEUR) // 2,
@@ -128,8 +111,8 @@ settingsMenu = Component(
 				),
 				(BOUTON_LARGEUR, BOUTON_HAUTEUR)
 			),
-			draw=lambda rect: centerTextButton(rect, 'font2', 'Exit', vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
-			click=lambda pos: gestionMenu.change_menu(gestionMenu.MENU_INTRO),
+			draw=centerTextButton('font2', 'Exit', vc.BACKGROUND, vc.ROUNDING_SMOOTH, vc.ACCENT),
+			click=lambda: gestionMenu.change_menu(gestionMenu.MENU_INTRO),
 		),
 	]
 )
