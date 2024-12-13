@@ -113,7 +113,7 @@ techTree = [
 		"techs": [
 			{
 				"name": "Advanced 1",
-				"cost": 10,
+				"cost": 750,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_STEELMILL,
@@ -121,7 +121,7 @@ techTree = [
 			},
 			{
 				"name": "Advanced 2",
-				"cost": 20,
+				"cost": 1000,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_OILWELL,
@@ -129,7 +129,7 @@ techTree = [
 			},
 			{
 				"name": "Advanced 3",
-				"cost": 30,
+				"cost": 3000,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_REFINARY,
@@ -138,7 +138,7 @@ techTree = [
 			},
 			{
 				"name": "Advanced 4",
-				"cost": 40,
+				"cost": 10000,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_PLASTICFACTORY,
@@ -147,7 +147,7 @@ techTree = [
 			},
 			{
 				"name": "Advanced 5",
-				"cost": 50,
+				"cost": 50000,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_ELECTRONICCOMPONENTSFACTORY,
@@ -157,7 +157,7 @@ techTree = [
 			},
 			{
 				"name": "Advanced 6",
-				"cost": 60,
+				"cost": 100000,
 				"unlocked": False,
 				"unlocks": [
 					technologies.INDUSTRY_COMPUTERFACTORY,
