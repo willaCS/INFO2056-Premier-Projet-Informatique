@@ -14,6 +14,7 @@ os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide"
 
 from ui.drawFrame import drawFrame
 from utils.Window import Window
+from ui.components.main import main_component
 # from model import Speed
 # from events import handleEvents
 # from input import repeatKey, singleKey
@@ -120,6 +121,7 @@ def	main():
 		# singleKey=singleKey,
 		# handleEvent=handleEvents,
 	)
+	main_component._arguments['window'] = window
 	setup(window)
 	window.start()
 

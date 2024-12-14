@@ -32,7 +32,7 @@ def test_tick() -> None:
 		testing[elem]["n"] = 0
 
 
-def get_lambda_source(lambda_func, position):
+def get_lambda_source(lambda_func):
     import inspect
     import ast
     import astunparse
@@ -49,4 +49,4 @@ def get_lambda_source(lambda_func, position):
             tree = ast.parse(code_string)
             self.visit(tree)
             return self.lambda_sources
-    return LambdaGetter().get(code_string)[position]
+    return LambdaGetter().get(code_string)

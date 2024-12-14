@@ -7,6 +7,7 @@ from ui.components.stock import stockMenu
 from ui.components.tech import techMenu
 from ui.components.topbar import topBar
 from ui.components.welcome import welcomeMenu
+from utils.Window import Window
 
 main_component = Component(
 	z=0,
@@ -14,7 +15,7 @@ main_component = Component(
 		(0, 0),
 		(800, 800),
 	),
-	draw=lambda rect: None,
+	draw=lambda: None,
 	childs=[
 		map_component,
 		placeBuildingsMenu,
@@ -24,14 +25,15 @@ main_component = Component(
 		techMenu,
 		topBar,
 		welcomeMenu,
-	]
+	],
+	arguments={'window': None}
 )
 
-def draw(pos):
-	main_component.draw(pos)
+def draw(window: Window):
+	main_component.draw(window.mouse_position)
 
-def click(pos):
-	main_component.click(pos)
+def click(window: Window):
+	main_component.click(window.mouse_position)
 
 def hide_all():
 	for child in main_component._childs:
