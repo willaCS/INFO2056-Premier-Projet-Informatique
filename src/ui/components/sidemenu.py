@@ -1,5 +1,4 @@
 from ui.utils import longNumber
-import utils.Window as Window
 from ui import SelectedTile
 from ui import visual_config as vc
 from ui.components.placeBuildings import showplaceBuildingsMenu
@@ -12,13 +11,14 @@ from model.terrain import Ressource, TerrainTile
 from model.terrain.terrain import get_terrain_tile
 from model.industry import plants
 from model.industry import Plant
+from utils.Window import Window
 
 
 MENU_MARGIN = 5 #en pixels
 EXIT_BUTTON_BORDER = 2 #en pixels
 HEADER_HEIGHT = 75
 CLOSE_BUTTON_SIZE = (75, 75)
-RESOURCE_CARTE_HEIGHT = (Window.resolution[1] - 2 * (MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING) - vc.TOP_BAR_HEIGHT - 2 * vc.PADDING - CLOSE_BUTTON_SIZE[1]) / 2
+RESOURCE_CARTE_HEIGHT = (800 - 2 * (MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING) - vc.TOP_BAR_HEIGHT - 2 * vc.PADDING - CLOSE_BUTTON_SIZE[1]) / 2
 RESOURCE_BUTTON_HEIGHT = (RESOURCE_CARTE_HEIGHT - 6 * vc.PADDING) / 5
 
 
@@ -34,7 +34,7 @@ def refreshSideMenu():
 	createTemp()
 
 
-def __drawRessourceButton(rect, window, good):
+def __drawRessourceButton(rect, window: Window, good):
 	window.draw_rect(rect, vc.BACKGROUND2, vc.ROUNDING_SMOOTH)
 	position, taille = rect
 	draw_func = draw_goods(good)
@@ -48,7 +48,7 @@ def __drawRessourceButton(rect, window, good):
 		vc.BACKGROUND3, vc.ROUNDING_SMOOTH
 	)
 
-def __drawBuildingButton(rect, window, building_id):
+def __drawBuildingButton(rect, window: Window, building_id):
 	window.draw_rect(rect, vc.BACKGROUND2, vc.ROUNDING_SMOOTH)
 	position, taille = rect
 	draw_func = draw_industry_menu2(building_id)

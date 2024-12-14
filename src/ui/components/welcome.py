@@ -1,7 +1,7 @@
-from utils.Components import Component
 from ui import gestionMenu
 from ui import visual_config as vc
 from ui.common.buttons import centerTextButton
+from utils.Components import Component
 from utils.Window import Window
 
 BOUTON_LARGEUR = 300

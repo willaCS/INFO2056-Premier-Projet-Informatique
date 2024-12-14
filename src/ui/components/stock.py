@@ -10,7 +10,6 @@ from ui.common.buttons import backgroundSubmenu, centerRightTextButton, centerTe
 MENU_MARGIN = 5 #en pixels
 EXIT_BUTTON_BORDER = 2 #en pixels
 CLOSE_BUTTON_SIZE = (75, 75)
-RESOURCE_BUTTON_HEIGHT = (Window.resolution[1]- 2 * (MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING) - vc.TOP_BAR_HEIGHT - 2 * vc.PADDING- CLOSE_BUTTON_SIZE[1]) / 2
 
 NUMBER_OF_GOODS = Goods.GOODS_SAND
 NUMBER_OF_COLUMNS = 3

@@ -13,7 +13,7 @@ import ui.components.sidemenu
 import ui.components.welcome
 from ui import gestionMenu
 
-def drawFrame():
+def drawFrame(window):
 	match gestionMenu.menu:
 		case gestionMenu.MENU_INTRO:
 			ui.components.welcome.drawWelcome()
@@ -27,7 +27,7 @@ def drawFrame():
 				# ui.components.placeBuildings.showplaceBuildingsMenu()
 			ui.components.map.drawMapComponent()
 			ui.components.topbar.showTopBar()
-	draw()
+	draw(window)
 
 
 

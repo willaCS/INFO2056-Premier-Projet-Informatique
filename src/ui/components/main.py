@@ -10,9 +10,9 @@ from ui.components.welcome import welcomeMenu
 
 main_component = Component(
 	z=0,
-	rect=lambda window: (
+	rect=lambda: (
 		(0, 0),
-		window.resolution,
+		(800, 800),
 	),
 	draw=lambda rect: None,
 	childs=[

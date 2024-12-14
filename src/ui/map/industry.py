@@ -1,4 +1,5 @@
 from model.industry import Plant, technologies
+from ui.utils import longNumber
 from utils.Window import Window
 import ui.visual_config as vc
 from ui import Screenmode, Zoom
@@ -9,59 +10,57 @@ PADDING = 10
 
 def drawIndustryMenu(id, key):
 	technology = technologies.get_data(id)
-	def res(rect, x, technology=technology):
+	func = centerRightText('font3', '{}'.format(longNumber(technology['price'])), 1, (255, 255, 255))
+	def res(rect, window: Window, x, technology=technology):
 
-		drawImage('industry', rect)
+		window.draw_image('industry', rect)
 		if rect[1][1] - PADDING * 2 < 1:
 			return
-		drawImage(key,
+		window.draw_image(key,
 			((rect[0][0] + PADDING, rect[0][1] + PADDING),
 			(rect[1][0] - PADDING * 2, rect[1][1] - PADDING * 2)
 		))
-		centerRightText(
+		func((
 			(
-				(
-					rect[0][0],
-					rect[0][1] + rect[1][1] - 20
-				),
-				(
-					rect[1][0],
-					20,
-				)
+				rect[0][0],
+				rect[0][1] + rect[1][1] - 20
 			),
-			'font3', '{}'.format(text.longNumber(technology['price'])), 1, (255, 255, 255)
-		)
+			(
+				rect[1][0],
+				20,
+			)
+		), window)
 	return res
 
 def drawIndustryMenu2(id, key):
 	technology = technologies.get_data(id)
-	def res(rect, x, technology=technology):
+	def res(rect, window: Window, x, technology=technology):
 
-		drawImage('industry', rect)
+		window.draw_image('industry', rect)
 		if rect[1][1] - PADDING * 2 < 1:
 			return
-		drawImage(key,
+		window.draw_image(key,
 			((rect[0][0] + PADDING, rect[0][1] + PADDING),
 			(rect[1][0] - PADDING * 2, rect[1][1] - PADDING * 2)
 		))
 	return res
 
 def drawIndustryMap(key):
-	def res(rect):
+	def res(rect, window: Window):
 		match Screenmode.val:
 			case Screenmode.SCREENMODE_MAIN:
-				drawImage('industry', rect)
+				window.draw_image('industry', rect)
 				padding = Zoom.tile_size // 16
 				if rect[1][1] - padding * 2 < 1:
 					return
-				drawImage(key,
+				window.draw_image(key,
 					((rect[0][0] + padding, rect[0][1] + padding),
 					(rect[1][0] - padding * 2, rect[1][1] - padding * 2)
 				))
 			case Screenmode.SCREENMODE_ECONOMY_SUPPLY:
-				drawRect(rect, (255, 255, 0))
+				window.draw_rect(rect, (255, 255, 0))
 			case _:
-				drawRect(rect, (0, 0, 0))
+				window.draw_rect(rect, (0, 0, 0))
 	return res
 
 def drawIndustryProducts(id, key):
@@ -70,11 +69,11 @@ def drawIndustryProducts(id, key):
 	output = technology['output']
 	drawFuncs = [
 		*(goods.draw_goods(input) for input in inputs),
-		lambda rect: drawImage('arrow', rect),
+		lambda rect, window: window.draw_image('arrow', rect),
 		goods.draw_goods(output),
 	]
-	def res(rect):
-		drawRect(rect, vc.BACKGROUND2, vc.ROUNDING_SMOOTH)
+	def res(rect, window: Window):
+		window.draw_rect(rect, vc.BACKGROUND2, vc.ROUNDING_SMOOTH)
 		rectangle = (rect[1][1], rect[1][1])
 		for index, func in enumerate(drawFuncs):
 			func((
@@ -145,5 +144,5 @@ def draw_industry_product(industry_id):
 def draw_industry_by_id(industry_id):
 	return industryPrintMap.get(
 		industry_id,
-		('', lambda rect: None)
+		('', lambda rect, window: None)
 	)

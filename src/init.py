@@ -101,9 +101,9 @@ def setup(
 	window.load_image('good_jewelry'				, './assets/goods/ring.png')
 	window.load_image('good_phone'					, './assets/goods/phone.png')
 
-def tick():
+def tick(window):
 	# game_model_tick()
-	drawFrame()
+	drawFrame(window)
 	# test_tick()
 
 
