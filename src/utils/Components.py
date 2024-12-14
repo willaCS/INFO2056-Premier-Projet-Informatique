@@ -11,7 +11,6 @@ class Component:
 		click=lambda: None,
 		clickOutside=lambda: None,
 		childs=[], # type: List[Component]
-		arguments={},
 	):
 		self._rect = rect
 		self.margin = margin
@@ -27,7 +26,6 @@ class Component:
 
 		self._parent = None # type: Component
 		self._childs = childs # type: List[Component]
-		self._arguments = arguments
 		for child in self._childs:
 			child.add_parent(self)
 	
@@ -39,7 +37,7 @@ class Component:
 
 	def _baseRect(self, parent_rect):
 		if callable(self._rect):
-			return call(self._rect, parent=parent_rect, **self._arguments)
+			return call(self._rect, parent=parent_rect)
 		else:
 			return self._rect
 	
@@ -75,7 +73,7 @@ class Component:
 		if self._hidden:
 			return	
 		rect = self.rect()
-		call(self._draw, rect=rect, is_in=self.is_in(mouse_position), **self._arguments)
+		call(self._draw, rect=rect, is_in=self.is_in(mouse_position))
 		self._childs.sort(key=lambda c: c.z)
 		for child in self._childs:
 			child.draw(mouse_position)
@@ -98,16 +96,15 @@ class Component:
 			if has_already_clicked:
 				return has_already_clicked
 			has_already_clicked = True
-			call(self._click, pos=pos, **self._arguments)
+			call(self._click, pos=pos)
 		else:
-			call(self._clickOutside, pos=pos, **self._arguments)
+			call(self._clickOutside, pos=pos)
 		return has_already_clicked
 
 	def add_parent(self,
 		parent, # type: Component
 	):
 		self._parent = parent
-		self._arguments = parent._arguments
 
 	def add_temp(self,
 		new_childs # type: List[Component]
