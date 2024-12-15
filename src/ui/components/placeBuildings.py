@@ -67,7 +67,6 @@ placeBuildingsMenu = Component(
 def showplaceBuildingsMenu():
 	if placeBuildingsMenu._hidden:
 		can_be_build = get_placable_on(SelectedTile.val)
-		print('xd')
 
 		tile_width = ((vc.LARGEUR_SIDEMENU - 2 * (MENU_MARGIN + vc.PADDING + vc.MENU_BORDER_WIDTH)) - (NOMBRE_DE_COLONNES - 1) * vc.PADDING) // NOMBRE_DE_COLONNES
 		placeBuildingsMenu.add_temp([

@@ -55,7 +55,6 @@ techMenu = Component(
 	),
 	draw=lambda rect: drawRect(rect, vc.BACKGROUND2, vc.ROUNDING_HARD) or\
 					  drawRect(rect, vc.PRIMARY, vc.ROUNDING_HARD, vc.MENU_BORDER_WIDTH),
-	click=lambda pos: print('xd'),
 	clickOutside=lambda pos: techMenu.hide(),
 	childs=[
 		# Header
