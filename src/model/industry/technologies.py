@@ -1,46 +1,49 @@
+from enum import Enum
 from typing import Dict, List
 
-from model.terrain import Ressource, TerrainTile
-from model.market import Goods
+from model.market.Goods import GoodsType
+from model.terrain.Ressource import RessourceType
+from model.terrain.TerrainTile import TerrainTileType
 
-INDUSTRY_NONE 							= 0
-INDUSTRY_FISHINGBOAT					= 1
-INDUSTRY_SALTEXTRACTION					= 2
-INDUSTRY_WHEAT_FIELDS					= 3
-INDUSTRY_POTATO_FIELDS					= 4
-INDUSTRY_COTTON_FIELDS					= 5
-INDUSTRY_RICE_FIELDS					= 6
-INDUSTRY_FURHUNTINGGROUNDS				= 7
-INDUSTRY_LUMBERMILL						= 8
-INDUSTRY_OILWELL						= 9
-INDUSTRY_COALMINE						= 10
-INDUSTRY_IRONMINE						= 11
-INDUSTRY_COPPERMINE						= 12
-INDUSTRY_PRECIOUSMETALMINE				= 13
-INDUSTRY_RAREMETALMINE					= 14
-INDUSTRY_BREADFACTORY					= 15
-INDUSTRY_ALCOHOLFACTORY					= 16
-INDUSTRY_SUSHIFACTORY					= 17
-INDUSTRY_TEXTILEFACTORY					= 18
-INDUSTRY_CLOTHESFACTORY					= 19
-INDUSTRY_FURNITUREFACTORY				= 20
-INDUSTRY_STEELMILL						= 21
-INDUSTRY_TOOLINGFACTORY					= 22
-INDUSTRY_CEMENTFACTORY					= 23
-INDUSTRY_REFINARY						= 24
-INDUSTRY_PLASTICFACTORY					= 25
-INDUSTRY_GLASSFACTORY					= 26
-INDUSTRY_ELECTRONICCOMPONENTSFACTORY	= 27
-INDUSTRY_RADIOFACTORY					= 28
-INDUSTRY_COMPUTERFACTORY				= 29
-INDUSTRY_GUNFACTORY						= 30
-INDUSTRY_ENGINEFACTORY					= 31
-INDUSTRY_CARFACTORY						= 32
-INDUSTRY_PLANESFACTORY					= 33
-INDUSTRY_JEWELRYWORKSHOP				= 34
-INDUSTRY_PHONEFACTORY					= 35
-INDUSTRY_STONEQUERY						= 36
-INDUSTRY_SANDQUERY						= 37
+class IndustryType(Enum):
+	NONE 						= 0
+	FISHINGBOAT					= 1
+	SALTEXTRACTION				= 2
+	WHEAT_FIELDS				= 3
+	POTATO_FIELDS				= 4
+	COTTON_FIELDS				= 5
+	RICE_FIELDS					= 6
+	FURHUNTINGGROUNDS			= 7
+	LUMBERMILL					= 8
+	OILWELL						= 9
+	COALMINE					= 10
+	IRONMINE					= 11
+	COPPERMINE					= 12
+	PRECIOUSMETALMINE			= 13
+	RAREMETALMINE				= 14
+	BREADFACTORY				= 15
+	ALCOHOLFACTORY				= 16
+	SUSHIFACTORY				= 17
+	TEXTILEFACTORY				= 18
+	CLOTHESFACTORY				= 19
+	FURNITUREFACTORY			= 20
+	STEELMILL					= 21
+	TOOLINGFACTORY				= 22
+	CEMENTFACTORY				= 23
+	REFINARY					= 24
+	PLASTICFACTORY				= 25
+	GLASSFACTORY				= 26
+	ELECTRONICCOMPONENTSFACTORY	= 27
+	RADIOFACTORY				= 28
+	COMPUTERFACTORY				= 29
+	GUNFACTORY					= 30
+	ENGINEFACTORY				= 31
+	CARFACTORY					= 32
+	PLANESFACTORY				= 33
+	JEWELRYWORKSHOP				= 34
+	PHONEFACTORY				= 35
+	STONEQUERY					= 36
+	SANDQUERY					= 37
 
 INDUSTRY_FISHINGBOAT_PRICE					= 10
 INDUSTRY_SALTEXTRACTION_PRICE				= 60
@@ -80,428 +83,429 @@ INDUSTRY_PLANESFACTORY_PRICE				= 500000
 INDUSTRY_JEWELRYWORKSHOP_PRICE				= 5000
 INDUSTRY_PHONEFACTORY_PRICE					= 300000
 
-PLACE_ON_RESSOURCE = 1
-PLACE_ON_TERRAIN = 2
+class CanPlaceOn(Enum):
+	RESSOURCE 	= 1
+	TERRAIN		= 2
 
 industry_type = Dict[str, List[int] | int | List[Dict[str, int]]]
 
 industry: Dict[int, industry_type] = {
-	INDUSTRY_FISHINGBOAT: {
+	IndustryType.FISHINGBOAT: {
 		'input': [],
-		'output': Goods.GOODS_FISH,
+		'output': GoodsType.FISH,
 		'price': INDUSTRY_FISHINGBOAT_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_FISH, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.FISH, },
 		],
 	},
-	INDUSTRY_SALTEXTRACTION: {
+	IndustryType.SALTEXTRACTION: {
 		'input': [],
-		'output': Goods.GOODS_SALT,
+		'output': GoodsType.SALT,
 		'price': INDUSTRY_SALTEXTRACTION_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_SALT, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.SALT, },
 		],
 	},
-	INDUSTRY_WHEAT_FIELDS: {
+	IndustryType.WHEAT_FIELDS: {
 		'input': [],
-		'output': Goods.GOODS_WHEAT,
+		'output': GoodsType.WHEAT,
 		'price': INDUSTRY_WHEAT_FIELDS_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_FERTILE_LAND, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.FERTILE_LAND, },
 		],
 	},
-	INDUSTRY_POTATO_FIELDS: {
+	IndustryType.POTATO_FIELDS: {
 		'input': [],
-		'output': Goods.GOODS_POTATO,
+		'output': GoodsType.POTATO,
 		'price': INDUSTRY_POTATO_FIELDS_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_FERTILE_LAND, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.FERTILE_LAND, },
 		],
 	},
-	INDUSTRY_COTTON_FIELDS: {
+	IndustryType.COTTON_FIELDS: {
 		'input': [],
-		'output': Goods.GOODS_COTTON,
+		'output': GoodsType.COTTON,
 		'price': INDUSTRY_COTTON_FIELDS_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_FERTILE_LAND, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.FERTILE_LAND, },
 		],
 	},
-	INDUSTRY_RICE_FIELDS: {
+	IndustryType.RICE_FIELDS: {
 		'input': [],
-		'output': Goods.GOODS_RICE,
+		'output': GoodsType.RICE,
 		'price': INDUSTRY_RICE_FIELDS_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_FERTILE_LAND, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.FERTILE_LAND, },
 		],
 	},
-	INDUSTRY_FURHUNTINGGROUNDS: {
+	IndustryType.FURHUNTINGGROUNDS: {
 		'input': [],
-		'output': Goods.GOODS_FUR,
+		'output': GoodsType.FUR,
 		'price': INDUSTRY_FURHUNTINGGROUNDS_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_HUNTING_GROUNDS, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.HUNTING_GROUNDS, },
 		],
 	},
-	INDUSTRY_LUMBERMILL: {
+	IndustryType.LUMBERMILL: {
 		'input': [],
-		'output': Goods.GOODS_WOOD,
+		'output': GoodsType.WOOD,
 		'price': INDUSTRY_LUMBERMILL_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_WOOD, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.WOOD, },
 		],
 	},
-	INDUSTRY_OILWELL: {
+	IndustryType.OILWELL: {
 		'input': [],
-		'output': Goods.GOODS_OIL,
+		'output': GoodsType.OIL,
 		'price': INDUSTRY_OILWELL_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_OIL, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.OIL, },
 		],
 	},
-	INDUSTRY_STONEQUERY: {
+	IndustryType.STONEQUERY: {
 		'input': [],
-		'output': Goods.GOODS_STONE,
+		'output': GoodsType.STONE,
 		'price': INDUSTRY_STONEQUERY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_STONE, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.STONE, },
 		],
 	},
-	INDUSTRY_SANDQUERY: {
+	IndustryType.SANDQUERY: {
 		'input': [],
-		'output': Goods.GOODS_SAND,
+		'output': GoodsType.SAND,
 		'price': INDUSTRY_SANDQUERY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_SAND, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.SAND, },
 		],
 	},
-	INDUSTRY_COALMINE: {
+	IndustryType.COALMINE: {
 		'input': [],
-		'output': Goods.GOODS_COAL,
+		'output': GoodsType.COAL,
 		'price': INDUSTRY_COALMINE_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_COAL, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.COAL, },
 		],
 	},
-	INDUSTRY_IRONMINE: {
+	IndustryType.IRONMINE: {
 		'input': [],
-		'output': Goods.GOODS_IRON,
+		'output': GoodsType.IRON,
 		'price': INDUSTRY_IRONMINE_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_IRON, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.IRON, },
 		],
 	},
-	INDUSTRY_COPPERMINE: {
+	IndustryType.COPPERMINE: {
 		'input': [],
-		'output': Goods.GOODS_COPPER,
+		'output': GoodsType.COPPER,
 		'price': INDUSTRY_COPPERMINE_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_COPPER, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.COPPER, },
 		],
 	},
-	INDUSTRY_PRECIOUSMETALMINE: {
+	IndustryType.PRECIOUSMETALMINE: {
 		'input': [],
-		'output': Goods.GOODS_PRECIOUS_METAL,
+		'output': GoodsType.PRECIOUS_METAL,
 		'price': INDUSTRY_PRECIOUSMETALMINE_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_PRECIOUS_METALS, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.PRECIOUS_METALS, },
 		],
 	},
-	INDUSTRY_RAREMETALMINE: {
+	IndustryType.RAREMETALMINE: {
 		'input': [],
-		'output': Goods.GOODS_RARE_METAL,
+		'output': GoodsType.RARE_METAL,
 		'price': INDUSTRY_RAREMETALMINE_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_RESSOURCE,	'id': Ressource.RESSOURCE_RARE_METALS, },
+			{ 'type': CanPlaceOn.RESSOURCE,	'id': RessourceType.RARE_METALS, },
 		],
 	},
-	INDUSTRY_BREADFACTORY: {
+	IndustryType.BREADFACTORY: {
 		'input': [
-			Goods.GOODS_WHEAT,
+			GoodsType.WHEAT,
 		],
-		'output': Goods.GOODS_BREAD,
+		'output': GoodsType.BREAD,
 		'price': INDUSTRY_BREADFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_ALCOHOLFACTORY: {
+	IndustryType.ALCOHOLFACTORY: {
 		'input': [
-			Goods.GOODS_POTATO,
+			GoodsType.POTATO,
 		],
-		'output': Goods.GOODS_ALCOHOL,
+		'output': GoodsType.ALCOHOL,
 		'price': INDUSTRY_ALCOHOLFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_SUSHIFACTORY: {
+	IndustryType.SUSHIFACTORY: {
 		'input': [
-			Goods.GOODS_RICE,
-			Goods.GOODS_SALT,
-			Goods.GOODS_FISH,
+			GoodsType.RICE,
+			GoodsType.SALT,
+			GoodsType.FISH,
 		],
-		'output': Goods.GOODS_SUSHI,
+		'output': GoodsType.SUSHI,
 		'price': INDUSTRY_SUSHIFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_TEXTILEFACTORY: {
+	IndustryType.TEXTILEFACTORY: {
 		'input': [
-			Goods.GOODS_COTTON,
+			GoodsType.COTTON,
 		],
-		'output': Goods.GOODS_TEXTILE,
+		'output': GoodsType.TEXTILE,
 		'price': INDUSTRY_TEXTILEFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_CLOTHESFACTORY: {
+	IndustryType.CLOTHESFACTORY: {
 		'input': [
-			Goods.GOODS_TEXTILE,
+			GoodsType.TEXTILE,
 		],
-		'output': Goods.GOODS_CLOTHES,
+		'output': GoodsType.CLOTHES,
 		'price': INDUSTRY_CLOTHESFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_FURNITUREFACTORY: {
+	IndustryType.FURNITUREFACTORY: {
 		'input': [
-			Goods.GOODS_WOOD,
-			Goods.GOODS_IRON,
+			GoodsType.WOOD,
+			GoodsType.IRON,
 		],
-		'output': Goods.GOODS_FURNITURE,
+		'output': GoodsType.FURNITURE,
 		'price': INDUSTRY_FURNITUREFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_STEELMILL: {
+	IndustryType.STEELMILL: {
 		'input': [
-			Goods.GOODS_COAL,
-			Goods.GOODS_IRON,
+			GoodsType.COAL,
+			GoodsType.IRON,
 		],
-		'output': Goods.GOODS_STEEL,
+		'output': GoodsType.STEEL,
 		'price': INDUSTRY_STEELMILL_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_TOOLINGFACTORY: {
+	IndustryType.TOOLINGFACTORY: {
 		'input': [
-			Goods.GOODS_STEEL,
-			Goods.GOODS_WOOD,
+			GoodsType.STEEL,
+			GoodsType.WOOD,
 		],
-		'output': Goods.GOODS_TOOLS,
+		'output': GoodsType.TOOLS,
 		'price': INDUSTRY_TOOLINGFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_CEMENTFACTORY: {
+	IndustryType.CEMENTFACTORY: {
 		'input': [
-			Goods.GOODS_STONE,
-			Goods.GOODS_SAND,
+			GoodsType.STONE,
+			GoodsType.SAND,
 		],
-		'output': Goods.GOODS_CEMENT,
+		'output': GoodsType.CEMENT,
 		'price': INDUSTRY_CEMENTFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_REFINARY: {
+	IndustryType.REFINARY: {
 		'input': [
-			Goods.GOODS_OIL,
+			GoodsType.OIL,
 		],
-		'output': Goods.GOODS_FUEL,
+		'output': GoodsType.FUEL,
 		'price': INDUSTRY_REFINARY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_PLASTICFACTORY: {
+	IndustryType.PLASTICFACTORY: {
 		'input': [
-			Goods.GOODS_FUEL,
+			GoodsType.FUEL,
 		],
-		'output': Goods.GOODS_PLASTIC,
+		'output': GoodsType.PLASTIC,
 		'price': INDUSTRY_PLASTICFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_GLASSFACTORY: {
+	IndustryType.GLASSFACTORY: {
 		'input': [
-			Goods.GOODS_SAND,
+			GoodsType.SAND,
 		],
-		'output': Goods.GOODS_GLASS,
+		'output': GoodsType.GLASS,
 		'price': INDUSTRY_GLASSFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_ELECTRONICCOMPONENTSFACTORY: {
+	IndustryType.ELECTRONICCOMPONENTSFACTORY: {
 		'input': [
-			Goods.GOODS_COPPER,
-			Goods.GOODS_RARE_METAL,
+			GoodsType.COPPER,
+			GoodsType.RARE_METAL,
 		],
-		'output': Goods.GOODS_ELECTRONICS_COMPONENT,
+		'output': GoodsType.ELECTRONICS_COMPONENT,
 		'price': INDUSTRY_ELECTRONICCOMPONENTSFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_RADIOFACTORY: {
+	IndustryType.RADIOFACTORY: {
 		'input': [
-			Goods.GOODS_COPPER,
-			Goods.GOODS_STEEL,
+			GoodsType.COPPER,
+			GoodsType.STEEL,
 		],
-		'output': Goods.GOODS_RADIO,
+		'output': GoodsType.RADIO,
 		'price': INDUSTRY_RADIOFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_COMPUTERFACTORY: {
+	IndustryType.COMPUTERFACTORY: {
 		'input': [
-			Goods.GOODS_ELECTRONICS_COMPONENT,
-			Goods.GOODS_STEEL,
+			GoodsType.ELECTRONICS_COMPONENT,
+			GoodsType.STEEL,
 		],
-		'output': Goods.GOODS_COMPUTER,
+		'output': GoodsType.COMPUTER,
 		'price': INDUSTRY_COMPUTERFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_GUNFACTORY: {
+	IndustryType.GUNFACTORY: {
 		'input': [
-			Goods.GOODS_STEEL,
+			GoodsType.STEEL,
 		],
-		'output': Goods.GOODS_GUNS,
+		'output': GoodsType.GUNS,
 		'price': INDUSTRY_GUNFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_ENGINEFACTORY: {
+	IndustryType.ENGINEFACTORY: {
 		'input': [
-			Goods.GOODS_STEEL,
-			Goods.GOODS_FUEL,
+			GoodsType.STEEL,
+			GoodsType.FUEL,
 		],
-		'output': Goods.GOODS_ENGINE,
+		'output': GoodsType.ENGINE,
 		'price': INDUSTRY_ENGINEFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_CARFACTORY: {
+	IndustryType.CARFACTORY: {
 		'input': [
-			Goods.GOODS_ENGINE,
-			Goods.GOODS_STEEL,
-			Goods.GOODS_GLASS
+			GoodsType.ENGINE,
+			GoodsType.STEEL,
+			GoodsType.GLASS
 		],
-		'output': Goods.GOODS_CAR,
+		'output': GoodsType.CAR,
 		'price': INDUSTRY_CARFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_PLANESFACTORY: {
+	IndustryType.PLANESFACTORY: {
 		'input': [
-			Goods.GOODS_RADIO,
-			Goods.GOODS_STEEL,
-			Goods.GOODS_GLASS,
-			Goods.GOODS_ENGINE,
+			GoodsType.RADIO,
+			GoodsType.STEEL,
+			GoodsType.GLASS,
+			GoodsType.ENGINE,
 		],
-		'output': Goods.GOODS_PLANES,
+		'output': GoodsType.PLANES,
 		'price': INDUSTRY_PLANESFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_JEWELRYWORKSHOP: {
+	IndustryType.JEWELRYWORKSHOP: {
 		'input': [
-			Goods.GOODS_PRECIOUS_METAL
+			GoodsType.PRECIOUS_METAL
 		],
-		'output': Goods.GOODS_JEWELRY,
+		'output': GoodsType.JEWELRY,
 		'price': INDUSTRY_JEWELRYWORKSHOP_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
-	INDUSTRY_PHONEFACTORY: {
+	IndustryType.PHONEFACTORY: {
 		'input': [
-			Goods.GOODS_COMPUTER,
-			Goods.GOODS_PLASTIC,
-			Goods.GOODS_GLASS,
+			GoodsType.COMPUTER,
+			GoodsType.PLASTIC,
+			GoodsType.GLASS,
 		],
-		'output': Goods.GOODS_PHONE,
+		'output': GoodsType.PHONE,
 		'price': INDUSTRY_PHONEFACTORY_PRICE,
 		'place_on': [
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_BEACH, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_PLAIN, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_FOREST, },
-			{ 'type': PLACE_ON_TERRAIN,		'id': TerrainTile.TERRAINTILETYPE_MOUNTAIN_SIDE, }
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.BEACH, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.PLAIN, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.FOREST, },
+			{ 'type': CanPlaceOn.TERRAIN,		'id': TerrainTileType.MOUNTAIN_SIDE, }
 		],
 	},
 }

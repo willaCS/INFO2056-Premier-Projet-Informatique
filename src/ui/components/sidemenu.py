@@ -106,10 +106,10 @@ sideMenu = Component(
 
 def carteRessource(pos):
 	terrain = get_terrain_tile(SelectedTile.val)
-	ressource = TerrainTile.ressource(terrain)
+	ressource = terrain.ressource
 	if not ressource:
 		return
-	goods = ressources_to_goods(Ressource.type(ressource))
+	goods = ressources_to_goods(ressource.type)
 	return Component(
 		z=2,
 		padding=vc.PADDING,
@@ -159,7 +159,7 @@ def carteRessource(pos):
 
 def carteIndustry(pos):
 	building = plants.get(SelectedTile.val)
-	building_id = Plant.type(building)
+	building_id = building.type
 	if not plants.get(SelectedTile.val):
 		return
 
@@ -268,7 +268,7 @@ def carteIndustry(pos):
 						),
 						draw=lambda rect: centerRightTextButton(
 							rect,
-							'font3', longNumber(building['generated']),
+							'font3', longNumber(building.generated),
 							vc.BACKGROUND2, vc.ROUNDING_SMOOTH, vc.PADDING
 						)
 					),
@@ -374,7 +374,7 @@ def createTemp():
 		res.append(carteIndustry(index))
 		index += 1
 
-	if index < 2 and TerrainTile.ressource(get_terrain_tile(SelectedTile.val)):
+	if index < 2 and get_terrain_tile(SelectedTile.val).ressource:
 		res.append(carteRessource(index))
 		index += 1
 	

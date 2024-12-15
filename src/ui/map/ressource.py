@@ -1,29 +1,29 @@
-from model.terrain import Ressource
+from model.terrain.Ressource import Ressource, RessourceType
 from ui.framework import drawRect, drawImage
 
 ressourceDrawMap = {
-	Ressource.RESSOURCE_FISH:            ('fish'           , lambda rect, h, h4: drawRect(rect, (0, 0, 230 + h*4))),
-	Ressource.RESSOURCE_SALT:            ('salt'           , lambda rect, h, h4: drawImage('salt', rect)),
-	Ressource.RESSOURCE_FERTILE_LAND:    ('fertile land'   , lambda rect, h, h4: drawImage('fertile_land', rect)),
-	Ressource.RESSOURCE_HUNTING_GROUNDS: ('fur'            , lambda rect, h, h4: drawRect(rect, (0, 82, 0))),
-	Ressource.RESSOURCE_WOOD:            ('wood'           , lambda rect, h, h4: drawImage('wood', rect)),
-	Ressource.RESSOURCE_OIL:             ('oil'            , lambda rect, h, h4: drawImage('oil', rect)),
-	Ressource.RESSOURCE_COAL:            ('coal'           , lambda rect, h, h4: drawImage('coal', rect)),
-	Ressource.RESSOURCE_IRON:            ('iron'           , lambda rect, h, h4: drawImage('iron', rect) if h < 35 else drawImage('iron2', rect)),
-	Ressource.RESSOURCE_COPPER:          ('copper'         , lambda rect, h, h4: drawImage('copper', rect)),
-	Ressource.RESSOURCE_PRECIOUS_METALS: ('precious metals', lambda rect, h, h4: drawImage('precious', rect)),
-	Ressource.RESSOURCE_RARE_METALS:     ('rare metals'    , lambda rect, h, h4: drawImage('rare', rect)),
-	Ressource.RESSOURCE_SAND:            ('sand'           , lambda rect, h, h4: drawImage('sand', rect)),
-	Ressource.RESSOURCE_STONE:           ('stone'          , lambda rect, h, h4: drawImage('stone', rect)),							
+	RessourceType.FISH:            ('fish'           , lambda rect, h, h4: drawRect(rect, (0, 0, 230 + h*4))),
+	RessourceType.SALT:            ('salt'           , lambda rect, h, h4: drawImage('salt', rect)),
+	RessourceType.FERTILE_LAND:    ('fertile land'   , lambda rect, h, h4: drawImage('fertile_land', rect)),
+	RessourceType.HUNTING_GROUNDS: ('fur'            , lambda rect, h, h4: drawRect(rect, (0, 82, 0))),
+	RessourceType.WOOD:            ('wood'           , lambda rect, h, h4: drawImage('wood', rect)),
+	RessourceType.OIL:             ('oil'            , lambda rect, h, h4: drawImage('oil', rect)),
+	RessourceType.COAL:            ('coal'           , lambda rect, h, h4: drawImage('coal', rect)),
+	RessourceType.IRON:            ('iron'           , lambda rect, h, h4: drawImage('iron', rect) if h < 35 else drawImage('iron2', rect)),
+	RessourceType.COPPER:          ('copper'         , lambda rect, h, h4: drawImage('copper', rect)),
+	RessourceType.PRECIOUS_METALS: ('precious metals', lambda rect, h, h4: drawImage('precious', rect)),
+	RessourceType.RARE_METALS:     ('rare metals'    , lambda rect, h, h4: drawImage('rare', rect)),
+	RessourceType.SAND:            ('sand'           , lambda rect, h, h4: drawImage('sand', rect)),
+	RessourceType.STONE:           ('stone'          , lambda rect, h, h4: drawImage('stone', rect)),							
 }
 
-def print_ressource(ressource):
-	return ressourceDrawMap[Ressource.type(ressource)][0]
+def print_ressource(ressource: Ressource):
+	return ressourceDrawMap[ressource.type][0]
 
-def draw_ressource(tile):
+def draw_ressource(tile: Ressource):
 	func = ressourceDrawMap.get(
-		Ressource.type(tile),
+		tile.type,
 		('', lambda rect, h, h4: drawRect(rect, (0, 0, 0)))
 	)[1]
-	h = Ressource.height(tile)
+	h = tile.height
 	return lambda rect, h=h, h4=h % 4 * 16: func(rect, h, h4)

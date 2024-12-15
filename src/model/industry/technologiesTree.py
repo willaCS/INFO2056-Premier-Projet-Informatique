@@ -1,13 +1,13 @@
-from model.industry import technologies
+from model.industry.technologies import IndustryType, CanPlaceOn, industry
 from model.market import player_wallet
 from model.terrain import Ressource, TerrainTile
 from model.terrain.terrain import get_terrain_tile
 
 default_unlocked = [
-	technologies.INDUSTRY_WHEAT_FIELDS,
-	technologies.INDUSTRY_FISHINGBOAT,
-	technologies.INDUSTRY_LUMBERMILL,
-	technologies.INDUSTRY_STONEQUERY,
+	IndustryType.WHEAT_FIELDS,
+	IndustryType.FISHINGBOAT,
+	IndustryType.LUMBERMILL,
+	IndustryType.STONEQUERY,
 ]
 
 techTree = [
@@ -19,8 +19,8 @@ techTree = [
 				"cost": 100,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_POTATO_FIELDS,
-					technologies.INDUSTRY_BREADFACTORY,
+					IndustryType.POTATO_FIELDS,
+					IndustryType.BREADFACTORY,
 				]
 			},
 			{
@@ -28,8 +28,8 @@ techTree = [
 				"cost": 250,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_SALTEXTRACTION,
-					technologies.INDUSTRY_RICE_FIELDS,
+					IndustryType.SALTEXTRACTION,
+					IndustryType.RICE_FIELDS,
 				]
 			},
 			{
@@ -37,8 +37,8 @@ techTree = [
 				"cost": 750,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_SUSHIFACTORY,
-					technologies.INDUSTRY_ALCOHOLFACTORY,
+					IndustryType.SUSHIFACTORY,
+					IndustryType.ALCOHOLFACTORY,
 				]
 			},
 		]
@@ -51,8 +51,8 @@ techTree = [
 				"cost": 100,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_COTTON_FIELDS,
-					technologies.INDUSTRY_SANDQUERY,
+					IndustryType.COTTON_FIELDS,
+					IndustryType.SANDQUERY,
 				]
 			},
 			{
@@ -60,9 +60,9 @@ techTree = [
 				"cost": 250,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_TEXTILEFACTORY,
-					technologies.INDUSTRY_FURNITUREFACTORY,
-					technologies.INDUSTRY_CEMENTFACTORY,
+					IndustryType.TEXTILEFACTORY,
+					IndustryType.FURNITUREFACTORY,
+					IndustryType.CEMENTFACTORY,
 				]
 			},
 			{
@@ -70,8 +70,8 @@ techTree = [
 				"cost": 500,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_CLOTHESFACTORY,
-					technologies.INDUSTRY_GLASSFACTORY,
+					IndustryType.CLOTHESFACTORY,
+					IndustryType.GLASSFACTORY,
 				]
 			},
 		]
@@ -84,7 +84,7 @@ techTree = [
 				"cost": 150,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_COALMINE,
+					IndustryType.COALMINE,
 				]
 			},
 			{
@@ -92,8 +92,8 @@ techTree = [
 				"cost": 500,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_IRONMINE,
-					technologies.INDUSTRY_COPPERMINE,
+					IndustryType.IRONMINE,
+					IndustryType.COPPERMINE,
 				]
 			},
 			{
@@ -101,9 +101,9 @@ techTree = [
 				"cost": 5000,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_PRECIOUSMETALMINE,
-					technologies.INDUSTRY_RAREMETALMINE,
-					technologies.INDUSTRY_JEWELRYWORKSHOP,
+					IndustryType.PRECIOUSMETALMINE,
+					IndustryType.RAREMETALMINE,
+					IndustryType.JEWELRYWORKSHOP,
 				]
 			},
 		]
@@ -116,7 +116,7 @@ techTree = [
 				"cost": 750,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_STEELMILL,
+					IndustryType.STEELMILL,
 				]
 			},
 			{
@@ -124,7 +124,7 @@ techTree = [
 				"cost": 1000,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_OILWELL,
+					IndustryType.OILWELL,
 				]
 			},
 			{
@@ -132,8 +132,8 @@ techTree = [
 				"cost": 3000,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_REFINARY,
-					technologies.INDUSTRY_RADIOFACTORY,
+					IndustryType.REFINARY,
+					IndustryType.RADIOFACTORY,
 				]
 			},
 			{
@@ -141,8 +141,8 @@ techTree = [
 				"cost": 10000,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_PLASTICFACTORY,
-					technologies.INDUSTRY_GUNFACTORY,
+					IndustryType.PLASTICFACTORY,
+					IndustryType.GUNFACTORY,
 				]
 			},
 			{
@@ -150,9 +150,9 @@ techTree = [
 				"cost": 50000,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_ELECTRONICCOMPONENTSFACTORY,
-					technologies.INDUSTRY_ENGINEFACTORY,
-					technologies.INDUSTRY_CARFACTORY,
+					IndustryType.ELECTRONICCOMPONENTSFACTORY,
+					IndustryType.ENGINEFACTORY,
+					IndustryType.CARFACTORY,
 				]
 			},
 			{
@@ -160,9 +160,9 @@ techTree = [
 				"cost": 100000,
 				"unlocked": False,
 				"unlocks": [
-					technologies.INDUSTRY_COMPUTERFACTORY,
-					technologies.INDUSTRY_PLANESFACTORY,
-					technologies.INDUSTRY_PHONEFACTORY,
+					IndustryType.COMPUTERFACTORY,
+					IndustryType.PLANESFACTORY,
+					IndustryType.PHONEFACTORY,
 				]
 			},
 		]
@@ -212,19 +212,19 @@ def get_placable_on(coord):
 		return []
 	unlocked = get_unlocked_buildings()
 	terrain = get_terrain_tile(coord)
-	ressource = TerrainTile.ressource(terrain)
+	ressource = terrain.ressource
 	
 	res = []
-	for indus in technologies.industry:
+	for indus in industry:
 		if not indus in unlocked:
 			continue
-		test_ind = technologies.industry[indus]
+		test_ind = industry[indus]
 		for place_on in test_ind['place_on']:
-			if place_on['type'] == technologies.PLACE_ON_RESSOURCE:
-				if ressource and place_on['id'] == Ressource.type(ressource):
-					res.append(indus)
-			elif place_on['type'] == technologies.PLACE_ON_TERRAIN:
-				if place_on['id'] == TerrainTile.type(terrain):
-					res.append(indus)
-	# print(res)
+			match place_on['type']:
+				case CanPlaceOn.RESSOURCE:
+					if ressource and place_on['id'] == ressource.type:
+						res.append(indus)
+				case CanPlaceOn.TERRAIN:
+					if place_on['id'] == terrain.type:
+						res.append(indus)
 	return res

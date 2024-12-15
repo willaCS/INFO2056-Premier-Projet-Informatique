@@ -1,4 +1,3 @@
-from model.stat import utils
 from model.market import player_wallet
 from model.market.market import buy_market, get_bundle_size, sell_market
 

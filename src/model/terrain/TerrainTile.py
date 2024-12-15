@@ -5,37 +5,24 @@ Une case est une structure ayant ces variables :
 	position: [int, int]
 """
 
+from enum import Enum
 from typing import Dict, Tuple
 
-from model.terrain import Ressource
+from model.terrain.Ressource import Ressource
 
-TERRAINTILETYPE_DEEPSEA			= 1
-TERRAINTILETYPE_SEA				= 2
-TERRAINTILETYPE_BEACH			= 3
-TERRAINTILETYPE_PLAIN			= 4
-TERRAINTILETYPE_FOREST			= 5
-TERRAINTILETYPE_MOUNTAIN_SIDE	= 6
-TERRAINTILETYPE_MOUNTAIN_TOP	= 7
+class TerrainTileType(Enum):
+	DEEPSEA			= 1
+	SEA				= 2
+	BEACH			= 3
+	PLAIN			= 4
+	FOREST			= 5
+	MOUNTAIN_SIDE	= 6
+	MOUNTAIN_TOP	= 7
 
-coord = Tuple[int, int]
-types = Dict[str, int | coord | Ressource.types | None]
+class TerrainTile:
+	def __init__(self, _type: TerrainTileType, position, height: int):
+		self.type = _type
+		self.position = position
+		self.height = height
+		self.ressource: Ressource = None
 
-def init(type: int, position: coord, height: int) -> types:
-	return {
-		"type": type,
-		"position": position,
-		"height": height,
-		"ressource": None,
-	}
-
-def type(tile: types) -> int:
-	return tile["type"]
-
-def position(tile: types) -> coord:
-	return tile["position"]
-
-def height(tile: types) -> int:
-	return tile["height"]
-
-def ressource(tile: types) -> Ressource.types | None:
-	return tile["ressource"]

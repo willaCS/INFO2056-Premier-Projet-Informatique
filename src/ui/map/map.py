@@ -19,9 +19,6 @@ def _drawTerrain(coord: coord_i):
 def drawTile(tile_coord: coord_i):
 	tile = plants.get(tile_coord)
 	if not tile: return None
-
-	print(tile)
-
 	return draw_industry_map(tile)
 
 def _drawTileOutline(color: Color, coord: coord_i):

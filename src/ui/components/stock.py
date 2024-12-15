@@ -1,5 +1,5 @@
 import Window
-from model.market import Goods
+from model.market.Goods import GoodsType
 from model.market.stockpile import get_stock
 from ui.framework.framework import Component
 from ui import SelectedTile
@@ -13,7 +13,7 @@ EXIT_BUTTON_BORDER = 2 #en pixels
 CLOSE_BUTTON_SIZE = (75, 75)
 RESOURCE_BUTTON_HEIGHT = (Window.resolution[1]- 2 * (MENU_MARGIN + vc.MENU_BORDER_WIDTH + vc.PADDING) - vc.TOP_BAR_HEIGHT - 2 * vc.PADDING- CLOSE_BUTTON_SIZE[1]) / 2
 
-NUMBER_OF_GOODS = Goods.GOODS_SAND
+NUMBER_OF_GOODS = GoodsType.SAND.value
 NUMBER_OF_COLUMNS = 3
 
 RATIO = (
@@ -102,7 +102,7 @@ stockMenu = Component(
 						)
 					),
 					draw=drawStock(i+1)
-				) for i in range(Goods.GOODS_SAND)],
+				) for i in range(NUMBER_OF_GOODS)],
 			]
 		),
 
