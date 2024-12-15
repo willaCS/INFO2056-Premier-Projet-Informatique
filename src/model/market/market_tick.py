@@ -5,7 +5,8 @@ from model.market import player_wallet
 from model.industry import technologies
 
 def market_tick():
-	for plant in sorted(map.values(), key=lambda item: item.type):
+	print(map)
+	for plant in sorted(map.values(), key=lambda item: item.type.value):
 		industry_tick(plant)
 	stockpile.sell_stock_to_market()
 

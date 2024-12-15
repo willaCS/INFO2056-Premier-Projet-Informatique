@@ -1,4 +1,3 @@
-from model.stat import utils
 from model import Speed
 from model.market import player_wallet
 from ui.framework.framework import Component
@@ -16,9 +15,9 @@ STAT_WIDTH = 300
 COLOR_DARK_RED = (120, 0, 0)
 COLOR_GRAY = (80, 80, 80)
 
-def drawStat(rect, num, num_incr, image_key):
+def drawStat(rect, num, image_key):
 	longNumber(num)
-	message = f"{longNumber(num)} ({'+' if num_incr >= 0 else ''}{longNumber(num_incr)})"
+	message = f"{longNumber(num)}"
 	drawRect(rect, vc.BACKGROUND, vc.ROUNDING_SMOOTH, hover=vc.SECONDARY)
 	drawImage(image_key, (
 		rect[0],
@@ -62,7 +61,7 @@ topBar = Component(
 				((parent[1][1] + vc.PADDING) * 2, 0),
 				(STAT_WIDTH, parent[1][1])
 			),
-			draw=lambda rect: drawStat(rect, player_wallet.money, utils.get_stat('money'), 'money'),
+			draw=lambda rect: drawStat(rect, player_wallet.money, 'money'),
 			click=showStockMenu,
 		),
 
@@ -73,7 +72,7 @@ topBar = Component(
 				((parent[1][1] + vc.PADDING) * 2 + (STAT_WIDTH + vc.PADDING), 0),
 				(STAT_WIDTH, parent[1][1])
 			),
-			draw=lambda rect: drawStat(rect, player_wallet.science, utils.get_stat('science'), 'science'),
+			draw=lambda rect: drawStat(rect, player_wallet.science, 'science'),
 			click=drawTech,
 		),
 		

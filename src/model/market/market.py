@@ -51,9 +51,9 @@ def get_bundle_size(goods_type):
 	return market[goods_type][1]
 
 def sell_market(goods_type, amounts):
-	print('sell', amounts, 'de', print_goods(goods_type), 'au prix de', int(get_price(goods_type) * TAXE))
+	# print('sell', amounts, 'de', print_goods(goods_type), 'au prix de', int(get_price(goods_type) * TAXE))
 	player_wallet.sell(int(get_price(goods_type) * TAXE * amounts + 1))
 
 def buy_market(goods_type, amounts):
-	print('buy', amounts, 'de', print_goods(goods_type), 'au prix de', market[goods_type])
+	# print('buy', amounts, 'de', print_goods(goods_type), 'au prix de', market[goods_type])
 	player_wallet.buy(int(get_price(goods_type) * amounts))

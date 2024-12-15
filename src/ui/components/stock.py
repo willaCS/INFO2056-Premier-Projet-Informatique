@@ -31,10 +31,11 @@ def closeStockMenu(pos):
 
 def drawStock(goods_id):
 	good = draw_goods(goods_id)
-	def res(rect):
+	def res(rect, is_in, goods_id=goods_id):
 		drawRect(rect, vc.BACKGROUND3, vc.ROUNDING_HARD)
 		rectangle = ((rect[0][0] + vc.PADDING, rect[0][1] + vc.PADDING), (rect[1][1] - 2 * vc.PADDING, rect[1][1] - 2 * vc.PADDING))
 		good(rectangle)
+		print(goods_id, get_stock(goods_id))
 		centerRightTextButton((
 			(rectangle[0][0] + rectangle[1][0] + vc.PADDING, rectangle[0][1]),
 			(rect[1][0] - 2 * vc.PADDING - rectangle[1][0] - vc.PADDING, rect[1][1] - 2 * vc.PADDING)
@@ -101,7 +102,7 @@ stockMenu = Component(
 							parent[1][1] // RATIO[1],
 						)
 					),
-					draw=drawStock(i+1)
+					draw=drawStock(goods_id=GoodsType(i+1))
 				) for i in range(NUMBER_OF_GOODS)],
 			]
 		),
