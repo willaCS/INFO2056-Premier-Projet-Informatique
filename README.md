@@ -1,5 +1,55 @@
 # INFO2056-Premier-Projet-Informatique
-# Goods
+
+Pour lancer, faite soit:
+- make
+- python3 src/init.py
+
+# Aide
+
+
+## Industries
+ 
+| Industry Name                     | Input Ressource                   | Output Ressource      |
+| --------------------------------- | --------------------------------- | --------------------- |
+| Fishing Boat                      | -                                 | Fish                  |
+| Salt Extraction                   | -                                 | Salt                  |
+| Wheat                             | -                                 | Wheat                 |
+| Potato                            | -                                 | Potato                |
+| Cotton                            | -                                 | Cotton                |
+| Rice                              | -                                 | Rice                  |
+| Fur Hunting Grounds               | -                                 | Fur                   |
+| Lumbermill                        | -                                 | Wood                  |
+| Sand Query                        | -                                 | Sand                  |
+| Stone Query                       | -                                 | Stone                 |
+| Oil Well                          | -                                 | Oil                   |
+| Coal Mine                         | -                                 | Coal                  |
+| Iron Mine                         | -                                 | Iron                  |
+| Copper Mine                       | -                                 | Copper                |
+| Precious Metal Mine               | -                                 | Precious Metal        |
+| Rare Metal Mine                   | -                                 | Rare Metal            |
+| Bread Factory                     | Wheat                             | Bread                 |
+| Alcohol Factory                   | Potato                            | Alcohol               |
+| Sushi Factory                     | Rice<br>Salt<br>Fish              | Sushi                 |
+| Textile Factory                   | Cotton                            | Textile               |
+| Clothes Factory                   | Textile                           | Clothes               |
+| Furniture Factory                 | Wood<br>Iron                      | Furniture             |
+| Steel mill                        | Iron<br>Coal                      | Steel                 |
+| Tooling Factory                   | Steel<br>Wood                     | Tools                 |
+| Cement Factory                    | Stone<br>Sand                     | Cement                |
+| Refinary                          | Oil                               | Fuel                  |
+| Plastic Factory                   | Fuel                              | Plastic               |
+| Glass Factory                     | Sand                              | Glass                 |
+| Electronic Components(EC) Factory | Copper<br>Rare Metals             | Electronics Component |
+| Radio Factory                     | Copper<br>Steel                   | Radio                 |
+| Computer Factory                  | EC<br>Steel                       | Computer              |
+| Gun Factory                       | Steel                             | Guns                  |
+| Engine Factory                    | Steel<br>Fuel                     | Engine                |
+| Car Factory                       | Steel<br>Engine<br>Glass          | Car                   |
+| Planes Factory                    | Radio<br>Steel<br>Glass<br>Engine | Planes                |
+| Jewelry Workshop                  | Precious Metals                   | Jewelry               |
+| Phone Factory                     | Computer<br>Plastic<br>Glass      | Phone                 |
+
+## Goods
 
 | Name                  | Image                                                                                               |
 | --------------------- | --------------------------------------------------------------------------------------------------- |
@@ -71,46 +121,3 @@
 | <img src="./assets/goods/emerald.png"     alt="drawing" style="width:30px"/> | Rare Metals     | Rare Metal Mine            |
 | <img src="./assets/goods/sand.png"        alt="drawing" style="width:30px"/> | Sand            | Sand Query                 |
 | <img src="./assets/goods/stone.png"       alt="drawing" style="width:30px"/> | Stone           | Stone Query                |
-
-
-## Industries
- 
-| Industry Name                     | Input Ressource                   | Output Ressource      |
-| --------------------------------- | --------------------------------- | --------------------- |
-| Fishing Boat                      | -                                 | Fish                  |
-| Salt Extraction                   | -                                 | Salt                  |
-| Wheat                             | -                                 | Wheat                 |
-| Potato                            | -                                 | Potato                |
-| Cotton                            | -                                 | Cotton                |
-| Rice                              | -                                 | Rice                  |
-| Fur Hunting Grounds               | -                                 | Fur                   |
-| Lumbermill                        | -                                 | Wood                  |
-| Sand Query                        | -                                 | Sand                  |
-| Stone Query                       | -                                 | Stone                 |
-| Oil Well                          | -                                 | Oil                   |
-| Coal Mine                         | -                                 | Coal                  |
-| Iron Mine                         | -                                 | Iron                  |
-| Copper Mine                       | -                                 | Copper                |
-| Precious Metal Mine               | -                                 | Precious Metal        |
-| Rare Metal Mine                   | -                                 | Rare Metal            |
-| Bread Factory                     | Wheat                             | Bread                 |
-| Alcohol Factory                   | Potato                            | Alcohol               |
-| Sushi Factory                     | Rice<br>Salt<br>Fish              | Sushi                 |
-| Textile Factory                   | Cotton                            | Textile               |
-| Clothes Factory                   | Textile                           | Clothes               |
-| Furniture Factory                 | Wood<br>Iron                      | Furniture             |
-| Steel mill                        | Iron<br>Coal                      | Steel                 |
-| Tooling Factory                   | Steel<br>Wood                     | Tools                 |
-| Cement Factory                    | Stone<br>Sand                     | Cement                |
-| Refinary                          | Oil                               | Fuel                  |
-| Plastic Factory                   | Fuel                              | Plastic               |
-| Glass Factory                     | Sand                              | Glass                 |
-| Electronic Components(EC) Factory | Copper<br>Rare Metals             | Electronics Component |
-| Radio Factory                     | Copper<br>Steel                   | Radio                 |
-| Computer Factory                  | EC<br>Steel                       | Computer              |
-| Gun Factory                       | Steel                             | Guns                  |
-| Engine Factory                    | Steel<br>Fuel                     | Engine                |
-| Car Factory                       | Steel<br>Engine<br>Glass          | Car                   |
-| Planes Factory                    | Radio<br>Steel<br>Glass<br>Engine | Planes                |
-| Jewelry Workshop                  | Precious Metals                   | Jewelry               |
-| Phone Factory                     | Computer<br>Plastic<br>Glass      | Phone                 |
