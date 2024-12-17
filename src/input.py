@@ -110,7 +110,7 @@ def singleKey_qwerty(key: int):
 		case pygame.K_o:
 			player_wallet.science += 10
 		case pygame.K_l:
-			player_wallet.money += 100000000
+			player_wallet.money += 100
 		case pygame.K_p:
 			drawTech()
 		case _:
@@ -155,7 +155,7 @@ def singleKey_azerty(key):
 		case pygame.K_o:
 			player_wallet.science += 10
 		case pygame.K_l:
-			player_wallet.money += 100000000
+			player_wallet.money += 100
 		case pygame.K_p:
 			drawTech()
 		case _:
